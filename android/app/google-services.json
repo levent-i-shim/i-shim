@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "688748406988",
+    "project_id": "i-shim-start",
+    "storage_bucket": "i-shim-start.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:688748406988:android:828bc5ffdd748973e03a69",
+        "android_client_info": {
+          "package_name": "com.levent.ishim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "688748406988-dvq46i2akk1tdfmb8bdttbpenlg63equ.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx3my5N5PV0yU7frkNc5trtw7ylgMS1Cg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "688748406988-dvq46i2akk1tdfmb8bdttbpenlg63equ.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "688748406988-oilgf09jlrfpjknmf6j3ca93cvugvlru.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.levent.ishim"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

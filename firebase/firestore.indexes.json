@@ -1,0 +1,1450 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "workPlaces",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "owner",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "type",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "invitations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "receiver",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "invitations",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "sender",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "timestamp",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyWorkers",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "departmentRefs",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyReports",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "task",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyTaskDuties",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "dutiesForCompany",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creadetAt",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyReports",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "duty",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "instructions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "amISender",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlace",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyWorkers",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "roleRefs",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyWorkers",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "unitRefs",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "spentMoneyForAllowence",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "sender",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyTasks",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "visibleTo",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "dutiesForCompany",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "visibleTo",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyTransactions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "receiverRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "confirmations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "sender",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "confirmations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "receiver",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyIncomes2025",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isExpected",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyPayments2025",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isExpected",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "stockMovement",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "stockRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "AllConfirmations",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isAccept",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdRef",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyIncomes2025",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isExpected",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expectedDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyPayments2025",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isExpected",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expectedDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userIncome",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isExpected",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expectedDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "userPayment",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isExpected",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "expectedDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyReports",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "duty",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasResponse",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaceTransaction",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "receiverRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "notifications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "WorkPlaceNotifications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyNotifications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "notifications",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isRead",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "socialNotification",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isRead",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyIncomes2025",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isExpected",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlace",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyPayments2025",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isExpected",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlace",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Notes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "importantNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDeleted",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "goalNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDeleted",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "personalDiary",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDeleted",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "createdAt",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "urgentNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDeleted",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "completed",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "partnershipInvitation",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "receiver",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "partnershipInvitation",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "sender",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialMonitoringNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDeleted",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "financeType",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialMonitoringNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDeleted",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companies",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "owner",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "partners",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaces",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "owner",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "partners",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialMonitoringNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "financeType",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaceNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasVehicleFault",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaceNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasMachineFault",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaceNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasFinancialNotes",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaceNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasTaxNotes",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaceNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasPersonnelNotes",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaceNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasWorkplaceNotes",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasCompanyRecord",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasMachineFailure",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasPersonnelNote",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasFinancialNote",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyNotes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "hasTaxNote",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companySalary",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companySalary",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlace",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "date",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompany",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "companyRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyBill",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "companyRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompanyCheck",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "companyDocRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "paymentStatus",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "transactionType",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlaceDocRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "dueDate",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompanyCheck",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "companyDocRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "paymentStatus",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "transactionType",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlaceDocRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompanyCheck",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "companyDocRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialPlans",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "creatorUserRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "authorizedUsersToMonitor",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "incomePlans",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "creatorUserRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "authorizedUsersToMonitor",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "investmentPlans",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "creatorUserRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "authorizedUsersToMonitor",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialPlansItems",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isPaid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialPlansItems",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isPaid",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "willBePostponed",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "incomePlanItems",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "status",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "xCurrentAccounts",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "creatorUserRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "authorizedUsersToMonitor",
+          "arrayConfig": "CONTAINS"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyWorkers",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "userRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "departmentRefs",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "workPlaceWorker",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "user",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "instructions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "company",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlace",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyBill",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "incomeOrExpense",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompany",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "companyRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "incomeOrExpense",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompany",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "companyRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "incomeOrExpense",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlaceRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompanyCheck",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "paymentStatus",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "transactionType",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompanyCheck",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "paymentStatus",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "transactionType",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlaceDocRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialPlans",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "creatorUserRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "authorizedUsersToMonitor",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "incomePlans",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "creatorUserRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "authorizedUsersToMonitor",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "investmentPlans",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "creatorUserRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "authorizedUsersToMonitor",
+          "arrayConfig": "CONTAINS"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyTasks",
+      "fieldPath": "userRef",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "dutiesForCompany",
+      "fieldPath": "isComplete",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyTaskDuties",
+      "fieldPath": "dutiesForCompany",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "PersonalConfirmationsMessages",
+      "fieldPath": "receiverRef",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyReports",
+      "fieldPath": "reportsTo",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companyReports",
+      "fieldPath": "sentBy",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companiesCurrents",
+      "fieldPath": "companyRef",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompanyCheck",
+      "fieldPath": "creationTime",
+      "indexes": [
+        {
+          "order": "DESCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "instructions",
+      "fieldPath": "id",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompany",
+      "fieldPath": "companyId",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,767 @@
+// Export pages
+export '/pages/authentication/authentication_widget.dart'
+    show AuthenticationWidget;
+export '/nav_bar_pages/profile/profile_widget.dart' show ProfileWidget;
+export '/pages/personel/settings_edit_profile/settings_edit_profile_widget.dart'
+    show SettingsEditProfileWidget;
+export '/nav_bar_pages/kurulum/kurulum_widget.dart' show KurulumWidget;
+export '/pages/invitaions_notifications/invitation_main/invitation_main_widget.dart'
+    show InvitationMainWidget;
+export '/pages/kur/kur/kur_widget.dart' show KurWidget;
+export '/pages/kur/sirket_kur/sirket_kur_widget.dart' show SirketKurWidget;
+export '/pages/kur/limited_sirket_kur/limited_sirket_kur_widget.dart'
+    show LimitedSirketKurWidget;
+export '/pages/kur/ofis_kur/ofis_kur_widget.dart' show OfisKurWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/isyerikur/isyerikur_widget.dart'
+    show IsyerikurWidget;
+export '/pages/kur/fabrika_kur/fabrika_kur_widget.dart' show FabrikaKurWidget;
+export '/pages/kur/santiye_kur/santiye_kur_widget.dart' show SantiyeKurWidget;
+export '/company/company_control/work_places_detail_page/work_places_detail_page_widget.dart'
+    show WorkPlacesDetailPageWidget;
+export '/pages/invitaions_notifications/worker_invitation_old/worker_invitation_old_widget.dart'
+    show WorkerInvitationOldWidget;
+export '/pages/ishim/ortaklk_kur/ortaklk_kur_widget.dart' show OrtaklkKurWidget;
+export '/pages/invitaions_notifications/calisan_davet_et_page2/calisan_davet_et_page2_widget.dart'
+    show CalisanDavetEtPage2Widget;
+export '/pages/invitaions_notifications/received_invitations/received_invitations_widget.dart'
+    show ReceivedInvitationsWidget;
+export '/pages/invitaions_notifications/sent_invitations/sent_invitations_widget.dart'
+    show SentInvitationsWidget;
+export '/company/company_departments/departmants_page/departmants_page_widget.dart'
+    show DepartmantsPageWidget;
+export '/company/company_departments/add_department/add_department_widget.dart'
+    show AddDepartmentWidget;
+export '/company/company_departments/department_employess/department_employess_widget.dart'
+    show DepartmentEmployessWidget;
+export '/company/company_roles/roles_page/roles_page_widget.dart'
+    show RolesPageWidget;
+export '/company/company_roles/add_role_page/add_role_page_widget.dart'
+    show AddRolePageWidget;
+export '/company/company_task/company_tasks_page/company_tasks_page_widget.dart'
+    show CompanyTasksPageWidget;
+export '/company/company_task/company_task_add/company_task_add_widget.dart'
+    show CompanyTaskAddWidget;
+export '/pages/invitaions_notifications/invitation_detail/invitation_detail_widget.dart'
+    show InvitationDetailWidget;
+export '/pages/invitaions_notifications/send_invitation_detail/send_invitation_detail_widget.dart'
+    show SendInvitationDetailWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/worker_invitation01_user/worker_invitation01_user_widget.dart'
+    show WorkerInvitation01UserWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/worker_invitation02_companies/worker_invitation02_companies_widget.dart'
+    show WorkerInvitation02CompaniesWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/worker_invitation03_work_place/worker_invitation03_work_place_widget.dart'
+    show WorkerInvitation03WorkPlaceWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/worker_invitation04_unit/worker_invitation04_unit_widget.dart'
+    show WorkerInvitation04UnitWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/worker_invitation05_department/worker_invitation05_department_widget.dart'
+    show WorkerInvitation05DepartmentWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/worker_invitation06_role/worker_invitation06_role_widget.dart'
+    show WorkerInvitation06RoleWidget;
+export '/company/company_task/company_task_read_reports_page/company_task_read_reports_page_widget.dart'
+    show CompanyTaskReadReportsPageWidget;
+export '/company/company_task_duties/company_task_duties_page/company_task_duties_page_widget.dart'
+    show CompanyTaskDutiesPageWidget;
+export '/company/company_task_duties/company_task_duties_create_page/company_task_duties_create_page_widget.dart'
+    show CompanyTaskDutiesCreatePageWidget;
+export '/company/company_task_duties/company_tasks_for_duty_create_page/company_tasks_for_duty_create_page_widget.dart'
+    show CompanyTasksForDutyCreatePageWidget;
+export '/company/company_task_duties/company_tasks_duties_show_reports_page/company_tasks_duties_show_reports_page_widget.dart'
+    show CompanyTasksDutiesShowReportsPageWidget;
+export '/company/company_task_duties/company_show_all_task_duties_page/company_show_all_task_duties_page_widget.dart'
+    show CompanyShowAllTaskDutiesPageWidget;
+export '/company/company_task_duties/company_task_duties_read_report_page/company_task_duties_read_report_page_widget.dart'
+    show CompanyTaskDutiesReadReportPageWidget;
+export '/forms/create_form/create_form_widget.dart' show CreateFormWidget;
+export '/forms/create_form_fields/create_form_fields_widget.dart'
+    show CreateFormFieldsWidget;
+export '/forms/response_form_for_task/response_form_for_task_widget.dart'
+    show ResponseFormForTaskWidget;
+export '/forms/response_form_for_duty/response_form_for_duty_widget.dart'
+    show ResponseFormForDutyWidget;
+export '/forms/show_all_forms_page/show_all_forms_page_widget.dart'
+    show ShowAllFormsPageWidget;
+export '/forms/show_form_fields_page/show_form_fields_page_widget.dart'
+    show ShowFormFieldsPageWidget;
+export '/company/instruction/company_instructions_create_page/company_instructions_create_page_widget.dart'
+    show CompanyInstructionsCreatePageWidget;
+export '/company/instruction/company_instrucion_for_department/company_instrucion_for_department_widget.dart'
+    show CompanyInstrucionForDepartmentWidget;
+export '/company/instruction/company_instructions_for_role/company_instructions_for_role_widget.dart'
+    show CompanyInstructionsForRoleWidget;
+export '/company/instruction/company_instruction_for_unit/company_instruction_for_unit_widget.dart'
+    show CompanyInstructionForUnitWidget;
+export '/company/instruction/company_instruction_for_person/company_instruction_for_person_widget.dart'
+    show CompanyInstructionForPersonWidget;
+export '/daily_page/daily_page_widget.dart' show DailyPageWidget;
+export '/company/company_unit/company_units_page/company_units_page_widget.dart'
+    show CompanyUnitsPageWidget;
+export '/company/company_unit/company_unit_add_page/company_unit_add_page_widget.dart'
+    show CompanyUnitAddPageWidget;
+export '/company/company_roles/company_role_employees/company_role_employees_widget.dart'
+    show CompanyRoleEmployeesWidget;
+export '/company/company_unit/company_unit_employees/company_unit_employees_widget.dart'
+    show CompanyUnitEmployeesWidget;
+export '/company/employee_detail/employee_detail_page/employee_detail_page_widget.dart'
+    show EmployeeDetailPageWidget;
+export '/company/company_expenditury/sent_money_for_allowence_page/sent_money_for_allowence_page_widget.dart'
+    show SentMoneyForAllowencePageWidget;
+export '/company/company_expenditury/my_vault_page/my_vault_page_widget.dart'
+    show MyVaultPageWidget;
+export '/company/company_expenditury/spend_expanditury_detail_page/spend_expanditury_detail_page_widget.dart'
+    show SpendExpandituryDetailPageWidget;
+export '/company/company_expenditury/expandituries_page/expandituries_page_widget.dart'
+    show ExpandituriesPageWidget;
+export '/company/company_expenditury/sent_expanditury_detail_page/sent_expanditury_detail_page_widget.dart'
+    show SentExpandituryDetailPageWidget;
+export '/company/company_worker_company_page/company_worker_company_page_widget.dart'
+    show CompanyWorkerCompanyPageWidget;
+export '/company/company_worker_tasks_page/company_worker_tasks_page_widget.dart'
+    show CompanyWorkerTasksPageWidget;
+export '/company/company_transaction/send_transaction_page/send_transaction_page_widget.dart'
+    show SendTransactionPageWidget;
+export '/company/company_transaction/show_my_transactions_page/show_my_transactions_page_widget.dart'
+    show ShowMyTransactionsPageWidget;
+export '/company/company_transaction/transaction_detail_page/transaction_detail_page_widget.dart'
+    show TransactionDetailPageWidget;
+export '/company/company_transaction/show_all_transaction_page/show_all_transaction_page_widget.dart'
+    show ShowAllTransactionPageWidget;
+export '/companies_budget_page/companies_budget_page_widget.dart'
+    show CompaniesBudgetPageWidget;
+export '/confirmations/confirmations_page/confirmations_page_widget.dart'
+    show ConfirmationsPageWidget;
+export '/confirmations/create_new_confirmation/create_new_confirmation_widget.dart'
+    show CreateNewConfirmationWidget;
+export '/confirmations/message_page/message_page_widget.dart'
+    show MessagePageWidget;
+export '/company/incomes_page/incomes_page_widget.dart' show IncomesPageWidget;
+export '/company/payments_page/payments_page_widget.dart'
+    show PaymentsPageWidget;
+export '/company/company_transaction/transaction_detail_for_daily_page/transaction_detail_for_daily_page_widget.dart'
+    show TransactionDetailForDailyPageWidget;
+export '/company/company_stocks/stocks_page/stocks_page_widget.dart'
+    show StocksPageWidget;
+export '/company/company_stocks/add_stock_page/add_stock_page_widget.dart'
+    show AddStockPageWidget;
+export '/company/company_stocks/stock_detail_page/stock_detail_page_widget.dart'
+    show StockDetailPageWidget;
+export '/company/company_stocks/stock_movement_detail_page/stock_movement_detail_page_widget.dart'
+    show StockMovementDetailPageWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/worker_invitation07_salary/worker_invitation07_salary_widget.dart'
+    show WorkerInvitation07SalaryWidget;
+export '/company/employee_detail/company_workers_page/company_workers_page_widget.dart'
+    show CompanyWorkersPageWidget;
+export '/current_accounts/current_acount_for_user/current_account_activity/current_account_activity_widget.dart'
+    show CurrentAccountActivityWidget;
+export '/confrimations/company_confirmation/company_confirmation_choose_company_page/company_confirmation_choose_company_page_widget.dart'
+    show CompanyConfirmationChooseCompanyPageWidget;
+export '/confrimations/company_confirmation/company_confirmations_page/company_confirmations_page_widget.dart'
+    show CompanyConfirmationsPageWidget;
+export '/confrimations/company_confirmation/company_confirmation_message_page/company_confirmation_message_page_widget.dart'
+    show CompanyConfirmationMessagePageWidget;
+export '/confrimations/company_confirmation/company_confirmations_create_confirmation/company_confirmations_create_confirmation_widget.dart'
+    show CompanyConfirmationsCreateConfirmationWidget;
+export '/confrimations/company_confirmation/company_confirmation_request_page/company_confirmation_request_page_widget.dart'
+    show CompanyConfirmationRequestPageWidget;
+export '/confrimations/work_place_confirmation/workplace_confirmation_choose_workplace_page/workplace_confirmation_choose_workplace_page_widget.dart'
+    show WorkplaceConfirmationChooseWorkplacePageWidget;
+export '/confrimations/work_place_confirmation/workplace_confirmation_message_page/workplace_confirmation_message_page_widget.dart'
+    show WorkplaceConfirmationMessagePageWidget;
+export '/confrimations/work_place_confirmation/workplace_confirmation_request_page/workplace_confirmation_request_page_widget.dart'
+    show WorkplaceConfirmationRequestPageWidget;
+export '/confrimations/work_place_confirmation/workplace_confirmation_create_confirmation_page/workplace_confirmation_create_confirmation_page_widget.dart'
+    show WorkplaceConfirmationCreateConfirmationPageWidget;
+export '/confrimations/work_place_confirmation/workplace_confirmations_page/workplace_confirmations_page_widget.dart'
+    show WorkplaceConfirmationsPageWidget;
+export '/social/social_send_request/social_send_request_widget.dart'
+    show SocialSendRequestWidget;
+export '/social/social_received_request/social_received_request_widget.dart'
+    show SocialReceivedRequestWidget;
+export '/current_accounts/current_acount_for_user/current_account_create_page/current_account_create_page_widget.dart'
+    show CurrentAccountCreatePageWidget;
+export '/current_accounts/current_acount_for_user/current_account_bills_page/current_account_bills_page_widget.dart'
+    show CurrentAccountBillsPageWidget;
+export '/current_accounts/current_acount_for_user/current_account_create_bill_page/current_account_create_bill_page_widget.dart'
+    show CurrentAccountCreateBillPageWidget;
+export '/current_accounts/current_acount_for_user/current_account_bills_detail_page/current_account_bills_detail_page_widget.dart'
+    show CurrentAccountBillsDetailPageWidget;
+export '/current_accounts/current_account_for_company/current_account_activity_company/current_account_activity_company_widget.dart'
+    show CurrentAccountActivityCompanyWidget;
+export '/current_accounts/current_account_for_company/current_account_bills_detail_for_company_page/current_account_bills_detail_for_company_page_widget.dart'
+    show CurrentAccountBillsDetailForCompanyPageWidget;
+export '/current_accounts/current_account_for_company/current_account_bills_for_company_page/current_account_bills_for_company_page_widget.dart'
+    show CurrentAccountBillsForCompanyPageWidget;
+export '/current_accounts/current_account_for_company/current_account_create_bill_p_for_company_page/current_account_create_bill_p_for_company_page_widget.dart'
+    show CurrentAccountCreateBillPForCompanyPageWidget;
+export '/current_accounts/current_account_for_company/current_account_create_for_company_page/current_account_create_for_company_page_widget.dart'
+    show CurrentAccountCreateForCompanyPageWidget;
+export '/current_accounts/current_account_for_company/current_account_for_company_page_request/current_account_for_company_page_request_widget.dart'
+    show CurrentAccountForCompanyPageRequestWidget;
+export '/current_accounts/current_account_for_company/current_account_bill_for_company_page_request/current_account_bill_for_company_page_request_widget.dart'
+    show CurrentAccountBillForCompanyPageRequestWidget;
+export '/current_accounts/current_account_for_company/current_account_bills_detail_for_company_page_paid_accept/current_account_bills_detail_for_company_page_paid_accept_widget.dart'
+    show CurrentAccountBillsDetailForCompanyPagePaidAcceptWidget;
+export '/company/company_notifications_page/company_notifications_page_widget.dart'
+    show CompanyNotificationsPageWidget;
+export '/current_accounts/current_account_for_company/expanded_income_company_bill_page/expanded_income_company_bill_page_widget.dart'
+    show ExpandedIncomeCompanyBillPageWidget;
+export '/current_accounts/current_account_for_company/expanded_payment_company_bill_page/expanded_payment_company_bill_page_widget.dart'
+    show ExpandedPaymentCompanyBillPageWidget;
+export '/current_accounts/current_acount_for_user/current_account_request_page_for_user/current_account_request_page_for_user_widget.dart'
+    show CurrentAccountRequestPageForUserWidget;
+export '/current_accounts/current_acount_for_user/current_account_bill_requests_page_for_user/current_account_bill_requests_page_for_user_widget.dart'
+    show CurrentAccountBillRequestsPageForUserWidget;
+export '/current_accounts/current_acount_for_user/current_account_bills_detail_for_user_page/current_account_bills_detail_for_user_page_widget.dart'
+    show CurrentAccountBillsDetailForUserPageWidget;
+export '/current_accounts/current_acount_for_user/expected_income_user_bill_page/expected_income_user_bill_page_widget.dart'
+    show ExpectedIncomeUserBillPageWidget;
+export '/current_accounts/current_acount_for_user/expected_payment_bill_user_page/expected_payment_bill_user_page_widget.dart'
+    show ExpectedPaymentBillUserPageWidget;
+export '/current_accounts/match_current_account_page/match_current_account_page_widget.dart'
+    show MatchCurrentAccountPageWidget;
+export '/current_accounts/current_acount_for_user/match_current_account_requestes_page/match_current_account_requestes_page_widget.dart'
+    show MatchCurrentAccountRequestesPageWidget;
+export '/current_accounts/current_account_for_company/match_current_account_requestes_for_company_page/match_current_account_requestes_for_company_page_widget.dart'
+    show MatchCurrentAccountRequestesForCompanyPageWidget;
+export '/company/company_vehicles/company_vehicles_page/company_vehicles_page_widget.dart'
+    show CompanyVehiclesPageWidget;
+export '/company/company_vehicles/company_add_vehicle/company_add_vehicle_widget.dart'
+    show CompanyAddVehicleWidget;
+export '/company/company_vehicles/company_vehicle_payments/company_vehicle_payments_widget.dart'
+    show CompanyVehiclePaymentsWidget;
+export '/company/company_vehicles/copmany_vehicle_add_payment/copmany_vehicle_add_payment_widget.dart'
+    show CopmanyVehicleAddPaymentWidget;
+export '/company/company_transaction/company_transaction_for_vehicle_payment_page/company_transaction_for_vehicle_payment_page_widget.dart'
+    show CompanyTransactionForVehiclePaymentPageWidget;
+export '/company/employee_detail/edit_employee_detail/edit_employee_detail_widget.dart'
+    show EditEmployeeDetailWidget;
+export '/confrimations/personal_confirmation/personal_confirmation_choose_person_page/personal_confirmation_choose_person_page_widget.dart'
+    show PersonalConfirmationChoosePersonPageWidget;
+export '/confrimations/personal_confirmation/personal_confirmations_page/personal_confirmations_page_widget.dart'
+    show PersonalConfirmationsPageWidget;
+export '/confrimations/personal_confirmation/personal_confirmation_message_page/personal_confirmation_message_page_widget.dart'
+    show PersonalConfirmationMessagePageWidget;
+export '/pages/personel/email_verify_page/email_verify_page_widget.dart'
+    show EmailVerifyPageWidget;
+export '/company_work_place_main_pages/company_control_page/company_control_page_widget.dart'
+    show CompanyControlPageWidget;
+export '/company/company_control/company_control_finance_page/company_control_finance_page_widget.dart'
+    show CompanyControlFinancePageWidget;
+export '/company/company_control/company_control_organization_page/company_control_organization_page_widget.dart'
+    show CompanyControlOrganizationPageWidget;
+export '/company/company_control/company_control_operations_page/company_control_operations_page_widget.dart'
+    show CompanyControlOperationsPageWidget;
+export '/company/company_control/copmany_control_communication/copmany_control_communication_widget.dart'
+    show CopmanyControlCommunicationWidget;
+export '/company/company_control/copmany_partnerships_page/copmany_partnerships_page_widget.dart'
+    show CopmanyPartnershipsPageWidget;
+export '/company/company_control/company_partners_manage_page/company_partners_manage_page_widget.dart'
+    show CompanyPartnersManagePageWidget;
+export '/company/company_control/add_partner_company_page/add_partner_company_page_widget.dart'
+    show AddPartnerCompanyPageWidget;
+export '/company/company_control/add_partner_company_step2_page/add_partner_company_step2_page_widget.dart'
+    show AddPartnerCompanyStep2PageWidget;
+export '/company_work_place_main_pages/company_control_for_partner_page/company_control_for_partner_page_widget.dart'
+    show CompanyControlForPartnerPageWidget;
+export '/company/company_control_for_partner/company_control_finance_for_partner_page/company_control_finance_for_partner_page_widget.dart'
+    show CompanyControlFinanceForPartnerPageWidget;
+export '/company/company_control_for_partner/company_control_organization_for_partner_page/company_control_organization_for_partner_page_widget.dart'
+    show CompanyControlOrganizationForPartnerPageWidget;
+export '/company/company_control_for_partner/company_control_operations_for_partner_page/company_control_operations_for_partner_page_widget.dart'
+    show CompanyControlOperationsForPartnerPageWidget;
+export '/company/company_control_for_partner/company_control_communication_for_partner_page/company_control_communication_for_partner_page_widget.dart'
+    show CompanyControlCommunicationForPartnerPageWidget;
+export '/company_work_place_main_pages/work_place_home_page_for_owner/work_place_home_page_for_owner_widget.dart'
+    show WorkPlaceHomePageForOwnerWidget;
+export '/work_place/departman_work_place/add_department_page_work_place/add_department_page_work_place_widget.dart'
+    show AddDepartmentPageWorkPlaceWidget;
+export '/work_place/departman_work_place/departmans_page_work_place/departmans_page_work_place_widget.dart'
+    show DepartmansPageWorkPlaceWidget;
+export '/work_place/departman_work_place/department_employee_page_work_place/department_employee_page_work_place_widget.dart'
+    show DepartmentEmployeePageWorkPlaceWidget;
+export '/work_place/employee_detail_first_page_work_place/employee_detail_page_work_place/employee_detail_page_work_place_widget.dart'
+    show EmployeeDetailPageWorkPlaceWidget;
+export '/work_place/employee_detail_first_page_work_place/edit_employee_detail_page_work_place/edit_employee_detail_page_work_place_widget.dart'
+    show EditEmployeeDetailPageWorkPlaceWidget;
+export '/work_place/unit_work_place/units_page_work_place/units_page_work_place_widget.dart'
+    show UnitsPageWorkPlaceWidget;
+export '/work_place/unit_work_place/units_employee_page_work_place/units_employee_page_work_place_widget.dart'
+    show UnitsEmployeePageWorkPlaceWidget;
+export '/work_place/unit_work_place/add_unit_page_work_place/add_unit_page_work_place_widget.dart'
+    show AddUnitPageWorkPlaceWidget;
+export '/work_place/role_work_place/roles_page_work_place/roles_page_work_place_widget.dart'
+    show RolesPageWorkPlaceWidget;
+export '/work_place/role_work_place/add_role_page_work_place/add_role_page_work_place_widget.dart'
+    show AddRolePageWorkPlaceWidget;
+export '/work_place/role_work_place/role_employee_page_work_place/role_employee_page_work_place_widget.dart'
+    show RoleEmployeePageWorkPlaceWidget;
+export '/work_place/instructions_work_place/instructions_create_page_work_place/instructions_create_page_work_place_widget.dart'
+    show InstructionsCreatePageWorkPlaceWidget;
+export '/work_place/instructions_work_place/instruction_work_place_page_work_place/instruction_work_place_page_work_place_widget.dart'
+    show InstructionWorkPlacePageWorkPlaceWidget;
+export '/work_place/instructions_work_place/instructions_department_page_work_place/instructions_department_page_work_place_widget.dart'
+    show InstructionsDepartmentPageWorkPlaceWidget;
+export '/work_place/instructions_work_place/unit_instructions_page_work_place/unit_instructions_page_work_place_widget.dart'
+    show UnitInstructionsPageWorkPlaceWidget;
+export '/work_place/instructions_work_place/role_instruction_page_work_place/role_instruction_page_work_place_widget.dart'
+    show RoleInstructionPageWorkPlaceWidget;
+export '/work_place/instructions_work_place/person_instructions_page_work_place/person_instructions_page_work_place_widget.dart'
+    show PersonInstructionsPageWorkPlaceWidget;
+export '/work_place/tasks/work_place_create_task_page/work_place_create_task_page_widget.dart'
+    show WorkPlaceCreateTaskPageWidget;
+export '/work_place/tasks/work_place_tasks_page/work_place_tasks_page_widget.dart'
+    show WorkPlaceTasksPageWidget;
+export '/work_place/work_place_transaction/transactiondetail_page_work_place/transactiondetail_page_work_place_widget.dart'
+    show TransactiondetailPageWorkPlaceWidget;
+export '/work_place/tasks/work_place_task_read_report_page/work_place_task_read_report_page_widget.dart'
+    show WorkPlaceTaskReadReportPageWidget;
+export '/work_place/work_place_transaction/send_transaction_page_work_place/send_transaction_page_work_place_widget.dart'
+    show SendTransactionPageWorkPlaceWidget;
+export '/work_place/work_place_task_duties/work_place_task_duties_page/work_place_task_duties_page_widget.dart'
+    show WorkPlaceTaskDutiesPageWidget;
+export '/work_place/work_place_task_duties/work_place_task_duties_create_page/work_place_task_duties_create_page_widget.dart'
+    show WorkPlaceTaskDutiesCreatePageWidget;
+export '/work_place/work_place_task_duties/work_place_task_for_duty_create_page/work_place_task_for_duty_create_page_widget.dart'
+    show WorkPlaceTaskForDutyCreatePageWidget;
+export '/work_place/work_place_task_duties/work_place_show_all_task_duties_page/work_place_show_all_task_duties_page_widget.dart'
+    show WorkPlaceShowAllTaskDutiesPageWidget;
+export '/work_place/work_place_task_duties/work_place_task_duties_read_report_page/work_place_task_duties_read_report_page_widget.dart'
+    show WorkPlaceTaskDutiesReadReportPageWidget;
+export '/work_place/work_place_task_duties/work_place_tasks_duties_show_reports_page/work_place_tasks_duties_show_reports_page_widget.dart'
+    show WorkPlaceTasksDutiesShowReportsPageWidget;
+export '/work_place/work_place_vehicle/work_place_add_vehicle/work_place_add_vehicle_widget.dart'
+    show WorkPlaceAddVehicleWidget;
+export '/work_place/work_place_vehicle/work_place_vehicle_payments/work_place_vehicle_payments_widget.dart'
+    show WorkPlaceVehiclePaymentsWidget;
+export '/work_place/work_place_vehicle/work_place_vehicles_page/work_place_vehicles_page_widget.dart'
+    show WorkPlaceVehiclesPageWidget;
+export '/work_place/work_place_vehicle/work_place_add_vehicle_payment_page/work_place_add_vehicle_payment_page_widget.dart'
+    show WorkPlaceAddVehiclePaymentPageWidget;
+export '/work_place/work_place_stock/add_stock_page_work_place/add_stock_page_work_place_widget.dart'
+    show AddStockPageWorkPlaceWidget;
+export '/work_place/work_place_stock/stock_detail_page_work_place/stock_detail_page_work_place_widget.dart'
+    show StockDetailPageWorkPlaceWidget;
+export '/work_place/work_place_stock/stock_movement_detail_page_work_place/stock_movement_detail_page_work_place_widget.dart'
+    show StockMovementDetailPageWorkPlaceWidget;
+export '/work_place/work_place_stock/stocks_page_work_place/stocks_page_work_place_widget.dart'
+    show StocksPageWorkPlaceWidget;
+export '/work_place/expanditury_work_place/my_vault_page_work_place/my_vault_page_work_place_widget.dart'
+    show MyVaultPageWorkPlaceWidget;
+export '/work_place/expanditury_work_place/sent_money_for_allowence_page_work_place/sent_money_for_allowence_page_work_place_widget.dart'
+    show SentMoneyForAllowencePageWorkPlaceWidget;
+export '/work_place/expanditury_work_place/send_expanditury_detail_page_work_place/send_expanditury_detail_page_work_place_widget.dart'
+    show SendExpandituryDetailPageWorkPlaceWidget;
+export '/work_place/expanditury_work_place/spend_expanditury_detail_page_work_place/spend_expanditury_detail_page_work_place_widget.dart'
+    show SpendExpandituryDetailPageWorkPlaceWidget;
+export '/work_place/work_place_transaction/show_my_transaction_page_work_place/show_my_transaction_page_work_place_widget.dart'
+    show ShowMyTransactionPageWorkPlaceWidget;
+export '/work_place/work_place_transaction/show_all_transaction_page_work_place/show_all_transaction_page_work_place_widget.dart'
+    show ShowAllTransactionPageWorkPlaceWidget;
+export '/work_place/work_place_transaction_for_vehicle_payment/work_place_transaction_for_vehicle_payment_widget.dart'
+    show WorkPlaceTransactionForVehiclePaymentWidget;
+export '/work_place/work_place_control_for_owner/work_place_control_finance_page/work_place_control_finance_page_widget.dart'
+    show WorkPlaceControlFinancePageWidget;
+export '/work_place/work_place_control_for_owner/work_place_control_operations_page/work_place_control_operations_page_widget.dart'
+    show WorkPlaceControlOperationsPageWidget;
+export '/work_place/work_place_control_for_owner/work_place_control_communication_page/work_place_control_communication_page_widget.dart'
+    show WorkPlaceControlCommunicationPageWidget;
+export '/work_place/expanditury_work_place/expandituries_page_work_place/expandituries_page_work_place_widget.dart'
+    show ExpandituriesPageWorkPlaceWidget;
+export '/work_place/work_place_control_for_owner/work_place_organization_page/work_place_organization_page_widget.dart'
+    show WorkPlaceOrganizationPageWidget;
+export '/work_place/employee_detail_first_page_work_place/work_place_workers_page/work_place_workers_page_widget.dart'
+    show WorkPlaceWorkersPageWidget;
+export '/work_place/work_place_notifications_page/work_place_notifications_page_widget.dart'
+    show WorkPlaceNotificationsPageWidget;
+export '/work_place/work_place_control_for_owner/work_place_partner_manage_page/work_place_partner_manage_page_widget.dart'
+    show WorkPlacePartnerManagePageWidget;
+export '/work_place/work_place_control_for_owner/add_partner_work_place_page/add_partner_work_place_page_widget.dart'
+    show AddPartnerWorkPlacePageWidget;
+export '/work_place/work_place_control_for_owner/add_partner_work_place_step2_page/add_partner_work_place_step2_page_widget.dart'
+    show AddPartnerWorkPlaceStep2PageWidget;
+export '/work_place/work_place_control_for_owner/partners_work_place_page/partners_work_place_page_widget.dart'
+    show PartnersWorkPlacePageWidget;
+export '/work_place/work_place_control_for_partner/work_place_control_organization_page_for_partner/work_place_control_organization_page_for_partner_widget.dart'
+    show WorkPlaceControlOrganizationPageForPartnerWidget;
+export '/work_place/work_place_control_for_partner/work_place_control_operations_page_for_partner/work_place_control_operations_page_for_partner_widget.dart'
+    show WorkPlaceControlOperationsPageForPartnerWidget;
+export '/work_place/work_place_control_for_partner/work_place_control_finance_page_for_partner/work_place_control_finance_page_for_partner_widget.dart'
+    show WorkPlaceControlFinancePageForPartnerWidget;
+export '/work_place/work_place_control_for_partner/work_place_control_communication_page_for_partner/work_place_control_communication_page_for_partner_widget.dart'
+    show WorkPlaceControlCommunicationPageForPartnerWidget;
+export '/work_place/work_place_control_for_worker/work_place_control_for_worker/work_place_control_for_worker_widget.dart'
+    show WorkPlaceControlForWorkerWidget;
+export '/work_place/work_place_control_for_worker/work_place_control_organization_for_worker/work_place_control_organization_for_worker_widget.dart'
+    show WorkPlaceControlOrganizationForWorkerWidget;
+export '/work_place/work_place_control_for_worker/work_place_control_operations_for_worker/work_place_control_operations_for_worker_widget.dart'
+    show WorkPlaceControlOperationsForWorkerWidget;
+export '/work_place/work_place_control_for_worker/work_place_control_finance_for_worker/work_place_control_finance_for_worker_widget.dart'
+    show WorkPlaceControlFinanceForWorkerWidget;
+export '/work_place/work_place_control_for_worker/work_place_control_communication_for_worker/work_place_control_communication_for_worker_widget.dart'
+    show WorkPlaceControlCommunicationForWorkerWidget;
+export '/work_place/work_place_tasks_worker_page/work_place_tasks_worker_page_widget.dart'
+    show WorkPlaceTasksWorkerPageWidget;
+export '/work_place/workplace_complex/workplace_complex_widget.dart'
+    show WorkplaceComplexWidget;
+export '/company/company_complex/company_complex_widget.dart'
+    show CompanyComplexWidget;
+export '/pages/support/support_widget.dart' show SupportWidget;
+export '/nav_bar_pages/notifications/notifications_widget.dart'
+    show NotificationsWidget;
+export '/confrimations/all_confirmaitons_request_page/all_confirmaitons_request_page_widget.dart'
+    show AllConfirmaitonsRequestPageWidget;
+export '/confrimations/phone_confirmations/phone_confirmations_create_confirmation/phone_confirmations_create_confirmation_widget.dart'
+    show PhoneConfirmationsCreateConfirmationWidget;
+export '/confrimations/phone_confirmations/phone_confirmation_message_page/phone_confirmation_message_page_widget.dart'
+    show PhoneConfirmationMessagePageWidget;
+export '/company/company_expenditury/money_transfer_page/money_transfer_page_widget.dart'
+    show MoneyTransferPageWidget;
+export '/company/company_expenditury/spend_money_page/spend_money_page_widget.dart'
+    show SpendMoneyPageWidget;
+export '/work_place/expanditury_work_place/money_transfer_page_work_place/money_transfer_page_work_place_widget.dart'
+    show MoneyTransferPageWorkPlaceWidget;
+export '/work_place/expanditury_work_place/spend_money_work_place_page/spend_money_work_place_page_widget.dart'
+    show SpendMoneyWorkPlacePageWidget;
+export '/shared_file_actions_page/shared_file_actions_page_widget.dart'
+    show SharedFileActionsPageWidget;
+export '/company/add_manual_income_page/add_manual_income_page_widget.dart'
+    show AddManualIncomePageWidget;
+export '/company/add_manual_payment_page/add_manual_payment_page_widget.dart'
+    show AddManualPaymentPageWidget;
+export '/work_place/add_manual_income_page_work_place/add_manual_income_page_work_place_widget.dart'
+    show AddManualIncomePageWorkPlaceWidget;
+export '/work_place/add_manual_payment_page_work_place/add_manual_payment_page_work_place_widget.dart'
+    show AddManualPaymentPageWorkPlaceWidget;
+export '/work_place/incomes_page_work_place_copy/incomes_page_work_place_copy_widget.dart'
+    show IncomesPageWorkPlaceCopyWidget;
+export '/work_place/payments_page_work_place_copy/payments_page_work_place_copy_widget.dart'
+    show PaymentsPageWorkPlaceCopyWidget;
+export '/company/report_result/report_result_add_income_page/report_result_add_income_page_widget.dart'
+    show ReportResultAddIncomePageWidget;
+export '/company/report_result/report_result_add_payment_page/report_result_add_payment_page_widget.dart'
+    show ReportResultAddPaymentPageWidget;
+export '/company/report_result/report_result_add_income_for_owner/report_result_add_income_for_owner_widget.dart'
+    show ReportResultAddIncomeForOwnerWidget;
+export '/company/report_result/report_result_page_add_payment_for_owner/report_result_page_add_payment_for_owner_widget.dart'
+    show ReportResultPageAddPaymentForOwnerWidget;
+export '/company/report_result/report_result_page_for_owner/report_result_page_for_owner_widget.dart'
+    show ReportResultPageForOwnerWidget;
+export '/my_notes/my_all_notes/my_all_notes_widget.dart' show MyAllNotesWidget;
+export '/my_notes/note_detail_page/note_detail_page_widget.dart'
+    show NoteDetailPageWidget;
+export '/my_notes/add_new_note_page/add_new_note_page_widget.dart'
+    show AddNewNotePageWidget;
+export '/reports/show_all_reports_page/show_all_reports_page_widget.dart'
+    show ShowAllReportsPageWidget;
+export '/report_detail_page/report_detail_page_widget.dart'
+    show ReportDetailPageWidget;
+export '/my_notes/update_note_page/update_note_page_widget.dart'
+    show UpdateNotePageWidget;
+export '/c_v_page/c_v_page_widget.dart' show CVPageWidget;
+export '/calculate_cost/all_products_page/all_products_page_widget.dart'
+    show AllProductsPageWidget;
+export '/calculate_cost/add_new_product_page/add_new_product_page_widget.dart'
+    show AddNewProductPageWidget;
+export '/calculate_cost/calculate_cost_page/calculate_cost_page_widget.dart'
+    show CalculateCostPageWidget;
+export '/calculate_cost/all_calculate_products_page/all_calculate_products_page_widget.dart'
+    show AllCalculateProductsPageWidget;
+export '/calculate_cost/calculate_detail_page/calculate_detail_page_widget.dart'
+    show CalculateDetailPageWidget;
+export '/calculate_cost/update_product_page/update_product_page_widget.dart'
+    show UpdateProductPageWidget;
+export '/nav_bar_pages/social/social_widget.dart' show SocialWidget;
+export '/ai/chat_a_i/chat_a_i_widget.dart' show ChatAIWidget;
+export '/instruction_page/instruction_page_widget.dart'
+    show InstructionPageWidget;
+export '/forms/form_create_graphic_page/form_create_graphic_page_widget.dart'
+    show FormCreateGraphicPageWidget;
+export '/stock_operation_page/stock_operation_page_widget.dart'
+    show StockOperationPageWidget;
+export '/calculate_cost/parent_products_page/parent_products_page_widget.dart'
+    show ParentProductsPageWidget;
+export '/calculate_cost/add_parent_product_page/add_parent_product_page_widget.dart'
+    show AddParentProductPageWidget;
+export '/calculate_cost/edit_calculations_page/edit_calculations_page_widget.dart'
+    show EditCalculationsPageWidget;
+export '/pages/invitaions_notifications/received_partnership_invitation/received_partnership_invitation_widget.dart'
+    show ReceivedPartnershipInvitationWidget;
+export '/pages/invitaions_notifications/sent_partnership_invitation/sent_partnership_invitation_widget.dart'
+    show SentPartnershipInvitationWidget;
+export '/calculate_cost/update_parent_product_page/update_parent_product_page_widget.dart'
+    show UpdateParentProductPageWidget;
+export '/social/social_friend_page/social_friend_page_widget.dart'
+    show SocialFriendPageWidget;
+export '/my_notes/add_new_note_important_page/add_new_note_important_page_widget.dart'
+    show AddNewNoteImportantPageWidget;
+export '/my_notes/add_new_note_goal_page/add_new_note_goal_page_widget.dart'
+    show AddNewNoteGoalPageWidget;
+export '/my_notes/add_new_note_diary_page/add_new_note_diary_page_widget.dart'
+    show AddNewNoteDiaryPageWidget;
+export '/my_notes/update_note_important_page/update_note_important_page_widget.dart'
+    show UpdateNoteImportantPageWidget;
+export '/my_notes/update_note_goal_page/update_note_goal_page_widget.dart'
+    show UpdateNoteGoalPageWidget;
+export '/my_notes/update_note_diary_page/update_note_diary_page_widget.dart'
+    show UpdateNoteDiaryPageWidget;
+export '/my_notes/note_important_detail_page/note_important_detail_page_widget.dart'
+    show NoteImportantDetailPageWidget;
+export '/my_notes/note_goal_detail_page/note_goal_detail_page_widget.dart'
+    show NoteGoalDetailPageWidget;
+export '/my_notes/note_diary_detail_page/note_diary_detail_page_widget.dart'
+    show NoteDiaryDetailPageWidget;
+export '/finance_notes/financial_monitoring/financial_monitoring_widget.dart'
+    show FinancialMonitoringWidget;
+export '/finance_notes/add_new_finance_note_company/add_new_finance_note_company_widget.dart'
+    show AddNewFinanceNoteCompanyWidget;
+export '/finance_notes/note_finance_company_detail_page/note_finance_company_detail_page_widget.dart'
+    show NoteFinanceCompanyDetailPageWidget;
+export '/finance_notes/note_finance_personal_detail_page/note_finance_personal_detail_page_widget.dart'
+    show NoteFinancePersonalDetailPageWidget;
+export '/finance_notes/note_finance_family_detail_page/note_finance_family_detail_page_widget.dart'
+    show NoteFinanceFamilyDetailPageWidget;
+export '/finance_notes/note_finance_detail_page/note_finance_detail_page_widget.dart'
+    show NoteFinanceDetailPageWidget;
+export '/finance_notes/update_note_finance_work_place_page/update_note_finance_work_place_page_widget.dart'
+    show UpdateNoteFinanceWorkPlacePageWidget;
+export '/finance_notes/update_note_finance_company_page/update_note_finance_company_page_widget.dart'
+    show UpdateNoteFinanceCompanyPageWidget;
+export '/finance_notes/update_note_finance_personal_page/update_note_finance_personal_page_widget.dart'
+    show UpdateNoteFinancePersonalPageWidget;
+export '/finance_notes/update_note_finance_family_page/update_note_finance_family_page_widget.dart'
+    show UpdateNoteFinanceFamilyPageWidget;
+export '/finance_notes/update_note_finance_page/update_note_finance_page_widget.dart'
+    show UpdateNoteFinancePageWidget;
+export '/company_work_place_main_pages/work_place_control_for_partner/work_place_control_for_partner_widget.dart'
+    show WorkPlaceControlForPartnerWidget;
+export '/calculate_cost/add_sold_page/add_sold_page_widget.dart'
+    show AddSoldPageWidget;
+export '/work_place/work_place_notes/work_place_notes_page/work_place_notes_page_widget.dart'
+    show WorkPlaceNotesPageWidget;
+export '/company/company_notes/company_notes_page/company_notes_page_widget.dart'
+    show CompanyNotesPageWidget;
+export '/sub_contractor_page/sub_contractor_page_widget.dart'
+    show SubContractorPageWidget;
+export '/solution_partner/solution_partner_widget.dart'
+    show SolutionPartnerWidget;
+export '/calculate_cost/calculate_bills_page/calculate_bills_page_widget.dart'
+    show CalculateBillsPageWidget;
+export '/calculate_cost/bill_detail_page/bill_detail_page_widget.dart'
+    show BillDetailPageWidget;
+export '/delete_request_page/delete_request_page_widget.dart'
+    show DeleteRequestPageWidget;
+export '/company/employee_detail/employee_detail_first_page/employee_detail_first_page_widget.dart'
+    show EmployeeDetailFirstPageWidget;
+export '/company/employee_detail/employee_permissions_page/employee_permissions_page_widget.dart'
+    show EmployeePermissionsPageWidget;
+export '/shift_request_page/shift_request_page_widget.dart'
+    show ShiftRequestPageWidget;
+export '/shift_requesters_page/shift_requesters_page_widget.dart'
+    show ShiftRequestersPageWidget;
+export '/work_place/employee_detail_first_page_work_place/employee_detail_first_page_work_place/employee_detail_first_page_work_place_widget.dart'
+    show EmployeeDetailFirstPageWorkPlaceWidget;
+export '/work_place/employee_detail_first_page_work_place/employee_permissions_page_work_place/employee_permissions_page_work_place_widget.dart'
+    show EmployeePermissionsPageWorkPlaceWidget;
+export '/salary_detail_page/salary_detail_page_widget.dart'
+    show SalaryDetailPageWidget;
+export '/company/company_salary_page/company_salary_page_widget.dart'
+    show CompanySalaryPageWidget;
+export '/work_place/work_place_salary_page/work_place_salary_page_widget.dart'
+    show WorkPlaceSalaryPageWidget;
+export '/nav_bar_pages/personal_c_p_a/personal_c_p_a_widget.dart'
+    show PersonalCPAWidget;
+export '/company/company_notes/add_new_company_note_page/add_new_company_note_page_widget.dart'
+    show AddNewCompanyNotePageWidget;
+export '/company/company_notes/update_company_note_page/update_company_note_page_widget.dart'
+    show UpdateCompanyNotePageWidget;
+export '/company/company_notes/company_note_detail_page/company_note_detail_page_widget.dart'
+    show CompanyNoteDetailPageWidget;
+export '/work_place/work_place_notes/add_new_work_place_note_page/add_new_work_place_note_page_widget.dart'
+    show AddNewWorkPlaceNotePageWidget;
+export '/work_place/work_place_notes/wrok_place_note_detail_page/wrok_place_note_detail_page_widget.dart'
+    show WrokPlaceNoteDetailPageWidget;
+export '/work_place/work_place_notes/update_work_place_note_page/update_work_place_note_page_widget.dart'
+    show UpdateWorkPlaceNotePageWidget;
+export '/forms/form_graphic_page/form_graphic_page_widget.dart'
+    show FormGraphicPageWidget;
+export '/reports/create_task_step1/create_task_step1_widget.dart'
+    show CreateTaskStep1Widget;
+export '/reports/create_task_step6_for_single_task/create_task_step6_for_single_task_widget.dart'
+    show CreateTaskStep6ForSingleTaskWidget;
+export '/reports/create_task_step2/create_task_step2_widget.dart'
+    show CreateTaskStep2Widget;
+export '/reports/create_task_step3/create_task_step3_widget.dart'
+    show CreateTaskStep3Widget;
+export '/reports/create_task_step4/create_task_step4_widget.dart'
+    show CreateTaskStep4Widget;
+export '/reports/create_task_step5_for_single_task/create_task_step5_for_single_task_widget.dart'
+    show CreateTaskStep5ForSingleTaskWidget;
+export '/reports/create_task_step6_for_task_duties/create_task_step6_for_task_duties_widget.dart'
+    show CreateTaskStep6ForTaskDutiesWidget;
+export '/reports/create_task_step5_for_task_duties/create_task_step5_for_task_duties_widget.dart'
+    show CreateTaskStep5ForTaskDutiesWidget;
+export '/reports/send_report_step1/send_report_step1_widget.dart'
+    show SendReportStep1Widget;
+export '/reports/send_report_step2/send_report_step2_widget.dart'
+    show SendReportStep2Widget;
+export '/profile_page/profile_page_widget.dart' show ProfilePageWidget;
+export '/nav_bar_pages/chat/chat_widget.dart' show ChatWidget;
+export '/confrimations/message_new_page_copy/message_new_page_copy_widget.dart'
+    show MessageNewPageCopyWidget;
+export '/shopping/shopping/shopping_widget.dart' show ShoppingWidget;
+export '/my_city/my_city/my_city_widget.dart' show MyCityWidget;
+export '/my_city/transportation/transportation_widget.dart'
+    show TransportationWidget;
+export '/my_city/production_trade/production_trade_widget.dart'
+    show ProductionTradeWidget;
+export '/my_city/places/places_widget.dart' show PlacesWidget;
+export '/my_city/residence_city/residence_city_widget.dart'
+    show ResidenceCityWidget;
+export '/shopping/favorites_shopping/favorites_shopping_widget.dart'
+    show FavoritesShoppingWidget;
+export '/shopping/categories_shopping/categories_shopping_widget.dart'
+    show CategoriesShoppingWidget;
+export '/shopping/my_orders_shopping/my_orders_shopping_widget.dart'
+    show MyOrdersShoppingWidget;
+export '/my_city/art_culture/art_culture_widget.dart' show ArtCultureWidget;
+export '/confrimations/confirmation_user_detail_page/confirmation_user_detail_page_widget.dart'
+    show ConfirmationUserDetailPageWidget;
+export '/ai/recommandation/recommandation_widget.dart'
+    show RecommandationWidget;
+export '/ai/warning/warning_widget.dart' show WarningWidget;
+export '/confrimations/confirmation_medias_page/confirmation_medias_page_widget.dart'
+    show ConfirmationMediasPageWidget;
+export '/confrimations/blocked_conversation_page/blocked_conversation_page_widget.dart'
+    show BlockedConversationPageWidget;
+export '/confrimations/confirmation_starred_messages_page/confirmation_starred_messages_page_widget.dart'
+    show ConfirmationStarredMessagesPageWidget;
+export '/confrimations/message_color_settings_page/message_color_settings_page_widget.dart'
+    show MessageColorSettingsPageWidget;
+export '/finance_notes/add_new_finance_note_family/add_new_finance_note_family_widget.dart'
+    show AddNewFinanceNoteFamilyWidget;
+export '/finance_notes/add_new_finance_note_personal/add_new_finance_note_personal_widget.dart'
+    show AddNewFinanceNotePersonalWidget;
+export '/payments/payment_or_collection_cash/payment_or_collection_cash_widget.dart'
+    show PaymentOrCollectionCashWidget;
+export '/currents/current_detail_page/current_detail_page_widget.dart'
+    show CurrentDetailPageWidget;
+export '/company_work_place_main_pages/bill_page/bill_page_widget.dart'
+    show BillPageWidget;
+export '/my_notes/add_new_note_page_urgent/add_new_note_page_urgent_widget.dart'
+    show AddNewNotePageUrgentWidget;
+export '/my_notes/urgent_note_detail_page/urgent_note_detail_page_widget.dart'
+    show UrgentNoteDetailPageWidget;
+export '/my_notes/update_note_page_urgent/update_note_page_urgent_widget.dart'
+    show UpdateNotePageUrgentWidget;
+export '/my_notes/completed_urgent_note/completed_urgent_note_widget.dart'
+    show CompletedUrgentNoteWidget;
+export '/finance_notes/company_bill_detail_page/company_bill_detail_page_widget.dart'
+    show CompanyBillDetailPageWidget;
+export '/company_work_place_main_pages/create_bill_page/create_bill_page_widget.dart'
+    show CreateBillPageWidget;
+export '/company_work_place_main_pages/update_bill_page/update_bill_page_widget.dart'
+    show UpdateBillPageWidget;
+export '/payments/update_payment_company/update_payment_company_widget.dart'
+    show UpdatePaymentCompanyWidget;
+export '/payments/payment_or_collection_detail/payment_or_collection_detail_widget.dart'
+    show PaymentOrCollectionDetailWidget;
+export '/currents/add_current_account/add_current_account_widget.dart'
+    show AddCurrentAccountWidget;
+export '/finance_notes/check_detail/check_detail_widget.dart'
+    show CheckDetailWidget;
+export '/finance_notes/update_check_company/update_check_company_widget.dart'
+    show UpdateCheckCompanyWidget;
+export '/finance_notes/add_new_company_check/add_new_company_check_widget.dart'
+    show AddNewCompanyCheckWidget;
+export '/payments/cash_payment_table/cash_payment_table_widget.dart'
+    show CashPaymentTableWidget;
+export '/payments/check_payment_table/check_payment_table_widget.dart'
+    show CheckPaymentTableWidget;
+export '/payments/worker_payment_table/worker_payment_table_widget.dart'
+    show WorkerPaymentTableWidget;
+export '/payments/social_security_payment_table/social_security_payment_table_widget.dart'
+    show SocialSecurityPaymentTableWidget;
+export '/payments/tax_payment_table/tax_payment_table_widget.dart'
+    show TaxPaymentTableWidget;
+export '/finance_notes/note_finance_all_detail_page/note_finance_all_detail_page_widget.dart'
+    show NoteFinanceAllDetailPageWidget;
+export '/payments/payment_or_collection_check/payment_or_collection_check_widget.dart'
+    show PaymentOrCollectionCheckWidget;
+export '/finance_notes/update_company_current_page/update_company_current_page_widget.dart'
+    show UpdateCompanyCurrentPageWidget;
+export '/payments/payment_or_collection_cash_table/payment_or_collection_cash_table_widget.dart'
+    show PaymentOrCollectionCashTableWidget;
+export '/financial_plan/financial_asistant/financial_asistant_widget.dart'
+    show FinancialAsistantWidget;
+export '/payments/vaults/vaults_widget.dart' show VaultsWidget;
+export '/financial_plan/create_financial_plan/create_financial_plan_widget.dart'
+    show CreateFinancialPlanWidget;
+export '/financial_plan/financial_plan_items/financial_plan_items_widget.dart'
+    show FinancialPlanItemsWidget;
+export '/financial_plan/create_financial_plan_item/create_financial_plan_item_widget.dart'
+    show CreateFinancialPlanItemWidget;
+export '/financial_plan/financial_plan_i_authorize_settings/financial_plan_i_authorize_settings_widget.dart'
+    show FinancialPlanIAuthorizeSettingsWidget;
+export '/financial_plan/component_financial_plan/add_financial_plan_authorize_to_monitor/add_financial_plan_authorize_to_monitor_widget.dart'
+    show AddFinancialPlanAuthorizeToMonitorWidget;
+export '/financial_plan/component_financial_plan/add_financial_plan_authorize_to_modify/add_financial_plan_authorize_to_modify_widget.dart'
+    show AddFinancialPlanAuthorizeToModifyWidget;
+export '/finance_notes/create_income_plan/create_income_plan_widget.dart'
+    show CreateIncomePlanWidget;
+export '/finance_notes/create_investment_plan/create_investment_plan_widget.dart'
+    show CreateInvestmentPlanWidget;
+export '/financial_plan/component_financial_plan/income_plan_items/income_plan_items_widget.dart'
+    show IncomePlanItemsWidget;
+export '/financial_plan/create_income_plan_item/create_income_plan_item_widget.dart'
+    show CreateIncomePlanItemWidget;
+export '/my_notes/income_plan_i_authorize_settings/income_plan_i_authorize_settings_widget.dart'
+    show IncomePlanIAuthorizeSettingsWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/add_income_plan_authorize_to_modify/add_income_plan_authorize_to_modify_widget.dart'
+    show AddIncomePlanAuthorizeToModifyWidget;
+export '/pages/invitaions_notifications/worker_invitation_steps/add_income_plan_authorize_to_monitor/add_income_plan_authorize_to_monitor_widget.dart'
+    show AddIncomePlanAuthorizeToMonitorWidget;
+export '/x_current_accounts/x_current_accounts/x_current_accounts_widget.dart'
+    show XCurrentAccountsWidget;
+export '/x_current_accounts/x_current_items/x_current_items_widget.dart'
+    show XCurrentItemsWidget;
+export '/x_current_accounts/create_x_current_activity/create_x_current_activity_widget.dart'
+    show CreateXCurrentActivityWidget;
+export '/x_current_accounts/x_current_account_authorize_settings/x_current_account_authorize_settings_widget.dart'
+    show XCurrentAccountAuthorizeSettingsWidget;
+export '/x_current_accounts/add_x_current_account_authorize_to_modify/add_x_current_account_authorize_to_modify_widget.dart'
+    show AddXCurrentAccountAuthorizeToModifyWidget;
+export '/x_current_accounts/add_x_current_account_authorize_to_monitor/add_x_current_account_authorize_to_monitor_widget.dart'
+    show AddXCurrentAccountAuthorizeToMonitorWidget;
+export '/x_current_accounts/create_x_current_account_customer/create_x_current_account_customer_widget.dart'
+    show CreateXCurrentAccountCustomerWidget;
+export '/x_current_accounts/create_x_current_account_supplier/create_x_current_account_supplier_widget.dart'
+    show CreateXCurrentAccountSupplierWidget;
+export '/x_current_accounts/create_x_current_account_mixed/create_x_current_account_mixed_widget.dart'
+    show CreateXCurrentAccountMixedWidget;
+export '/nav_bar_pages/metrics/metrics_widget.dart' show MetricsWidget;
+export '/workers/workers/workers_widget.dart' show WorkersWidget;
+export '/workers/workers_choose_worker/workers_choose_worker_widget.dart'
+    show WorkersChooseWorkerWidget;
+export '/workers/workers_payment_detail/workers_payment_detail_widget.dart'
+    show WorkersPaymentDetailWidget;
+export '/nav_bar_pages/business_track/business_track_widget.dart'
+    show BusinessTrackWidget;
+export '/workers/business_choose/business_choose_widget.dart'
+    show BusinessChooseWidget;
+export '/x_current_accounts/choose_x_current_type_page/choose_x_current_type_page_widget.dart'
+    show ChooseXCurrentTypePageWidget;
+export '/x_current_accounts/x_current_accounts_i_am_owner/x_current_accounts_i_am_owner_widget.dart'
+    show XCurrentAccountsIAmOwnerWidget;
+export '/x_current_accounts/x_current_accounts_i_am_partner/x_current_accounts_i_am_partner_widget.dart'
+    show XCurrentAccountsIAmPartnerWidget;
+export '/x_current_accounts/x_current_accounts_i_am_authorized_worker/x_current_accounts_i_am_authorized_worker_widget.dart'
+    show XCurrentAccountsIAmAuthorizedWorkerWidget;
+export '/x_current_accounts/x_current_accounts_personel/x_current_accounts_personel_widget.dart'
+    show XCurrentAccountsPersonelWidget;
+export '/workers/business_choose_main_titles/business_choose_main_titles_widget.dart'
+    show BusinessChooseMainTitlesWidget;
+export '/financial_plan/invested_moniest_to_work_place/invested_moniest_to_work_place_widget.dart'
+    show InvestedMoniestToWorkPlaceWidget;
+export '/workers/workers_add_payment/workers_add_payment_widget.dart'
+    show WorkersAddPaymentWidget;
+export '/workers/workers_choose_company_work_place/workers_choose_company_work_place_widget.dart'
+    show WorkersChooseCompanyWorkPlaceWidget;

@@ -1,0 +1,1379 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{document} {
+      allow create: if request.auth.uid == document;
+      allow read: if request.auth.uid == document;
+      allow write: if request.auth.uid == document;
+      allow delete: if request.auth.uid == document;
+    }
+
+    match /companies/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /users/{parent}/workHistory/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /workPlaces/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /users/{parent}/acquisitions/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/heavyMachinery/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/heavyMachinery/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/notifications/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/invitations/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/reports/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/reports/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyPayments2025/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyPayments2025/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyIncomes2025/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyIncomes2025/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlacePayments2025/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlacePayments2025/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceIncomes2025/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceIncomes2025/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyPartners/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyPartners/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlacePartners/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlacePartners/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceWorker/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceWorker/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/virtualPositionsCompany/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/virtualPositionsCompany/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/virtualPositionsWorkPlace/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/virtualPositionsWorkPlace/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/reportsCreatedByUser/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/dutiesForCompany/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/dutiesForCompany/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/dutyStepsForCompany/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/dutyStepsForCompany/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyDepartments/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyDepartments/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyUnits/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyUnits/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyRoles/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyRoles/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyWorkers/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyWorkers/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyReports/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyReports/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyTasks/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyTasks/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyProjects/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyProjects/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyProcessDuties/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyProcessDuties/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyTaskDuties/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyTaskDuties/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceUnits/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceUnits/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyTaskFields/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyTaskFields/{document} {
+      allow read: if true;
+    }
+
+
+    match /forms/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /forms/{parent}/formFields/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/formFields/{document} {
+      allow read: if true;
+    }
+
+
+    match /forms/{parent}/formResponses/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/formResponses/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/instructions/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/sentMoneyForAllowence/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/sentMoneyForAllowence/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/spentMoneyForAllowence/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/spentMoneyForAllowence/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyTransactions/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyTransactions/{document} {
+      allow read: if true;
+    }
+
+
+    match /confirmations/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /companies/{parent}/stocks/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/stocks/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/stockMovement/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/stockMovement/{document} {
+      allow read: if true;
+    }
+
+
+    match /confirmations/{parent}/confirmationMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/confirmationMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /currentAccount/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /currentAccount/{parent}/currentAccountBill/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/currentAccountBill/{document} {
+      allow read: if true;
+    }
+
+
+    match /currentAccount/{parent}/currentAccountActivity/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/currentAccountActivity/{document} {
+      allow read: if true;
+    }
+
+
+    match /companyConfirmations/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /companyConfirmations/{parent}/companyConfirmationMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyConfirmationMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/myWorkedWorkPlace/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/AllConfirmations/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /workplaceConfirmations/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /workplaceConfirmations/{parent}/workplaceConfirmationMessage/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workplaceConfirmationMessage/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/friendRequest/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/companyNotifications/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyNotifications/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/userPayment/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/userIncome/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/partnerships/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/companyVehicles/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyVehicles/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyVehiclePayments/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyVehiclePayments/{document} {
+      allow read: if true;
+    }
+
+
+    match /PersonalConfirmations/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /PersonalConfirmations/{parent}/PersonalConfirmationsMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/PersonalConfirmationsMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/workPlacePartnership/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /workPlaces/{parent}/workPlaceDepartment/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceDepartment/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceRoles/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceRoles/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceTasks/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceTasks/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceReports/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceReports/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceTransaction/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceTransaction/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceVehicle/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceVehicle/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceVehiclePayments/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceVehiclePayments/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/dutiesForWorkPlace/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/dutiesForWorkPlace/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceStocks/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceStocks/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceStockMovement/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceStockMovement/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceTaskDuties/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceTaskDuties/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/spentMonetForAllowenceWorkPlace/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/spentMonetForAllowenceWorkPlace/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/sentMoneyForAllowenceWorkPlace/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/sentMoneyForAllowenceWorkPlace/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/WorkPlaceNotifications/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/WorkPlaceNotifications/{document} {
+      allow read: if true;
+    }
+
+
+    match /supportMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /users/{parent}/phones/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /PhoneConfirmations/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /PhoneConfirmations/{parent}/PhoneConfirmationMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/PhoneConfirmationMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/ajanda/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /aiChats/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /aiChats/{parent}/aiMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/aiMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/Notes/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /products/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /products/{parent}/calculations/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/calculations/{document} {
+      allow read: if true;
+    }
+
+
+    match /products/{parent}/productFields/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/productFields/{document} {
+      allow read: if true;
+    }
+
+
+    match /phone_index/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /companies/{parent}/parentProducts/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/parentProducts/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/partnershipInvitation/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/friends/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/importantNotes/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/goalNotes/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/personalDiary/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/financialMonitoringNotes/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/deletionRequest/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/deletionRequest/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/workerShifts/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workerShifts/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/workerPaymentDetails/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workerPaymentDetails/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workerPaymentDetailsWorkPlace/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workerPaymentDetailsWorkPlace/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companySalary/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companySalary/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceSalary/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceSalary/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyNotes/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyNotes/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceNotes/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceNotes/{document} {
+      allow read: if true;
+    }
+
+
+    match /Message/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /Message/{parent}/workPlaceMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /Message/{parent}/companyMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /Message/{parent}/phoneMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/phoneMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /Message/{parent}/socialMessages/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/socialMessages/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/newMessages/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /Countries/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /Cities/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /users/{parent}/blockedConversations/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /conversationReports/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /users/{parent}/socialNotification/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /users/{parent}/messageUpdate/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/financialNoteCompany/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/financialNoteCompany/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/financialNoteWorkPlace/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/financialNoteWorkPlace/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/companyBill/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companyBill/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceBill/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceBill/{document} {
+      allow read: if true;
+    }
+
+
+    match /users/{parent}/urgentNotes/{document} {
+      allow create: if request.auth.uid == parent;
+      allow read: if request.auth.uid == parent;
+      allow write: if request.auth.uid == parent;
+      allow delete: if request.auth.uid == parent;
+    }
+
+    match /companies/{parent}/companiesCurrents/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/companiesCurrents/{document} {
+      allow read: if true;
+    }
+
+
+    match /companies/{parent}/financialNoteCompanyCheck/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/financialNoteCompanyCheck/{document} {
+      allow read: if true;
+    }
+
+
+    match /financialPlans/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /financialPlans/{parent}/financialPlansItems/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/financialPlansItems/{document} {
+      allow read: if true;
+    }
+
+
+    match /incomePlans/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /incomePlans/{parent}/incomePlanItems/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/incomePlanItems/{document} {
+      allow read: if true;
+    }
+
+
+    match /investmentPlans/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /investmentPlans/{parent}/investmentPlanItems/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/investmentPlanItems/{document} {
+      allow read: if true;
+    }
+
+
+    match /currentAccount/{parent}/artificialCurrentUsers/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/artificialCurrentUsers/{document} {
+      allow read: if true;
+    }
+
+
+    match /xCurrentAccounts/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /xCurrentAccounts/{parent}/xCurrentActivities/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/xCurrentActivities/{document} {
+      allow read: if true;
+    }
+
+
+    match /metrics/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /workPlaces/{parent}/workPlacePayments/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlacePayments/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/workPlaceIncomes/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceIncomes/{document} {
+      allow read: if true;
+    }
+
+
+    match /workPlaces/{parent}/investedMoniesToWorkPlace/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if true;
+      allow delete: if true;
+    }
+
+    match /{path=**}/investedMoniesToWorkPlace/{document} {
+      allow read: if true;
+    }
+
+
+    match /ff_user_push_notifications/{id} {
+      allow read, update, delete: if false;
+      allow create: if /databases/$(database)/documents/users/$(request.auth.uid) == request.resource.data.sender;
+    }
+  }
+}
