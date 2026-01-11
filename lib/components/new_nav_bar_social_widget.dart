@@ -58,7 +58,7 @@ class _NewNavBarSocialWidgetState extends State<NewNavBarSocialWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60.0,
+      height: 64.0,
       decoration: BoxDecoration(
         color: Color(0xFF1771D3),
       ),
@@ -221,7 +221,7 @@ class _NewNavBarSocialWidgetState extends State<NewNavBarSocialWidget> {
                                           ],
                                         ),
                                         Text(
-                                          'Kur',
+                                          'Başlat',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -278,7 +278,7 @@ class _NewNavBarSocialWidgetState extends State<NewNavBarSocialWidget> {
                                           ],
                                         ),
                                         Text(
-                                          'Kur',
+                                          'Başlat',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(

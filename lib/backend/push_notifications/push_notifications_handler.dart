@@ -116,8 +116,6 @@ class ParameterData {
 
 final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
-  'Authentication': ParameterData.none(),
-  'Profile': ParameterData.none(),
   'SettingsEditProfile': ParameterData.none(),
   'Kurulum': ParameterData.none(),
   'invitationMain': ParameterData.none(),
@@ -996,13 +994,6 @@ final parametersBuilderMap =
           'company': getParameter<DocumentReference>(data, 'company'),
         },
       ),
-  'WorkPlaceHomePageForOwner': (data) async => ParameterData(
-        allParams: {
-          'workPlace': await getDocumentParameter<WorkPlacesRecord>(
-              data, 'workPlace', WorkPlacesRecord.fromSnapshot),
-          'company': getParameter<DocumentReference>(data, 'company'),
-        },
-      ),
   'AddDepartmentPageWorkPlace': (data) async => ParameterData(
         allParams: {
           'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
@@ -1485,17 +1476,6 @@ final parametersBuilderMap =
               data, 'workPlace', WorkPlacesRecord.fromSnapshot),
         },
       ),
-  'WorkPlaceWorkersPage': (data) async => ParameterData(
-        allParams: {
-          'company': getParameter<DocumentReference>(data, 'company'),
-          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
-          'isPartner': getParameter<bool>(data, 'isPartner'),
-          'canManage': getParameter<bool>(data, 'canManage'),
-          'isWorker': getParameter<bool>(data, 'isWorker'),
-          'canSendMoney': getParameter<bool>(data, 'canSendMoney'),
-          'canManageTask': getParameter<bool>(data, 'canManageTask'),
-        },
-      ),
   'WorkPlaceNotificationsPage': (data) async => ParameterData(
         allParams: {
           'company': getParameter<DocumentReference>(data, 'company'),
@@ -1785,15 +1765,6 @@ final parametersBuilderMap =
         },
       ),
   'CVPage': ParameterData.none(),
-  'AllProductsPage': (data) async => ParameterData(
-        allParams: {
-          'company': getParameter<DocumentReference>(data, 'company'),
-          'parentProduct': await getDocumentParameter<ParentProductsRecord>(
-              data, 'parentProduct', ParentProductsRecord.fromSnapshot),
-          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
-          'isOwner': getParameter<bool>(data, 'isOwner'),
-        },
-      ),
   'AddNewProductPage': (data) async => ParameterData(
         allParams: {
           'company': getParameter<DocumentReference>(data, 'company'),
@@ -1809,17 +1780,6 @@ final parametersBuilderMap =
           'parentProduct': await getDocumentParameter<ParentProductsRecord>(
               data, 'parentProduct', ParentProductsRecord.fromSnapshot),
           'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
-        },
-      ),
-  'AllCalculateProductsPage': (data) async => ParameterData(
-        allParams: {
-          'company': getParameter<DocumentReference>(data, 'company'),
-          'product': await getDocumentParameter<ProductsRecord>(
-              data, 'product', ProductsRecord.fromSnapshot),
-          'parentProduct': await getDocumentParameter<ParentProductsRecord>(
-              data, 'parentProduct', ParentProductsRecord.fromSnapshot),
-          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
-          'isOwner': getParameter<bool>(data, 'isOwner'),
         },
       ),
   'CalculateDetailPage': (data) async => ParameterData(
@@ -1840,7 +1800,6 @@ final parametersBuilderMap =
               data, 'product', ProductsRecord.fromSnapshot),
         },
       ),
-  'social': ParameterData.none(),
   'ChatAI': ParameterData.none(),
   'InstructionPage': ParameterData.none(),
   'FormCreateGraphicPage': (data) async => ParameterData(
@@ -1850,13 +1809,6 @@ final parametersBuilderMap =
         allParams: {
           'stock': await getDocumentParameter<StocksRecord>(
               data, 'stock', StocksRecord.fromSnapshot),
-        },
-      ),
-  'ParentProductsPage': (data) async => ParameterData(
-        allParams: {
-          'company': getParameter<DocumentReference>(data, 'company'),
-          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
-          'isOwner': getParameter<bool>(data, 'isOwner'),
         },
       ),
   'AddParentProductPage': (data) async => ParameterData(
@@ -1960,16 +1912,6 @@ final parametersBuilderMap =
           'listContainValue': getParameter<String>(data, 'listContainValue'),
         },
       ),
-  'AddNewFinanceNoteCompany': (data) async => ParameterData(
-        allParams: {
-          'isEdit': getParameter<bool>(data, 'isEdit'),
-          'noteFinanceCompany':
-              await getDocumentParameter<FinancialMonitoringNotesRecord>(
-                  data,
-                  'noteFinanceCompany',
-                  FinancialMonitoringNotesRecord.fromSnapshot),
-        },
-      ),
   'noteFinanceCompanyDetailPage': (data) async => ParameterData(
         allParams: {
           'noteFinanceCompany':
@@ -2059,18 +2001,6 @@ final parametersBuilderMap =
                   data,
                   'workPlacePartnership',
                   WorkPlacePartnershipRecord.fromSnapshot),
-        },
-      ),
-  'AddSoldPage': (data) async => ParameterData(
-        allParams: {
-          'company': getParameter<DocumentReference>(data, 'company'),
-          'childProduct': await getDocumentParameter<ProductsRecord>(
-              data, 'childProduct', ProductsRecord.fromSnapshot),
-          'parentProduct': await getDocumentParameter<ParentProductsRecord>(
-              data, 'parentProduct', ParentProductsRecord.fromSnapshot),
-          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
-          'calculation': await getDocumentParameter<CalculationsRecord>(
-              data, 'calculation', CalculationsRecord.fromSnapshot),
         },
       ),
   'workPlaceNotesPage': (data) async => ParameterData(
@@ -2305,7 +2235,6 @@ final parametersBuilderMap =
         },
       ),
   'profilePage': ParameterData.none(),
-  'chat': ParameterData.none(),
   'MessageNewPageCopy': (data) async => ParameterData(
         allParams: {
           'message': await getDocumentParameter<MessageRecord>(
@@ -2378,7 +2307,6 @@ final parametersBuilderMap =
                   FinancialMonitoringNotesRecord.fromSnapshot),
         },
       ),
-  'paymentOrCollectionCash': ParameterData.none(),
   'currentDetailPage': (data) async => ParameterData(
         allParams: {
           'companyCurrentDocumentRef': getParameter<DocumentReference>(
@@ -2773,28 +2701,6 @@ final parametersBuilderMap =
           'metricDocRef': getParameter<DocumentReference>(data, 'metricDocRef'),
         },
       ),
-  'workers': ParameterData.none(),
-  'workersChooseWorker': (data) async => ParameterData(
-        allParams: {
-          'workPlaceDocRef':
-              getParameter<DocumentReference>(data, 'workPlaceDocRef'),
-          'companyDocRef':
-              getParameter<DocumentReference>(data, 'companyDocRef'),
-        },
-      ),
-  'workersPaymentDetail': (data) async => ParameterData(
-        allParams: {
-          'company': getParameter<DocumentReference>(data, 'company'),
-          'workPlaces': getParameter<DocumentReference>(data, 'workPlaces'),
-          'workerUserRef':
-              getParameter<DocumentReference>(data, 'workerUserRef'),
-          'workerPlaceWorkerDocument':
-              await getDocumentParameter<WorkPlaceWorkerRecord>(
-                  data,
-                  'workerPlaceWorkerDocument',
-                  WorkPlaceWorkerRecord.fromSnapshot),
-        },
-      ),
   'businessTrack': (data) async => ParameterData(
         allParams: {
           'currentUserRef':
@@ -2807,10 +2713,6 @@ final parametersBuilderMap =
               data, 'workPlaceDocument', WorkPlacesRecord.fromSnapshot),
         },
       ),
-  'businessChoose': (data) async => ParameterData(
-        allParams: <String, dynamic>{},
-      ),
-  'chooseXCurrentTypePage': ParameterData.none(),
   'xCurrentAccountsIAmOwner': (data) async => ParameterData(
         allParams: {
           'activePageUserRef':
@@ -2843,6 +2745,102 @@ final parametersBuilderMap =
               data, 'activePageUserDocument', UsersRecord.fromSnapshot),
         },
       ),
+  'Authentication': ParameterData.none(),
+  'WorkPlaceHomePageForOwner': (data) async => ParameterData(
+        allParams: {
+          'workPlace': await getDocumentParameter<WorkPlacesRecord>(
+              data, 'workPlace', WorkPlacesRecord.fromSnapshot),
+          'company': getParameter<DocumentReference>(data, 'company'),
+        },
+      ),
+  'WorkPlaceWorkersPage': (data) async => ParameterData(
+        allParams: {
+          'company': getParameter<DocumentReference>(data, 'company'),
+          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
+          'isPartner': getParameter<bool>(data, 'isPartner'),
+          'canManage': getParameter<bool>(data, 'canManage'),
+          'isWorker': getParameter<bool>(data, 'isWorker'),
+          'canSendMoney': getParameter<bool>(data, 'canSendMoney'),
+          'canManageTask': getParameter<bool>(data, 'canManageTask'),
+        },
+      ),
+  'AllProductsPage': (data) async => ParameterData(
+        allParams: {
+          'company': getParameter<DocumentReference>(data, 'company'),
+          'parentProduct': await getDocumentParameter<ParentProductsRecord>(
+              data, 'parentProduct', ParentProductsRecord.fromSnapshot),
+          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
+          'isOwner': getParameter<bool>(data, 'isOwner'),
+        },
+      ),
+  'AllCalculateProductsPage': (data) async => ParameterData(
+        allParams: {
+          'company': getParameter<DocumentReference>(data, 'company'),
+          'product': await getDocumentParameter<ProductsRecord>(
+              data, 'product', ProductsRecord.fromSnapshot),
+          'parentProduct': await getDocumentParameter<ParentProductsRecord>(
+              data, 'parentProduct', ParentProductsRecord.fromSnapshot),
+          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
+          'isOwner': getParameter<bool>(data, 'isOwner'),
+        },
+      ),
+  'social': ParameterData.none(),
+  'ParentProductsPage': (data) async => ParameterData(
+        allParams: {
+          'company': getParameter<DocumentReference>(data, 'company'),
+          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
+          'isOwner': getParameter<bool>(data, 'isOwner'),
+        },
+      ),
+  'AddNewFinanceNoteCompany': (data) async => ParameterData(
+        allParams: {
+          'isEdit': getParameter<bool>(data, 'isEdit'),
+          'noteFinanceCompany':
+              await getDocumentParameter<FinancialMonitoringNotesRecord>(
+                  data,
+                  'noteFinanceCompany',
+                  FinancialMonitoringNotesRecord.fromSnapshot),
+        },
+      ),
+  'AddSoldPage': (data) async => ParameterData(
+        allParams: {
+          'company': getParameter<DocumentReference>(data, 'company'),
+          'childProduct': await getDocumentParameter<ProductsRecord>(
+              data, 'childProduct', ProductsRecord.fromSnapshot),
+          'parentProduct': await getDocumentParameter<ParentProductsRecord>(
+              data, 'parentProduct', ParentProductsRecord.fromSnapshot),
+          'workPlace': getParameter<DocumentReference>(data, 'workPlace'),
+          'calculation': await getDocumentParameter<CalculationsRecord>(
+              data, 'calculation', CalculationsRecord.fromSnapshot),
+        },
+      ),
+  'chat': ParameterData.none(),
+  'workers': ParameterData.none(),
+  'workersChooseWorker': (data) async => ParameterData(
+        allParams: {
+          'workPlaceDocRef':
+              getParameter<DocumentReference>(data, 'workPlaceDocRef'),
+          'companyDocRef':
+              getParameter<DocumentReference>(data, 'companyDocRef'),
+        },
+      ),
+  'workersPaymentDetail': (data) async => ParameterData(
+        allParams: {
+          'company': getParameter<DocumentReference>(data, 'company'),
+          'workPlaces': getParameter<DocumentReference>(data, 'workPlaces'),
+          'workerUserRef':
+              getParameter<DocumentReference>(data, 'workerUserRef'),
+          'workerPlaceWorkerDocument':
+              await getDocumentParameter<WorkPlaceWorkerRecord>(
+                  data,
+                  'workerPlaceWorkerDocument',
+                  WorkPlaceWorkerRecord.fromSnapshot),
+        },
+      ),
+  'businessChoose': (data) async => ParameterData(
+        allParams: <String, dynamic>{},
+      ),
+  'chooseXCurrentTypePage': ParameterData.none(),
   'businessChooseMainTitles': (data) async => ParameterData(
         allParams: {
           'companyDocument': await getDocumentParameter<CompaniesRecord>(
@@ -2873,6 +2871,8 @@ final parametersBuilderMap =
   'workersChooseCompanyWorkPlace': (data) async => ParameterData(
         allParams: <String, dynamic>{},
       ),
+  'Profile': ParameterData.none(),
+  'paymentOrCollectionCash': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

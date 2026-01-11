@@ -359,7 +359,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 children: [
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 2.0),
+                                        0.0, 4.0, 0.0, 2.0),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       mainAxisAlignment:
@@ -511,7 +511,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             if (MediaQuery.sizeOf(context)
                                                     .width <
                                                 kBreakpointSmall) {
-                                              return 8.0;
+                                              return 0.0;
                                             } else if (MediaQuery.sizeOf(
                                                         context)
                                                     .width <
@@ -555,7 +555,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                             if (MediaQuery.sizeOf(context)
                                                     .width <
                                                 kBreakpointSmall) {
-                                              return 8.0;
+                                              return 0.0;
                                             } else if (MediaQuery.sizeOf(
                                                         context)
                                                     .width <
@@ -600,7 +600,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Expanded(
-                                          flex: 1,
+                                          flex: 10,
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -636,7 +636,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                     context)
                                                                 .width <
                                                             kBreakpointSmall) {
-                                                          return 6.0;
+                                                          return 0.0;
                                                         } else if (MediaQuery
                                                                     .sizeOf(
                                                                         context)
@@ -728,18 +728,24 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 decoration: BoxDecoration(
                                                   gradient: LinearGradient(
                                                     colors: [
+                                                      Color(0xFF041E33),
+                                                      Color(0xFF673AB7),
                                                       Color(0xFF673AB7),
                                                       Color(0xFF041E33)
                                                     ],
-                                                    stops: [0.0, 1.0],
+                                                    stops: [0.0, 0.3, 0.7, 1.0],
                                                     begin: AlignmentDirectional(
-                                                        0.14, -1.0),
+                                                        1.0, 1.0),
                                                     end: AlignmentDirectional(
-                                                        -0.14, 1.0),
+                                                        -1.0, -1.0),
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.0),
+                                                  border: Border.all(
+                                                    color: Color(0xFF6C60D1),
+                                                    width: 1.0,
+                                                  ),
                                                 ),
                                                 child: Column(
                                                   mainAxisSize:
@@ -757,7 +763,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                 .inter(
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .normal,
+                                                                      .w600,
                                                               fontStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
@@ -768,8 +774,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             fontSize: 12.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                                FontWeight.w600,
                                                             fontStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -784,7 +789,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           ),
                                         ),
                                         Expanded(
-                                          flex: 1,
+                                          flex: 11,
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -794,7 +799,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                     context)
                                                                 .width <
                                                             kBreakpointSmall) {
-                                                          return 6.0;
+                                                          return 12.0;
                                                         } else if (MediaQuery
                                                                     .sizeOf(
                                                                         context)
@@ -820,7 +825,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                     context)
                                                                 .width <
                                                             kBreakpointSmall) {
-                                                          return 6.0;
+                                                          return 12.0;
                                                         } else if (MediaQuery
                                                                     .sizeOf(
                                                                         context)
@@ -858,7 +863,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   if (MediaQuery.sizeOf(context)
                                                           .width <
                                                       kBreakpointSmall) {
-                                                    return 120.0;
+                                                    return 128.0;
                                                   } else if (MediaQuery.sizeOf(
                                                               context)
                                                           .width <
@@ -895,18 +900,24 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 decoration: BoxDecoration(
                                                   gradient: LinearGradient(
                                                     colors: [
+                                                      Color(0xFF041E33),
+                                                      Color(0xFF673AB7),
                                                       Color(0xFF673AB7),
                                                       Color(0xFF041E33)
                                                     ],
-                                                    stops: [0.0, 1.0],
+                                                    stops: [0.0, 0.3, 0.7, 1.0],
                                                     begin: AlignmentDirectional(
-                                                        0.14, -1.0),
+                                                        1.0, 0.0),
                                                     end: AlignmentDirectional(
-                                                        -0.14, 1.0),
+                                                        -1.0, 0),
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.0),
+                                                  border: Border.all(
+                                                    color: Color(0xFF6C60D1),
+                                                    width: 1.0,
+                                                  ),
                                                 ),
                                                 child: Row(
                                                   mainAxisSize:
@@ -914,45 +925,96 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  6.0,
-                                                                  0.0,
-                                                                  6.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        'Finansal Asistan',
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              font: GoogleFonts
-                                                                  .inter(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                              color:
-                                                                  Colors.white,
-                                                              fontSize: 12.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      6.0,
+                                                                      0.0,
+                                                                      6.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Finansal',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .bodyMedium
                                                                       .fontStyle,
-                                                            ),
-                                                      ),
+                                                                ),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      6.0,
+                                                                      0.0,
+                                                                      6.0,
+                                                                      0.0),
+                                                          child: Text(
+                                                            'Asistan',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font:
+                                                                      GoogleFonts
+                                                                          .inter(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                 ),
@@ -961,7 +1023,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                           ),
                                         ),
                                         Expanded(
-                                          flex: 1,
+                                          flex: 10,
                                           child: Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -971,7 +1033,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                     context)
                                                                 .width <
                                                             kBreakpointSmall) {
-                                                          return 6.0;
+                                                          return 0.0;
                                                         } else if (MediaQuery
                                                                     .sizeOf(
                                                                         context)
@@ -1089,18 +1151,23 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                 decoration: BoxDecoration(
                                                   gradient: LinearGradient(
                                                     colors: [
+                                                      Color(0xFF041E33),
+                                                      Color(0xFF673AB7),
                                                       Color(0xFF673AB7),
                                                       Color(0xFF041E33)
                                                     ],
-                                                    stops: [0.0, 1.0],
+                                                    stops: [0.0, 0.3, 0.7, 1.0],
                                                     begin: AlignmentDirectional(
-                                                        0.14, -1.0),
+                                                        1.0, -1.0),
                                                     end: AlignmentDirectional(
-                                                        -0.14, 1.0),
+                                                        -1.0, 1.0),
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           4.0),
+                                                  border: Border.all(
+                                                    color: Color(0xFF6C60D1),
+                                                  ),
                                                 ),
                                                 child: Column(
                                                   mainAxisSize:
@@ -1118,7 +1185,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                 .inter(
                                                               fontWeight:
                                                                   FontWeight
-                                                                      .normal,
+                                                                      .w600,
                                                               fontStyle:
                                                                   FlutterFlowTheme.of(
                                                                           context)
@@ -1129,8 +1196,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                             fontSize: 12.0,
                                                             letterSpacing: 0.0,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .normal,
+                                                                FontWeight.w600,
                                                             fontStyle:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -1805,7 +1871,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                           0.0,
                                                                           3.0),
                                                                   child: Text(
-                                                                    'I-SHIM',
+                                                                    'HerShey AI',
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodyMedium
@@ -1833,7 +1899,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                                                 ),
                                                                 FaIcon(
                                                                   FontAwesomeIcons
-                                                                      .slackHash,
+                                                                      .snowflake,
                                                                   color: Colors
                                                                       .black,
                                                                   size: 40.0,
@@ -6018,12 +6084,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                       Align(
                         alignment: AlignmentDirectional(0.0, 1.0),
-                        child: wrapWithModel(
-                          model: _model.newNavBarModel,
-                          updateCallback: () => safeSetState(() {}),
-                          updateOnChange: true,
-                          child: NewNavBarWidget(
-                            pageIndex: 3,
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 2.0),
+                          child: wrapWithModel(
+                            model: _model.newNavBarModel,
+                            updateCallback: () => safeSetState(() {}),
+                            updateOnChange: true,
+                            child: NewNavBarWidget(
+                              pageIndex: 3,
+                            ),
                           ),
                         ),
                       ),

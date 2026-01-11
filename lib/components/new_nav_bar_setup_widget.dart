@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'new_nav_bar_model.dart';
-export 'new_nav_bar_model.dart';
+import 'new_nav_bar_setup_model.dart';
+export 'new_nav_bar_setup_model.dart';
 
-class NewNavBarWidget extends StatefulWidget {
-  const NewNavBarWidget({
+class NewNavBarSetupWidget extends StatefulWidget {
+  const NewNavBarSetupWidget({
     super.key,
     int? pageIndex,
   }) : this.pageIndex = pageIndex ?? 1;
@@ -19,11 +19,11 @@ class NewNavBarWidget extends StatefulWidget {
   final int pageIndex;
 
   @override
-  State<NewNavBarWidget> createState() => _NewNavBarWidgetState();
+  State<NewNavBarSetupWidget> createState() => _NewNavBarSetupWidgetState();
 }
 
-class _NewNavBarWidgetState extends State<NewNavBarWidget> {
-  late NewNavBarModel _model;
+class _NewNavBarSetupWidgetState extends State<NewNavBarSetupWidget> {
+  late NewNavBarSetupModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -34,7 +34,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => NewNavBarModel());
+    _model = createModel(context, () => NewNavBarSetupModel());
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -110,7 +110,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                                     height: 20.0,
                                     decoration: BoxDecoration(
                                       color: _model.setupCount == 0
-                                          ? Color(0xFF060418)
+                                          ? Colors.black
                                           : Color(0xFFF0FF00),
                                       borderRadius: BorderRadius.circular(14.0),
                                     ),
@@ -296,7 +296,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                                     height: 20.0,
                                     decoration: BoxDecoration(
                                       color: _model.notificationCount == 0
-                                          ? Color(0xFF060418)
+                                          ? Colors.black
                                           : Color(0xFFF0FF00),
                                       borderRadius: BorderRadius.circular(14.0),
                                     ),
@@ -626,7 +626,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                                   height: 20.0,
                                   decoration: BoxDecoration(
                                     color: _model.messagesCount == 0
-                                        ? Color(0xFF060418)
+                                        ? Colors.black
                                         : Color(0xFFF0FF00),
                                     borderRadius: BorderRadius.circular(14.0),
                                   ),
@@ -820,7 +820,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                                     height: 20.0,
                                     decoration: BoxDecoration(
                                       color: _model.socialCount == 0
-                                          ? Color(0xFF060418)
+                                          ? Colors.black
                                           : Color(0xFFF0FF00),
                                       borderRadius: BorderRadius.circular(14.0),
                                     ),

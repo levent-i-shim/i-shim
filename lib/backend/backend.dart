@@ -8,7 +8,6 @@ import 'schema/util/firestore_util.dart';
 import 'schema/users_record.dart';
 import 'schema/companies_record.dart';
 import 'schema/work_history_record.dart';
-import 'schema/work_places_record.dart';
 import 'schema/acquisitions_record.dart';
 import 'schema/heavy_machinery_record.dart';
 import 'schema/notifications_record.dart';
@@ -105,7 +104,6 @@ import 'schema/worker_shifts_record.dart';
 import 'schema/worker_payment_details_record.dart';
 import 'schema/worker_payment_details_work_place_record.dart';
 import 'schema/company_salary_record.dart';
-import 'schema/work_place_salary_record.dart';
 import 'schema/company_notes_record.dart';
 import 'schema/work_place_notes_record.dart';
 import 'schema/message_record.dart';
@@ -139,6 +137,8 @@ import 'schema/x_current_activities_record.dart';
 import 'schema/metrics_record.dart';
 import 'schema/work_place_payments_record.dart';
 import 'schema/work_place_incomes_record.dart';
+import 'schema/work_places_record.dart';
+import 'schema/work_place_salary_record.dart';
 import 'schema/invested_monies_to_work_place_record.dart';
 import 'dart:async';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -153,7 +153,6 @@ export 'schema/util/schema_util.dart';
 export 'schema/users_record.dart';
 export 'schema/companies_record.dart';
 export 'schema/work_history_record.dart';
-export 'schema/work_places_record.dart';
 export 'schema/acquisitions_record.dart';
 export 'schema/heavy_machinery_record.dart';
 export 'schema/notifications_record.dart';
@@ -250,7 +249,6 @@ export 'schema/worker_shifts_record.dart';
 export 'schema/worker_payment_details_record.dart';
 export 'schema/worker_payment_details_work_place_record.dart';
 export 'schema/company_salary_record.dart';
-export 'schema/work_place_salary_record.dart';
 export 'schema/company_notes_record.dart';
 export 'schema/work_place_notes_record.dart';
 export 'schema/message_record.dart';
@@ -284,6 +282,8 @@ export 'schema/x_current_activities_record.dart';
 export 'schema/metrics_record.dart';
 export 'schema/work_place_payments_record.dart';
 export 'schema/work_place_incomes_record.dart';
+export 'schema/work_places_record.dart';
+export 'schema/work_place_salary_record.dart';
 export 'schema/invested_monies_to_work_place_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
@@ -505,84 +505,6 @@ Future<FFFirestorePage<WorkHistoryRecord>> queryWorkHistoryRecordPage({
       if (isStream) {
         final streamSubscription =
             (page.dataStream)?.listen((List<WorkHistoryRecord> data) {
-          data.forEach((item) {
-            final itemIndexes = controller.itemList!
-                .asMap()
-                .map((k, v) => MapEntry(v.reference.id, k));
-            final index = itemIndexes[item.reference.id];
-            final items = controller.itemList!;
-            if (index != null) {
-              items.replaceRange(index, index + 1, [item]);
-              controller.itemList = {
-                for (var item in items) item.reference: item
-              }.values.toList();
-            }
-          });
-        });
-        streamSubscriptions?.add(streamSubscription);
-      }
-      return page;
-    });
-
-/// Functions to query WorkPlacesRecords (as a Stream and as a Future).
-Future<int> queryWorkPlacesRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      WorkPlacesRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<WorkPlacesRecord>> queryWorkPlacesRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      WorkPlacesRecord.collection,
-      WorkPlacesRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<WorkPlacesRecord>> queryWorkPlacesRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      WorkPlacesRecord.collection,
-      WorkPlacesRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-Future<FFFirestorePage<WorkPlacesRecord>> queryWorkPlacesRecordPage({
-  Query Function(Query)? queryBuilder,
-  DocumentSnapshot? nextPageMarker,
-  required int pageSize,
-  required bool isStream,
-  required PagingController<DocumentSnapshot?, WorkPlacesRecord> controller,
-  List<StreamSubscription?>? streamSubscriptions,
-}) =>
-    queryCollectionPage(
-      WorkPlacesRecord.collection,
-      WorkPlacesRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    ).then((page) {
-      controller.appendPage(
-        page.data,
-        page.nextPageMarker,
-      );
-      if (isStream) {
-        final streamSubscription =
-            (page.dataStream)?.listen((List<WorkPlacesRecord> data) {
           data.forEach((item) {
             final itemIndexes = controller.itemList!
                 .asMap()
@@ -8566,89 +8488,6 @@ Future<FFFirestorePage<CompanySalaryRecord>> queryCompanySalaryRecordPage({
       return page;
     });
 
-/// Functions to query WorkPlaceSalaryRecords (as a Stream and as a Future).
-Future<int> queryWorkPlaceSalaryRecordCount({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      WorkPlaceSalaryRecord.collection(parent),
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<WorkPlaceSalaryRecord>> queryWorkPlaceSalaryRecord({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      WorkPlaceSalaryRecord.collection(parent),
-      WorkPlaceSalaryRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<WorkPlaceSalaryRecord>> queryWorkPlaceSalaryRecordOnce({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      WorkPlaceSalaryRecord.collection(parent),
-      WorkPlaceSalaryRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-Future<FFFirestorePage<WorkPlaceSalaryRecord>> queryWorkPlaceSalaryRecordPage({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  DocumentSnapshot? nextPageMarker,
-  required int pageSize,
-  required bool isStream,
-  required PagingController<DocumentSnapshot?, WorkPlaceSalaryRecord>
-      controller,
-  List<StreamSubscription?>? streamSubscriptions,
-}) =>
-    queryCollectionPage(
-      WorkPlaceSalaryRecord.collection(parent),
-      WorkPlaceSalaryRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      nextPageMarker: nextPageMarker,
-      pageSize: pageSize,
-      isStream: isStream,
-    ).then((page) {
-      controller.appendPage(
-        page.data,
-        page.nextPageMarker,
-      );
-      if (isStream) {
-        final streamSubscription =
-            (page.dataStream)?.listen((List<WorkPlaceSalaryRecord> data) {
-          data.forEach((item) {
-            final itemIndexes = controller.itemList!
-                .asMap()
-                .map((k, v) => MapEntry(v.reference.id, k));
-            final index = itemIndexes[item.reference.id];
-            final items = controller.itemList!;
-            if (index != null) {
-              items.replaceRange(index, index + 1, [item]);
-              controller.itemList = {
-                for (var item in items) item.reference: item
-              }.values.toList();
-            }
-          });
-        });
-        streamSubscriptions?.add(streamSubscription);
-      }
-      return page;
-    });
-
 /// Functions to query CompanyNotesRecords (as a Stream and as a Future).
 Future<int> queryCompanyNotesRecordCount({
   DocumentReference? parent,
@@ -11355,6 +11194,167 @@ Future<FFFirestorePage<WorkPlaceIncomesRecord>>
           }
           return page;
         });
+
+/// Functions to query WorkPlacesRecords (as a Stream and as a Future).
+Future<int> queryWorkPlacesRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      WorkPlacesRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<WorkPlacesRecord>> queryWorkPlacesRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      WorkPlacesRecord.collection,
+      WorkPlacesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<WorkPlacesRecord>> queryWorkPlacesRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      WorkPlacesRecord.collection,
+      WorkPlacesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+Future<FFFirestorePage<WorkPlacesRecord>> queryWorkPlacesRecordPage({
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+  required PagingController<DocumentSnapshot?, WorkPlacesRecord> controller,
+  List<StreamSubscription?>? streamSubscriptions,
+}) =>
+    queryCollectionPage(
+      WorkPlacesRecord.collection,
+      WorkPlacesRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    ).then((page) {
+      controller.appendPage(
+        page.data,
+        page.nextPageMarker,
+      );
+      if (isStream) {
+        final streamSubscription =
+            (page.dataStream)?.listen((List<WorkPlacesRecord> data) {
+          data.forEach((item) {
+            final itemIndexes = controller.itemList!
+                .asMap()
+                .map((k, v) => MapEntry(v.reference.id, k));
+            final index = itemIndexes[item.reference.id];
+            final items = controller.itemList!;
+            if (index != null) {
+              items.replaceRange(index, index + 1, [item]);
+              controller.itemList = {
+                for (var item in items) item.reference: item
+              }.values.toList();
+            }
+          });
+        });
+        streamSubscriptions?.add(streamSubscription);
+      }
+      return page;
+    });
+
+/// Functions to query WorkPlaceSalaryRecords (as a Stream and as a Future).
+Future<int> queryWorkPlaceSalaryRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      WorkPlaceSalaryRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<WorkPlaceSalaryRecord>> queryWorkPlaceSalaryRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      WorkPlaceSalaryRecord.collection(parent),
+      WorkPlaceSalaryRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<WorkPlaceSalaryRecord>> queryWorkPlaceSalaryRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      WorkPlaceSalaryRecord.collection(parent),
+      WorkPlaceSalaryRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+Future<FFFirestorePage<WorkPlaceSalaryRecord>> queryWorkPlaceSalaryRecordPage({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  DocumentSnapshot? nextPageMarker,
+  required int pageSize,
+  required bool isStream,
+  required PagingController<DocumentSnapshot?, WorkPlaceSalaryRecord>
+      controller,
+  List<StreamSubscription?>? streamSubscriptions,
+}) =>
+    queryCollectionPage(
+      WorkPlaceSalaryRecord.collection(parent),
+      WorkPlaceSalaryRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    ).then((page) {
+      controller.appendPage(
+        page.data,
+        page.nextPageMarker,
+      );
+      if (isStream) {
+        final streamSubscription =
+            (page.dataStream)?.listen((List<WorkPlaceSalaryRecord> data) {
+          data.forEach((item) {
+            final itemIndexes = controller.itemList!
+                .asMap()
+                .map((k, v) => MapEntry(v.reference.id, k));
+            final index = itemIndexes[item.reference.id];
+            final items = controller.itemList!;
+            if (index != null) {
+              items.replaceRange(index, index + 1, [item]);
+              controller.itemList = {
+                for (var item in items) item.reference: item
+              }.values.toList();
+            }
+          });
+        });
+        streamSubscriptions?.add(streamSubscription);
+      }
+      return page;
+    });
 
 /// Functions to query InvestedMoniesToWorkPlaceRecords (as a Stream and as a Future).
 Future<int> queryInvestedMoniesToWorkPlaceRecordCount({

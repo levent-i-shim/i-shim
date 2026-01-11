@@ -10,73 +10,6 @@ class AddNewFinanceNoteCompanyModel
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  // State field(s) for ownerOrWorker widget.
-  String? ownerOrWorkerValue;
-  FormFieldController<String>? ownerOrWorkerValueController;
-  // State field(s) for companiesDropDown widget.
-  String? companiesDropDownValue;
-  FormFieldController<String>? companiesDropDownValueController;
-  // Stores action output result for [Custom Action - getCompanyDocRef] action in companiesDropDown widget.
-  DocumentReference? ownerCompaniesFDD;
-  // State field(s) for workPlacesDropDown widget.
-  String? workPlacesDropDownValue;
-  FormFieldController<String>? workPlacesDropDownValueController;
-  // State field(s) for authorizingCompaniesDropDown widget.
-  String? authorizingCompaniesDropDownValue;
-  FormFieldController<String>? authorizingCompaniesDropDownValueController;
-  // Stores action output result for [Custom Action - getCompanyDocRef] action in authorizingCompaniesDropDown widget.
-  DocumentReference? authorizingCompanyFDD;
-  // State field(s) for authorizingWorkPlaceDropDown widget.
-  String? authorizingWorkPlaceDropDownValue;
-  FormFieldController<String>? authorizingWorkPlaceDropDownValueController;
-  // State field(s) for fileType widget.
-  String? fileTypeValue;
-  FormFieldController<String>? fileTypeValueController;
-  bool isDataUploading_companyUploadPDFCheck = false;
-  FFUploadedFile uploadedLocalFile_companyUploadPDFCheck =
-      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
-
-  bool isDataUploading_uploadMediaPaymentForCompany = false;
-  FFUploadedFile uploadedLocalFile_uploadMediaPaymentForCompany =
-      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
-
-  // State field(s) for paymentOrCollectionValue widget.
-  FocusNode? paymentOrCollectionValueFocusNode;
-  TextEditingController? paymentOrCollectionValueTextController;
-  String? Function(BuildContext, String?)?
-      paymentOrCollectionValueTextControllerValidator;
-  // State field(s) for incomeOrExpenseDropDown widget.
-  String? incomeOrExpenseDropDownValue;
-  FormFieldController<String>? incomeOrExpenseDropDownValueController;
-  // State field(s) for expenseType widget.
-  String? expenseTypeValue;
-  FormFieldController<String>? expenseTypeValueController;
-  // State field(s) for whichTypeCurrent widget.
-  String? whichTypeCurrentValue;
-  FormFieldController<String>? whichTypeCurrentValueController;
-  // State field(s) for whichCurrentPersonForOwner widget.
-  String? whichCurrentPersonForOwnerValue;
-  FormFieldController<String>? whichCurrentPersonForOwnerValueController;
-  // State field(s) for whichCurrentPersonForWorker widget.
-  String? whichCurrentPersonForWorkerValue;
-  FormFieldController<String>? whichCurrentPersonForWorkerValueController;
-  // State field(s) for whichCurrentCompanyForOwner widget.
-  String? whichCurrentCompanyForOwnerValue;
-  FormFieldController<String>? whichCurrentCompanyForOwnerValueController;
-  // State field(s) for whichCurrentCompanyForWorker widget.
-  String? whichCurrentCompanyForWorkerValue;
-  FormFieldController<String>? whichCurrentCompanyForWorkerValueController;
-  // State field(s) for whichAccount widget.
-  String? whichAccountValue;
-  FormFieldController<String>? whichAccountValueController;
-  // State field(s) for TextFieldContent widget.
-  FocusNode? textFieldContentFocusNode;
-  TextEditingController? textFieldContentTextController;
-  String? Function(BuildContext, String?)?
-      textFieldContentTextControllerValidator;
-  // State field(s) for DoesHaveBill widget.
-  bool? doesHaveBillValue;
-  FormFieldController<bool>? doesHaveBillValueController;
   // Stores action output result for [Validate Form] action in PDFButton widget.
   bool? validate;
   bool isDataUploading_uploadCompanyPDFToFirebaseCheck = false;
@@ -151,6 +84,73 @@ class AddNewFinanceNoteCompanyModel
   String? companyNameFromDropDownId7;
   // Stores action output result for [Custom Action - getWorkPlaceName] action in NoEvidenceButton widget.
   String? workPlaceNameFromDropDownId7;
+  // State field(s) for ownerOrWorker widget.
+  String? ownerOrWorkerValue;
+  FormFieldController<String>? ownerOrWorkerValueController;
+  // State field(s) for companiesDropDown widget.
+  String? companiesDropDownValue;
+  FormFieldController<String>? companiesDropDownValueController;
+  // Stores action output result for [Custom Action - getCompanyDocRef] action in companiesDropDown widget.
+  DocumentReference? ownerCompaniesFDD;
+  // State field(s) for workPlacesDropDown widget.
+  String? workPlacesDropDownValue;
+  FormFieldController<String>? workPlacesDropDownValueController;
+  // State field(s) for authorizingCompaniesDropDown widget.
+  String? authorizingCompaniesDropDownValue;
+  FormFieldController<String>? authorizingCompaniesDropDownValueController;
+  // Stores action output result for [Custom Action - getCompanyDocRef] action in authorizingCompaniesDropDown widget.
+  DocumentReference? authorizingCompanyFDD;
+  // State field(s) for authorizingWorkPlaceDropDown widget.
+  String? authorizingWorkPlaceDropDownValue;
+  FormFieldController<String>? authorizingWorkPlaceDropDownValueController;
+  // State field(s) for fileType widget.
+  String? fileTypeValue;
+  FormFieldController<String>? fileTypeValueController;
+  bool isDataUploading_companyUploadPDFCheck = false;
+  FFUploadedFile uploadedLocalFile_companyUploadPDFCheck =
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
+
+  bool isDataUploading_uploadMediaPaymentForCompany = false;
+  FFUploadedFile uploadedLocalFile_uploadMediaPaymentForCompany =
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
+
+  // State field(s) for paymentOrCollectionValue widget.
+  FocusNode? paymentOrCollectionValueFocusNode;
+  TextEditingController? paymentOrCollectionValueTextController;
+  String? Function(BuildContext, String?)?
+      paymentOrCollectionValueTextControllerValidator;
+  // State field(s) for incomeOrExpenseDropDown widget.
+  String? incomeOrExpenseDropDownValue;
+  FormFieldController<String>? incomeOrExpenseDropDownValueController;
+  // State field(s) for expenseType widget.
+  String? expenseTypeValue;
+  FormFieldController<String>? expenseTypeValueController;
+  // State field(s) for whichTypeCurrent widget.
+  String? whichTypeCurrentValue;
+  FormFieldController<String>? whichTypeCurrentValueController;
+  // State field(s) for whichCurrentPersonForOwner widget.
+  String? whichCurrentPersonForOwnerValue;
+  FormFieldController<String>? whichCurrentPersonForOwnerValueController;
+  // State field(s) for whichCurrentPersonForWorker widget.
+  String? whichCurrentPersonForWorkerValue;
+  FormFieldController<String>? whichCurrentPersonForWorkerValueController;
+  // State field(s) for whichCurrentCompanyForOwner widget.
+  String? whichCurrentCompanyForOwnerValue;
+  FormFieldController<String>? whichCurrentCompanyForOwnerValueController;
+  // State field(s) for whichCurrentCompanyForWorker widget.
+  String? whichCurrentCompanyForWorkerValue;
+  FormFieldController<String>? whichCurrentCompanyForWorkerValueController;
+  // State field(s) for whichAccount widget.
+  String? whichAccountValue;
+  FormFieldController<String>? whichAccountValueController;
+  // State field(s) for TextFieldContent widget.
+  FocusNode? textFieldContentFocusNode;
+  TextEditingController? textFieldContentTextController;
+  String? Function(BuildContext, String?)?
+      textFieldContentTextControllerValidator;
+  // State field(s) for DoesHaveBill widget.
+  bool? doesHaveBillValue;
+  FormFieldController<bool>? doesHaveBillValueController;
 
   @override
   void initState(BuildContext context) {}

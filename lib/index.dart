@@ -1,7 +1,4 @@
 // Export pages
-export '/pages/authentication/authentication_widget.dart'
-    show AuthenticationWidget;
-export '/nav_bar_pages/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/personel/settings_edit_profile/settings_edit_profile_widget.dart'
     show SettingsEditProfileWidget;
 export '/nav_bar_pages/kurulum/kurulum_widget.dart' show KurulumWidget;
@@ -270,8 +267,6 @@ export '/company/company_control_for_partner/company_control_operations_for_part
     show CompanyControlOperationsForPartnerPageWidget;
 export '/company/company_control_for_partner/company_control_communication_for_partner_page/company_control_communication_for_partner_page_widget.dart'
     show CompanyControlCommunicationForPartnerPageWidget;
-export '/company_work_place_main_pages/work_place_home_page_for_owner/work_place_home_page_for_owner_widget.dart'
-    show WorkPlaceHomePageForOwnerWidget;
 export '/work_place/departman_work_place/add_department_page_work_place/add_department_page_work_place_widget.dart'
     show AddDepartmentPageWorkPlaceWidget;
 export '/work_place/departman_work_place/departmans_page_work_place/departmans_page_work_place_widget.dart'
@@ -368,8 +363,6 @@ export '/work_place/expanditury_work_place/expandituries_page_work_place/expandi
     show ExpandituriesPageWorkPlaceWidget;
 export '/work_place/work_place_control_for_owner/work_place_organization_page/work_place_organization_page_widget.dart'
     show WorkPlaceOrganizationPageWidget;
-export '/work_place/employee_detail_first_page_work_place/work_place_workers_page/work_place_workers_page_widget.dart'
-    show WorkPlaceWorkersPageWidget;
 export '/work_place/work_place_notifications_page/work_place_notifications_page_widget.dart'
     show WorkPlaceNotificationsPageWidget;
 export '/work_place/work_place_control_for_owner/work_place_partner_manage_page/work_place_partner_manage_page_widget.dart'
@@ -457,19 +450,14 @@ export '/report_detail_page/report_detail_page_widget.dart'
 export '/my_notes/update_note_page/update_note_page_widget.dart'
     show UpdateNotePageWidget;
 export '/c_v_page/c_v_page_widget.dart' show CVPageWidget;
-export '/calculate_cost/all_products_page/all_products_page_widget.dart'
-    show AllProductsPageWidget;
 export '/calculate_cost/add_new_product_page/add_new_product_page_widget.dart'
     show AddNewProductPageWidget;
 export '/calculate_cost/calculate_cost_page/calculate_cost_page_widget.dart'
     show CalculateCostPageWidget;
-export '/calculate_cost/all_calculate_products_page/all_calculate_products_page_widget.dart'
-    show AllCalculateProductsPageWidget;
 export '/calculate_cost/calculate_detail_page/calculate_detail_page_widget.dart'
     show CalculateDetailPageWidget;
 export '/calculate_cost/update_product_page/update_product_page_widget.dart'
     show UpdateProductPageWidget;
-export '/nav_bar_pages/social/social_widget.dart' show SocialWidget;
 export '/ai/chat_a_i/chat_a_i_widget.dart' show ChatAIWidget;
 export '/instruction_page/instruction_page_widget.dart'
     show InstructionPageWidget;
@@ -477,8 +465,6 @@ export '/forms/form_create_graphic_page/form_create_graphic_page_widget.dart'
     show FormCreateGraphicPageWidget;
 export '/stock_operation_page/stock_operation_page_widget.dart'
     show StockOperationPageWidget;
-export '/calculate_cost/parent_products_page/parent_products_page_widget.dart'
-    show ParentProductsPageWidget;
 export '/calculate_cost/add_parent_product_page/add_parent_product_page_widget.dart'
     show AddParentProductPageWidget;
 export '/calculate_cost/edit_calculations_page/edit_calculations_page_widget.dart'
@@ -511,8 +497,6 @@ export '/my_notes/note_diary_detail_page/note_diary_detail_page_widget.dart'
     show NoteDiaryDetailPageWidget;
 export '/finance_notes/financial_monitoring/financial_monitoring_widget.dart'
     show FinancialMonitoringWidget;
-export '/finance_notes/add_new_finance_note_company/add_new_finance_note_company_widget.dart'
-    show AddNewFinanceNoteCompanyWidget;
 export '/finance_notes/note_finance_company_detail_page/note_finance_company_detail_page_widget.dart'
     show NoteFinanceCompanyDetailPageWidget;
 export '/finance_notes/note_finance_personal_detail_page/note_finance_personal_detail_page_widget.dart'
@@ -533,8 +517,6 @@ export '/finance_notes/update_note_finance_page/update_note_finance_page_widget.
     show UpdateNoteFinancePageWidget;
 export '/company_work_place_main_pages/work_place_control_for_partner/work_place_control_for_partner_widget.dart'
     show WorkPlaceControlForPartnerWidget;
-export '/calculate_cost/add_sold_page/add_sold_page_widget.dart'
-    show AddSoldPageWidget;
 export '/work_place/work_place_notes/work_place_notes_page/work_place_notes_page_widget.dart'
     show WorkPlaceNotesPageWidget;
 export '/company/company_notes/company_notes_page/company_notes_page_widget.dart'
@@ -604,7 +586,6 @@ export '/reports/send_report_step1/send_report_step1_widget.dart'
 export '/reports/send_report_step2/send_report_step2_widget.dart'
     show SendReportStep2Widget;
 export '/profile_page/profile_page_widget.dart' show ProfilePageWidget;
-export '/nav_bar_pages/chat/chat_widget.dart' show ChatWidget;
 export '/confrimations/message_new_page_copy/message_new_page_copy_widget.dart'
     show MessageNewPageCopyWidget;
 export '/shopping/shopping/shopping_widget.dart' show ShoppingWidget;
@@ -640,8 +621,6 @@ export '/finance_notes/add_new_finance_note_family/add_new_finance_note_family_w
     show AddNewFinanceNoteFamilyWidget;
 export '/finance_notes/add_new_finance_note_personal/add_new_finance_note_personal_widget.dart'
     show AddNewFinanceNotePersonalWidget;
-export '/payments/payment_or_collection_cash/payment_or_collection_cash_widget.dart'
-    show PaymentOrCollectionCashWidget;
 export '/currents/current_detail_page/current_detail_page_widget.dart'
     show CurrentDetailPageWidget;
 export '/company_work_place_main_pages/bill_page/bill_page_widget.dart'
@@ -738,17 +717,8 @@ export '/x_current_accounts/create_x_current_account_supplier/create_x_current_a
 export '/x_current_accounts/create_x_current_account_mixed/create_x_current_account_mixed_widget.dart'
     show CreateXCurrentAccountMixedWidget;
 export '/nav_bar_pages/metrics/metrics_widget.dart' show MetricsWidget;
-export '/workers/workers/workers_widget.dart' show WorkersWidget;
-export '/workers/workers_choose_worker/workers_choose_worker_widget.dart'
-    show WorkersChooseWorkerWidget;
-export '/workers/workers_payment_detail/workers_payment_detail_widget.dart'
-    show WorkersPaymentDetailWidget;
 export '/nav_bar_pages/business_track/business_track_widget.dart'
     show BusinessTrackWidget;
-export '/workers/business_choose/business_choose_widget.dart'
-    show BusinessChooseWidget;
-export '/x_current_accounts/choose_x_current_type_page/choose_x_current_type_page_widget.dart'
-    show ChooseXCurrentTypePageWidget;
 export '/x_current_accounts/x_current_accounts_i_am_owner/x_current_accounts_i_am_owner_widget.dart'
     show XCurrentAccountsIAmOwnerWidget;
 export '/x_current_accounts/x_current_accounts_i_am_partner/x_current_accounts_i_am_partner_widget.dart'
@@ -757,6 +727,33 @@ export '/x_current_accounts/x_current_accounts_i_am_authorized_worker/x_current_
     show XCurrentAccountsIAmAuthorizedWorkerWidget;
 export '/x_current_accounts/x_current_accounts_personel/x_current_accounts_personel_widget.dart'
     show XCurrentAccountsPersonelWidget;
+export '/pages/authentication/authentication_widget.dart'
+    show AuthenticationWidget;
+export '/company_work_place_main_pages/work_place_home_page_for_owner/work_place_home_page_for_owner_widget.dart'
+    show WorkPlaceHomePageForOwnerWidget;
+export '/work_place/employee_detail_first_page_work_place/work_place_workers_page/work_place_workers_page_widget.dart'
+    show WorkPlaceWorkersPageWidget;
+export '/calculate_cost/all_products_page/all_products_page_widget.dart'
+    show AllProductsPageWidget;
+export '/calculate_cost/all_calculate_products_page/all_calculate_products_page_widget.dart'
+    show AllCalculateProductsPageWidget;
+export '/nav_bar_pages/social/social_widget.dart' show SocialWidget;
+export '/calculate_cost/parent_products_page/parent_products_page_widget.dart'
+    show ParentProductsPageWidget;
+export '/finance_notes/add_new_finance_note_company/add_new_finance_note_company_widget.dart'
+    show AddNewFinanceNoteCompanyWidget;
+export '/calculate_cost/add_sold_page/add_sold_page_widget.dart'
+    show AddSoldPageWidget;
+export '/nav_bar_pages/chat/chat_widget.dart' show ChatWidget;
+export '/workers/workers/workers_widget.dart' show WorkersWidget;
+export '/workers/workers_choose_worker/workers_choose_worker_widget.dart'
+    show WorkersChooseWorkerWidget;
+export '/workers/workers_payment_detail/workers_payment_detail_widget.dart'
+    show WorkersPaymentDetailWidget;
+export '/workers/business_choose/business_choose_widget.dart'
+    show BusinessChooseWidget;
+export '/x_current_accounts/choose_x_current_type_page/choose_x_current_type_page_widget.dart'
+    show ChooseXCurrentTypePageWidget;
 export '/workers/business_choose_main_titles/business_choose_main_titles_widget.dart'
     show BusinessChooseMainTitlesWidget;
 export '/financial_plan/invested_moniest_to_work_place/invested_moniest_to_work_place_widget.dart'
@@ -765,3 +762,6 @@ export '/workers/workers_add_payment/workers_add_payment_widget.dart'
     show WorkersAddPaymentWidget;
 export '/workers/workers_choose_company_work_place/workers_choose_company_work_place_widget.dart'
     show WorkersChooseCompanyWorkPlaceWidget;
+export '/nav_bar_pages/profile/profile_widget.dart' show ProfileWidget;
+export '/payments/payment_or_collection_cash/payment_or_collection_cash_widget.dart'
+    show PaymentOrCollectionCashWidget;

@@ -1,7 +1,6 @@
 export 'dynamic_form_widget.dart' show DynamicFormWidget;
 export 'product_calculation_form.dart' show ProductCalculationForm;
 export 'calculation_edit_form.dart' show CalculationEditForm;
-export 'message_sync_listener.dart' show MessageSyncListener;
 export 'user_chats_widget.dart' show UserChatsWidget;
 export 'message_image_viewer.dart' show MessageImageViewer;
 export 'custom_pdf_viewer.dart' show CustomPdfViewer;
@@ -9,3 +8,4 @@ export 'file_message.dart' show FileMessage;
 export 'contact_message.dart' show ContactMessage;
 export 'location_message.dart' show LocationMessage;
 export 'color_settings_widget.dart' show ColorSettingsWidget;
+export 'message_sync_listener.dart' show MessageSyncListener;

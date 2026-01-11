@@ -22,13 +22,6 @@ service cloud.firestore {
       allow delete: if request.auth.uid == parent;
     }
 
-    match /workPlaces/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
     match /users/{parent}/acquisitions/{document} {
       allow create: if request.auth.uid == parent;
       allow read: if request.auth.uid == parent;
@@ -1021,18 +1014,6 @@ service cloud.firestore {
     }
 
 
-    match /workPlaces/{parent}/workPlaceSalary/{document} {
-      allow create: if true;
-      allow read: if true;
-      allow write: if false;
-      allow delete: if false;
-    }
-
-    match /{path=**}/workPlaceSalary/{document} {
-      allow read: if true;
-    }
-
-
     match /companies/{parent}/companyNotes/{document} {
       allow create: if true;
       allow read: if true;
@@ -1359,11 +1340,30 @@ service cloud.firestore {
     }
 
 
+    match /workPlaces/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /workPlaces/{parent}/workPlaceSalary/{document} {
+      allow create: if true;
+      allow read: if true;
+      allow write: if false;
+      allow delete: if false;
+    }
+
+    match /{path=**}/workPlaceSalary/{document} {
+      allow read: if true;
+    }
+
+
     match /workPlaces/{parent}/investedMoniesToWorkPlace/{document} {
       allow create: if true;
       allow read: if true;
-      allow write: if true;
-      allow delete: if true;
+      allow write: if false;
+      allow delete: if false;
     }
 
     match /{path=**}/investedMoniesToWorkPlace/{document} {

@@ -13,24 +13,15 @@ import 'package:flutter/material.dart';
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
 import 'dart:async';
-
 import 'index.dart'; // Imports other custom widgets
-
 import '/backend/backend.dart' hide LatLng;
 import '/flutter_flow/flutter_flow_util.dart' hide LatLng;
-
 import 'package:geolocator/geolocator.dart';
-
 import 'package:url_launcher/url_launcher.dart';
-
 import 'package:i_shim/flutter_flow/upload_data.dart';
-
 import 'package:i_shim/auth/firebase_auth/auth_util.dart';
-
 import 'package:i_shim/components/delete_message_component/delete_message_component_widget.dart';
-
 import 'package:flutter/services.dart';
-
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -43,19 +34,68 @@ import 'package:i_shim/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:i_shim/flutter_flow/flutter_flow_pdf_viewer.dart';
 import 'package:open_file/open_file.dart';
 import 'package:photo_manager/photo_manager.dart' hide LatLng;
-
 import '/custom_code/actions/index.dart'; // Imports other custom actions
 // Begin custom action code
-
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
+// Emoji detection and rendering helpers
+bool _isEmojiRune(int rune) {
+  // Basic Unicode ranges for common emojis
+  if (rune >= 0x1F600 && rune <= 0x1F64F) return true; // Emoticons
+  if (rune >= 0x1F300 && rune <= 0x1F5FF) return true; // Symbols & Pictographs
+  if (rune >= 0x1F680 && rune <= 0x1F6FF) return true; // Transport & Map
+  if (rune >= 0x1F700 && rune <= 0x1F77F) return true; // Alchemical Symbols
+  if (rune >= 0x1F780 && rune <= 0x1F7FF)
+    return true; // Geometric Shapes Extended
+  if (rune >= 0x1F800 && rune <= 0x1F8FF) return true; // Supplemental Arrows-C
+  if (rune >= 0x1F900 && rune <= 0x1F9FF)
+    return true; // Supplemental Symbols and Pictographs
+  if (rune >= 0x1FA00 && rune <= 0x1FA6F) return true; // Chess Symbols
+  if (rune >= 0x1FA70 && rune <= 0x1FAFF)
+    return true; // Symbols and Pictographs Extended-A
+  if (rune >= 0x2600 && rune <= 0x26FF) return true; // Miscellaneous Symbols
+  if (rune >= 0x2700 && rune <= 0x27BF) return true; // Dingbats
+  if (rune >= 0xFE00 && rune <= 0xFE0F) return true; // Variation Selectors
+  if (rune >= 0x1F1E6 && rune <= 0x1F1FF)
+    return true; // Regional Indicator Symbols (flags)
+  return false;
+}
+
+List<TextSpan> _buildTextSpans(String text,
+    {required double normalSize, required Color color}) {
+  final List<TextSpan> spans = [];
+  final runes = text.runes.toList();
+  if (runes.isEmpty) return spans;
+
+  int start = 0;
+  bool? prevIsEmoji;
+  for (int i = 1; i <= runes.length; i++) {
+    // Include end
+    final currentIsEmoji = (i < runes.length) ? _isEmojiRune(runes[i]) : null;
+    if (i == runes.length ||
+        (prevIsEmoji != null && currentIsEmoji != prevIsEmoji)) {
+      // Add span for [start, i)
+      final spanText = String.fromCharCodes(runes.sublist(start, i));
+      final isEmojiSpan = prevIsEmoji ?? _isEmojiRune(runes[start]);
+      final size = isEmojiSpan ? normalSize * 2.5 : normalSize;
+      spans.add(
+        TextSpan(
+          text: spanText,
+          style: TextStyle(fontSize: size, color: color),
+        ),
+      );
+      start = i;
+    }
+    if (i < runes.length) prevIsEmoji = _isEmojiRune(runes[i]);
+  }
+  return spans;
+}
+
 // Set your action name, define your arguments and return parameter,
 // and then add the boilerplate code using the green button on the right!
-
 class _MessageList {
   final String message;
   bool isRead;
@@ -130,7 +170,6 @@ class MessageSyncListener extends StatefulWidget {
   final String? ballon1Text;
   final String? ballon2;
   final String? ballon2Text;
-
   MessageSyncListener(
       {Key? key,
       required this.authUser,
@@ -149,7 +188,6 @@ class MessageSyncListener extends StatefulWidget {
       this.ballon2,
       this.ballon2Text})
       : super(key: key);
-
   @override
   _MessageSyncListenerState createState() => _MessageSyncListenerState();
 }
@@ -167,7 +205,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
   late Color balloon1TextColor;
   late Color ballon2Color;
   late Color balloon2TextColor;
-
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.paused) {
@@ -200,11 +237,9 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
 
   bool selectedImage = false;
   bool selectedPdf = false;
-
   final formKey = GlobalKey<FormState>();
   ScrollController? listViewController;
   FFUploadedFile? returnValue;
-
   late FocusNode textFieldFocusNode;
   TextEditingController textController = TextEditingController();
   String? Function(BuildContext, String?)? textControllerValidator;
@@ -212,11 +247,9 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
     if (val == null || val.isEmpty) {
       return 'Mesajınızı Giriniz is required';
     }
-
     if (val.length < 1) {
       return 'Requires at least 1 characters.';
     }
-
     return null;
   }
 
@@ -224,21 +257,16 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
   FFUploadedFile uploadedLocalFile_uploadDataLsxzy =
       FFUploadedFile(bytes: Uint8List.fromList([]));
   String uploadedFileUrl_uploadDataLsxzy = '';
-
   bool? validation;
   String? reaction;
-
   final List<_MessageList> messages = [];
   final player = AudioPlayer();
-
   @override
   void initState() {
     super.initState();
-
     String backGroundColor = widget.backGround?.trim().isNotEmpty == true
         ? widget.backGround!
         : '0xFF090620';
-
     // Renk kodunun geçerliliğini kontrol et
     try {
       backgroundColor = Color(int.parse(backGroundColor));
@@ -246,7 +274,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       print('Geçersiz renk kodu, varsayılan renk kullanılıyor: $e');
       backgroundColor = Color(0xFF090620); // Varsayılan renk
     }
-
     // ballon1Color için null kontrolü
     try {
       ballon1Color = Color(int.parse(widget.ballon1?.trim().isNotEmpty == true
@@ -256,7 +283,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       print('Geçersiz ballon1Color kodu, varsayılan renk kullanılıyor: $e');
       ballon1Color = Color(0xFFFFFFFF); // Varsayılan renk
     }
-
     // ballon2Color için null kontrolü
     try {
       ballon2Color = Color(int.parse(widget.ballon2?.trim().isNotEmpty == true
@@ -266,19 +292,17 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       print('Geçersiz ballon2Color kodu, varsayılan renk kullanılıyor: $e');
       ballon2Color = Color(0xFF00499C); // Varsayılan renk
     }
-
     // balloon1TextColor için null kontrolü
     try {
       balloon1TextColor = Color(int.parse(
           widget.ballon1Text?.trim().isNotEmpty == true
               ? widget.ballon1Text!
-              : '0x00000000'));
+              : '0xFF000000'));
     } catch (e) {
       print(
           'Geçersiz balloon1TextColor kodu, varsayılan renk kullanılıyor: $e');
-      balloon1TextColor = Color(0x00000000); // Varsayılan renk
+      balloon1TextColor = Color(0xFF000000); // Varsayılan renk
     }
-
     // balloon2TextColor için null kontrolü
     try {
       balloon2TextColor = Color(int.parse(
@@ -290,16 +314,12 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           'Geçersiz balloon2TextColor kodu, varsayılan renk kullanılıyor: $e');
       balloon2TextColor = Color(0xFFFFFFFF); // Varsayılan renk
     }
-
     WidgetsBinding.instance.addObserver(this);
     listViewController = ScrollController();
     textControllerValidator = _textControllerValidator;
-
     getAllMessages();
-
     final Set<String> _processedMessageIds = {};
     final Set<String> _processedMessageIdsUpdate = {};
-
     player.setAudioContext(AudioContext(
       android: const AudioContextAndroid(
         isSpeakerphoneOn: false,
@@ -312,7 +332,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         category: AVAudioSessionCategory.ambient,
       ),
     ));
-
     _isNotReaded = widget.receiverUser
         .collection('newMessages')
         .where("messageRef", isEqualTo: widget.messageRef)
@@ -320,15 +339,11 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         .snapshots()
         .listen((snapshot) async {
       final unreadCount = snapshot.docs.length;
-
       await Future.delayed(const Duration(milliseconds: 1000));
-
       bool shouldUpdate = false;
       int markedUnread = 0;
-
       for (int i = 0; i < messages.length; i++) {
         final message = messages[i];
-
         if (message.sender == widget.authUser.toString()) {
           if (markedUnread < unreadCount) {
             markedUnread++;
@@ -344,16 +359,13 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           }
         }
       }
-
       if (!mounted) {
         return;
       }
-
       if (shouldUpdate) {
         setState(() {});
       }
     });
-
     _subscription = widget.authUser
         .collection('newMessages')
         .where("messageRef", isEqualTo: widget.messageRef)
@@ -363,11 +375,8 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         .listen((snapshot) async {
       final futures = snapshot.docs.map((doc) async {
         final data = doc.data() as Map<String, dynamic>;
-
         if (_processedMessageIds.contains(doc.id)) return;
-
         _processedMessageIds.add(doc.id);
-
         final message = data['message'] ?? '';
         final sender = data['senderRef'] ?? '';
         final date = data["date"] ?? Timestamp.now();
@@ -381,11 +390,8 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         final personNumber = data["personNumber"] ?? '';
         final latitude = (data["latitude"] ?? 0.0) as double;
         final longitude = (data["longitude"] ?? 0.0) as double;
-
         await doc.reference.delete();
-
         final dateStr = formatDateForSQLite(date);
-
         final result = await saveToLocalSQL(
             date: dateStr,
             imagePath: imagePath,
@@ -400,14 +406,11 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             longitude: longitude,
             phoneNumber: personNumber,
             firebaseId: firebaseId);
-
         await widget.authUser
             .update({"messageCount": FieldValue.increment(-1)});
       }).toList();
-
       await Future.wait(futures);
     });
-
     _updatedMessage = widget.authUser
         .collection('messageUpdate')
         .where("messageRef", isEqualTo: widget.messageRef)
@@ -416,15 +419,11 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         .listen((snapshot) async {
       final futures = snapshot.docs.map((doc) async {
         final data = doc.data() as Map<String, dynamic>;
-
         if (_processedMessageIdsUpdate.contains(doc.id)) {
           return;
         }
-
         _processedMessageIdsUpdate.add(doc.id);
-
-        Future.delayed(Duration(milliseconds: 500));
-
+        Future.delayed(Duration(milliseconds: 100));
         final messageId = data['messageId'] ?? '';
         final senderRef = data['senderRef'] ?? '';
         final date = data["date"] ?? Timestamp.now();
@@ -432,13 +431,11 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         final reaction = data["reaction"] ?? '';
         final editMessage = data["editMessage"] ?? '';
         await doc.reference.delete();
-
         if (updateType == "reaction") {
           await SQLiteManager.instance.updateReactionFromOther(
             firebaseId: messageId,
             reactionFromOther: reaction,
           );
-
           setState(() {
             final _MessageList? messageReply = messages
                 .where((msg) => msg.firebaseId == messageId)
@@ -448,7 +445,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                   (element) => true,
                   orElse: () => null,
                 );
-
             if (messageReply != null) {
               messageReply.reactionFromOther = reaction;
             } else {}
@@ -467,7 +463,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                   (element) => true,
                   orElse: () => null,
                 );
-
             if (messageDelete != null) {
               messageDelete.isDeleted = true;
               messageDelete.isDeletedFromMe = false;
@@ -485,7 +480,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                   (element) => true,
                   orElse: () => null,
                 );
-
             if (messageEdit != null) {
               messageEdit.isEdited = true;
               messageEdit.editedMessage = editMessage;
@@ -493,14 +487,10 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           });
         }
       }).toList();
-
       await Future.wait(futures);
     });
-
     updateOnlineStatus(true);
-
     textFieldFocusNode = FocusNode();
-
     textFieldFocusNode.addListener(() {
       updateWritingStatus();
     });
@@ -508,7 +498,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
 
   Future<void> _showContactDialog(BuildContext context) async {
     List<_Contact> dummyContacts = [];
-
     final phones = await SQLiteManager.instance.getAllPhones();
     for (var i in phones) {
       dummyContacts
@@ -519,7 +508,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       builder: (context) => _ContactSelectorDialog(
           contacts: dummyContacts, backGroundColor: backgroundColor),
     );
-
     if (selectedContact != null) {
       sendPhone(selectedContact.name, selectedContact.phone);
     }
@@ -528,9 +516,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
   Future<void> updateWritingStatus() async {
     final hasText = textController.text.trim().isNotEmpty;
     final hasFocus = textFieldFocusNode.hasFocus;
-
     final shouldBeWriting = hasText && hasFocus;
-
     if (isWriting != shouldBeWriting) {
       isWriting = shouldBeWriting;
       if (widget.amIUser1) {
@@ -571,7 +557,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       default:
         subCollectionName = 'messages';
     }
-
     final firebaseId = await FirebaseFirestore.instance
         .collection('Message')
         .doc(widget.messageRef.id)
@@ -587,7 +572,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       'personName': personName,
       'personNumber': personNumber
     });
-
     await sendMessageToUser(
         replyMessage: replyMessage,
         receiverRef: widget.receiverUser,
@@ -618,7 +602,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       ],
       multiFile: false,
     );
-
     if (selectedFiles != null && selectedFiles.isNotEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -629,24 +612,19 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       final file = selectedFiles.first;
       final fileName = file.storagePath.split('/').last;
       final extension = fileName.split('.').last.toLowerCase();
-
       if (file.bytes == null || file.bytes!.isEmpty) {
         print("Dosya içeriği boş!");
         return;
       }
-
       try {
         final localUrl = await saveFileToAppDirectory(file.bytes, fileName);
         final storageRef =
             FirebaseStorage.instance.ref().child('uploads/$fileName');
-
         final uploadTask = await storageRef.putData(
           file.bytes!,
           SettableMetadata(contentType: _getContentType(extension)),
         );
-
         final downloadUrl = await uploadTask.ref.getDownloadURL();
-
         String subCollectionName = '';
         switch (widget.conversationType) {
           case 'workplace':
@@ -664,7 +642,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           default:
             subCollectionName = 'messages';
         }
-
         final firebaseId = await FirebaseFirestore.instance
             .collection('Message')
             .doc(widget.messageRef.id)
@@ -682,7 +659,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           'fileUrl': downloadUrl,
           'fileName': fileName
         });
-
         await sendMessageToUser(
             replyMessage: replyMessage,
             receiverRef: widget.receiverUser,
@@ -697,7 +673,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             fileName: fileName,
             fileUrLocal: localUrl ?? "",
             fileUrlFirebase: downloadUrl);
-
         print('Dosya başarıyla yüklendi! URL: $downloadUrl');
       } catch (e) {
         print('Yükleme sırasında hata oluştu: $e');
@@ -726,7 +701,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       return;
     }
     isOnline = newIsOnlineStatus;
-
     if (widget.amIUser1) {
       await widget.messageRef.update({'isOnlineUser1': isOnline});
     } else {
@@ -747,7 +721,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
     } else {
       parsed = DateTime.tryParse(date.toString()) ?? DateTime.now();
     }
-
     return parsed.toIso8601String().split('.').first.replaceFirst('T', ' ');
   }
 
@@ -781,10 +754,8 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
   Future<void> addReaction(String messageFirebaseId, String reaction) async {
     final now = DateTime.now();
     final messageUpdate = widget.receiverUser.collection('messageUpdate').doc();
-
     WriteBatch buildBatch() {
       final batch = FirebaseFirestore.instance.batch();
-
       batch.set(messageUpdate, {
         'messageRef': widget.messageRef,
         'senderRef': widget.receiverUser,
@@ -793,9 +764,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         'reaction': reaction,
         'updateType': "reaction",
       });
-
       final updates = <String, dynamic>{};
-
       final subCollectionName;
       switch (widget.conversationType) {
         case "workplace":
@@ -822,15 +791,12 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           throw Exception(
               "Geçersiz conversationType: ${widget.conversationType}");
       }
-
       batch.update(widget.messageRef, updates);
-
       final messageDocRef = FirebaseFirestore.instance
           .collection('Message')
           .doc(widget.messageRef.id)
           .collection(subCollectionName)
           .doc(messageFirebaseId);
-
       if (widget.amIUser1) {
         batch.update(messageDocRef, {
           'reactionFromUser1': reaction,
@@ -840,12 +806,10 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           'reactionFromUser2': reaction,
         });
       }
-
       return batch;
     }
 
     bool success = false;
-
     for (int attempt = 0; attempt < 2; attempt++) {
       try {
         final batch = buildBatch();
@@ -857,11 +821,9 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         await Future.delayed(Duration(milliseconds: 200));
       }
     }
-
     if (!success) {
       return;
     }
-
     await SQLiteManager.instance.updateReactionFromMe(
         firebaseId: messageFirebaseId, reactionFromMe: reaction);
     setState(() {
@@ -873,7 +835,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             (element) => true,
             orElse: () => null,
           );
-
       messageReply?.reactionFromMe = reaction;
     });
   }
@@ -895,7 +856,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
     final parsedDate = DateTime.tryParse(date) ?? DateTime.now();
     final senderRef = sender;
     final receiverRef = widget.authUser.toString();
-
     try {
       if (pdfUrl.isNotEmpty) {
         final pathPdf = await downloadPdf(pdfUrl);
@@ -903,7 +863,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           print('PDF dosyası indirilemedi veya bulunamadı.');
           return false;
         }
-
         await SQLiteManager.instance.addMessageWithPdf(
             conversationId: widget.conversationId,
             date: date,
@@ -922,7 +881,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             firebaseId: firebaseId,
             answeredMessage: answeredMessage ?? "",
             answeredMessageUserName: "");
-
         addSortedMessage(_MessageList(
             date: parsedDate,
             imagePath: imagePath,
@@ -957,7 +915,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           print('Görsel dosyası indirilemedi veya bulunamadı.');
           return false;
         }
-
         await SQLiteManager.instance.addMessageWithImage(
             conversationId: widget.conversationId,
             date: date,
@@ -976,7 +933,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             firebaseId: firebaseId,
             answeredMessage: answeredMessage ?? "",
             answeredMessageUserName: "");
-
         addSortedMessage(_MessageList(
             date: parsedDate,
             imagePath: imagePathLocal,
@@ -1031,7 +987,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             answeredMessage: answeredMessage ?? "",
             firebaseId: firebaseId,
             answeredMessageUserName: "");
-
         addSortedMessage(_MessageList(
             date: parsedDate,
             imagePath: '',
@@ -1086,7 +1041,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             latitude: latitude,
             longitude: longitude,
             answeredMessageUserName: "");
-
         addSortedMessage(_MessageList(
             date: parsedDate,
             imagePath: '',
@@ -1118,7 +1072,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             answeredMessage: answeredMessage ?? "",
             answeredMessageUserName: ""));
       }
-
       return true;
     } catch (e) {
       print("Hata oluştu: $e");
@@ -1232,7 +1185,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         return false;
       }
     }
-
     return true;
   }
 
@@ -1242,21 +1194,17 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       final fileName = generateSafeFileName(pdfUrl);
       final filePath = '${dir.path}/$fileName';
       final file = File(filePath);
-
       if (await file.exists()) {
         return filePath;
       }
-
       final response = await http.get(Uri.parse(pdfUrl));
       if (response.statusCode == 200) {
         await file.writeAsBytes(response.bodyBytes, flush: true);
-
         int retry = 0;
         while (!(await file.exists()) && retry < 5) {
           await Future.delayed(const Duration(milliseconds: 50));
           retry++;
         }
-
         if (await file.exists()) {
           return filePath;
         } else {
@@ -1279,19 +1227,15 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       final fileName = generateSafeFileName(imageUrl);
       final filePath = '${dir.path}/$fileName';
       final file = File(filePath);
-
       if (await file.exists()) {
         return filePath;
       }
-
       final response = await http.get(Uri.parse(imageUrl));
       if (response.statusCode != 200) {
         print('Görsel indirme hatası: ${response.statusCode}');
         return null;
       }
-
       await file.writeAsBytes(response.bodyBytes, flush: true);
-
       if (!widget.addImageToGalery) {
         return filePath;
       }
@@ -1300,16 +1244,13 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         print("Galeriye kaydetme izni verilmedi.");
         return filePath;
       }
-
       final assetEntity = await PhotoManager.editor
           .saveImage(response.bodyBytes, filename: fileName);
-
       if (assetEntity != null) {
         print("Görsel galeriye kaydedildi: ${assetEntity.id}");
       } else {
         print("Görsel galeriye kaydedilemedi.");
       }
-
       return filePath;
     } catch (e) {
       print('Görsel indirme istisnası: $e');
@@ -1326,16 +1267,13 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
   Future<void> getAllMessages() async {
     final result = await SQLiteManager.instance
         .getMessages(conversationId: widget.conversationId);
-
     final docsNotReaded = await widget.receiverUser
         .collection('newMessages')
         .where("messageRef", isEqualTo: widget.messageRef)
         .where("type", isEqualTo: widget.conversationType)
         .get();
     final unreadCount = docsNotReaded.docs.length;
-
     print(result.length);
-
     var loadedMessages = result
         .map((i) => _MessageList(
             date: DateTime.tryParse(i.date ?? "") ?? DateTime.now(),
@@ -1370,21 +1308,16 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
             reactionFromMe: i.reactionFromMe ?? "",
             answeredMessageUserName: i.answeredMessageUserName ?? ""))
         .toList();
-
     loadedMessages.sort((a, b) => b.date.compareTo(a.date));
-
     if (unreadCount > 0) {
       int markedUnread = 0;
-
       for (int i = 0; i < loadedMessages.length - 1; i++) {
         if (loadedMessages[i].sender == widget.authUser.toString()) {
           loadedMessages[i].isRead = true;
         }
       }
-
       for (int i = loadedMessages.length - 1; i >= 0; i--) {
         final message = loadedMessages[i];
-
         if (message.sender == widget.authUser.toString()) {
           if (markedUnread < unreadCount) {
             message.isRead = false;
@@ -1395,7 +1328,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         }
       }
     }
-
     setState(() {
       messages.clear();
       messages.addAll(loadedMessages);
@@ -1427,7 +1359,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         duration: Duration(seconds: 1),
       ),
     );
-
     final mapData = {
       'message': textController.text,
       'senderRef': widget.authUser,
@@ -1441,13 +1372,11 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       // Kullanıcıya özel alanı, burada belirliyoruz
       widget.amIUser1 ? 'mapNameUser1' : 'mapNameUser2': mapName,
     };
-
     final firebaseId = await FirebaseFirestore.instance
         .collection('Message')
         .doc(widget.messageRef.id)
         .collection(subCollectionName)
         .add(mapData);
-
     await sendMessageToUser(
         replyMessage: replyMessage,
         receiverRef: widget.receiverUser,
@@ -1470,12 +1399,10 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
   void _openLocationInput(BuildContext context) async {
     final result = await _showLocationInputBottomSheet(
         context: context, backgroundColor: backgroundColor);
-
     if (result != null) {
       print("Konum adı: ${result['name']}");
       print("Latitude: ${result['latitude']}");
       print("Longitude: ${result['longitude']}");
-
       sendLocation(result['latitude'], result['longitude'],
           result['name'] == "noNameMap" ? "" : result["name"]);
     }
@@ -1505,12 +1432,9 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
     final newMessageDoc = receiverRef.collection('newMessages').doc();
     final notificationDoc = receiverRef.collection('notifications').doc();
     final dateStr = formatDateForSQLite(now.toIso8601String());
-
     await player.play(AssetSource('audios/sendMessageAudio.mp3'));
-
     WriteBatch buildBatch() {
       final batch = FirebaseFirestore.instance.batch();
-
       batch.set(newMessageDoc, {
         'messageRef': messageRef,
         'message': message,
@@ -1528,14 +1452,11 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         'latitude': latitude,
         'longitude': longitude,
       });
-
       batch.update(receiverRef, {
         'messageCount': FieldValue.increment(1),
         'notificationCount': FieldValue.increment(1),
       });
-
       final updates = <String, dynamic>{};
-
       if (widget.conversationType == "workplace") {
         updates['lastMessageTimeWorkplace'] = now;
         updates['lastMessageWorkplace'] = message;
@@ -1549,9 +1470,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         updates['lastMessageTimeSocial'] = now;
         updates['lastMessageSocial'] = message;
       }
-
       batch.update(widget.messageRef, updates);
-
       batch.set(notificationDoc, {
         'type': "message",
         'content': "Bir Yeni Mesajınız Var",
@@ -1564,12 +1483,10 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         'messageType': widget.conversationType,
         "image": ""
       });
-
       return batch;
     }
 
     bool success = false;
-
     for (int attempt = 0; attempt < 2; attempt++) {
       try {
         final batch = buildBatch();
@@ -1581,11 +1498,9 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         await Future.delayed(Duration(milliseconds: 200));
       }
     }
-
     if (!success) {
       return;
     }
-
     await saveToLocalSQLIAmSender(
         date: dateStr,
         imagePath: imagePathLocal,
@@ -1601,7 +1516,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         personNumber: personNumber,
         fileUrl: fileUrLocal,
         replyMessage: replyMessage);
-
     setState(() {
       messages.insert(
           0,
@@ -1636,9 +1550,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
               answeredMessage: replyMessage?.firebaseId ?? "",
               answeredMessageUserName: replyMessage != null ? "Siz" : ""));
     });
-
     setFalseWritingStatus();
-
     triggerPushNotification(
       notificationTitle: '${widget.currentUserDisplayName}',
       notificationText: 'Message',
@@ -1646,7 +1558,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       initialPageName: 'chatNewCopy',
       parameterData: {},
     );
-
     FFAppState().isSelectedImage = false;
     selectedImage = false;
     selectedPdf = false;
@@ -1668,11 +1579,9 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       firebaseId: message.firebaseId,
       isStared: newIsStaredValue,
     );
-
     setState(() {
       message.isStared = !message.isStared;
     });
-
     final String subCollectionName;
     switch (widget.conversationType) {
       case "workplace":
@@ -1692,16 +1601,13 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           "Geçersiz conversationType: ${widget.conversationType}",
         );
     }
-
     final messageDocRef = FirebaseFirestore.instance
         .collection('Message')
         .doc(widget.messageRef.id)
         .collection(subCollectionName)
         .doc(message.firebaseId);
-
     final reactionField =
         widget.amIUser1 ? 'isStaredFromUser1' : 'isStaredFromUser2';
-
     try {
       await messageDocRef.update({
         reactionField: message.isStared,
@@ -1714,7 +1620,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
   Future<void> deleteMessageEveryone(_MessageList message) async {
     final messageUpdateRef =
         widget.receiverUser.collection('messageUpdate').doc();
-
     final String subCollectionName = switch (widget.conversationType) {
       "workplace" => 'workPlaceMessages',
       "company" => 'companyMessages',
@@ -1723,19 +1628,15 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       _ => throw Exception(
           "Geçersiz conversationType: ${widget.conversationType}"),
     };
-
     final messageDocRef = FirebaseFirestore.instance
         .collection('Message')
         .doc(widget.messageRef.id)
         .collection(subCollectionName)
         .doc(message.firebaseId);
-
     bool success = false;
-
     for (int attempt = 0; attempt < 2; attempt++) {
       try {
         final batch = FirebaseFirestore.instance.batch();
-
         batch.set(messageUpdateRef, {
           'messageRef': widget.messageRef,
           'senderRef': widget.receiverUser,
@@ -1743,12 +1644,10 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           'messageId': message.firebaseId,
           'updateType': "delete",
         });
-
         batch.update(messageDocRef, {
           'isUser1Delete': true,
           'isUser2Delete': true,
         });
-
         await batch.commit();
         success = true;
         break;
@@ -1757,14 +1656,11 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         await Future.delayed(Duration(milliseconds: 200));
       }
     }
-
     if (!success) return;
-
     setState(() {
       message.isDeleted = true;
       message.isDeletedFromMe = true;
     });
-
     try {
       await SQLiteManager.instance
           .updateMessageStarStatus(firebaseId: message.firebaseId, isStared: 0);
@@ -1790,7 +1686,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       message.isDeleted = true;
       message.isDeletedFromMe = true;
     });
-
     final String subCollectionName;
     switch (widget.conversationType) {
       case "workplace":
@@ -1810,15 +1705,12 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           "Geçersiz conversationType: ${widget.conversationType}",
         );
     }
-
     final messageDocRef = FirebaseFirestore.instance
         .collection('Message')
         .doc(widget.messageRef.id)
         .collection(subCollectionName)
         .doc(message.firebaseId);
-
     final deleteField = widget.amIUser1 ? 'isUser1Delete' : 'isUser2Delete';
-
     try {
       await SQLiteManager.instance
           .updateMessageStarStatus(firebaseId: message.firebaseId, isStared: 0);
@@ -1833,7 +1725,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
   Future<void> editMessage(_MessageList message, String editMessage) async {
     final messageUpdateRef =
         widget.receiverUser.collection('messageUpdate').doc();
-
     final String subCollectionName = switch (widget.conversationType) {
       "workplace" => 'workPlaceMessages',
       "company" => 'companyMessages',
@@ -1842,19 +1733,15 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
       _ => throw Exception(
           "Geçersiz conversationType: ${widget.conversationType}"),
     };
-
     final messageDocRef = FirebaseFirestore.instance
         .collection('Message')
         .doc(widget.messageRef.id)
         .collection(subCollectionName)
         .doc(message.firebaseId);
-
     bool success = false;
-
     for (int attempt = 0; attempt < 2; attempt++) {
       try {
         final batch = FirebaseFirestore.instance.batch();
-
         batch.set(messageUpdateRef, {
           'messageRef': widget.messageRef,
           'senderRef': widget.receiverUser,
@@ -1863,11 +1750,9 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
           'updateType': "edit",
           'editMessage': editMessage
         });
-
         batch.update(messageDocRef, {
           'editMessage': editMessage,
         });
-
         await batch.commit();
         success = true;
         break;
@@ -1876,14 +1761,11 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
         await Future.delayed(Duration(milliseconds: 200));
       }
     }
-
     if (!success) return;
-
     setState(() {
       message.editedMessage = editMessage;
       message.isEdited = true;
     });
-
     try {
       await SQLiteManager.instance.editMessage(
           editedMessage: editMessage, firebaseId: message.firebaseId);
@@ -1907,9 +1789,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
               final message = messages[index];
               final isMe = message.sender == widget.authUser.toString();
               double dragOffset = 0;
-
               if (message.isFullyDeleted) return SizedBox();
-
               // Calculate dynamic top padding
               double topPadding = 20;
               // Check if the next message (older, above in UI) is from the same sender
@@ -1917,7 +1797,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                   messages[index].sender == messages[index + 1].sender) {
                 topPadding = 0; // Smaller padding for same sender
               }
-
               return Align(
                 alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
                 child: Padding(
@@ -1964,7 +1843,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                         (element) => true,
                                         orElse: () => null,
                                       );
-
                                   if (messageReply == null) {
                                     return SizedBox();
                                   }
@@ -2003,7 +1881,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                             CircularProgressIndicator()),
                                                   );
                                                 }
-
                                                 return FlutterFlowPdfViewer(
                                                   fileBytes: snapshot.data!,
                                                   width: 100,
@@ -2022,7 +1899,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                 fontWeight: FontWeight.w500,
                                                 color: Colors.white70,
                                               ),
-                                              maxLines: 2,
+                                              maxLines: 3,
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                         ],
@@ -2103,7 +1980,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                 : "Bu mesaj silindi",
                                             style: TextStyle(
                                               color: Colors.black,
-                                              fontSize: 12,
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w300,
                                             ),
                                           ),
@@ -2178,7 +2055,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                             firebaseId: message.firebaseId,
                                             mapName: rename);
                                         final updates = <String, dynamic>{};
-
                                         // subCollectionName belirleniyor
                                         late final String subCollectionName;
                                         switch (widget.conversationType) {
@@ -2201,22 +2077,18 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                             throw Exception(
                                                 "Geçersiz conversationType: ${widget.conversationType}");
                                         }
-
                                         final messageDocRef = FirebaseFirestore
                                             .instance
                                             .collection('Message')
                                             .doc(widget.messageRef.id)
                                             .collection(subCollectionName)
                                             .doc(message.firebaseId);
-
                                         final updateField = widget.amIUser1
                                             ? 'mapNameUser1'
                                             : 'mapNameUser2';
-
                                         await messageDocRef.update({
                                           updateField: rename,
                                         });
-
                                         safeSetState(
                                           () {
                                             message.mapName = rename;
@@ -2326,7 +2198,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                       .primaryText,
                                             ),
                                           ),
-                                          duration: Duration(milliseconds: 500),
+                                          duration: Duration(milliseconds: 100),
                                           backgroundColor:
                                               FlutterFlowTheme.of(context)
                                                   .secondary,
@@ -2485,15 +2357,17 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                   children: [
                     Expanded(
                       child: replyMessage!.message.isNotEmpty
-                          ? Text(
-                              replyMessage!.isEdited
-                                  ? replyMessage!.editedMessage
-                                  : replyMessage!.message,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.white),
+                          ? RichText(
+                              text: TextSpan(
+                                children: _buildTextSpans(
+                                  replyMessage!.isEdited
+                                      ? replyMessage!.editedMessage
+                                      : replyMessage!.message,
+                                  normalSize: 14.0,
+                                  color: Colors.white,
+                                ),
+                              ),
                               maxLines: 3,
-                              softWrap: true,
                               overflow: TextOverflow.ellipsis,
                             )
                           : replyMessage!.imagePath.isNotEmpty
@@ -2617,7 +2491,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                             ],
                           )
                         : const SizedBox.shrink(), // hiç gösterme
-
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
                       child: Row(
@@ -2693,7 +2566,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                   bytes: m.bytes,
                                                 ))
                                             .toList();
-
                                         if (selectedUploadedFiles.length ==
                                             selectedFiles.length) {
                                           safeSetState(() {
@@ -2721,7 +2593,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                   m.storagePath, context))) {
                                         var selectedUploadedFiles =
                                             <FFUploadedFile>[];
-
                                         selectedUploadedFiles = selectedMedia
                                             .map((m) => FFUploadedFile(
                                                   name: m.storagePath
@@ -2733,7 +2604,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                   blurHash: m.blurHash,
                                                 ))
                                             .toList();
-
                                         if (selectedUploadedFiles.length ==
                                             selectedMedia.length) {
                                           safeSetState(() {
@@ -2751,14 +2621,12 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                         mediaSource: MediaSource
                                             .camera, // sadece kamerayı aç
                                       );
-
                                       if (selectedMedia != null &&
                                           selectedMedia.every((m) =>
                                               validateFileFormat(
                                                   m.storagePath, context))) {
                                         var selectedUploadedFiles =
                                             <FFUploadedFile>[];
-
                                         selectedUploadedFiles = selectedMedia
                                             .map((m) => FFUploadedFile(
                                                   name: m.storagePath
@@ -2770,7 +2638,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                   blurHash: m.blurHash,
                                                 ))
                                             .toList();
-
                                         if (selectedUploadedFiles.length ==
                                             selectedMedia.length) {
                                           safeSetState(() {
@@ -2785,7 +2652,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                     }
                                   },
                                 );
-
                                 if (returnValue != null) {
                                   if (returnValue!.bytes!.isNotEmpty) {
                                     if (FFAppState().isSelectedImage) {
@@ -2803,7 +2669,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                   selectedPdf = false;
                                   selectedImage = false;
                                 }
-
                                 safeSetState(() {});
                               },
                               child: const Icon(
@@ -2973,16 +2838,13 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                           selectedImage ? 'png' : 'pdf';
                                       String fileName =
                                           'selected_file_${DateTime.now().millisecondsSinceEpoch}.$ext';
-
                                       String? savedFilePath =
                                           await saveFileToAppDirectory(
                                               returnValue!.bytes!, fileName);
-
                                       if (savedFilePath != null) {
                                         String? uploadedUrl =
                                             await uploadFileToFirebaseStorage(
                                                 returnValue!.bytes!, fileName);
-
                                         if (uploadedUrl != null) {
                                           String subCollectionName = '';
                                           switch (widget.conversationType) {
@@ -3005,7 +2867,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                             default:
                                               subCollectionName = 'messages';
                                           }
-
                                           final firebaseId =
                                               await FirebaseFirestore.instance
                                                   .collection('Message')
@@ -3045,9 +2906,7 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                                 ? uploadedUrl
                                                 : '',
                                           );
-
                                           textController?.clear();
-
                                           safeSetState(() {
                                             selectedImage = false;
                                             selectedPdf = false;
@@ -3082,7 +2941,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                         default:
                                           subCollectionName = 'messages';
                                       }
-
                                       final firebaseId = await FirebaseFirestore
                                           .instance
                                           .collection('Message')
@@ -3097,7 +2955,6 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                         'isRead': true,
                                         'date': Timestamp.now(),
                                       });
-
                                       await sendMessageToUser(
                                         replyMessage: replyMessage,
                                         receiverRef: widget.receiverUser,
@@ -3110,10 +2967,8 @@ class _MessageSyncListenerState extends State<MessageSyncListener>
                                         imagePathFirebase: '',
                                         imagePathLocal: '',
                                       );
-
                                       textController?.clear();
                                     }
-
                                     safeSetState(() {
                                       replyMessage = null;
                                     });
@@ -3154,18 +3009,15 @@ class _MessageBubble extends StatelessWidget {
   final bool isMe;
   final Color balloon1Text;
   final Color balloon2Text;
-
   const _MessageBubble(
       {super.key,
       required this.message,
       required this.isMe,
       required this.balloon1Text,
       required this.balloon2Text});
-
   @override
   Widget build(BuildContext context) {
     final dateFormatted = DateFormat.Hm().format(message.date);
-
     return Column(
       crossAxisAlignment:
           isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
@@ -3283,7 +3135,6 @@ class _MessageBubble extends StatelessWidget {
                   child: Center(child: CircularProgressIndicator()),
                 );
               }
-
               return InkWell(
                 onTap: () {
                   openPdfExternally(message.pdfUrl);
@@ -3326,11 +3177,13 @@ class _MessageBubble extends StatelessWidget {
           ),
         const SizedBox(height: 8),
         if (message.message.trim().isNotEmpty)
-          Text(
-            message.isEdited ? message.editedMessage : message.message,
-            style: TextStyle(
-              fontSize: 14,
-              color: isMe ? balloon1Text : balloon2Text,
+          RichText(
+            text: TextSpan(
+              children: _buildTextSpans(
+                message.isEdited ? message.editedMessage : message.message,
+                normalSize: 14.0,
+                color: isMe ? balloon1Text : balloon2Text,
+              ),
             ),
           ),
         const SizedBox(height: 4),
@@ -3471,7 +3324,6 @@ class _MessageBubble extends StatelessWidget {
         'geo:${message.latitude},${message.longitude}?q=${message.latitude},${message.longitude}(${message.mapName})');
     final httpsUrl = Uri.parse(
         'https://www.google.com/maps/search/?api=1&query=${message.latitude},${message.longitude}');
-
     try {
       bool launched = false;
       if (Platform.isAndroid && await canLaunchUrl(geoUrl)) {
@@ -3488,7 +3340,6 @@ class _MessageBubble extends StatelessWidget {
 
   IconData _getFileIcon(String fileName) {
     final extension = fileName.split('.').last.toLowerCase();
-
     switch (extension) {
       case 'pdf':
         return Icons.picture_as_pdf;
@@ -3535,7 +3386,6 @@ Future<String?> _showLocationNameInputBottomSheet({
   required Color backgroundColor,
 }) {
   final TextEditingController _controller = TextEditingController();
-
   return showModalBottomSheet<String>(
     context: context,
     isScrollControlled: true,
@@ -3554,7 +3404,6 @@ Future<String?> _showLocationNameInputBottomSheet({
           child: StatefulBuilder(
             builder: (context, setState) {
               final isValid = _controller.text.trim().isNotEmpty;
-
               return Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -3651,9 +3500,7 @@ Future<Map<String, dynamic>?> _showLocationInputBottomSheet({
 
 class _LocationInputSheet extends StatefulWidget {
   Color backgroundColor;
-
   _LocationInputSheet({required this.backgroundColor});
-
   @override
   State<_LocationInputSheet> createState() => _LocationInputSheetState();
 }
@@ -3663,7 +3510,6 @@ class _LocationInputSheetState extends State<_LocationInputSheet> {
   double? latitude;
   double? longitude;
   Timer? _timer;
-
   @override
   void initState() {
     super.initState();
@@ -3679,7 +3525,6 @@ class _LocationInputSheetState extends State<_LocationInputSheet> {
   Future<Position?> getCurrentLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) return null;
-
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
@@ -3688,7 +3533,6 @@ class _LocationInputSheetState extends State<_LocationInputSheet> {
         return null;
       }
     }
-
     return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
   }
@@ -3722,7 +3566,6 @@ class _LocationInputSheetState extends State<_LocationInputSheet> {
   @override
   Widget build(BuildContext context) {
     final isValid = _controller.text.trim().isNotEmpty;
-
     return Padding(
       padding: EdgeInsets.only(
         bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -3838,7 +3681,6 @@ Future<String?> _showEditMessageDialog({
 }) {
   final TextEditingController _controller =
       TextEditingController(text: initialText);
-
   return showModalBottomSheet<String>(
     context: context,
     isScrollControlled: true,
@@ -3937,32 +3779,25 @@ Future<String?> _showEditMessageDialog({
 
 class _ForwardMessageComponent extends StatefulWidget {
   final DocumentReference authUser;
-
   final String selectedMessageFirebaseId;
   final String subCollectionName;
   final DocumentReference selectedMessageDocument;
-
   final String currentUserDisplayName;
   final String message;
   final String pdf;
   final String image;
-
   final bool isMap;
   final double? latitude;
   final double? longitude;
   final String mapName;
-
   final bool isFile;
   final String fileName;
   final String fileUrl;
-
   final bool isPerson;
   final String personName;
   final String personNumber;
-
   final double width;
   final double height;
-
   const _ForwardMessageComponent({
     Key? key,
     required this.authUser,
@@ -3986,7 +3821,6 @@ class _ForwardMessageComponent extends StatefulWidget {
     required this.width,
     required this.height,
   }) : super(key: key);
-
   @override
   _ForwardMessageComponentState createState() =>
       _ForwardMessageComponentState();
@@ -3994,19 +3828,14 @@ class _ForwardMessageComponent extends StatefulWidget {
 
 class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
   late final List<Map<String, dynamic>> _chatStream;
-
   final ScrollController listViewController = ScrollController();
   final TextEditingController textController = TextEditingController();
   final FocusNode textFieldFocusNode = FocusNode();
-
   List<Map<String, dynamic>> chats = [];
-
   @override
   void initState() {
     super.initState();
-
     print('🔍 _ForwardMessageComponent - initState');
-
     print('authUser: ${widget.authUser.path}');
     print('selectedMessageFirebaseId: ${widget.selectedMessageFirebaseId}');
     print('subCollectionName: ${widget.subCollectionName}');
@@ -4027,9 +3856,7 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
     print('personNumber: ${widget.personNumber}');
     print('width: ${widget.width}');
     print('height: ${widget.height}');
-
     print('🔍 _ForwardMessageComponent - initState');
-
     _loadChats();
   }
 
@@ -4053,20 +3880,15 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
         .collection('Message')
         .where('user1', isEqualTo: currentUserRef)
         .get();
-
     final messages2 = await FirebaseFirestore.instance
         .collection('Message')
         .where('user2', isEqualTo: currentUserRef)
         .get();
-
     final docs = [...messages1.docs, ...messages2.docs];
-
     final List<Map<String, dynamic>> userChats = [];
-
     for (var doc in docs) {
       final data = doc.data() as Map<String, dynamic>;
       final docRef = doc.reference;
-
       final user1 = data['user1'];
       final user2 = data['user2'];
       final user1AllowMediaSave = data['user1AllowMediaSave'];
@@ -4077,9 +3899,7 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
       final isUser1Blocked = data['isUser1Blocked'] as bool;
       final isUser2Blocked = data['isUser2Blocked'] as bool;
       final isBlocked = isUser1Blocked || isUser2Blocked;
-
       if (isBlocked) continue;
-
       if (data['lastMessageTimePhone'] != null) {
         userChats.add({
           'type': 'phone',
@@ -4096,7 +3916,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
           'lastMessageTime': data['lastMessageTimePhone'],
         });
       }
-
       if (data['lastMessageTimeSocial'] != null) {
         userChats.add({
           'type': 'social',
@@ -4113,7 +3932,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
           'lastMessageTime': data['lastMessageTimeSocial'],
         });
       }
-
       if (data['lastMessageTimeWorkplace'] != null) {
         userChats.add({
           'type': 'workplace',
@@ -4130,7 +3948,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
           'lastMessageTime': data['lastMessageTimeWorkplace'],
         });
       }
-
       if (data['lastMessageTimeCompany'] != null) {
         userChats.add({
           'type': 'company',
@@ -4148,7 +3965,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
         });
       }
     }
-
     // Son mesaj zamanına göre sırala
     userChats.sort((a, b) {
       final timeA = a['lastMessageTime'] as Timestamp?;
@@ -4158,7 +3974,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
       if (timeB == null) return -1;
       return timeB.compareTo(timeA);
     });
-
     return userChats;
   }
 
@@ -4197,16 +4012,13 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
                             final messageRef = FirebaseFirestore.instance
                                 .collection('Message')
                                 .doc(chat['messageRef'] as String);
-
                             final selectedMessage = await widget
                                 .selectedMessageDocument
                                 .collection(widget.subCollectionName)
                                 .doc(widget.selectedMessageFirebaseId)
                                 .get();
-
                             final recevicerRef =
                                 chat['otherUserRef'] as DocumentReference;
-
                             String subCollectionName = '';
                             switch (chat['type']) {
                               case 'workplace':
@@ -4224,7 +4036,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
                               default:
                                 subCollectionName = 'messages';
                             }
-
                             final firebaseId = await FirebaseFirestore.instance
                                 .collection('Message')
                                 .doc(messageRef.id)
@@ -4251,13 +4062,11 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
                               'imageUrl':
                                   selectedMessage.data()?["imageUrl"] ?? '',
                             });
-
                             final conversationId = await SQLiteManager.instance
                                 .getConversationWithLastMessage(
                               conversationName: chat['messageRef'].toString(),
                               type: chat['type'],
                             );
-
                             sendMessageToUser(
                               conversationId:
                                   conversationId.lastOrNull?.id ?? 0,
@@ -4321,7 +4130,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
                                               as Map<String, dynamic>? ??
                                           {};
                                       final photoUrl = data['photo_url'] ?? '';
-
                                       return Container(
                                         width: 44,
                                         height: 44,
@@ -4435,7 +4243,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
                                                 }
                                                 int containerCount =
                                                     snapshot.data!;
-
                                                 return Container(
                                                   height: 20.0,
                                                   decoration: BoxDecoration(
@@ -4520,7 +4327,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
     final date = timestamp.toDate();
     final now = DateTime.now();
     final difference = now.difference(date);
-
     if (difference.inSeconds < 60) {
       return 'Az önce';
     } else if (difference.inMinutes < 60) {
@@ -4555,7 +4361,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
     final newMessageDoc = receiverRef.collection('newMessages').doc();
     final notificationDoc = receiverRef.collection('notifications').doc();
     final dateStr = formatDateForSQLite(now.toIso8601String());
-
     print('---- sendMessageToUser Params ----');
     print('receiverRef: ${receiverRef.path}');
     print('messageRef: ${messageRef.path}');
@@ -4572,10 +4377,8 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
     print('latitude: $latitude');
     print('longitude: $longitude');
     print('----------------------------------');
-
     WriteBatch buildBatch() {
       final batch = FirebaseFirestore.instance.batch();
-
       batch.set(newMessageDoc, {
         'messageRef': messageRef,
         'message': widget.message,
@@ -4593,14 +4396,11 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
         'latitude': latitude,
         'longitude': longitude,
       });
-
       batch.update(receiverRef, {
         'messageCount': FieldValue.increment(1),
         'notificationCount': FieldValue.increment(1),
       });
-
       final updates = <String, dynamic>{};
-
       if (conversationType == "workplace") {
         updates['lastMessageTimeWorkplace'] = now;
         updates['lastMessageWorkplace'] = widget.message;
@@ -4614,9 +4414,7 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
         updates['lastMessageTimeSocial'] = now;
         updates['lastMessageSocial'] = widget.message;
       }
-
       batch.update(messageRef, updates);
-
       batch.set(notificationDoc, {
         'type': "message",
         'content': "Bir Yeni Mesajınız Var",
@@ -4629,12 +4427,10 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
         'messageType': conversationType,
         "image": ""
       });
-
       return batch;
     }
 
     bool success = false;
-
     for (int attempt = 0; attempt < 2; attempt++) {
       try {
         final batch = buildBatch();
@@ -4646,11 +4442,9 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
         await Future.delayed(Duration(milliseconds: 200));
       }
     }
-
     if (!success) {
       return;
     }
-
     await saveToLocalSQLIAmSender(
       date: dateStr,
       imagePath: widget.image,
@@ -4667,7 +4461,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
       personName: personName,
       personNumber: personNumber,
     );
-
     triggerPushNotification(
       notificationTitle: '${widget.currentUserDisplayName}',
       notificationText: 'Message',
@@ -4772,7 +4565,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
         return false;
       }
     }
-
     return true;
   }
 
@@ -4785,7 +4577,6 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
     } else {
       parsed = DateTime.tryParse(date.toString()) ?? DateTime.now();
     }
-
     return parsed.toIso8601String().split('.').first.replaceFirst('T', ' ');
   }
 }
@@ -4793,18 +4584,15 @@ class _ForwardMessageComponentState extends State<_ForwardMessageComponent> {
 class _Contact {
   final String name;
   final String phone;
-
   _Contact({required this.name, required this.phone});
 }
 
 class _ContactSelectorDialog extends StatelessWidget {
   final List<_Contact> contacts;
   final Color backGroundColor;
-
   const _ContactSelectorDialog(
       {Key? key, required this.contacts, required this.backGroundColor})
       : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -4848,7 +4636,6 @@ class _ContactSelectorDialog extends StatelessWidget {
                     const Divider(color: Colors.white10),
                 itemBuilder: (context, index) {
                   final contact = contacts[index];
-
                   return InkWell(
                     onTap: () => Navigator.pop(context, contact),
                     child: Padding(

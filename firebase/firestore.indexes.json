@@ -1,24 +1,6 @@
 {
   "indexes": [
     {
-      "collectionGroup": "workPlaces",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "owner",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "isDelete",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "type",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "invitations",
       "queryScope": "COLLECTION",
       "fields": [
@@ -941,20 +923,6 @@
       ]
     },
     {
-      "collectionGroup": "financialNoteCompany",
-      "queryScope": "COLLECTION_GROUP",
-      "fields": [
-        {
-          "fieldPath": "companyRef",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "creationDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "companyBill",
       "queryScope": "COLLECTION_GROUP",
       "fields": [
@@ -1153,6 +1121,38 @@
       ]
     },
     {
+      "collectionGroup": "workPlaces",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "owner",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isDelete",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "type",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompany",
+      "queryScope": "COLLECTION_GROUP",
+      "fields": [
+        {
+          "fieldPath": "companyRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "companyWorkers",
       "queryScope": "COLLECTION",
       "fields": [
@@ -1213,46 +1213,6 @@
       ]
     },
     {
-      "collectionGroup": "financialNoteCompany",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "companyRef",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "incomeOrExpense",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "creationDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "financialNoteCompany",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "companyRef",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "incomeOrExpense",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "workPlaceRef",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "creationDate",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
       "collectionGroup": "financialNoteCompanyCheck",
       "queryScope": "COLLECTION",
       "fields": [
@@ -1288,6 +1248,46 @@
         },
         {
           "fieldPath": "creationTime",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompany",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "companyRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "incomeOrExpense",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "financialNoteCompany",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "companyRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "incomeOrExpense",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "workPlaceRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "creationDate",
           "order": "DESCENDING"
         }
       ]
@@ -1347,26 +1347,6 @@
       ]
     },
     {
-      "collectionGroup": "companyTasks",
-      "fieldPath": "userRef",
-      "indexes": [
-        {
-          "order": "ASCENDING",
-          "queryScope": "COLLECTION_GROUP"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "dutiesForCompany",
-      "fieldPath": "isComplete",
-      "indexes": [
-        {
-          "order": "ASCENDING",
-          "queryScope": "COLLECTION_GROUP"
-        }
-      ]
-    },
-    {
       "collectionGroup": "companyTaskDuties",
       "fieldPath": "dutiesForCompany",
       "indexes": [
@@ -1407,8 +1387,18 @@
       ]
     },
     {
-      "collectionGroup": "companiesCurrents",
-      "fieldPath": "companyRef",
+      "collectionGroup": "companyTasks",
+      "fieldPath": "userRef",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "dutiesForCompany",
+      "fieldPath": "isComplete",
       "indexes": [
         {
           "order": "ASCENDING",
@@ -1422,6 +1412,16 @@
       "indexes": [
         {
           "order": "DESCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "companiesCurrents",
+      "fieldPath": "companyRef",
+      "indexes": [
+        {
+          "order": "ASCENDING",
           "queryScope": "COLLECTION_GROUP"
         }
       ]

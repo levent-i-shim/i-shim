@@ -89,16 +89,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               : AuthenticationWidget(),
         ),
         FFRoute(
-          name: AuthenticationWidget.routeName,
-          path: AuthenticationWidget.routePath,
-          builder: (context, params) => AuthenticationWidget(),
-        ),
-        FFRoute(
-          name: ProfileWidget.routeName,
-          path: ProfileWidget.routePath,
-          builder: (context, params) => ProfileWidget(),
-        ),
-        FFRoute(
           name: SettingsEditProfileWidget.routeName,
           path: SettingsEditProfileWidget.routePath,
           builder: (context, params) => SettingsEditProfileWidget(),
@@ -2632,25 +2622,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: WorkPlaceHomePageForOwnerWidget.routeName,
-          path: WorkPlaceHomePageForOwnerWidget.routePath,
-          asyncParams: {
-            'workPlace': getDoc(['workPlaces'], WorkPlacesRecord.fromSnapshot),
-          },
-          builder: (context, params) => WorkPlaceHomePageForOwnerWidget(
-            workPlace: params.getParam(
-              'workPlace',
-              ParamType.Document,
-            ),
-            company: params.getParam(
-              'company',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['companies'],
-            ),
-          ),
-        ),
-        FFRoute(
           name: AddDepartmentPageWorkPlaceWidget.routeName,
           path: AddDepartmentPageWorkPlaceWidget.routePath,
           builder: (context, params) => AddDepartmentPageWorkPlaceWidget(
@@ -4196,44 +4167,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: WorkPlaceWorkersPageWidget.routeName,
-          path: WorkPlaceWorkersPageWidget.routePath,
-          builder: (context, params) => WorkPlaceWorkersPageWidget(
-            company: params.getParam(
-              'company',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['companies'],
-            ),
-            workPlace: params.getParam(
-              'workPlace',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['workPlaces'],
-            ),
-            isPartner: params.getParam(
-              'isPartner',
-              ParamType.bool,
-            ),
-            canManage: params.getParam(
-              'canManage',
-              ParamType.bool,
-            ),
-            isWorker: params.getParam(
-              'isWorker',
-              ParamType.bool,
-            ),
-            canSendMoney: params.getParam(
-              'canSendMoney',
-              ParamType.bool,
-            ),
-            canManageTask: params.getParam(
-              'canManageTask',
-              ParamType.bool,
-            ),
-          ),
-        ),
-        FFRoute(
           name: WorkPlaceNotificationsPageWidget.routeName,
           path: WorkPlaceNotificationsPageWidget.routePath,
           builder: (context, params) => WorkPlaceNotificationsPageWidget(
@@ -5057,36 +4990,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CVPageWidget(),
         ),
         FFRoute(
-          name: AllProductsPageWidget.routeName,
-          path: AllProductsPageWidget.routePath,
-          asyncParams: {
-            'parentProduct': getDoc(['companies', 'parentProducts'],
-                ParentProductsRecord.fromSnapshot),
-          },
-          builder: (context, params) => AllProductsPageWidget(
-            company: params.getParam(
-              'company',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['companies'],
-            ),
-            parentProduct: params.getParam(
-              'parentProduct',
-              ParamType.Document,
-            ),
-            workPlace: params.getParam(
-              'workPlace',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['workPlaces'],
-            ),
-            isOwner: params.getParam(
-              'isOwner',
-              ParamType.bool,
-            ),
-          ),
-        ),
-        FFRoute(
           name: AddNewProductPageWidget.routeName,
           path: AddNewProductPageWidget.routePath,
           asyncParams: {
@@ -5145,41 +5048,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: AllCalculateProductsPageWidget.routeName,
-          path: AllCalculateProductsPageWidget.routePath,
-          asyncParams: {
-            'product': getDoc(['products'], ProductsRecord.fromSnapshot),
-            'parentProduct': getDoc(['companies', 'parentProducts'],
-                ParentProductsRecord.fromSnapshot),
-          },
-          builder: (context, params) => AllCalculateProductsPageWidget(
-            company: params.getParam(
-              'company',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['companies'],
-            ),
-            product: params.getParam(
-              'product',
-              ParamType.Document,
-            ),
-            parentProduct: params.getParam(
-              'parentProduct',
-              ParamType.Document,
-            ),
-            workPlace: params.getParam(
-              'workPlace',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['workPlaces'],
-            ),
-            isOwner: params.getParam(
-              'isOwner',
-              ParamType.bool,
-            ),
-          ),
-        ),
-        FFRoute(
           name: CalculateDetailPageWidget.routeName,
           path: CalculateDetailPageWidget.routePath,
           asyncParams: {
@@ -5228,11 +5096,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: SocialWidget.routeName,
-          path: SocialWidget.routePath,
-          builder: (context, params) => SocialWidget(),
-        ),
-        FFRoute(
           name: ChatAIWidget.routeName,
           path: ChatAIWidget.routePath,
           builder: (context, params) => ChatAIWidget(),
@@ -5267,28 +5130,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             stock: params.getParam(
               'stock',
               ParamType.Document,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: ParentProductsPageWidget.routeName,
-          path: ParentProductsPageWidget.routePath,
-          builder: (context, params) => ParentProductsPageWidget(
-            company: params.getParam(
-              'company',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['companies'],
-            ),
-            workPlace: params.getParam(
-              'workPlace',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['workPlaces'],
-            ),
-            isOwner: params.getParam(
-              'isOwner',
-              ParamType.bool,
             ),
           ),
         ),
@@ -5561,24 +5402,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: AddNewFinanceNoteCompanyWidget.routeName,
-          path: AddNewFinanceNoteCompanyWidget.routePath,
-          asyncParams: {
-            'noteFinanceCompany': getDoc(['users', 'financialMonitoringNotes'],
-                FinancialMonitoringNotesRecord.fromSnapshot),
-          },
-          builder: (context, params) => AddNewFinanceNoteCompanyWidget(
-            isEdit: params.getParam(
-              'isEdit',
-              ParamType.bool,
-            ),
-            noteFinanceCompany: params.getParam(
-              'noteFinanceCompany',
-              ParamType.Document,
-            ),
-          ),
-        ),
-        FFRoute(
           name: NoteFinanceCompanyDetailPageWidget.routeName,
           path: NoteFinanceCompanyDetailPageWidget.routePath,
           asyncParams: {
@@ -5735,43 +5558,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => WorkPlaceControlForPartnerWidget(
             workPlacePartnership: params.getParam(
               'workPlacePartnership',
-              ParamType.Document,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: AddSoldPageWidget.routeName,
-          path: AddSoldPageWidget.routePath,
-          asyncParams: {
-            'childProduct': getDoc(['products'], ProductsRecord.fromSnapshot),
-            'parentProduct': getDoc(['companies', 'parentProducts'],
-                ParentProductsRecord.fromSnapshot),
-            'calculation': getDoc(
-                ['products', 'calculations'], CalculationsRecord.fromSnapshot),
-          },
-          builder: (context, params) => AddSoldPageWidget(
-            company: params.getParam(
-              'company',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['companies'],
-            ),
-            childProduct: params.getParam(
-              'childProduct',
-              ParamType.Document,
-            ),
-            parentProduct: params.getParam(
-              'parentProduct',
-              ParamType.Document,
-            ),
-            workPlace: params.getParam(
-              'workPlace',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['workPlaces'],
-            ),
-            calculation: params.getParam(
-              'calculation',
               ParamType.Document,
             ),
           ),
@@ -6491,11 +6277,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ProfilePageWidget(),
         ),
         FFRoute(
-          name: ChatWidget.routeName,
-          path: ChatWidget.routePath,
-          builder: (context, params) => ChatWidget(),
-        ),
-        FFRoute(
           name: MessageNewPageCopyWidget.routeName,
           path: MessageNewPageCopyWidget.routePath,
           asyncParams: {
@@ -6691,11 +6472,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
             ),
           ),
-        ),
-        FFRoute(
-          name: PaymentOrCollectionCashWidget.routeName,
-          path: PaymentOrCollectionCashWidget.routePath,
-          builder: (context, params) => PaymentOrCollectionCashWidget(),
         ),
         FFRoute(
           name: CurrentDetailPageWidget.routeName,
@@ -7676,62 +7452,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: WorkersWidget.routeName,
-          path: WorkersWidget.routePath,
-          builder: (context, params) => WorkersWidget(),
-        ),
-        FFRoute(
-          name: WorkersChooseWorkerWidget.routeName,
-          path: WorkersChooseWorkerWidget.routePath,
-          builder: (context, params) => WorkersChooseWorkerWidget(
-            workPlaceDocRef: params.getParam(
-              'workPlaceDocRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['workPlaces'],
-            ),
-            companyDocRef: params.getParam(
-              'companyDocRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['companies'],
-            ),
-          ),
-        ),
-        FFRoute(
-          name: WorkersPaymentDetailWidget.routeName,
-          path: WorkersPaymentDetailWidget.routePath,
-          asyncParams: {
-            'workerPlaceWorkerDocument': getDoc(
-                ['workPlaces', 'workPlaceWorker'],
-                WorkPlaceWorkerRecord.fromSnapshot),
-          },
-          builder: (context, params) => WorkersPaymentDetailWidget(
-            company: params.getParam(
-              'company',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['companies'],
-            ),
-            workPlaces: params.getParam(
-              'workPlaces',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['workPlaces'],
-            ),
-            workerUserRef: params.getParam(
-              'workerUserRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['users'],
-            ),
-            workerPlaceWorkerDocument: params.getParam(
-              'workerPlaceWorkerDocument',
-              ParamType.Document,
-            ),
-          ),
-        ),
-        FFRoute(
           name: BusinessTrackWidget.routeName,
           path: BusinessTrackWidget.routePath,
           asyncParams: {
@@ -7768,39 +7488,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.Document,
             ),
           ),
-        ),
-        FFRoute(
-          name: BusinessChooseWidget.routeName,
-          path: BusinessChooseWidget.routePath,
-          builder: (context, params) => BusinessChooseWidget(
-            companiesIcanSee: params.getParam<DocumentReference>(
-              'companiesIcanSee',
-              ParamType.DocumentReference,
-              isList: true,
-              collectionNamePath: ['companies'],
-            ),
-            companiesICanSeeNames: params.getParam<String>(
-              'companiesICanSeeNames',
-              ParamType.String,
-              isList: true,
-            ),
-            workPlacesICanSee: params.getParam<DocumentReference>(
-              'workPlacesICanSee',
-              ParamType.DocumentReference,
-              isList: true,
-              collectionNamePath: ['workPlaces'],
-            ),
-            workPlacesICanSeeNames: params.getParam<String>(
-              'workPlacesICanSeeNames',
-              ParamType.String,
-              isList: true,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: ChooseXCurrentTypePageWidget.routeName,
-          path: ChooseXCurrentTypePageWidget.routePath,
-          builder: (context, params) => ChooseXCurrentTypePageWidget(),
         ),
         FFRoute(
           name: XCurrentAccountsIAmOwnerWidget.routeName,
@@ -7940,6 +7627,309 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
+          name: AuthenticationWidget.routeName,
+          path: AuthenticationWidget.routePath,
+          builder: (context, params) => AuthenticationWidget(),
+        ),
+        FFRoute(
+          name: WorkPlaceHomePageForOwnerWidget.routeName,
+          path: WorkPlaceHomePageForOwnerWidget.routePath,
+          asyncParams: {
+            'workPlace': getDoc(['workPlaces'], WorkPlacesRecord.fromSnapshot),
+          },
+          builder: (context, params) => WorkPlaceHomePageForOwnerWidget(
+            workPlace: params.getParam(
+              'workPlace',
+              ParamType.Document,
+            ),
+            company: params.getParam(
+              'company',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['companies'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: WorkPlaceWorkersPageWidget.routeName,
+          path: WorkPlaceWorkersPageWidget.routePath,
+          builder: (context, params) => WorkPlaceWorkersPageWidget(
+            company: params.getParam(
+              'company',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['companies'],
+            ),
+            workPlace: params.getParam(
+              'workPlace',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['workPlaces'],
+            ),
+            isPartner: params.getParam(
+              'isPartner',
+              ParamType.bool,
+            ),
+            canManage: params.getParam(
+              'canManage',
+              ParamType.bool,
+            ),
+            isWorker: params.getParam(
+              'isWorker',
+              ParamType.bool,
+            ),
+            canSendMoney: params.getParam(
+              'canSendMoney',
+              ParamType.bool,
+            ),
+            canManageTask: params.getParam(
+              'canManageTask',
+              ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AllProductsPageWidget.routeName,
+          path: AllProductsPageWidget.routePath,
+          asyncParams: {
+            'parentProduct': getDoc(['companies', 'parentProducts'],
+                ParentProductsRecord.fromSnapshot),
+          },
+          builder: (context, params) => AllProductsPageWidget(
+            company: params.getParam(
+              'company',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['companies'],
+            ),
+            parentProduct: params.getParam(
+              'parentProduct',
+              ParamType.Document,
+            ),
+            workPlace: params.getParam(
+              'workPlace',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['workPlaces'],
+            ),
+            isOwner: params.getParam(
+              'isOwner',
+              ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AllCalculateProductsPageWidget.routeName,
+          path: AllCalculateProductsPageWidget.routePath,
+          asyncParams: {
+            'product': getDoc(['products'], ProductsRecord.fromSnapshot),
+            'parentProduct': getDoc(['companies', 'parentProducts'],
+                ParentProductsRecord.fromSnapshot),
+          },
+          builder: (context, params) => AllCalculateProductsPageWidget(
+            company: params.getParam(
+              'company',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['companies'],
+            ),
+            product: params.getParam(
+              'product',
+              ParamType.Document,
+            ),
+            parentProduct: params.getParam(
+              'parentProduct',
+              ParamType.Document,
+            ),
+            workPlace: params.getParam(
+              'workPlace',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['workPlaces'],
+            ),
+            isOwner: params.getParam(
+              'isOwner',
+              ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: SocialWidget.routeName,
+          path: SocialWidget.routePath,
+          builder: (context, params) => SocialWidget(),
+        ),
+        FFRoute(
+          name: ParentProductsPageWidget.routeName,
+          path: ParentProductsPageWidget.routePath,
+          builder: (context, params) => ParentProductsPageWidget(
+            company: params.getParam(
+              'company',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['companies'],
+            ),
+            workPlace: params.getParam(
+              'workPlace',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['workPlaces'],
+            ),
+            isOwner: params.getParam(
+              'isOwner',
+              ParamType.bool,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AddNewFinanceNoteCompanyWidget.routeName,
+          path: AddNewFinanceNoteCompanyWidget.routePath,
+          asyncParams: {
+            'noteFinanceCompany': getDoc(['users', 'financialMonitoringNotes'],
+                FinancialMonitoringNotesRecord.fromSnapshot),
+          },
+          builder: (context, params) => AddNewFinanceNoteCompanyWidget(
+            isEdit: params.getParam(
+              'isEdit',
+              ParamType.bool,
+            ),
+            noteFinanceCompany: params.getParam(
+              'noteFinanceCompany',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: AddSoldPageWidget.routeName,
+          path: AddSoldPageWidget.routePath,
+          asyncParams: {
+            'childProduct': getDoc(['products'], ProductsRecord.fromSnapshot),
+            'parentProduct': getDoc(['companies', 'parentProducts'],
+                ParentProductsRecord.fromSnapshot),
+            'calculation': getDoc(
+                ['products', 'calculations'], CalculationsRecord.fromSnapshot),
+          },
+          builder: (context, params) => AddSoldPageWidget(
+            company: params.getParam(
+              'company',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['companies'],
+            ),
+            childProduct: params.getParam(
+              'childProduct',
+              ParamType.Document,
+            ),
+            parentProduct: params.getParam(
+              'parentProduct',
+              ParamType.Document,
+            ),
+            workPlace: params.getParam(
+              'workPlace',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['workPlaces'],
+            ),
+            calculation: params.getParam(
+              'calculation',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ChatWidget.routeName,
+          path: ChatWidget.routePath,
+          builder: (context, params) => ChatWidget(),
+        ),
+        FFRoute(
+          name: WorkersWidget.routeName,
+          path: WorkersWidget.routePath,
+          builder: (context, params) => WorkersWidget(),
+        ),
+        FFRoute(
+          name: WorkersChooseWorkerWidget.routeName,
+          path: WorkersChooseWorkerWidget.routePath,
+          builder: (context, params) => WorkersChooseWorkerWidget(
+            workPlaceDocRef: params.getParam(
+              'workPlaceDocRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['workPlaces'],
+            ),
+            companyDocRef: params.getParam(
+              'companyDocRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['companies'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: WorkersPaymentDetailWidget.routeName,
+          path: WorkersPaymentDetailWidget.routePath,
+          asyncParams: {
+            'workerPlaceWorkerDocument': getDoc(
+                ['workPlaces', 'workPlaceWorker'],
+                WorkPlaceWorkerRecord.fromSnapshot),
+          },
+          builder: (context, params) => WorkersPaymentDetailWidget(
+            company: params.getParam(
+              'company',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['companies'],
+            ),
+            workPlaces: params.getParam(
+              'workPlaces',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['workPlaces'],
+            ),
+            workerUserRef: params.getParam(
+              'workerUserRef',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['users'],
+            ),
+            workerPlaceWorkerDocument: params.getParam(
+              'workerPlaceWorkerDocument',
+              ParamType.Document,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: BusinessChooseWidget.routeName,
+          path: BusinessChooseWidget.routePath,
+          builder: (context, params) => BusinessChooseWidget(
+            companiesIcanSee: params.getParam<DocumentReference>(
+              'companiesIcanSee',
+              ParamType.DocumentReference,
+              isList: true,
+              collectionNamePath: ['companies'],
+            ),
+            companiesICanSeeNames: params.getParam<String>(
+              'companiesICanSeeNames',
+              ParamType.String,
+              isList: true,
+            ),
+            workPlacesICanSee: params.getParam<DocumentReference>(
+              'workPlacesICanSee',
+              ParamType.DocumentReference,
+              isList: true,
+              collectionNamePath: ['workPlaces'],
+            ),
+            workPlacesICanSeeNames: params.getParam<String>(
+              'workPlacesICanSeeNames',
+              ParamType.String,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: ChooseXCurrentTypePageWidget.routeName,
+          path: ChooseXCurrentTypePageWidget.routePath,
+          builder: (context, params) => ChooseXCurrentTypePageWidget(),
+        ),
+        FFRoute(
           name: BusinessChooseMainTitlesWidget.routeName,
           path: BusinessChooseMainTitlesWidget.routePath,
           asyncParams: {
@@ -8038,6 +8028,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               isList: true,
             ),
           ),
+        ),
+        FFRoute(
+          name: ProfileWidget.routeName,
+          path: ProfileWidget.routePath,
+          builder: (context, params) => ProfileWidget(),
+        ),
+        FFRoute(
+          name: PaymentOrCollectionCashWidget.routeName,
+          path: PaymentOrCollectionCashWidget.routePath,
+          builder: (context, params) => PaymentOrCollectionCashWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

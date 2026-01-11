@@ -22,15 +22,14 @@ class AllCalculateProductsPageModel
 
   // Stores action output result for [Firestore Query - Query a collection] action in AllCalculateProductsPage widget.
   List<CalculationsRecord>? calculations;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  List<ProductFieldsRecord>? productFields;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
       tabBarController != null ? tabBarController!.index : 0;
   int get tabBarPreviousIndex =>
       tabBarController != null ? tabBarController!.previousIndex : 0;
-
-  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
-  List<ProductFieldsRecord>? productFields;
 
   @override
   void initState(BuildContext context) {}
