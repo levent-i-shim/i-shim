@@ -9,9 +9,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'copmany_vehicle_add_payment_model.dart';
 export 'copmany_vehicle_add_payment_model.dart';
 
@@ -75,7 +78,7 @@ class _CopmanyVehicleAddPaymentWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyWorkersRecord>>(
       stream: queryCompanyWorkersRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyWorkersRecord) => companyWorkersRecord
             .where(
               'canAcceptTransaction',
@@ -159,7 +162,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          if (!widget.isOwner!)
+                          if (!widget!.isOwner!)
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 12.0, 24.0, 12.0),
@@ -749,7 +752,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                               ),
                             ),
                           ),
-                          if (widget.isOwner ?? true)
+                          if (widget!.isOwner ?? true)
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 12.0, 24.0, 12.0),
@@ -1124,7 +1127,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                               ),
                             ),
                           ),
-                          if (widget.companyVehicle?.type == 'construction')
+                          if (widget!.companyVehicle?.type == 'construction')
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 12.0, 24.0, 12.0),
@@ -1357,7 +1360,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                 ),
                               ),
                             ),
-                          if (widget.companyVehicle?.type != 'construction')
+                          if (widget!.companyVehicle?.type != 'construction')
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 12.0, 24.0, 12.0),
@@ -1794,7 +1797,9 @@ class _CopmanyVehicleAddPaymentWidgetState
                                   safeSetState(() {});
                                   return;
                                 }
-                                if ((_model.uploadedLocalFile_uploadDataRsh
+                                if (_model.uploadedLocalFile_uploadDataRsh ==
+                                        null ||
+                                    (_model.uploadedLocalFile_uploadDataRsh
                                                 .bytes ??
                                             [])
                                         .isEmpty) {
@@ -1805,9 +1810,9 @@ class _CopmanyVehicleAddPaymentWidgetState
                                 _shouldSetState = true;
                                 if (_model.validate!) {
                                   if (_model.isFuel) {
-                                    if (widget.companyVehicle?.type ==
+                                    if (widget!.companyVehicle?.type ==
                                         'construction') {
-                                      if (widget
+                                      if (widget!
                                               .companyVehicle!.workingHours >=
                                           (double.parse(
                                               _model.textController4.text))) {
@@ -1834,7 +1839,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                         return;
                                       }
                                     } else {
-                                      if (widget.companyVehicle!.km >=
+                                      if (widget!.companyVehicle!.km >=
                                           (double.parse(
                                               _model.textController5.text))) {
                                         ScaffoldMessenger.of(context)
@@ -1911,10 +1916,10 @@ class _CopmanyVehicleAddPaymentWidgetState
                                     }
                                   }
 
-                                  if (widget.isOwner!) {
+                                  if (widget!.isOwner!) {
                                     var workPlaceVehiclePaymentsRecordReference1 =
                                         WorkPlaceVehiclePaymentsRecord
-                                            .createDoc(widget
+                                            .createDoc(widget!
                                                 .companyVehicle!.workPlace!);
                                     await workPlaceVehiclePaymentsRecordReference1
                                         .set(
@@ -1927,7 +1932,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                           _model.uploadedFileUrl_uploadDataMrxl,
                                       isAccept: true,
                                       vehicle:
-                                          widget.companyVehicle?.reference,
+                                          widget!.companyVehicle?.reference,
                                       createdByUser: currentUserReference,
                                       km: double.tryParse(
                                           _model.textController5.text),
@@ -1947,7 +1952,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                                   image: _model
                                                       .uploadedFileUrl_uploadDataMrxl,
                                                   isAccept: true,
-                                                  vehicle: widget
+                                                  vehicle: widget!
                                                       .companyVehicle
                                                       ?.reference,
                                                   createdByUser:
@@ -1963,7 +1968,7 @@ class _CopmanyVehicleAddPaymentWidgetState
 
                                     var companyVehiclePaymentsRecordReference1 =
                                         CompanyVehiclePaymentsRecord.createDoc(
-                                            widget.company!);
+                                            widget!.company!);
                                     await companyVehiclePaymentsRecordReference1
                                         .set(
                                             createCompanyVehiclePaymentsRecordData(
@@ -1975,7 +1980,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                           _model.uploadedFileUrl_uploadDataMrxl,
                                       isAccept: true,
                                       vehicle:
-                                          widget.companyVehicle?.reference,
+                                          widget!.companyVehicle?.reference,
                                       createdByUser: currentUserReference,
                                       workPlaceVehiclePayment: _model
                                           .vehiclePaymentWorkPlaceOwner
@@ -1998,7 +2003,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                                   image: _model
                                                       .uploadedFileUrl_uploadDataMrxl,
                                                   isAccept: true,
-                                                  vehicle: widget
+                                                  vehicle: widget!
                                                       .companyVehicle
                                                       ?.reference,
                                                   createdByUser:
@@ -2017,7 +2022,7 @@ class _CopmanyVehicleAddPaymentWidgetState
 
                                     var workPlacePayments2025RecordReference =
                                         WorkPlacePayments2025Record.createDoc(
-                                            widget.companyVehicle!.workPlace!);
+                                            widget!.companyVehicle!.workPlace!);
                                     await workPlacePayments2025RecordReference
                                         .set({
                                       ...createWorkPlacePayments2025RecordData(
@@ -2028,7 +2033,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                         description:
                                             _model.textController1.text,
                                         vehicle:
-                                            widget.companyVehicle?.reference,
+                                            widget!.companyVehicle?.reference,
                                         isExpected: false,
                                         isDelete: false,
                                       ),
@@ -2049,7 +2054,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                         description:
                                             _model.textController1.text,
                                         vehicle:
-                                            widget.companyVehicle?.reference,
+                                            widget!.companyVehicle?.reference,
                                         isExpected: false,
                                         isDelete: false,
                                       ),
@@ -2063,7 +2068,7 @@ class _CopmanyVehicleAddPaymentWidgetState
 
                                     var companyPayments2025RecordReference =
                                         CompanyPayments2025Record.createDoc(
-                                            widget.company!);
+                                            widget!.company!);
                                     await companyPayments2025RecordReference
                                         .set({
                                       ...createCompanyPayments2025RecordData(
@@ -2074,7 +2079,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                         description:
                                             _model.textController1.text,
                                         vehicle:
-                                            widget.companyVehicle?.reference,
+                                            widget!.companyVehicle?.reference,
                                         isExpected: false,
                                         isDelete: false,
                                         workPlacePayment: _model
@@ -2099,7 +2104,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                         description:
                                             _model.textController1.text,
                                         vehicle:
-                                            widget.companyVehicle?.reference,
+                                            widget!.companyVehicle?.reference,
                                         isExpected: false,
                                         isDelete: false,
                                         workPlacePayment: _model
@@ -2115,7 +2120,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                     }, companyPayments2025RecordReference);
                                     _shouldSetState = true;
 
-                                    await widget.company!.update({
+                                    await widget!.company!.update({
                                       ...mapToFirestore(
                                         {
                                           'yearlyMoney': FieldValue.increment(
@@ -2128,7 +2133,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                       ),
                                     });
 
-                                    await widget.companyVehicle!.workPlace!
+                                    await widget!.companyVehicle!.workPlace!
                                         .update({
                                       ...mapToFirestore(
                                         {
@@ -2157,22 +2162,22 @@ class _CopmanyVehicleAddPaymentWidgetState
                                       ),
                                     );
                                     if (_model.dropDownTypeValue == 'Yakıt') {
-                                      if (widget.companyVehicle?.type ==
+                                      if (widget!.companyVehicle?.type ==
                                           'construction') {
                                         _model.average =
                                             await actions.calculateCostVehicle(
                                           double.parse(
                                               _model.textController4.text),
-                                          widget.companyVehicle!.workingHours,
+                                          widget!.companyVehicle!.workingHours,
                                           double.parse(
                                               _model.textController2.text),
-                                          widget.companyVehicle!.litersPerHour,
-                                          widget
+                                          widget!.companyVehicle!.litersPerHour,
+                                          widget!
                                               .companyVehicle!.averageCounter,
                                         );
                                         _shouldSetState = true;
 
-                                        await widget.companyVehicle!.reference
+                                        await widget!.companyVehicle!.reference
                                             .update({
                                           ...createCompanyVehiclesRecordData(
                                             workingHours: double.tryParse(
@@ -2195,7 +2200,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                           ),
                                         });
 
-                                        await widget
+                                        await widget!
                                             .companyVehicle!.workPlaceVehicles!
                                             .update({
                                           ...createWorkPlaceVehicleRecordData(
@@ -2223,17 +2228,17 @@ class _CopmanyVehicleAddPaymentWidgetState
                                             await actions.calculateCostVehicle(
                                           double.parse(
                                               _model.textController5.text),
-                                          widget.companyVehicle!.km,
+                                          widget!.companyVehicle!.km,
                                           double.parse(
                                               _model.textController2.text),
-                                          widget.companyVehicle!
+                                          widget!.companyVehicle!
                                               .averageLitersPerKm,
-                                          widget
+                                          widget!
                                               .companyVehicle!.averageCounter,
                                         );
                                         _shouldSetState = true;
 
-                                        await widget.companyVehicle!.reference
+                                        await widget!.companyVehicle!.reference
                                             .update({
                                           ...createCompanyVehiclesRecordData(
                                             km: double.tryParse(
@@ -2256,7 +2261,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                           ),
                                         });
 
-                                        await widget
+                                        await widget!
                                             .companyVehicle!.workPlaceVehicles!
                                             .update({
                                           ...createWorkPlaceVehicleRecordData(
@@ -2281,7 +2286,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                         });
                                       }
                                     } else {
-                                      await widget.companyVehicle!.reference
+                                      await widget!.companyVehicle!.reference
                                           .update({
                                         ...mapToFirestore(
                                           {
@@ -2293,7 +2298,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                         ),
                                       });
 
-                                      await widget
+                                      await widget!
                                           .companyVehicle!.workPlaceVehicles!
                                           .update({
                                         ...mapToFirestore(
@@ -2309,7 +2314,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                   } else {
                                     var workPlaceVehiclePaymentsRecordReference2 =
                                         WorkPlaceVehiclePaymentsRecord
-                                            .createDoc(widget
+                                            .createDoc(widget!
                                                 .companyVehicle!.workPlace!);
                                     await workPlaceVehiclePaymentsRecordReference2
                                         .set(
@@ -2322,7 +2327,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                           _model.uploadedFileUrl_uploadDataMrxl,
                                       isAccept: false,
                                       vehicle:
-                                          widget.companyVehicle?.reference,
+                                          widget!.companyVehicle?.reference,
                                       createdByUser: currentUserReference,
                                       km: double.tryParse(
                                           _model.textController5.text),
@@ -2342,7 +2347,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                                   image: _model
                                                       .uploadedFileUrl_uploadDataMrxl,
                                                   isAccept: false,
-                                                  vehicle: widget
+                                                  vehicle: widget!
                                                       .companyVehicle
                                                       ?.reference,
                                                   createdByUser:
@@ -2358,7 +2363,7 @@ class _CopmanyVehicleAddPaymentWidgetState
 
                                     var companyVehiclePaymentsRecordReference2 =
                                         CompanyVehiclePaymentsRecord.createDoc(
-                                            widget.company!);
+                                            widget!.company!);
                                     await companyVehiclePaymentsRecordReference2
                                         .set(
                                             createCompanyVehiclePaymentsRecordData(
@@ -2370,7 +2375,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                           _model.uploadedFileUrl_uploadDataMrxl,
                                       isAccept: false,
                                       vehicle:
-                                          widget.companyVehicle?.reference,
+                                          widget!.companyVehicle?.reference,
                                       createdByUser: currentUserReference,
                                       workPlaceVehiclePayment: _model
                                           .vehiclePaymentWorkPlace?.reference,
@@ -2390,7 +2395,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                               image: _model
                                                   .uploadedFileUrl_uploadDataMrxl,
                                               isAccept: false,
-                                              vehicle: widget
+                                              vehicle: widget!
                                                   .companyVehicle?.reference,
                                               createdByUser:
                                                   currentUserReference,
@@ -2412,7 +2417,7 @@ class _CopmanyVehicleAddPaymentWidgetState
 
                                     var workPlaceTransactionRecordReference =
                                         WorkPlaceTransactionRecord.createDoc(
-                                            widget.companyVehicle!.workPlace!);
+                                            widget!.companyVehicle!.workPlace!);
                                     await workPlaceTransactionRecordReference
                                         .set({
                                       ...createWorkPlaceTransactionRecordData(
@@ -2459,7 +2464,7 @@ class _CopmanyVehicleAddPaymentWidgetState
                                     _shouldSetState = true;
 
                                     await CompanyTransactionsRecord.createDoc(
-                                            widget.company!)
+                                            widget!.company!)
                                         .set({
                                       ...createCompanyTransactionsRecordData(
                                         name: 'Araç Gideri',
@@ -2505,13 +2510,13 @@ class _CopmanyVehicleAddPaymentWidgetState
                                         description: 'Araç Gideri Eklendi',
                                         type: WorkHistoryTypes
                                             .addVehiclePayment.name,
-                                        company: widget.company,
+                                        company: widget!.company,
                                         fullDescription:
                                             '${_model.textController2.text} Tutarında ${_model.dropDownTypeValue} Masrafı Onaya Gönderildi.',
                                         vehiclePayment:
                                             _model.vehiclePayment?.reference,
                                         companyVehicle:
-                                            widget.companyVehicle?.reference,
+                                            widget!.companyVehicle?.reference,
                                       ),
                                       ...mapToFirestore(
                                         {

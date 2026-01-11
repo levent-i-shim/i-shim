@@ -2,9 +2,12 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'calculate_cost_page_model.dart';
 export 'calculate_cost_page_model.dart';
 
@@ -79,7 +82,7 @@ class _CalculateCostPageWidgetState extends State<CalculateCostPageWidget> {
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.product?.name,
+              widget!.product?.name,
               'isim',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -123,18 +126,18 @@ class _CalculateCostPageWidgetState extends State<CalculateCostPageWidget> {
                 child: custom_widgets.ProductCalculationForm(
                   width: double.infinity,
                   height: MediaQuery.sizeOf(context).height,
-                  product: widget.product!.reference,
-                  productFields: widget.productFields!,
-                  totalCost: widget.product!.totalCost,
-                  counter: widget.product!.counter,
-                  totalProduct: widget.product!.totalProduct,
-                  parentTotalCost: widget.parentProduct!.totalCost,
-                  parentTotalQuantity: widget.parentProduct!.totalQuantity,
-                  parentProduct: widget.parentProduct!.reference,
-                  parentProductName: widget.parentProduct!.name,
-                  childProductName: widget.product!.name,
-                  workPlace: widget.workPlace!,
-                  company: widget.parentProduct!.parentReference,
+                  product: widget!.product!.reference,
+                  productFields: widget!.productFields!,
+                  totalCost: widget!.product!.totalCost,
+                  counter: widget!.product!.counter,
+                  totalProduct: widget!.product!.totalProduct,
+                  parentTotalCost: widget!.parentProduct!.totalCost,
+                  parentTotalQuantity: widget!.parentProduct!.totalQuantity,
+                  parentProduct: widget!.parentProduct!.reference,
+                  parentProductName: widget!.parentProduct!.name,
+                  childProductName: widget!.product!.name,
+                  workPlace: widget!.workPlace!,
+                  company: widget!.parentProduct!.parentReference,
                 ),
               ),
             ),

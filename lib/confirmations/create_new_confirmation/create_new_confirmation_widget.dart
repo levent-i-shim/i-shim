@@ -1,18 +1,22 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'create_new_confirmation_model.dart';
 export 'create_new_confirmation_model.dart';
 
@@ -46,7 +50,7 @@ class _CreateNewConfirmationWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.users = await queryCompanyWorkersRecordOnce(
-        parent: widget.company,
+        parent: widget!.company,
       );
       for (int loop1Index = 0;
           loop1Index < _model.users!.length;
@@ -58,7 +62,7 @@ class _CreateNewConfirmationWidgetState
         ));
       }
       _model.companyDetail =
-          await CompaniesRecord.getDocumentOnce(widget.company!);
+          await CompaniesRecord.getDocumentOnce(widget!.company!);
       _model.owner =
           await UsersRecord.getDocumentOnce(_model.companyDetail!.owner!);
       _model.addToUsersForDropdown(UsersDataStruct(
@@ -348,7 +352,7 @@ class _CreateNewConfirmationWidgetState
                                             receiver: _model.receiverUserRef,
                                             isAcccept: false,
                                             isReject: false,
-                                            company: widget.company,
+                                            company: widget!.company,
                                             name: _model.textController.text,
                                             isDelete: false,
                                           ),
@@ -367,7 +371,7 @@ class _CreateNewConfirmationWidgetState
                                             receiver: _model.receiverUserRef,
                                             isAcccept: false,
                                             isReject: false,
-                                            company: widget.company,
+                                            company: widget!.company,
                                             name: _model.textController.text,
                                             isDelete: false,
                                           ),
@@ -385,7 +389,7 @@ class _CreateNewConfirmationWidgetState
                                             description: 'Soru Soruldu',
                                             type: WorkHistoryTypes
                                                 .createConfirmation.name,
-                                            company: widget.company,
+                                            company: widget!.company,
                                             confirmation:
                                                 _model.confirmation?.reference,
                                             fullDescription:
@@ -411,7 +415,7 @@ class _CreateNewConfirmationWidgetState
                                                 .confirmation?.reference.id,
                                             isRead: false,
                                             isDelete: false,
-                                            company: widget.company,
+                                            company: widget!.company,
                                             fullDescription:
                                                 '${_model.textController.text} Hakkında Soru Soruldu',
                                             image: _model

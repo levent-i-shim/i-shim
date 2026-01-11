@@ -1,15 +1,19 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_bills_detail_for_company_page_paid_accept_model.dart';
 export 'current_account_bills_detail_for_company_page_paid_accept_model.dart';
 
@@ -56,12 +60,12 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       for (int loop1Index = 0;
-          loop1Index < widget.bill!.activities.length;
+          loop1Index < widget!.bill!.activities.length;
           loop1Index++) {
-        final currentLoop1Item = widget.bill!.activities[loop1Index];
+        final currentLoop1Item = widget!.bill!.activities[loop1Index];
         _model.activiryDetail =
             await CurrentAccountActivityRecord.getDocumentOnce(
-                widget.bill!.activities.elementAtOrNull(loop1Index)!);
+                widget!.bill!.activities.elementAtOrNull(loop1Index)!);
         _model.addToActivity(_model.activiryDetail!);
         safeSetState(() {});
       }
@@ -267,7 +271,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   Text(
                                     valueOrDefault<String>(
                                       formatNumber(
-                                        widget.bill?.totalValue,
+                                        widget!.bill?.totalValue,
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.periodDecimal,
                                       ),
@@ -339,9 +343,9 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                         ),
                                   ),
                                   Text(
-                                    (widget.bill!.totalValue -
-                                            widget.bill!.totalKdv +
-                                            widget.bill!.totalTevkifat)
+                                    (widget!.bill!.totalValue -
+                                            widget!.bill!.totalKdv +
+                                            widget!.bill!.totalTevkifat)
                                         .toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -411,7 +415,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   Text(
                                     valueOrDefault<String>(
                                       formatNumber(
-                                        widget.bill?.totalKdv,
+                                        widget!.bill?.totalKdv,
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.commaDecimal,
                                       ),
@@ -485,7 +489,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   Text(
                                     valueOrDefault<String>(
                                       formatNumber(
-                                        widget.bill?.totalTevkifat,
+                                        widget!.bill?.totalTevkifat,
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.commaDecimal,
                                       ),
@@ -557,11 +561,11 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                         ),
                                   ),
                                   Text(
-                                    widget.currentAccount!.amISideOne
-                                        ? (widget.bill!.isSideOneSeller
+                                    widget!.currentAccount!.amISideOne
+                                        ? (widget!.bill!.isSideOneSeller
                                             ? 'Sizsiniz'
                                             : 'Karşı Taraf')
-                                        : (widget.bill!.isSideOneSeller
+                                        : (widget!.bill!.isSideOneSeller
                                             ? 'Karşı Taraf'
                                             : 'Sizsiniz'),
                                     style: FlutterFlowTheme.of(context)
@@ -630,7 +634,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                         ),
                                   ),
                                   Text(
-                                    widget.bill!.isPaid
+                                    widget!.bill!.isPaid
                                         ? 'Ödendi'
                                         : 'Ödenmedi',
                                     style: FlutterFlowTheme.of(context)
@@ -1457,12 +1461,12 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    if (!widget.bill!.isPaid)
+                    if (!widget!.bill!.isPaid)
                       FFButtonWidget(
                         onPressed: () async {
                           var _shouldSetState = false;
-                          if (widget.isPartner) {
-                            if (!widget.canManage) {
+                          if (widget!.isPartner) {
+                            if (!widget!.canManage) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -1481,44 +1485,44 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               return;
                             }
                           }
-                          if (!widget.bill!.isPaid) {
-                            await widget.bill!.reference
+                          if (!widget!.bill!.isPaid) {
+                            await widget!.bill!.reference
                                 .update(createCurrentAccountBillRecordData(
                               isPaid: true,
                             ));
 
-                            await widget.currentAccount!.currentAccountId!
+                            await widget!.currentAccount!.currentAccountId!
                                 .update({
                               ...mapToFirestore(
                                 {
                                   'totalUnPaidBillCount':
                                       FieldValue.increment(-(1)),
                                   'totalValueForSideOne': FieldValue.increment(
-                                      widget.bill!.isSideOneSeller
-                                          ? widget.bill!.totalValue
-                                          : (-1 * widget.bill!.totalValue)),
+                                      widget!.bill!.isSideOneSeller
+                                          ? widget!.bill!.totalValue
+                                          : (-1 * widget!.bill!.totalValue)),
                                   'totalValueForSideTwo': FieldValue.increment(
-                                      !widget.bill!.isSideOneSeller
-                                          ? widget.bill!.totalValue
-                                          : (-1 * widget.bill!.totalValue)),
+                                      !widget!.bill!.isSideOneSeller
+                                          ? widget!.bill!.totalValue
+                                          : (-1 * widget!.bill!.totalValue)),
                                   'expandedValueForSideOne':
                                       FieldValue.increment(
-                                          widget.bill!.isSideOneSeller
-                                              ? (-1 * widget.bill!.totalValue)
-                                              : widget.bill!.totalValue),
+                                          widget!.bill!.isSideOneSeller
+                                              ? (-1 * widget!.bill!.totalValue)
+                                              : widget!.bill!.totalValue),
                                   'expandedValueForTwo': FieldValue.increment(
-                                      widget.bill!.isSideOneSeller
-                                          ? widget.bill!.totalValue
-                                          : (-1 * widget.bill!.totalValue)),
+                                      widget!.bill!.isSideOneSeller
+                                          ? widget!.bill!.totalValue
+                                          : (-1 * widget!.bill!.totalValue)),
                                 },
                               ),
                             });
-                            if (widget.bill!.isSideOneSeller) {
-                              if (widget.currentAccount?.sideTwoType ==
+                            if (widget!.bill!.isSideOneSeller) {
+                              if (widget!.currentAccount?.sideTwoType ==
                                   'Şirket') {
                                 _model.companySideTwoPayment =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
                                 _model.sideTwoBill =
@@ -1527,7 +1531,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   queryBuilder: (companyPayments2025Record) =>
                                       companyPayments2025Record.where(
                                     'billRef',
-                                    isEqualTo: widget.bill?.reference,
+                                    isEqualTo: widget!.bill?.reference,
                                   ),
                                   singleRecord: true,
                                 ).then((s) => s.firstOrNull);
@@ -1540,7 +1544,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               } else {
                                 _model.userSideTwoPayment =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
                                 _model.sideTwoBillUser =
@@ -1549,7 +1553,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   queryBuilder: (userPaymentRecord) =>
                                       userPaymentRecord.where(
                                     'billRef',
-                                    isEqualTo: widget.bill?.reference,
+                                    isEqualTo: widget!.bill?.reference,
                                   ),
                                   singleRecord: true,
                                 ).then((s) => s.firstOrNull);
@@ -1561,11 +1565,11 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                 ));
                               }
 
-                              if (widget.currentAccount?.sideOneType ==
+                              if (widget!.currentAccount?.sideOneType ==
                                   'Şirket') {
                                 _model.companySideOneIncome =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
                                 _model.companyIncome =
@@ -1574,7 +1578,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   queryBuilder: (companyIncomes2025Record) =>
                                       companyIncomes2025Record.where(
                                     'billRef',
-                                    isEqualTo: widget.bill?.reference,
+                                    isEqualTo: widget!.bill?.reference,
                                   ),
                                   singleRecord: true,
                                 ).then((s) => s.firstOrNull);
@@ -1587,7 +1591,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               } else {
                                 _model.userSideOneIncome =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
                                 _model.userSideOneIncomeRef =
@@ -1596,7 +1600,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   queryBuilder: (userIncomeRecord) =>
                                       userIncomeRecord.where(
                                     'billRef',
-                                    isEqualTo: widget.bill?.reference,
+                                    isEqualTo: widget!.bill?.reference,
                                   ),
                                   singleRecord: true,
                                 ).then((s) => s.firstOrNull);
@@ -1608,11 +1612,11 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                 ));
                               }
                             } else {
-                              if (widget.currentAccount?.sideTwoType ==
+                              if (widget!.currentAccount?.sideTwoType ==
                                   'Şirket') {
                                 _model.companySideTwoIncome =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
                                 _model.sideTwoBillIncomeCompany =
@@ -1621,7 +1625,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   queryBuilder: (companyIncomes2025Record) =>
                                       companyIncomes2025Record.where(
                                     'billRef',
-                                    isEqualTo: widget.bill?.reference,
+                                    isEqualTo: widget!.bill?.reference,
                                   ),
                                   singleRecord: true,
                                 ).then((s) => s.firstOrNull);
@@ -1634,7 +1638,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               } else {
                                 _model.userSideTwoIncome =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
                                 _model.userSideTwoIncomeRef =
@@ -1643,7 +1647,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   queryBuilder: (userIncomeRecord) =>
                                       userIncomeRecord.where(
                                     'billRef',
-                                    isEqualTo: widget.bill?.reference,
+                                    isEqualTo: widget!.bill?.reference,
                                   ),
                                   singleRecord: true,
                                 ).then((s) => s.firstOrNull);
@@ -1655,11 +1659,11 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                 ));
                               }
 
-                              if (widget.currentAccount?.sideOneType ==
+                              if (widget!.currentAccount?.sideOneType ==
                                   'Şirket') {
                                 _model.companySideOnePayment =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
                                 _model.sideOnePaymentRef =
@@ -1668,7 +1672,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   queryBuilder: (companyPayments2025Record) =>
                                       companyPayments2025Record.where(
                                     'billRef',
-                                    isEqualTo: widget.bill?.reference,
+                                    isEqualTo: widget!.bill?.reference,
                                   ),
                                   singleRecord: true,
                                 ).then((s) => s.firstOrNull);
@@ -1681,7 +1685,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               } else {
                                 _model.userSideOnePayment =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
                                 _model.sideOnePaymentRefUser =
@@ -1690,7 +1694,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   queryBuilder: (userPaymentRecord) =>
                                       userPaymentRecord.where(
                                     'billRef',
-                                    isEqualTo: widget.bill?.reference,
+                                    isEqualTo: widget!.bill?.reference,
                                   ),
                                   singleRecord: true,
                                 ).then((s) => s.firstOrNull);
@@ -1719,7 +1723,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                           );
                           _model.billNotification =
                               await queryCompanyNotificationsRecordOnce(
-                            parent: widget.company,
+                            parent: widget!.company,
                             queryBuilder: (companyNotificationsRecord) =>
                                 companyNotificationsRecord
                                     .where(
@@ -1730,7 +1734,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                     )
                                     .where(
                                       'currentAccountBill',
-                                      isEqualTo: widget.bill?.reference,
+                                      isEqualTo: widget!.bill?.reference,
                                     ),
                             singleRecord: true,
                           ).then((s) => s.firstOrNull);
@@ -1748,11 +1752,11 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               description: 'Fatura Ödendi Olarak İşaretlendi',
                               type: WorkHistoryTypes.billApprovalAccept.name,
                               fullDescription:
-                                  '${widget.currentAccount?.counterPartyName} İle ${widget.bill?.totalValue.toString()} Tutarındaki Fatura Ödendi olarak işaretlenmesi Kabul Edildi',
+                                  '${widget!.currentAccount?.counterPartyName} İle ${widget!.bill?.totalValue?.toString()} Tutarındaki Fatura Ödendi olarak işaretlenmesi Kabul Edildi',
                               currentAccount:
-                                  widget.currentAccount?.currentAccountId,
-                              currentAccountBill: widget.bill?.reference,
-                              company: widget.company,
+                                  widget!.currentAccount?.currentAccountId,
+                              currentAccountBill: widget!.bill?.reference,
+                              company: widget!.company,
                             ),
                             ...mapToFirestore(
                               {
@@ -1794,12 +1798,12 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                       ),
-                    if (!widget.bill!.isPaid)
+                    if (!widget!.bill!.isPaid)
                       FFButtonWidget(
                         onPressed: () async {
                           var _shouldSetState = false;
-                          if (widget.isPartner) {
-                            if (!widget.canManage) {
+                          if (widget!.isPartner) {
+                            if (!widget!.canManage) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -1834,7 +1838,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                           );
                           _model.billNotification2 =
                               await queryCompanyNotificationsRecordOnce(
-                            parent: widget.company,
+                            parent: widget!.company,
                             queryBuilder: (companyNotificationsRecord) =>
                                 companyNotificationsRecord
                                     .where(
@@ -1845,18 +1849,18 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                     )
                                     .where(
                                       'currentAccountBill',
-                                      isEqualTo: widget.bill?.reference,
+                                      isEqualTo: widget!.bill?.reference,
                                     ),
                             singleRecord: true,
                           ).then((s) => s.firstOrNull);
                           _shouldSetState = true;
                           await _model.billNotification2!.reference.delete();
-                          if (widget.currentAccount!.amISideOne) {
-                            if (widget.currentAccount?.sideTwoType ==
+                          if (widget!.currentAccount!.amISideOne) {
+                            if (widget!.currentAccount?.sideTwoType ==
                                 'Şirket') {
                               _model.companyNotifi =
                                   await actions.getCompanyDocRef(
-                                widget.currentAccount!.sideTwoId,
+                                widget!.currentAccount!.sideTwoId,
                               );
                               _shouldSetState = true;
                               _model.companyDetailNotifi =
@@ -1885,7 +1889,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               });
                             } else {
                               _model.userNotifi = await actions.getUserDocRef(
-                                widget.currentAccount!.sideTwoId,
+                                widget!.currentAccount!.sideTwoId,
                               );
                               _shouldSetState = true;
                               _model.userDetailNotifi =
@@ -1915,11 +1919,11 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               });
                             }
                           } else {
-                            if (widget.currentAccount?.sideOneType ==
+                            if (widget!.currentAccount?.sideOneType ==
                                 'Şirket') {
                               _model.company2Notifi =
                                   await actions.getCompanyDocRef(
-                                widget.currentAccount!.sideOneId,
+                                widget!.currentAccount!.sideOneId,
                               );
                               _shouldSetState = true;
                               _model.companyDetail2Notifi =
@@ -1948,7 +1952,7 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                               });
                             } else {
                               _model.user2Notifi = await actions.getUserDocRef(
-                                widget.currentAccount!.sideOneId,
+                                widget!.currentAccount!.sideOneId,
                               );
                               _shouldSetState = true;
                               _model.userDetail2Notifi =
@@ -1988,11 +1992,11 @@ class _CurrentAccountBillsDetailForCompanyPagePaidAcceptWidgetState
                                   'Fatura Ödendi İşaretlemesi Reddedildi',
                               type: WorkHistoryTypes.billApprovalReject.name,
                               fullDescription:
-                                  '${widget.currentAccount?.counterPartyName} İle ${widget.bill?.totalValue.toString()} Tutarında Fatura Ödendi Olarak İşaretlenmesi Reddedildi',
+                                  '${widget!.currentAccount?.counterPartyName} İle ${widget!.bill?.totalValue?.toString()} Tutarında Fatura Ödendi Olarak İşaretlenmesi Reddedildi',
                               currentAccount:
-                                  widget.currentAccount?.currentAccountId,
-                              currentAccountBill: widget.bill?.reference,
-                              company: widget.company,
+                                  widget!.currentAccount?.currentAccountId,
+                              currentAccountBill: widget!.bill?.reference,
+                              company: widget!.company,
                             ),
                             ...mapToFirestore(
                               {

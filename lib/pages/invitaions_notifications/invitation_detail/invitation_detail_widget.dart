@@ -5,10 +5,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'invitation_detail_model.dart';
 export 'invitation_detail_model.dart';
 
@@ -40,16 +43,16 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.departmentName = await actions.getDepartmentName(
-        widget.invitations!.company!.id,
-        widget.invitations!.department!.id,
+        widget!.invitations!.company!.id,
+        widget!.invitations!.department!.id,
       );
       _model.unitName = await actions.getUnitName(
-        widget.invitations!.company!.id,
-        widget.invitations!.unit!.id,
+        widget!.invitations!.company!.id,
+        widget!.invitations!.unit!.id,
       );
       _model.roleName = await actions.getRoleName(
-        widget.invitations!.company!.id,
-        widget.invitations!.role!.id,
+        widget!.invitations!.company!.id,
+        widget!.invitations!.role!.id,
       );
       _model.unitNameVariable = _model.unitName!;
       _model.departmentNameVariable = _model.departmentName!;
@@ -127,7 +130,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                   child: StreamBuilder<UsersRecord>(
                     stream:
-                        UsersRecord.getDocument(widget.invitations!.sender!),
+                        UsersRecord.getDocument(widget!.invitations!.sender!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -203,7 +206,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: StreamBuilder<CompaniesRecord>(
                     stream: CompaniesRecord.getDocument(
-                        widget.invitations!.company!),
+                        widget!.invitations!.company!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -454,7 +457,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                       ),
                       Text(
                         valueOrDefault<String>(
-                          widget.invitations?.workPlaceName,
+                          widget!.invitations?.workPlaceName,
                           'Çalışma Yeri',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -509,7 +512,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                             EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
-                            widget.invitations?.salary.toString(),
+                            widget!.invitations?.salary?.toString(),
                             '0',
                           ),
                           style:
@@ -566,7 +569,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                             EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                         child: Text(
                           valueOrDefault<String>(
-                            widget.invitations?.shiftSalary.toString(),
+                            widget!.invitations?.shiftSalary?.toString(),
                             '0',
                           ),
                           style:
@@ -596,7 +599,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                   child: Builder(
                     builder: (context) {
-                      if (widget.invitations?.isAccept ?? false) {
+                      if (widget!.invitations?.isAccept ?? false) {
                         return Text(
                           'Kabul Edildi',
                           style:
@@ -618,7 +621,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                         .fontStyle,
                                   ),
                         );
-                      } else if (widget.invitations?.isReject ?? false) {
+                      } else if (widget!.invitations?.isReject ?? false) {
                         return Text(
                           'Reddedildi',
                           style:
@@ -656,7 +659,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                     onPressed: () async {
                                       var companyWorkersRecordReference =
                                           CompanyWorkersRecord.createDoc(
-                                              widget.invitations!.company!);
+                                              widget!.invitations!.company!);
                                       await companyWorkersRecordReference.set({
                                         ...createCompanyWorkersRecordData(
                                           userRef: currentUserReference,
@@ -682,16 +685,16 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                           vehicleCreationAuthority: false,
                                           canViewIncomeExpense: false,
                                           workPlace:
-                                              widget.invitations?.workPlace,
+                                              widget!.invitations?.workPlace,
                                           isWorker: true,
                                           canSendInstruction: false,
                                           canAddManuelIncomeExpense: false,
                                           canViewEmployee: false,
-                                          salary: widget.invitations?.salary,
+                                          salary: widget!.invitations?.salary,
                                           workingHour:
-                                              widget.invitations?.workingHour,
+                                              widget!.invitations?.workingHour,
                                           shiftSalary:
-                                              widget.invitations?.shiftSalary,
+                                              widget!.invitations?.shiftSalary,
                                           canViewNotes: false,
                                           canAddCostAccount: false,
                                           canManageNotes: false,
@@ -699,13 +702,13 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                         ...mapToFirestore(
                                           {
                                             'departmentRefs': [
-                                              widget.invitations?.department
+                                              widget!.invitations?.department
                                             ],
                                             'unitRefs': [
-                                              widget.invitations?.unit
+                                              widget!.invitations?.unit
                                             ],
                                             'roleRefs': [
-                                              widget.invitations?.role
+                                              widget!.invitations?.role
                                             ],
                                             'updatedAt':
                                                 FieldValue.serverTimestamp(),
@@ -739,16 +742,16 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                           vehicleCreationAuthority: false,
                                           canViewIncomeExpense: false,
                                           workPlace:
-                                              widget.invitations?.workPlace,
+                                              widget!.invitations?.workPlace,
                                           isWorker: true,
                                           canSendInstruction: false,
                                           canAddManuelIncomeExpense: false,
                                           canViewEmployee: false,
-                                          salary: widget.invitations?.salary,
+                                          salary: widget!.invitations?.salary,
                                           workingHour:
-                                              widget.invitations?.workingHour,
+                                              widget!.invitations?.workingHour,
                                           shiftSalary:
-                                              widget.invitations?.shiftSalary,
+                                              widget!.invitations?.shiftSalary,
                                           canViewNotes: false,
                                           canAddCostAccount: false,
                                           canManageNotes: false,
@@ -756,20 +759,20 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                         ...mapToFirestore(
                                           {
                                             'departmentRefs': [
-                                              widget.invitations?.department
+                                              widget!.invitations?.department
                                             ],
                                             'unitRefs': [
-                                              widget.invitations?.unit
+                                              widget!.invitations?.unit
                                             ],
                                             'roleRefs': [
-                                              widget.invitations?.role
+                                              widget!.invitations?.role
                                             ],
                                             'updatedAt': DateTime.now(),
                                           },
                                         ),
                                       }, companyWorkersRecordReference);
 
-                                      await widget.invitations!.reference
+                                      await widget!.invitations!.reference
                                           .update(createInvitationsRecordData(
                                         isAccept: true,
                                       ));
@@ -781,7 +784,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                           description: 'İşe Başlandı',
                                           type: WorkHistoryTypes.startJob.name,
                                           invitation:
-                                              widget.invitations?.reference,
+                                              widget!.invitations?.reference,
                                         ),
                                         ...mapToFirestore(
                                           {
@@ -792,7 +795,7 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                       });
 
                                       await WorkPlaceWorkerRecord.createDoc(
-                                              widget.invitations!.workPlace!)
+                                              widget!.invitations!.workPlace!)
                                           .set(createWorkPlaceWorkerRecordData(
                                         userName: currentUserDisplayName,
                                         isDelete: false,
@@ -804,48 +807,48 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                         unitName: _model.unitName,
                                         roleName: _model.roleName,
                                         isWorker: true,
-                                        salary: widget.invitations?.salary,
+                                        salary: widget!.invitations?.salary,
                                       ));
 
                                       await MyWorkedWorkPlaceRecord.createDoc(
                                               currentUserReference!)
                                           .set({
                                         ...createMyWorkedWorkPlaceRecordData(
-                                          company: widget.invitations?.company,
+                                          company: widget!.invitations?.company,
                                           isWorking: true,
                                           isDelete: false,
                                           copmanyName:
-                                              widget.invitations?.companyName,
-                                          salary: widget.invitations?.salary,
+                                              widget!.invitations?.companyName,
+                                          salary: widget!.invitations?.salary,
                                         ),
                                         ...mapToFirestore(
                                           {
                                             'date':
                                                 FieldValue.serverTimestamp(),
                                             'workPlaceIds': [
-                                              widget.invitations?.workPlace
+                                              widget!.invitations?.workPlace
                                             ],
                                           },
                                         ),
                                       });
 
                                       await NotificationsRecord.createDoc(
-                                              widget.invitations!.sender!)
+                                              widget!.invitations!.sender!)
                                           .set({
                                         ...createNotificationsRecordData(
                                           type: NotificationTypes
                                               .acceptInvitation.name,
                                           content: 'Davetiye Kabul Edildi',
                                           relatedDoc:
-                                              widget.invitations?.reference.id,
+                                              widget!.invitations?.reference.id,
                                           isRead: false,
                                           isDelete: false,
-                                          company: widget.invitations?.company,
+                                          company: widget!.invitations?.company,
                                           workplace:
-                                              widget.invitations?.workPlace,
+                                              widget!.invitations?.workPlace,
                                           image: currentUserPhoto,
                                           fullDescription:
-                                              '${currentUserDisplayName} Adlı Kişi Davetiyenizi Kabul Etti ${widget.invitations?.companyName} İsimli Şirkette ${widget.invitations?.workPlaceName} isimli İş Yerinde Çalışmaya Başladı.',
+                                              '${currentUserDisplayName} Adlı Kişi Davetiyenizi Kabul Etti ${widget!.invitations?.companyName} İsimli Şirkette ${widget!.invitations?.workPlaceName} isimli İş Yerinde Çalışmaya Başladı.',
                                           isDuty: false,
                                           triggeredUser: currentUserReference,
                                         ),
@@ -880,9 +883,9 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                           .set({
                                         ...createWorkHistoryRecordData(
                                           role: _model.rolNameVariable,
-                                          company: widget.invitations?.company,
+                                          company: widget!.invitations?.company,
                                           workPlace:
-                                              widget.invitations?.workPlace,
+                                              widget!.invitations?.workPlace,
                                           unit: _model.unitNameVariable,
                                           department:
                                               _model.departmentNameVariable,
@@ -945,25 +948,25 @@ class _InvitationDetailWidgetState extends State<InvitationDetailWidget> {
                                   padding: EdgeInsets.all(4.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      await widget.invitations!.reference
+                                      await widget!.invitations!.reference
                                           .update(createInvitationsRecordData(
                                         isReject: true,
                                       ));
 
                                       await NotificationsRecord.createDoc(
-                                              widget.invitations!.sender!)
+                                              widget!.invitations!.sender!)
                                           .set({
                                         ...createNotificationsRecordData(
                                           type: NotificationTypes
                                               .rejectInvitation.name,
                                           content: 'Davetiye Reddedildi',
                                           relatedDoc:
-                                              widget.invitations?.reference.id,
+                                              widget!.invitations?.reference.id,
                                           isRead: false,
                                           isDelete: false,
-                                          company: widget.invitations?.company,
+                                          company: widget!.invitations?.company,
                                           workplace:
-                                              widget.invitations?.workPlace,
+                                              widget!.invitations?.workPlace,
                                           image: currentUserPhoto,
                                           fullDescription:
                                               '${currentUserDisplayName} Adlı Kişi Davetiyenizi Reddedildi',

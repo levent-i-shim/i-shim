@@ -5,9 +5,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'create_task_step5_for_task_duties_model.dart';
 export 'create_task_step5_for_task_duties_model.dart';
 
@@ -274,10 +277,10 @@ class _CreateTaskStep5ForTaskDutiesWidgetState
                           onPressed: () async {
                             var dutiesForWorkPlaceRecordReference =
                                 DutiesForWorkPlaceRecord.createDoc(
-                                    widget.workPlace!);
+                                    widget!.workPlace!);
                             await dutiesForWorkPlaceRecordReference
                                 .set(createDutiesForWorkPlaceRecordData(
-                              userRef: widget.workPlaceWorker?.user,
+                              userRef: widget!.workPlaceWorker?.user,
                               createdUserRef: currentUserReference,
                               taskName: _model.textController.text,
                               isComplete: false,
@@ -286,7 +289,7 @@ class _CreateTaskStep5ForTaskDutiesWidgetState
                             _model.dutiesForWorkPlace =
                                 DutiesForWorkPlaceRecord.getDocumentFromData(
                                     createDutiesForWorkPlaceRecordData(
-                                      userRef: widget.workPlaceWorker?.user,
+                                      userRef: widget!.workPlaceWorker?.user,
                                       createdUserRef: currentUserReference,
                                       taskName: _model.textController.text,
                                       isComplete: false,
@@ -296,39 +299,39 @@ class _CreateTaskStep5ForTaskDutiesWidgetState
 
                             var dutiesForCompanyRecordReference =
                                 DutiesForCompanyRecord.createDoc(
-                                    widget.company!);
+                                    widget!.company!);
                             await dutiesForCompanyRecordReference
                                 .set(createDutiesForCompanyRecordData(
-                              userRef: widget.workPlaceWorker?.user,
-                              companyRef: widget.company,
+                              userRef: widget!.workPlaceWorker?.user,
+                              companyRef: widget!.company,
                               createdUserRef: currentUserReference,
                               taskName: _model.textController.text,
                               isComplete: false,
                               isDelete: false,
-                              workPlaceRef: widget.workPlace,
+                              workPlaceRef: widget!.workPlace,
                               workPlaceDutiesForCompany:
                                   _model.dutiesForWorkPlace?.reference,
                             ));
                             _model.dutiesForCompany =
                                 DutiesForCompanyRecord.getDocumentFromData(
                                     createDutiesForCompanyRecordData(
-                                      userRef: widget.workPlaceWorker?.user,
-                                      companyRef: widget.company,
+                                      userRef: widget!.workPlaceWorker?.user,
+                                      companyRef: widget!.company,
                                       createdUserRef: currentUserReference,
                                       taskName: _model.textController.text,
                                       isComplete: false,
                                       isDelete: false,
-                                      workPlaceRef: widget.workPlace,
+                                      workPlaceRef: widget!.workPlace,
                                       workPlaceDutiesForCompany:
                                           _model.dutiesForWorkPlace?.reference,
                                     ),
                                     dutiesForCompanyRecordReference);
                             _model.companyDetail =
                                 await CompaniesRecord.getDocumentOnce(
-                                    widget.company!);
+                                    widget!.company!);
 
                             await NotificationsRecord.createDoc(
-                                    widget.workPlaceWorker!.user!)
+                                    widget!.workPlaceWorker!.user!)
                                 .set({
                               ...createNotificationsRecordData(
                                 type: NotificationTypes.dutiesTask.name,
@@ -337,7 +340,7 @@ class _CreateTaskStep5ForTaskDutiesWidgetState
                                 isRead: false,
                                 isDelete: false,
                                 content: 'Sıralı Görev Eklendi',
-                                company: widget.company,
+                                company: widget!.company,
                                 fullDescription:
                                     '${_model.textController.text} isimli Sıralı Görev Eklendi',
                                 image: _model.companyDetail?.companyLogo,
@@ -349,7 +352,7 @@ class _CreateTaskStep5ForTaskDutiesWidgetState
                               ),
                             });
 
-                            await widget.workPlaceWorker!.user!.update({
+                            await widget!.workPlaceWorker!.user!.update({
                               ...mapToFirestore(
                                 {
                                   'notificationCount': FieldValue.increment(1),
@@ -375,7 +378,7 @@ class _CreateTaskStep5ForTaskDutiesWidgetState
                             });
 
                             await AjandaRecord.createDoc(
-                                    widget.workPlaceWorker!.user!)
+                                    widget!.workPlaceWorker!.user!)
                                 .set({
                               ...createAjandaRecordData(
                                 description: 'Aşamalı Görev Eklendi',
@@ -417,11 +420,11 @@ class _CreateTaskStep5ForTaskDutiesWidgetState
                                   ParamType.DocumentReference,
                                 ),
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'canCreateForm': serializeParam(
-                                  widget.canCreateForm,
+                                  widget!.canCreateForm,
                                   ParamType.bool,
                                 ),
                               }.withoutNulls,

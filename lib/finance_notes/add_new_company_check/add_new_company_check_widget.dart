@@ -10,11 +10,15 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_new_company_check_model.dart';
 export 'add_new_company_check_model.dart';
 
@@ -50,7 +54,7 @@ class _AddNewCompanyCheckWidgetState extends State<AddNewCompanyCheckWidget> {
     _model.paymentOrCollectionValueFocusNode ??= FocusNode();
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.checkCompany?.content : '');
+        text: widget!.isEdit! ? widget!.checkCompany?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -137,8 +141,8 @@ class _AddNewCompanyCheckWidgetState extends State<AddNewCompanyCheckWidget> {
                         }
                         HapticFeedback.mediumImpact();
                         if (_model.validate!) {
-                          if (widget.isEdit!) {
-                            await widget.checkCompany!.reference.update(
+                          if (widget!.isEdit!) {
+                            await widget!.checkCompany!.reference.update(
                                 createFinancialNoteCompanyCheckRecordData(
                               content:
                                   _model.textFieldContentTextController.text,
@@ -673,8 +677,8 @@ class _AddNewCompanyCheckWidgetState extends State<AddNewCompanyCheckWidget> {
                         }
                         HapticFeedback.mediumImpact();
                         if (_model.validate8!) {
-                          if (widget.isEdit!) {
-                            await widget.checkCompany!.reference.update(
+                          if (widget!.isEdit!) {
+                            await widget!.checkCompany!.reference.update(
                                 createFinancialNoteCompanyCheckRecordData(
                               content:
                                   _model.textFieldContentTextController.text,
@@ -1200,8 +1204,8 @@ class _AddNewCompanyCheckWidgetState extends State<AddNewCompanyCheckWidget> {
                         }
                         HapticFeedback.mediumImpact();
                         if (_model.validate6!) {
-                          if (widget.isEdit!) {
-                            await widget.checkCompany!.reference.update(
+                          if (widget!.isEdit!) {
+                            await widget!.checkCompany!.reference.update(
                                 createFinancialNoteCompanyCheckRecordData(
                               content:
                                   _model.textFieldContentTextController.text,
@@ -2535,7 +2539,9 @@ class _AddNewCompanyCheckWidgetState extends State<AddNewCompanyCheckWidget> {
                                                   color: Colors.white,
                                                   size: 36.0,
                                                 ),
-                                                if ((_model.uploadedLocalFile_familyUploadMediax
+                                                if (_model.uploadedLocalFile_familyUploadMediax !=
+                                                        null &&
+                                                    (_model.uploadedLocalFile_familyUploadMediax
                                                             .bytes?.isNotEmpty ??
                                                         false))
                                                   Align(

@@ -1,10 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_partner_manage_page_model.dart';
 export 'work_place_partner_manage_page_model.dart';
 
@@ -40,36 +44,36 @@ class _WorkPlacePartnerManagePageWidgetState
     _model = createModel(context, () => WorkPlacePartnerManagePageModel());
 
     _model.switchCanViewExpenseValue =
-        widget.partnership!.canViewIncomeExpense;
+        widget!.partnership!.canViewIncomeExpense;
     _model.switchCanAddManuelExpenseIncomeValue =
-        widget.partnership!.canManageWorkers;
+        widget!.partnership!.canManageWorkers;
     _model.switchCanManageTransactionValue =
-        widget.partnership!.canManagePendingIncomeExpense;
+        widget!.partnership!.canManagePendingIncomeExpense;
     _model.switchCanViewExpandituryValue =
-        widget.partnership!.canViewEmployeeExpense;
+        widget!.partnership!.canViewEmployeeExpense;
     _model.switcCanSpendMoneyValue =
-        widget.partnership!.canManageEmployeeExpense;
-    _model.switchCanViewVehiclesValue = widget.partnership!.canViewVehicles;
+        widget!.partnership!.canManageEmployeeExpense;
+    _model.switchCanViewVehiclesValue = widget!.partnership!.canViewVehicles;
     _model.switchCanManageVehiclesValue =
-        widget.partnership!.canManageVehicles;
-    _model.switchCanViewTaskValue = widget.partnership!.canViewTasks;
-    _model.switchCanCreateTaskValue = widget.partnership!.canCreateTask;
-    _model.switchCanManageTaskValue = widget.partnership!.canManageTask;
-    _model.switchCanViewStockValue = widget.partnership!.canViewStock;
-    _model.switchCanManageStockValue = widget.partnership!.canManageStock;
-    _model.switchCanViewFormsValue = widget.partnership!.canViewForms;
-    _model.switchCanManageFormsValue = widget.partnership!.canManageForms;
+        widget!.partnership!.canManageVehicles;
+    _model.switchCanViewTaskValue = widget!.partnership!.canViewTasks;
+    _model.switchCanCreateTaskValue = widget!.partnership!.canCreateTask;
+    _model.switchCanManageTaskValue = widget!.partnership!.canManageTask;
+    _model.switchCanViewStockValue = widget!.partnership!.canViewStock;
+    _model.switchCanManageStockValue = widget!.partnership!.canManageStock;
+    _model.switchCanViewFormsValue = widget!.partnership!.canViewForms;
+    _model.switchCanManageFormsValue = widget!.partnership!.canManageForms;
     _model.switchCanManageDepartmentsValue =
-        widget.partnership!.canManageDepartments;
-    _model.switchCanManageRolesValue = widget.partnership!.canManageRoles;
-    _model.switchCanManageUnitsValue = widget.partnership!.canManageUnits;
+        widget!.partnership!.canManageDepartments;
+    _model.switchCanManageRolesValue = widget!.partnership!.canManageRoles;
+    _model.switchCanManageUnitsValue = widget!.partnership!.canManageUnits;
     _model.switchCanCreateInstructionsValue =
-        widget.partnership!.canManageInstructions;
+        widget!.partnership!.canManageInstructions;
     _model.switchCanViewInstructionsValue =
-        widget.partnership!.canViewInstructions;
-    _model.switchCanManageUsersValue = widget.partnership!.canManageWorkers;
-    _model.switchCanViewUserValue = widget.partnership!.canManageWorkers;
-    _model.switchCanCalculateCostValue = widget.partnership!.canManageWorkers;
+        widget!.partnership!.canViewInstructions;
+    _model.switchCanManageUsersValue = widget!.partnership!.canManageWorkers;
+    _model.switchCanViewUserValue = widget!.partnership!.canManageWorkers;
+    _model.switchCanCalculateCostValue = widget!.partnership!.canManageWorkers;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -156,7 +160,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanViewExpenseValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanViewExpenseValue = newValue);
+                                  _model.switchCanViewExpenseValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -199,7 +203,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             onChanged: (newValue) async {
                               safeSetState(() =>
                                   _model.switchCanAddManuelExpenseIncomeValue =
-                                      newValue);
+                                      newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -247,7 +251,7 @@ class _WorkPlacePartnerManagePageWidgetState
                               onChanged: (newValue) async {
                                 safeSetState(() =>
                                     _model.switchCanManageTransactionValue =
-                                        newValue);
+                                        newValue!);
                               },
                               activeColor: FlutterFlowTheme.of(context).primary,
                               activeTrackColor:
@@ -290,7 +294,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanViewExpandituryValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanViewExpandituryValue = newValue);
+                                  .switchCanViewExpandituryValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -332,7 +336,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switcCanSpendMoneyValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switcCanSpendMoneyValue = newValue);
+                                  _model.switcCanSpendMoneyValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -374,7 +378,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanViewVehiclesValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanViewVehiclesValue = newValue);
+                                  .switchCanViewVehiclesValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -416,7 +420,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanManageVehiclesValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanManageVehiclesValue = newValue);
+                                  .switchCanManageVehiclesValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -458,7 +462,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanViewTaskValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanViewTaskValue = newValue);
+                                  _model.switchCanViewTaskValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -500,7 +504,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanCreateTaskValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanCreateTaskValue = newValue);
+                                  _model.switchCanCreateTaskValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -542,7 +546,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanManageTaskValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanManageTaskValue = newValue);
+                                  _model.switchCanManageTaskValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -584,7 +588,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanViewStockValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanViewStockValue = newValue);
+                                  _model.switchCanViewStockValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -626,7 +630,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanManageStockValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanManageStockValue = newValue);
+                                  _model.switchCanManageStockValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -668,7 +672,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanViewFormsValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanViewFormsValue = newValue);
+                                  _model.switchCanViewFormsValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -710,7 +714,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanManageFormsValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanManageFormsValue = newValue);
+                                  _model.switchCanManageFormsValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -752,7 +756,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanManageDepartmentsValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanManageDepartmentsValue = newValue);
+                                  .switchCanManageDepartmentsValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -794,7 +798,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanManageRolesValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanManageRolesValue = newValue);
+                                  _model.switchCanManageRolesValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -836,7 +840,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanManageUnitsValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanManageUnitsValue = newValue);
+                                  _model.switchCanManageUnitsValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -879,7 +883,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             onChanged: (newValue) async {
                               safeSetState(() =>
                                   _model.switchCanCreateInstructionsValue =
-                                      newValue);
+                                      newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -921,7 +925,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanViewInstructionsValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanViewInstructionsValue = newValue);
+                                  .switchCanViewInstructionsValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -963,7 +967,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanManageUsersValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanManageUsersValue = newValue);
+                                  _model.switchCanManageUsersValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -1005,7 +1009,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             value: _model.switchCanViewUserValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanViewUserValue = newValue);
+                                  _model.switchCanViewUserValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -1052,7 +1056,7 @@ class _WorkPlacePartnerManagePageWidgetState
                               value: _model.switchCanCalculateCostValue!,
                               onChanged: (newValue) async {
                                 safeSetState(() => _model
-                                    .switchCanCalculateCostValue = newValue);
+                                    .switchCanCalculateCostValue = newValue!);
                               },
                               activeColor: FlutterFlowTheme.of(context).primary,
                               activeTrackColor:
@@ -1070,7 +1074,7 @@ class _WorkPlacePartnerManagePageWidgetState
                             EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
-                            await widget.partnership!.reference
+                            await widget!.partnership!.reference
                                 .update(createWorkPlacePartnershipRecordData(
                               canViewTasks: _model.switchCanViewTaskValue,
                               canViewStock: _model.switchCanViewStockValue,

@@ -3,9 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_organization_page_model.dart';
 export 'work_place_organization_page_model.dart';
 
@@ -122,11 +124,11 @@ class _WorkPlaceOrganizationPageWidgetState
                                 WorkPlaceWorkersPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlace?.companyRef,
+                                    widget!.workPlace?.companyRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace?.reference,
+                                    widget!.workPlace?.reference,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(
@@ -195,7 +197,7 @@ class _WorkPlaceOrganizationPageWidgetState
                                 ShiftRequestersPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlace?.companyRef,
+                                    widget!.workPlace?.companyRef,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -244,11 +246,11 @@ class _WorkPlaceOrganizationPageWidgetState
                                 DepartmansPageWorkPlaceWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlace?.companyRef,
+                                    widget!.workPlace?.companyRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace?.reference,
+                                    widget!.workPlace?.reference,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(
@@ -317,11 +319,11 @@ class _WorkPlaceOrganizationPageWidgetState
                                 RolesPageWorkPlaceWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlace?.companyRef,
+                                    widget!.workPlace?.companyRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace?.reference,
+                                    widget!.workPlace?.reference,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(
@@ -398,11 +400,11 @@ class _WorkPlaceOrganizationPageWidgetState
                                 UnitsPageWorkPlaceWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlace?.companyRef,
+                                    widget!.workPlace?.companyRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace?.reference,
+                                    widget!.workPlace?.reference,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(

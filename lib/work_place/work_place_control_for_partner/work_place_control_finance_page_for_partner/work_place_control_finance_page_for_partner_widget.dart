@@ -3,9 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_finance_page_for_partner_model.dart';
 export 'work_place_control_finance_page_for_partner_model.dart';
 
@@ -119,16 +121,16 @@ class _WorkPlaceControlFinancePageForPartnerWidgetState
                               24.0, 64.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canCalculateCost) {
+                              if (widget!.partnerDetail!.canCalculateCost) {
                                 context.pushNamed(
                                   ParentProductsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -193,12 +195,12 @@ class _WorkPlaceControlFinancePageForPartnerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewIncomeExpense) {
+                              if (widget!.partnerDetail!.canViewIncomeExpense) {
                                 context.pushNamed(
                                   WorkPlaceSalaryPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -206,7 +208,7 @@ class _WorkPlaceControlFinancePageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
@@ -252,21 +254,21 @@ class _WorkPlaceControlFinancePageForPartnerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewIncomeExpense) {
+                              if (widget!.partnerDetail!.canViewIncomeExpense) {
                                 context.pushNamed(
                                   IncomesPageWorkPlaceCopyWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddIncome': serializeParam(
-                                      widget.partnerDetail
+                                      widget!.partnerDetail
                                           ?.canAddManuelExpenseIncome,
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -331,21 +333,21 @@ class _WorkPlaceControlFinancePageForPartnerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewIncomeExpense) {
+                              if (widget!.partnerDetail!.canViewIncomeExpense) {
                                 context.pushNamed(
                                   PaymentsPageWorkPlaceCopyWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddPayment': serializeParam(
-                                      widget.partnerDetail
+                                      widget!.partnerDetail
                                           ?.canAddManuelExpenseIncome,
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -410,18 +412,18 @@ class _WorkPlaceControlFinancePageForPartnerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!
+                              if (widget!.partnerDetail!
                                   .canManagePendingIncomeExpense) {
                                 context.pushNamed(
                                   ShowAllTransactionPageWorkPlaceWidget
                                       .routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -429,7 +431,7 @@ class _WorkPlaceControlFinancePageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.partnerDetail
+                                      widget!.partnerDetail
                                           ?.canManagePendingIncomeExpense,
                                       ParamType.bool,
                                     ),
@@ -495,17 +497,17 @@ class _WorkPlaceControlFinancePageForPartnerWidgetState
                               24.0, 24.0, 24.0, 64.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget
+                              if (widget!
                                   .partnerDetail!.canViewEmployeeExpense) {
                                 context.pushNamed(
                                   ExpandituriesPageWorkPlaceWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,

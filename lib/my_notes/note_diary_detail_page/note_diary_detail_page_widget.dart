@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'note_diary_detail_page_model.dart';
 export 'note_diary_detail_page_model.dart';
 
@@ -100,7 +104,7 @@ class _NoteDiaryDetailPageWidgetState extends State<NoteDiaryDetailPageWidget> {
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.noteDiary!.reference
+                  await widget!.noteDiary!.reference
                       .update(createPersonalDiaryRecordData(
                     isDeleted: true,
                   ));
@@ -163,12 +167,12 @@ class _NoteDiaryDetailPageWidgetState extends State<NoteDiaryDetailPageWidget> {
                           ParamType.bool,
                         ),
                         'noteDiary': serializeParam(
-                          widget.noteDiary,
+                          widget!.noteDiary,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'noteDiary': widget.noteDiary,
+                        'noteDiary': widget!.noteDiary,
                       },
                     );
                   },
@@ -238,7 +242,7 @@ class _NoteDiaryDetailPageWidgetState extends State<NoteDiaryDetailPageWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Created on: ${dateTimeFormat("d/M/y", widget.noteDiary?.createdAt)}',
+                          'Created on: ${dateTimeFormat("d/M/y", widget!.noteDiary?.createdAt)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -273,7 +277,7 @@ class _NoteDiaryDetailPageWidgetState extends State<NoteDiaryDetailPageWidget> {
                                 0.0, 20.0, 0.0, 12.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.noteDiary?.title,
+                                widget!.noteDiary?.title,
                                 'Başlık',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -298,7 +302,7 @@ class _NoteDiaryDetailPageWidgetState extends State<NoteDiaryDetailPageWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.noteDiary?.content,
+                              widget!.noteDiary?.content,
                               'İçerik',
                             ),
                             style: FlutterFlowTheme.of(context)

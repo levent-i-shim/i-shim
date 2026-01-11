@@ -8,9 +8,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'send_transaction_page_model.dart';
 export 'send_transaction_page_model.dart';
 
@@ -63,7 +67,7 @@ class _SendTransactionPageWidgetState extends State<SendTransactionPageWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyWorkersRecord>>(
       stream: queryCompanyWorkersRecord(
-        parent: widget.companyReport?.parentReference,
+        parent: widget!.companyReport?.parentReference,
         queryBuilder: (companyWorkersRecord) => companyWorkersRecord
             .where(
               'canAcceptTransaction',
@@ -170,8 +174,8 @@ class _SendTransactionPageWidgetState extends State<SendTransactionPageWidget> {
                           Flexible(
                             child: Builder(
                               builder: (context) {
-                                final fields = widget.companyReport?.responses
-                                        .toList() ??
+                                final fields = widget!.companyReport?.responses
+                                        ?.toList() ??
                                     [];
 
                                 return ListView.builder(
@@ -901,7 +905,7 @@ class _SendTransactionPageWidgetState extends State<SendTransactionPageWidget> {
                                 );
                                 _model.workPlaceReports =
                                     await WorkPlaceReportsRecord
-                                        .getDocumentOnce(widget
+                                        .getDocumentOnce(widget!
                                             .companyReport!.workPlaceReports!);
 
                                 var workPlaceTransactionRecordReference =
@@ -912,7 +916,7 @@ class _SendTransactionPageWidgetState extends State<SendTransactionPageWidget> {
                                     name: _model.textController1.text,
                                     description: _model.textController2.text,
                                     companyReports:
-                                        widget.companyReport?.reference,
+                                        widget!.companyReport?.reference,
                                     senderRef: currentUserReference,
                                     receiverRef: _model.userRef,
                                     totalAmount: double.tryParse(
@@ -933,7 +937,7 @@ class _SendTransactionPageWidgetState extends State<SendTransactionPageWidget> {
                                     name: _model.textController1.text,
                                     description: _model.textController2.text,
                                     companyReports:
-                                        widget.companyReport?.reference,
+                                        widget!.companyReport?.reference,
                                     senderRef: currentUserReference,
                                     receiverRef: _model.userRef,
                                     totalAmount: double.tryParse(
@@ -950,13 +954,13 @@ class _SendTransactionPageWidgetState extends State<SendTransactionPageWidget> {
 
                                 var companyTransactionsRecordReference =
                                     CompanyTransactionsRecord.createDoc(
-                                        widget.companyReport!.parentReference);
+                                        widget!.companyReport!.parentReference);
                                 await companyTransactionsRecordReference.set({
                                   ...createCompanyTransactionsRecordData(
                                     name: _model.textController1.text,
                                     description: _model.textController2.text,
                                     companyReports:
-                                        widget.companyReport?.reference,
+                                        widget!.companyReport?.reference,
                                     senderRef: currentUserReference,
                                     receiverRef: _model.userRef,
                                     totalAmount: double.tryParse(
@@ -978,7 +982,7 @@ class _SendTransactionPageWidgetState extends State<SendTransactionPageWidget> {
                                     name: _model.textController1.text,
                                     description: _model.textController2.text,
                                     companyReports:
-                                        widget.companyReport?.reference,
+                                        widget!.companyReport?.reference,
                                     senderRef: currentUserReference,
                                     receiverRef: _model.userRef,
                                     totalAmount: double.tryParse(
@@ -995,12 +999,12 @@ class _SendTransactionPageWidgetState extends State<SendTransactionPageWidget> {
                                   ),
                                 }, companyTransactionsRecordReference);
 
-                                await widget.companyReport!.reference
+                                await widget!.companyReport!.reference
                                     .update(createCompanyReportsRecordData(
                                   isSendTransaction: true,
                                 ));
 
-                                await widget.companyReport!.workPlaceReports!
+                                await widget!.companyReport!.workPlaceReports!
                                     .update(createWorkPlaceReportsRecordData(
                                   isSendTransaction: true,
                                 ));

@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_control_organization_for_partner_page_model.dart';
 export 'company_control_organization_for_partner_page_model.dart';
 
@@ -121,12 +124,12 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                               24.0, 64.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewWorkers) {
+                              if (widget!.partner!.canViewWorkers) {
                                 context.pushNamed(
                                   CompanyWorkersPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -134,20 +137,20 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManageWorker': serializeParam(
-                                      widget.partner?.canManageWorkers,
+                                      widget!.partner?.canManageWorkers,
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget
+                                      widget!
                                           .partner?.canManageEmployeeExpenses,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.partner?.canManageTasks,
+                                      widget!.partner?.canManageTasks,
                                       ParamType.bool,
                                     ),
                                     'canViewTask': serializeParam(
-                                      widget.partner?.canViewTasks,
+                                      widget!.partner?.canViewTasks,
                                       ParamType.bool,
                                     ),
                                     'canViewWorker': serializeParam(
@@ -212,12 +215,12 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewWorkers) {
+                              if (widget!.partner!.canViewWorkers) {
                                 context.pushNamed(
                                   DepartmantsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'companyName': serializeParam(
@@ -225,19 +228,19 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                                       ParamType.String,
                                     ),
                                     'canManageEmployee': serializeParam(
-                                      widget.partner?.canManageWorkers,
+                                      widget!.partner?.canManageWorkers,
                                       ParamType.bool,
                                     ),
                                     'canViewTask': serializeParam(
-                                      widget.partner?.canViewTasks,
+                                      widget!.partner?.canViewTasks,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.partner?.canManageTasks,
+                                      widget!.partner?.canManageTasks,
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget
+                                      widget!
                                           .partner?.canManageEmployeeExpenses,
                                       ParamType.bool,
                                     ),
@@ -246,7 +249,7 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canAddDepartmnet': serializeParam(
-                                      widget.partner?.canManageDepartments,
+                                      widget!.partner?.canManageDepartments,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -307,7 +310,7 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewWorkers) {
+                              if (widget!.partner!.canViewWorkers) {
                                 context.pushNamed(
                                   RolesPageWidget.routeName,
                                   queryParameters: {
@@ -316,23 +319,23 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                                       ParamType.String,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canManageEmployee': serializeParam(
-                                      widget.partner?.canManageWorkers,
+                                      widget!.partner?.canManageWorkers,
                                       ParamType.bool,
                                     ),
                                     'canViewTask': serializeParam(
-                                      widget.partner?.canViewTasks,
+                                      widget!.partner?.canViewTasks,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.partner?.canManageTasks,
+                                      widget!.partner?.canManageTasks,
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget
+                                      widget!
                                           .partner?.canManageEmployeeExpenses,
                                       ParamType.bool,
                                     ),
@@ -341,7 +344,7 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canAddRole': serializeParam(
-                                      widget.partner?.canManageRoles,
+                                      widget!.partner?.canManageRoles,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -402,28 +405,28 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                               24.0, 24.0, 24.0, 64.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewWorkers) {
+                              if (widget!.partner!.canViewWorkers) {
                                 context.pushNamed(
                                   CompanyUnitsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canManageEmployee': serializeParam(
-                                      widget.partner?.canManageWorkers,
+                                      widget!.partner?.canManageWorkers,
                                       ParamType.bool,
                                     ),
                                     'canViewTask': serializeParam(
-                                      widget.partner?.canViewTasks,
+                                      widget!.partner?.canViewTasks,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.partner?.canManageTasks,
+                                      widget!.partner?.canManageTasks,
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget
+                                      widget!
                                           .partner?.canManageEmployeeExpenses,
                                       ParamType.bool,
                                     ),
@@ -432,7 +435,7 @@ class _CompanyControlOrganizationForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canAddUnit': serializeParam(
-                                      widget.partner?.canManageUnits,
+                                      widget!.partner?.canManageUnits,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,

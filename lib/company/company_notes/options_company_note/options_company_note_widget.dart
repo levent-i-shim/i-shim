@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_company_note_model.dart';
 export 'options_company_note_model.dart';
 
@@ -170,12 +175,12 @@ class _OptionsCompanyNoteWidgetState extends State<OptionsCompanyNoteWidget> {
                     UpdateCompanyNotePageWidget.routeName,
                     queryParameters: {
                       'companyNote': serializeParam(
-                        widget.companyNpte,
+                        widget!.companyNpte,
                         ParamType.Document,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'companyNote': widget.companyNpte,
+                      'companyNote': widget!.companyNpte,
                     },
                   );
 
@@ -267,7 +272,7 @@ class _OptionsCompanyNoteWidgetState extends State<OptionsCompanyNoteWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.companyNpte!.reference
+                    await widget!.companyNpte!.reference
                         .update(createCompanyNotesRecordData(
                       isDelete: true,
                     ));

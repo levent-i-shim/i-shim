@@ -4,11 +4,15 @@ import '/components/choose_new_unit/choose_new_unit_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'units_employee_page_work_place_model.dart';
 export 'units_employee_page_work_place_model.dart';
 
@@ -104,8 +108,8 @@ class _UnitsEmployeePageWorkPlaceWidgetState
                     onTap: () async {
                       _model.companyDetailCopy =
                           await CompaniesRecord.getDocumentOnce(
-                              widget.company!);
-                      if (widget.company == currentUserReference) {
+                              widget!.company!);
+                      if (widget!.company == currentUserReference) {
                         var confirmDialogResponse = await showDialog<bool>(
                               context: context,
                               builder: (alertDialogContext) {
@@ -147,8 +151,8 @@ class _UnitsEmployeePageWorkPlaceWidgetState
                                         ?.unfocus();
                                   },
                                   child: ChooseNewUnitWidget(
-                                    unit: widget.unitRefs!,
-                                    company: widget.company,
+                                    unit: widget!.unitRefs!,
+                                    company: widget!.company,
                                   ),
                                 ),
                               );
@@ -253,16 +257,16 @@ class _UnitsEmployeePageWorkPlaceWidgetState
                     child: PagedListView<DocumentSnapshot<Object?>?,
                         CompanyWorkersRecord>(
                       pagingController: _model.setListViewController(
-                          CompanyWorkersRecord.collection(widget.company)
+                          CompanyWorkersRecord.collection(widget!.company)
                               .where(
                                 'unitRefs',
-                                arrayContains: widget.unitRefs?.reference,
+                                arrayContains: widget!.unitRefs?.reference,
                               )
                               .where(
                                 'isDelete',
                                 isEqualTo: false,
                               ),
-                          parent: widget.company),
+                          parent: widget!.company),
                       padding: EdgeInsets.zero,
                       primary: false,
                       reverse: false,
@@ -308,8 +312,8 @@ class _UnitsEmployeePageWorkPlaceWidgetState
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (widget.isPartner!) {
-                                    if (!widget.canManageEmployee!) {
+                                  if (widget!.isPartner!) {
+                                    if (!widget!.canManageEmployee!) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -331,8 +335,8 @@ class _UnitsEmployeePageWorkPlaceWidgetState
                                       return;
                                     }
                                   } else {
-                                    if (widget.isWorker!) {
-                                      if (!widget.canManageEmployee!) {
+                                    if (widget!.isWorker!) {
+                                      if (!widget!.canManageEmployee!) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -364,31 +368,31 @@ class _UnitsEmployeePageWorkPlaceWidgetState
                                         ParamType.Document,
                                       ),
                                       'isPartner': serializeParam(
-                                        widget.isPartner,
+                                        widget!.isPartner,
                                         ParamType.bool,
                                       ),
                                       'canManageWorker': serializeParam(
-                                        widget.canManageEmployee,
+                                        widget!.canManageEmployee,
                                         ParamType.bool,
                                       ),
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                       'isWorker': serializeParam(
-                                        widget.isWorker,
+                                        widget!.isWorker,
                                         ParamType.bool,
                                       ),
                                       'canSendMoney': serializeParam(
-                                        widget.canSendMoney,
+                                        widget!.canSendMoney,
                                         ParamType.bool,
                                       ),
                                       'canManageTask': serializeParam(
-                                        widget.canManageTask,
+                                        widget!.canManageTask,
                                         ParamType.bool,
                                       ),
                                       'workPlace': serializeParam(
-                                        widget.workPlace,
+                                        widget!.workPlace,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,

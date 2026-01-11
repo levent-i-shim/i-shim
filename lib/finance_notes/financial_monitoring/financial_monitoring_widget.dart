@@ -9,12 +9,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'financial_monitoring_model.dart';
 export 'financial_monitoring_model.dart';
 
@@ -732,6 +735,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                             children: [
                                                               if (listViewFinancialMonitoringNotesRecord
                                                                           .pdfUrl !=
+                                                                      null &&
+                                                                  listViewFinancialMonitoringNotesRecord
+                                                                          .pdfUrl !=
                                                                       '')
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
@@ -787,6 +793,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                   ),
                                                                 ),
                                                               if (listViewFinancialMonitoringNotesRecord
+                                                                          .imagePath !=
+                                                                      null &&
+                                                                  listViewFinancialMonitoringNotesRecord
                                                                           .imagePath !=
                                                                       '')
                                                                 Padding(
@@ -1313,6 +1322,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                             children: [
                                                               if (listViewFinancialMonitoringNotesRecord
                                                                           .pdfUrl !=
+                                                                      null &&
+                                                                  listViewFinancialMonitoringNotesRecord
+                                                                          .pdfUrl !=
                                                                       '')
                                                                 Padding(
                                                                   padding: EdgeInsetsDirectional
@@ -1368,6 +1380,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                   ),
                                                                 ),
                                                               if (listViewFinancialMonitoringNotesRecord
+                                                                          .imagePath !=
+                                                                      null &&
+                                                                  listViewFinancialMonitoringNotesRecord
                                                                           .imagePath !=
                                                                       '')
                                                                 Padding(
@@ -1899,6 +1914,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                 children: [
                                                                   if (listViewFinancialMonitoringNotesRecord
                                                                               .pdfUrl !=
+                                                                          null &&
+                                                                      listViewFinancialMonitoringNotesRecord
+                                                                              .pdfUrl !=
                                                                           '')
                                                                     Padding(
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -1943,6 +1961,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                       ),
                                                                     ),
                                                                   if (listViewFinancialMonitoringNotesRecord
+                                                                              .imagePath !=
+                                                                          null &&
+                                                                      listViewFinancialMonitoringNotesRecord
                                                                               .imagePath !=
                                                                           '')
                                                                     Padding(
@@ -2404,6 +2425,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                   ),
                                                                   if (listViewFinancialMonitoringNotesRecord
                                                                               .familName !=
+                                                                          null &&
+                                                                      listViewFinancialMonitoringNotesRecord
+                                                                              .familName !=
                                                                           '')
                                                                     Padding(
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -2432,6 +2456,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                       ),
                                                                     ),
                                                                   if (listViewFinancialMonitoringNotesRecord
+                                                                              .personalName !=
+                                                                          null &&
+                                                                      listViewFinancialMonitoringNotesRecord
                                                                               .personalName !=
                                                                           '')
                                                                     Padding(
@@ -2552,6 +2579,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                 children: [
                                                                   if (listViewFinancialMonitoringNotesRecord
                                                                               .pdfUrl !=
+                                                                          null &&
+                                                                      listViewFinancialMonitoringNotesRecord
+                                                                              .pdfUrl !=
                                                                           '')
                                                                     Padding(
                                                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -2596,6 +2626,9 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                       ),
                                                                     ),
                                                                   if (listViewFinancialMonitoringNotesRecord
+                                                                              .imagePath !=
+                                                                          null &&
+                                                                      listViewFinancialMonitoringNotesRecord
                                                                               .imagePath !=
                                                                           '')
                                                                     Padding(
@@ -5168,7 +5201,7 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                           mainAxisAlignment:
                                                                               MainAxisAlignment.spaceBetween,
                                                                           children: [
-                                                                            if (_model.companyTableValuesDropDownValue?.contains(widget.listContainCompanyName) ??
+                                                                            if (_model.companyTableValuesDropDownValue?.contains(widget!.listContainCompanyName) ??
                                                                                 true)
                                                                               Flexible(
                                                                                 child: Align(
@@ -5567,7 +5600,7 @@ class _FinancialMonitoringWidgetState extends State<FinancialMonitoringWidget>
                                                                                 ),
                                                                               ),
                                                                             ),
-                                                                            if (_model.companyTableValuesDropDown2Value?.contains(widget.listContainDate) ??
+                                                                            if (_model.companyTableValuesDropDown2Value?.contains(widget!.listContainDate) ??
                                                                                 true)
                                                                               Flexible(
                                                                                 child: Align(

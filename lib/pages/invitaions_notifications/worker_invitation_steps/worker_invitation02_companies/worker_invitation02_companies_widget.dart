@@ -4,9 +4,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'worker_invitation02_companies_model.dart';
 export 'worker_invitation02_companies_model.dart';
 
@@ -458,14 +461,14 @@ class _WorkerInvitation02CompaniesWidgetState
                                                                   ),
                                                                   'workerRef':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerID,
                                                                     ParamType
                                                                         .DocumentReference,
                                                                   ),
                                                                   'workerName':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerName,
                                                                     ParamType
                                                                         .String,
@@ -479,7 +482,7 @@ class _WorkerInvitation02CompaniesWidgetState
                                                                   ),
                                                                   'routeBack':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .routeBack,
                                                                     ParamType
                                                                         .bool,

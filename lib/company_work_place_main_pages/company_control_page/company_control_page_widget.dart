@@ -1,15 +1,19 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_control_page_model.dart';
 export 'company_control_page_model.dart';
 
@@ -44,7 +48,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.budget = await actions.getCompanyBudget(
-        widget.company!,
+        widget!.company!,
       );
       _model.monthlyMoney = _model.budget?.monthly;
       _model.day15Money = _model.budget?.day15;
@@ -92,7 +96,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.copmanyDetail?.name,
+              widget!.copmanyDetail?.name,
               'Company',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -602,7 +606,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                     child: Text(
                                       valueOrDefault<String>(
                                         formatNumber(
-                                          widget.copmanyDetail?.yearlyMoney,
+                                          widget!.copmanyDetail?.yearlyMoney,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.commaDecimal,
                                         ),
@@ -704,7 +708,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                     child: Text(
                                       valueOrDefault<String>(
                                         formatNumber(
-                                          widget.copmanyDetail?.totalMoney,
+                                          widget!.copmanyDetail?.totalMoney,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.commaDecimal,
                                         ),
@@ -776,7 +780,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                   IncomesPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddIncome': serializeParam(
@@ -865,7 +869,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                   PaymentsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddPayment': serializeParam(
@@ -954,7 +958,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                   CompanyWorkersPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canManageWorker': serializeParam(
@@ -1076,7 +1080,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                       ParamType.bool,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
@@ -1161,11 +1165,11 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                   ParentProductsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.copmanyDetail?.headOffice,
+                                      widget!.copmanyDetail?.headOffice,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -1354,16 +1358,16 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                 CompanyControlFinancePageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'companyDetail': serializeParam(
-                                    widget.copmanyDetail,
+                                    widget!.copmanyDetail,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'companyDetail': widget.copmanyDetail,
+                                  'companyDetail': widget!.copmanyDetail,
                                 },
                               );
                             },
@@ -1410,7 +1414,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                 CompanyControlOrganizationPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -1459,7 +1463,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                 CompanyControlOperationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -1504,18 +1508,18 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                           padding: EdgeInsets.all(8.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.copmanyDetail?.owner ==
+                              if (widget!.copmanyDetail?.owner ==
                                   currentUserReference) {
                                 context.pushNamed(
                                   CopmanyPartnershipsPageWidget.routeName,
                                   queryParameters: {
                                     'companyDetail': serializeParam(
-                                      widget.copmanyDetail,
+                                      widget!.copmanyDetail,
                                       ParamType.Document,
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    'companyDetail': widget.copmanyDetail,
+                                    'companyDetail': widget!.copmanyDetail,
                                   },
                                 );
                               } else {
@@ -1578,7 +1582,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                 CompanyNotificationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -1627,7 +1631,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                 CompanyComplexWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -1676,11 +1680,11 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                 CopmanyControlCommunicationWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.copmanyDetail?.headOffice,
+                                    widget!.copmanyDetail?.headOffice,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -1894,7 +1898,7 @@ class _CompanyControlPageWidgetState extends State<CompanyControlPageWidget> {
                                 CompanyNotesPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'canManage': serializeParam(

@@ -3,10 +3,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'income_plan_i_authorize_settings_model.dart';
 export 'income_plan_i_authorize_settings_model.dart';
 
@@ -141,16 +144,16 @@ class _IncomePlanIAuthorizeSettingsWidgetState
                         AddIncomePlanAuthorizeToMonitorWidget.routeName,
                         queryParameters: {
                           'incomePlanDocument': serializeParam(
-                            widget.incomePlanDocument,
+                            widget!.incomePlanDocument,
                             ParamType.Document,
                           ),
                           'incomePlanDocumentRef': serializeParam(
-                            widget.incomePlanDocumentRef,
+                            widget!.incomePlanDocumentRef,
                             ParamType.DocumentReference,
                           ),
                         }.withoutNulls,
                         extra: <String, dynamic>{
-                          'incomePlanDocument': widget.incomePlanDocument,
+                          'incomePlanDocument': widget!.incomePlanDocument,
                         },
                       );
                     } else {
@@ -159,16 +162,16 @@ class _IncomePlanIAuthorizeSettingsWidgetState
                           AddIncomePlanAuthorizeToModifyWidget.routeName,
                           queryParameters: {
                             'incomePlanDocument': serializeParam(
-                              widget.incomePlanDocument,
+                              widget!.incomePlanDocument,
                               ParamType.Document,
                             ),
                             'incomePlanDocumentRef': serializeParam(
-                              widget.incomePlanDocumentRef,
+                              widget!.incomePlanDocumentRef,
                               ParamType.DocumentReference,
                             ),
                           }.withoutNulls,
                           extra: <String, dynamic>{
-                            'incomePlanDocument': widget.incomePlanDocument,
+                            'incomePlanDocument': widget!.incomePlanDocument,
                           },
                         );
                       }
@@ -256,7 +259,7 @@ class _IncomePlanIAuthorizeSettingsWidgetState
                                       10.0, 6.0, 10.0, 6.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget.planName,
+                                      widget!.planName,
                                       'Plan Adı',
                                     ),
                                     textAlign: TextAlign.justify,
@@ -363,10 +366,10 @@ class _IncomePlanIAuthorizeSettingsWidgetState
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      final authorizedUsersToMonitor = widget
+                                      final authorizedUsersToMonitor = widget!
                                               .incomePlanDocument
                                               ?.authorizedUsersToMonitor
-                                              .toList() ??
+                                              ?.toList() ??
                                           [];
 
                                       return ListView.builder(
@@ -547,10 +550,10 @@ class _IncomePlanIAuthorizeSettingsWidgetState
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      final authorizedUsersToModify = widget
+                                      final authorizedUsersToModify = widget!
                                               .incomePlanDocument
                                               ?.authorizedUsersToModify
-                                              .toList() ??
+                                              ?.toList() ??
                                           [];
 
                                       return ListView.builder(

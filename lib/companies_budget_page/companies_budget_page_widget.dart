@@ -1,11 +1,15 @@
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'companies_budget_page_model.dart';
 export 'companies_budget_page_model.dart';
 
@@ -38,9 +42,9 @@ class _CompaniesBudgetPageWidgetState extends State<CompaniesBudgetPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       for (int loop1Index = 0;
-          loop1Index < widget.companies!.length;
+          loop1Index < widget!.companies!.length;
           loop1Index++) {
-        final currentLoop1Item = widget.companies![loop1Index];
+        final currentLoop1Item = widget!.companies![loop1Index];
         _model.companyBudgetAdd = await actions.getYesterdayCompanyFinancials(
           currentLoop1Item.reference,
           currentLoop1Item.name,

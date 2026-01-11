@@ -1,14 +1,19 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_control_for_partner_page_model.dart';
 export 'company_control_for_partner_page_model.dart';
 
@@ -44,9 +49,9 @@ class _CompanyControlForPartnerPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.companyDetail =
-          await CompaniesRecord.getDocumentOnce(widget.company!);
+          await CompaniesRecord.getDocumentOnce(widget!.company!);
       _model.budget = await actions.getCompanyBudget(
-        widget.company!,
+        widget!.company!,
       );
       _model.dailyMoney = _model.budget?.day;
       _model.dailyWeek = _model.budget?.week;
@@ -94,7 +99,7 @@ class _CompanyControlForPartnerPageWidgetState
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.partnership?.companyName,
+              widget!.partnership?.companyName,
               'Company',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -709,7 +714,7 @@ class _CompanyControlForPartnerPageWidgetState
                                     child: Text(
                                       valueOrDefault<String>(
                                         _model.companyDetail?.totalMoney
-                                            .toString(),
+                                            ?.toString(),
                                         '0',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -766,16 +771,16 @@ class _CompanyControlForPartnerPageWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.partnership!.canViewIncomeExpenses) {
+                              if (widget!.partnership!.canViewIncomeExpenses) {
                                 context.pushNamed(
                                   IncomesPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnership?.companyRef,
+                                      widget!.partnership?.companyRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddIncome': serializeParam(
-                                      widget.partnership
+                                      widget!.partnership
                                           ?.canAddManuelIncomeExpense,
                                       ParamType.bool,
                                     ),
@@ -869,16 +874,16 @@ class _CompanyControlForPartnerPageWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.partnership!.canViewIncomeExpenses) {
+                              if (widget!.partnership!.canViewIncomeExpenses) {
                                 context.pushNamed(
                                   PaymentsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnership?.companyRef,
+                                      widget!.partnership?.companyRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddPayment': serializeParam(
-                                      widget.partnership
+                                      widget!.partnership
                                           ?.canAddManuelIncomeExpense,
                                       ParamType.bool,
                                     ),
@@ -972,12 +977,12 @@ class _CompanyControlForPartnerPageWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.partnership!.canViewWorkers) {
+                              if (widget!.partnership!.canViewWorkers) {
                                 context.pushNamed(
                                   CompanyWorkersPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnership?.companyRef,
+                                      widget!.partnership?.companyRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -985,20 +990,20 @@ class _CompanyControlForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManageWorker': serializeParam(
-                                      widget.partnership?.canManageWorkers,
+                                      widget!.partnership?.canManageWorkers,
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget.partnership
+                                      widget!.partnership
                                           ?.canManageEmployeeExpenses,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.partnership?.canManageTasks,
+                                      widget!.partnership?.canManageTasks,
                                       ParamType.bool,
                                     ),
                                     'canViewTask': serializeParam(
-                                      widget.partnership?.canViewTasks,
+                                      widget!.partnership?.canViewTasks,
                                       ParamType.bool,
                                     ),
                                     'canViewWorker': serializeParam(
@@ -1094,20 +1099,20 @@ class _CompanyControlForPartnerPageWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.partnership!.canViewVehicles) {
+                              if (widget!.partnership!.canViewVehicles) {
                                 context.pushNamed(
                                   CompanyVehiclesPageWidget.routeName,
                                   queryParameters: {
                                     'canAddVehicle': serializeParam(
-                                      widget.partnership?.canManageVehicles,
+                                      widget!.partnership?.canManageVehicles,
                                       ParamType.bool,
                                     ),
                                     'canCreateVehiclePayment': serializeParam(
-                                      widget.partnership?.canManageVehicles,
+                                      widget!.partnership?.canManageVehicles,
                                       ParamType.bool,
                                     ),
                                     'company': serializeParam(
-                                      widget.partnership?.companyRef,
+                                      widget!.partnership?.companyRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -1203,12 +1208,12 @@ class _CompanyControlForPartnerPageWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.partnership!.canCalculateCost) {
+                              if (widget!.partnership!.canCalculateCost) {
                                 context.pushNamed(
                                   ParentProductsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnership?.companyRef,
+                                      widget!.partnership?.companyRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
@@ -1404,12 +1409,12 @@ class _CompanyControlForPartnerPageWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partnership': serializeParam(
-                                    widget.partnership,
+                                    widget!.partnership,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partnership': widget.partnership,
+                                  'partnership': widget!.partnership,
                                 },
                               );
                             },
@@ -1457,16 +1462,16 @@ class _CompanyControlForPartnerPageWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partner': serializeParam(
-                                    widget.partnership,
+                                    widget!.partnership,
                                     ParamType.Document,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partner': widget.partnership,
+                                  'partner': widget!.partnership,
                                 },
                               );
                             },
@@ -1514,16 +1519,16 @@ class _CompanyControlForPartnerPageWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partner': serializeParam(
-                                    widget.partnership,
+                                    widget!.partnership,
                                     ParamType.Document,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partner': widget.partnership,
+                                  'partner': widget!.partnership,
                                 },
                               );
                             },
@@ -1570,7 +1575,7 @@ class _CompanyControlForPartnerPageWidgetState
                                 CompanyComplexWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -1619,7 +1624,7 @@ class _CompanyControlForPartnerPageWidgetState
                                 CompanyNotificationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -1669,16 +1674,16 @@ class _CompanyControlForPartnerPageWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partner': serializeParam(
-                                    widget.partnership,
+                                    widget!.partnership,
                                     ParamType.Document,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partner': widget.partnership,
+                                  'partner': widget!.partnership,
                                 },
                               );
                             },
@@ -1726,16 +1731,16 @@ class _CompanyControlForPartnerPageWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partner': serializeParam(
-                                    widget.partnership,
+                                    widget!.partnership,
                                     ParamType.Document,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partner': widget.partnership,
+                                  'partner': widget!.partnership,
                                 },
                               );
                             },
@@ -1824,7 +1829,7 @@ class _CompanyControlForPartnerPageWidgetState
                                 CompanyNotesPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'canManage': serializeParam(

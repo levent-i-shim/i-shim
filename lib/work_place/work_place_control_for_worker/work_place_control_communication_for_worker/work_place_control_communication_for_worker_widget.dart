@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_communication_for_worker_model.dart';
 export 'work_place_control_communication_for_worker_model.dart';
 
@@ -121,17 +124,17 @@ class _WorkPlaceControlCommunicationForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canSendInstruction) {
+                              if (widget!.companyWorker!.canSendInstruction) {
                                 context.pushNamed(
                                   InstructionsCreatePageWorkPlaceWidget
                                       .routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -196,7 +199,7 @@ class _WorkPlaceControlCommunicationForWorkerWidgetState
                                 ConfirmationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.companyWorker?.parentReference,
+                                    widget!.companyWorker?.parentReference,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,

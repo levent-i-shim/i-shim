@@ -8,10 +8,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'transactiondetail_page_work_place_model.dart';
 export 'transactiondetail_page_work_place_model.dart';
 
@@ -57,7 +62,7 @@ class _TransactiondetailPageWorkPlaceWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.companyDetail =
-          await CompaniesRecord.getDocumentOnce(widget.company!);
+          await CompaniesRecord.getDocumentOnce(widget!.company!);
       _model.worker = await queryWorkPlaceWorkerRecordOnce(
         parent: _model.companyDetail?.headOffice,
         queryBuilder: (workPlaceWorkerRecord) => workPlaceWorkerRecord.where(
@@ -65,8 +70,8 @@ class _TransactiondetailPageWorkPlaceWidgetState
           isEqualTo: true,
         ),
       );
-      _model.isEnteredIncome = widget.transaction!.isConfirmed;
-      _model.isEnteredPayment = widget.transaction!.isConfirmed;
+      _model.isEnteredIncome = widget!.transaction!.isConfirmed;
+      _model.isEnteredPayment = widget!.transaction!.isConfirmed;
       _model.workers = _model.worker!.toList().cast<WorkPlaceWorkerRecord>();
       safeSetState(() {});
     });
@@ -123,7 +128,7 @@ class _TransactiondetailPageWorkPlaceWidgetState
                       EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                   child: StreamBuilder<CompanyReportsRecord>(
                     stream: CompanyReportsRecord.getDocument(
-                        widget.transaction!.companyReports!),
+                        widget!.transaction!.companyReports!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -518,7 +523,7 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  widget.transaction?.name,
+                                  widget!.transaction?.name,
                                   '0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -547,7 +552,7 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  widget.transaction?.description,
+                                  widget!.transaction?.description,
                                   'açıklama',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -576,7 +581,7 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  widget.transaction?.totalAmount.toString(),
+                                  widget!.transaction?.totalAmount?.toString(),
                                   '0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -605,7 +610,7 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                   0.0, 10.0, 0.0, 0.0),
                               child: Text(
                                 dateTimeFormat(
-                                    "d/M/y", widget.transaction!.date!),
+                                    "d/M/y", widget!.transaction!.date!),
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -633,8 +638,8 @@ class _TransactiondetailPageWorkPlaceWidgetState
                               child: Column(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  if (!widget.transaction!.isConfirmed &&
-                                      !widget.transaction!.isRejected)
+                                  if (!widget!.transaction!.isConfirmed &&
+                                      !widget!.transaction!.isRejected)
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           5.0, 20.0, 5.0, 20.0),
@@ -649,8 +654,8 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                             child: FFButtonWidget(
                                               onPressed: () async {
                                                 var _shouldSetState = false;
-                                                if (widget.isPartner!) {
-                                                  if (!widget
+                                                if (widget!.isPartner!) {
+                                                  if (!widget!
                                                       .canManageTransaction!) {
                                                     ScaffoldMessenger.of(
                                                             context)
@@ -677,8 +682,8 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                                     return;
                                                   }
                                                 } else {
-                                                  if (widget.isWorker!) {
-                                                    if (!widget
+                                                  if (widget!.isWorker!) {
+                                                    if (!widget!
                                                         .canManageTransaction!) {
                                                       ScaffoldMessenger.of(
                                                               context)
@@ -727,7 +732,7 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                                 }
                                                 _shouldSetState = true;
                                                 if (_model.validate!) {
-                                                  await widget
+                                                  await widget!
                                                       .transaction!.reference
                                                       .update(
                                                           createWorkPlaceTransactionRecordData(
@@ -744,29 +749,29 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                                   var companyTransactionsRecordReference =
                                                       CompanyTransactionsRecord
                                                           .createDoc(
-                                                              widget.company!);
+                                                              widget!.company!);
                                                   await companyTransactionsRecordReference
                                                       .set({
                                                     ...createCompanyTransactionsRecordData(
-                                                      name: widget
+                                                      name: widget!
                                                           .transaction?.name,
-                                                      description: widget
+                                                      description: widget!
                                                           .transaction
                                                           ?.description,
-                                                      companyReports: widget
+                                                      companyReports: widget!
                                                           .transaction
                                                           ?.companyReports,
                                                       senderRef:
                                                           currentUserReference,
                                                       receiverRef:
                                                           _model.receiverUser,
-                                                      totalAmount: widget
+                                                      totalAmount: widget!
                                                           .transaction
                                                           ?.totalAmount,
                                                       isConfirmed: false,
                                                       isRejected: false,
                                                       workPlaceTransaction:
-                                                          widget.transaction
+                                                          widget!.transaction
                                                               ?.reference,
                                                     ),
                                                     ...mapToFirestore(
@@ -780,25 +785,25 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                                       CompanyTransactionsRecord
                                                           .getDocumentFromData({
                                                     ...createCompanyTransactionsRecordData(
-                                                      name: widget
+                                                      name: widget!
                                                           .transaction?.name,
-                                                      description: widget
+                                                      description: widget!
                                                           .transaction
                                                           ?.description,
-                                                      companyReports: widget
+                                                      companyReports: widget!
                                                           .transaction
                                                           ?.companyReports,
                                                       senderRef:
                                                           currentUserReference,
                                                       receiverRef:
                                                           _model.receiverUser,
-                                                      totalAmount: widget
+                                                      totalAmount: widget!
                                                           .transaction
                                                           ?.totalAmount,
                                                       isConfirmed: false,
                                                       isRejected: false,
                                                       workPlaceTransaction:
-                                                          widget.transaction
+                                                          widget!.transaction
                                                               ?.reference,
                                                     ),
                                                     ...mapToFirestore(
@@ -840,7 +845,7 @@ class _TransactiondetailPageWorkPlaceWidgetState
                                                           .companyTransaction
                                                           ?.reference,
                                                       fullDescription:
-                                                          '${widget.transaction?.name} isimli işlem onaylandı ve${widget.transaction?.totalAmount.toString()} TL Gelir Olarak girildi',
+                                                          '${widget!.transaction?.name} isimli işlem onaylandı ve${widget!.transaction?.totalAmount?.toString()} TL Gelir Olarak girildi',
                                                       isChangedStock: false,
                                                     ),
                                                     ...mapToFirestore(

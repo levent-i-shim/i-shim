@@ -1,15 +1,19 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_for_company_page_request_model.dart';
 export 'current_account_for_company_page_request_model.dart';
 
@@ -44,7 +48,7 @@ class _CurrentAccountForCompanyPageRequestWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.allNotifications = await queryCompanyNotificationsRecordOnce(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyNotificationsRecord) => companyNotificationsRecord
             .where(
               'type',
@@ -63,7 +67,7 @@ class _CurrentAccountForCompanyPageRequestWidgetState
             currentLoop1Item.currentAccount!);
         _model.amISideOnePartner = await actions.isEqual(
           _model.currentAccoun!.sideOneID,
-          widget.company!.id,
+          widget!.company!.id,
         );
         if (_model.amISideOnePartner!) {
           if (_model.currentAccoun?.sideTwoType == 'Şirket') {

@@ -7,8 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'report_result_add_income_page_model.dart';
 export 'report_result_add_income_page_model.dart';
 
@@ -61,7 +64,7 @@ class _ReportResultAddIncomePageWidgetState
     _model.textFieldTcNoFocusNode ??= FocusNode();
 
     _model.textFieldValueTextController ??=
-        TextEditingController(text: widget.value?.toString());
+        TextEditingController(text: widget!.value?.toString());
     _model.textFieldValueFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -835,10 +838,10 @@ class _ReportResultAddIncomePageWidgetState
                       onPressed: () async {
                         var workPlaceIncomes2025RecordReference =
                             WorkPlaceIncomes2025Record.createDoc(
-                                widget.workPlace!);
+                                widget!.workPlace!);
                         await workPlaceIncomes2025RecordReference.set({
                           ...createWorkPlaceIncomes2025RecordData(
-                            value: widget.value,
+                            value: widget!.value,
                             type: _model.dropDownTypeValue,
                             fromWhom:
                                 _model.textFieldGelirKaynakTextController.text,
@@ -857,7 +860,7 @@ class _ReportResultAddIncomePageWidgetState
                         _model.incomeWorkPlace =
                             WorkPlaceIncomes2025Record.getDocumentFromData({
                           ...createWorkPlaceIncomes2025RecordData(
-                            value: widget.value,
+                            value: widget!.value,
                             type: _model.dropDownTypeValue,
                             fromWhom:
                                 _model.textFieldGelirKaynakTextController.text,
@@ -876,10 +879,10 @@ class _ReportResultAddIncomePageWidgetState
 
                         var companyIncomes2025RecordReference =
                             CompanyIncomes2025Record.createDoc(
-                                widget.company!);
+                                widget!.company!);
                         await companyIncomes2025RecordReference.set({
                           ...createCompanyIncomes2025RecordData(
-                            value: widget.value,
+                            value: widget!.value,
                             type: _model.dropDownTypeValue,
                             fromWhom:
                                 _model.textFieldGelirKaynakTextController.text,
@@ -888,7 +891,7 @@ class _ReportResultAddIncomePageWidgetState
                                 _model.textFieldGelirDetailTextController.text,
                             isExpected: false,
                             isDelete: false,
-                            workPlace: widget.workPlace,
+                            workPlace: widget!.workPlace,
                             workPlaceIncome: _model.incomeWorkPlace?.reference,
                           ),
                           ...mapToFirestore(
@@ -900,7 +903,7 @@ class _ReportResultAddIncomePageWidgetState
                         _model.income =
                             CompanyIncomes2025Record.getDocumentFromData({
                           ...createCompanyIncomes2025RecordData(
-                            value: widget.value,
+                            value: widget!.value,
                             type: _model.dropDownTypeValue,
                             fromWhom:
                                 _model.textFieldGelirKaynakTextController.text,
@@ -909,7 +912,7 @@ class _ReportResultAddIncomePageWidgetState
                                 _model.textFieldGelirDetailTextController.text,
                             isExpected: false,
                             isDelete: false,
-                            workPlace: widget.workPlace,
+                            workPlace: widget!.workPlace,
                             workPlaceIncome: _model.incomeWorkPlace?.reference,
                           ),
                           ...mapToFirestore(
@@ -919,34 +922,34 @@ class _ReportResultAddIncomePageWidgetState
                           ),
                         }, companyIncomes2025RecordReference);
 
-                        await widget.companyTransaction!
+                        await widget!.companyTransaction!
                             .update(createCompanyTransactionsRecordData(
                           isConfirmed: true,
                         ));
 
-                        await widget.workPlaceTransaction!
+                        await widget!.workPlaceTransaction!
                             .update(createWorkPlaceTransactionRecordData(
                           isConfirmed: true,
                         ));
 
-                        await widget.workPlace!.update({
+                        await widget!.workPlace!.update({
                           ...mapToFirestore(
                             {
                               'yearlyMoney':
-                                  FieldValue.increment(widget.value!),
+                                  FieldValue.increment(widget!.value!),
                               'totalMoney':
-                                  FieldValue.increment(widget.value!),
+                                  FieldValue.increment(widget!.value!),
                             },
                           ),
                         });
 
-                        await widget.company!.update({
+                        await widget!.company!.update({
                           ...mapToFirestore(
                             {
                               'yearlyMoney':
-                                  FieldValue.increment(widget.value!),
+                                  FieldValue.increment(widget!.value!),
                               'totalMoney':
-                                  FieldValue.increment(widget.value!),
+                                  FieldValue.increment(widget!.value!),
                             },
                           ),
                         });
@@ -969,9 +972,9 @@ class _ReportResultAddIncomePageWidgetState
                           ...createAjandaRecordData(
                             description: 'İşlem Onaylandı Gelir Olarak Girildi',
                             type: WorkHistoryTypes.incomeEntered.name,
-                            transaction: widget.companyTransaction,
+                            transaction: widget!.companyTransaction,
                             fullDescription:
-                                '${widget.companyName} isimli şirketinizde ${widget.transactionName} isimli işlem onaylandı ve${widget.value?.toString()} TL Gelir Olarak girildi',
+                                '${widget!.companyName} isimli şirketinizde ${widget!.transactionName} isimli işlem onaylandı ve${widget!.value?.toString()} TL Gelir Olarak girildi',
                             isIncome: true,
                             companyIncome: _model.income?.reference,
                             isChangedStock: false,
@@ -984,16 +987,16 @@ class _ReportResultAddIncomePageWidgetState
                         });
 
                         await WorkPlaceNotificationsRecord.createDoc(
-                                widget.workPlace!)
+                                widget!.workPlace!)
                             .set({
                           ...createWorkPlaceNotificationsRecordData(
                             type: WorkHistoryTypes.incomeEntered.name,
                             content: 'İşlem Onaylandı',
                             isRead: false,
                             isDelete: false,
-                            company: widget.company,
+                            company: widget!.company,
                             fullDescription:
-                                '${widget.transactionName} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından onaylandı',
+                                '${widget!.transactionName} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından onaylandı',
                             isAccept: true,
                             isReject: false,
                             triggeredBy: currentUserReference,

@@ -2,9 +2,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'isyerikur_model.dart';
 export 'isyerikur_model.dart';
 
@@ -127,7 +129,7 @@ class _IsyerikurWidgetState extends State<IsyerikurWidget> {
                                   OfisKurWidget.routeName,
                                   queryParameters: {
                                     'invtitation': serializeParam(
-                                      widget.invitation,
+                                      widget!.invitation,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -180,7 +182,7 @@ class _IsyerikurWidgetState extends State<IsyerikurWidget> {
                                   FabrikaKurWidget.routeName,
                                   queryParameters: {
                                     'invitation': serializeParam(
-                                      widget.invitation,
+                                      widget!.invitation,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -233,7 +235,7 @@ class _IsyerikurWidgetState extends State<IsyerikurWidget> {
                                   SantiyeKurWidget.routeName,
                                   queryParameters: {
                                     'invitation': serializeParam(
-                                      widget.invitation,
+                                      widget!.invitation,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -286,7 +288,7 @@ class _IsyerikurWidgetState extends State<IsyerikurWidget> {
                                   SantiyeKurWidget.routeName,
                                   queryParameters: {
                                     'invitation': serializeParam(
-                                      widget.invitation,
+                                      widget!.invitation,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,

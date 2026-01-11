@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'person_instructions_page_work_place_model.dart';
 export 'person_instructions_page_work_place_model.dart';
 
@@ -65,7 +68,7 @@ class _PersonInstructionsPageWorkPlaceWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<WorkPlaceWorkerRecord>>(
       stream: queryWorkPlaceWorkerRecord(
-        parent: widget.workPlace,
+        parent: widget!.workPlace,
         queryBuilder: (workPlaceWorkerRecord) => workPlaceWorkerRecord.where(
           'isDelete',
           isEqualTo: false,
@@ -329,8 +332,8 @@ class _PersonInstructionsPageWorkPlaceWidgetState
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     var _shouldSetState = false;
-                                    if (widget.isPartner!) {
-                                      if (!widget.canCreate!) {
+                                    if (widget!.isPartner!) {
+                                      if (!widget!.canCreate!) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -354,8 +357,8 @@ class _PersonInstructionsPageWorkPlaceWidgetState
                                         return;
                                       }
                                     } else {
-                                      if (widget.isWorker!) {
-                                        if (!widget.canCreate!) {
+                                      if (widget!.isWorker!) {
+                                        if (!widget!.canCreate!) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -409,8 +412,8 @@ class _PersonInstructionsPageWorkPlaceWidgetState
                                         ...createInstructionsRecordData(
                                           description:
                                               _model.textController.text,
-                                          company: widget.company,
-                                          workPlace: widget.workPlace,
+                                          company: widget!.company,
+                                          workPlace: widget!.workPlace,
                                           amISender: true,
                                         ),
                                         ...mapToFirestore(
@@ -425,8 +428,8 @@ class _PersonInstructionsPageWorkPlaceWidgetState
                                         ...createInstructionsRecordData(
                                           description:
                                               _model.textController.text,
-                                          company: widget.company,
-                                          workPlace: widget.workPlace,
+                                          company: widget!.company,
+                                          workPlace: widget!.workPlace,
                                           amISender: true,
                                         ),
                                         ...mapToFirestore(
@@ -444,8 +447,8 @@ class _PersonInstructionsPageWorkPlaceWidgetState
                                         ...createInstructionsRecordData(
                                           description:
                                               _model.textController.text,
-                                          company: widget.company,
-                                          workPlace: widget.workPlace,
+                                          company: widget!.company,
+                                          workPlace: widget!.workPlace,
                                           amISender: false,
                                           id: _model
                                               .refInstruction?.reference.id,
@@ -462,8 +465,8 @@ class _PersonInstructionsPageWorkPlaceWidgetState
                                         ...createInstructionsRecordData(
                                           description:
                                               _model.textController.text,
-                                          company: widget.company,
-                                          workPlace: widget.workPlace,
+                                          company: widget!.company,
+                                          workPlace: widget!.workPlace,
                                           amISender: false,
                                           id: _model
                                               .refInstruction?.reference.id,

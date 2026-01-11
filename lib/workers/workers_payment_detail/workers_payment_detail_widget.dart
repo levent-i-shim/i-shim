@@ -2,10 +2,14 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'workers_payment_detail_model.dart';
 export 'workers_payment_detail_model.dart';
 
@@ -189,7 +193,7 @@ class _WorkersPaymentDetailWidgetState extends State<WorkersPaymentDetailWidget>
                                         0.0, 2.0, 10.0, 2.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.workerPlaceWorkerDocument
+                                        widget!.workerPlaceWorkerDocument
                                             ?.userName,
                                         'Çalışan Adı Soyadı',
                                       ),
@@ -374,25 +378,25 @@ class _WorkersPaymentDetailWidgetState extends State<WorkersPaymentDetailWidget>
                           WorkersAddPaymentWidget.routeName,
                           queryParameters: {
                             'company': serializeParam(
-                              widget.company,
+                              widget!.company,
                               ParamType.DocumentReference,
                             ),
                             'workPlaces': serializeParam(
-                              widget.workPlaces,
+                              widget!.workPlaces,
                               ParamType.DocumentReference,
                             ),
                             'workerUserRef': serializeParam(
-                              widget.workerUserRef,
+                              widget!.workerUserRef,
                               ParamType.DocumentReference,
                             ),
                             'workPlaceWorkerDoc': serializeParam(
-                              widget.workerPlaceWorkerDocument,
+                              widget!.workerPlaceWorkerDocument,
                               ParamType.Document,
                             ),
                           }.withoutNulls,
                           extra: <String, dynamic>{
                             'workPlaceWorkerDoc':
-                                widget.workerPlaceWorkerDocument,
+                                widget!.workerPlaceWorkerDocument,
                           },
                         );
                       },
@@ -734,16 +738,16 @@ class _WorkersPaymentDetailWidgetState extends State<WorkersPaymentDetailWidget>
                             Expanded(
                               child: StreamBuilder<List<WorkPlaceSalaryRecord>>(
                                 stream: queryWorkPlaceSalaryRecord(
-                                  parent: widget.workPlaces,
+                                  parent: widget!.workPlaces,
                                   queryBuilder: (workPlaceSalaryRecord) =>
                                       workPlaceSalaryRecord
                                           .where(
                                             'workerUserDocRef',
-                                            isEqualTo: widget.workerUserRef,
+                                            isEqualTo: widget!.workerUserRef,
                                           )
                                           .where(
                                             'paidToWhomName',
-                                            isEqualTo: widget
+                                            isEqualTo: widget!
                                                 .workerPlaceWorkerDocument
                                                 ?.userName,
                                           ),

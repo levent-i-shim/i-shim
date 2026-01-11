@@ -3,13 +3,17 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'workers_choose_company_work_place_model.dart';
 export 'workers_choose_company_work_place_model.dart';
 
@@ -140,11 +144,11 @@ class _WorkersChooseCompanyWorkPlaceWidgetState
                                       FormFieldController<String>(
                                 _model.companiesDropDownValue ??= '',
                               ),
-                              options: List<String>.from(widget
+                              options: List<String>.from(widget!
                                   .companiesIcanSee!
                                   .map((e) => e.id)
                                   .toList()),
-                              optionLabels: widget.companiesICanSeeNames!,
+                              optionLabels: widget!.companiesICanSeeNames!,
                               onChanged: (val) async {
                                 safeSetState(
                                     () => _model.companiesDropDownValue = val);
@@ -205,11 +209,11 @@ class _WorkersChooseCompanyWorkPlaceWidgetState
                                       FormFieldController<String>(
                                 _model.workPlacesDropDownValue ??= '',
                               ),
-                              options: List<String>.from(widget
+                              options: List<String>.from(widget!
                                   .workPlacesICanSee!
                                   .map((e) => e.id)
                                   .toList()),
-                              optionLabels: widget.workPlacesICanSeeNames!,
+                              optionLabels: widget!.workPlacesICanSeeNames!,
                               onChanged: (val) async {
                                 safeSetState(
                                     () => _model.workPlacesDropDownValue = val);

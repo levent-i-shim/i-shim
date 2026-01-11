@@ -2,10 +2,14 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'work_place_tasks_page_model.dart';
 export 'work_place_tasks_page_model.dart';
 
@@ -161,8 +165,8 @@ class _WorkPlaceTasksPageWidgetState extends State<WorkPlaceTasksPageWidget> {
                             size: 24.0,
                           ),
                           onPressed: () async {
-                            if (widget.isPartner!) {
-                              if (!widget.canCreateTask!) {
+                            if (widget!.isPartner!) {
+                              if (!widget!.canCreateTask!) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -180,8 +184,8 @@ class _WorkPlaceTasksPageWidgetState extends State<WorkPlaceTasksPageWidget> {
                                 return;
                               }
                             } else {
-                              if (widget.isWorker!) {
-                                if (!widget.canCreateTask!) {
+                              if (widget!.isWorker!) {
+                                if (!widget!.canCreateTask!) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -206,23 +210,23 @@ class _WorkPlaceTasksPageWidgetState extends State<WorkPlaceTasksPageWidget> {
                               WorkPlaceCreateTaskPageWidget.routeName,
                               queryParameters: {
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'workPlace': serializeParam(
-                                  widget.workPlace,
+                                  widget!.workPlace,
                                   ParamType.DocumentReference,
                                 ),
                                 'isPartner': serializeParam(
-                                  widget.isPartner,
+                                  widget!.isPartner,
                                   ParamType.bool,
                                 ),
                                 'canCreate': serializeParam(
-                                  widget.canCreateTask,
+                                  widget!.canCreateTask,
                                   ParamType.bool,
                                 ),
                                 'isWorker': serializeParam(
-                                  widget.isWorker,
+                                  widget!.isWorker,
                                   ParamType.bool,
                                 ),
                               }.withoutNulls,
@@ -245,16 +249,16 @@ class _WorkPlaceTasksPageWidgetState extends State<WorkPlaceTasksPageWidget> {
                     child: PagedListView<DocumentSnapshot<Object?>?,
                         CompanyTasksRecord>(
                       pagingController: _model.setListViewController(
-                          CompanyTasksRecord.collection(widget.company)
+                          CompanyTasksRecord.collection(widget!.company)
                               .where(
                                 'isDelete',
                                 isEqualTo: false,
                               )
                               .where(
                                 'workPlace',
-                                isEqualTo: widget.workPlace,
+                                isEqualTo: widget!.workPlace,
                               ),
-                          parent: widget.company),
+                          parent: widget!.company),
                       padding: EdgeInsets.zero,
                       primary: false,
                       reverse: false,
@@ -304,19 +308,19 @@ class _WorkPlaceTasksPageWidgetState extends State<WorkPlaceTasksPageWidget> {
                                     WorkPlaceTaskReadReportPageWidget.routeName,
                                     queryParameters: {
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                       'workPlace': serializeParam(
-                                        widget.workPlace,
+                                        widget!.workPlace,
                                         ParamType.DocumentReference,
                                       ),
                                       'isPartner': serializeParam(
-                                        widget.isPartner,
+                                        widget!.isPartner,
                                         ParamType.bool,
                                       ),
                                       'canSendTransaction': serializeParam(
-                                        widget.canManageTask,
+                                        widget!.canManageTask,
                                         ParamType.bool,
                                       ),
                                       'task': serializeParam(
@@ -324,7 +328,7 @@ class _WorkPlaceTasksPageWidgetState extends State<WorkPlaceTasksPageWidget> {
                                         ParamType.Document,
                                       ),
                                       'isWorker': serializeParam(
-                                        widget.isWorker,
+                                        widget!.isWorker,
                                         ParamType.bool,
                                       ),
                                     }.withoutNulls,

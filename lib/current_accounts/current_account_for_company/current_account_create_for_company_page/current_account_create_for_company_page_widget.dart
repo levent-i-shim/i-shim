@@ -7,10 +7,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'current_account_create_for_company_page_model.dart';
 export 'current_account_create_for_company_page_model.dart';
@@ -417,7 +421,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                               await currentAccountRecordReference.set({
                                 ...createCurrentAccountRecordData(
                                   sideOneType: 'Şirket',
-                                  sideOneID: widget.company?.id,
+                                  sideOneID: widget!.company?.id,
                                   sideTwoType: 'Kullanmayan',
                                   sideTwoID: _model.textController1.text,
                                   status: true,
@@ -438,7 +442,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                   CurrentAccountRecord.getDocumentFromData({
                                 ...createCurrentAccountRecordData(
                                   sideOneType: 'Şirket',
-                                  sideOneID: widget.company?.id,
+                                  sideOneID: widget!.company?.id,
                                   sideTwoType: 'Kullanmayan',
                                   sideTwoID: _model.textController1.text,
                                   status: true,
@@ -463,7 +467,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                       'Cari Hesap Oluşturma Talebi Gönderildi',
                                   type: WorkHistoryTypes
                                       .createCurrentAcountForCompany.name,
-                                  company: widget.company,
+                                  company: widget!.company,
                                   currentAccount:
                                       _model.currentAccountNotUsing?.reference,
                                   fullDescription:
@@ -553,7 +557,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                 (record) =>
                                                     TextSearchItem.fromTerms(
                                                         record,
-                                                        [record.displayName]),
+                                                        [record.displayName!]),
                                               )
                                               .toList(),
                                         )
@@ -689,7 +693,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                               .map(
                                                 (record) =>
                                                     TextSearchItem.fromTerms(
-                                                        record, [record.name]),
+                                                        record, [record.name!]),
                                               )
                                               .toList(),
                                         )
@@ -1029,7 +1033,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                                 sideOneType:
                                                                     'Şirket',
                                                                 sideOneID:
-                                                                    widget
+                                                                    widget!
                                                                         .company
                                                                         ?.id,
                                                                 sideTwoType:
@@ -1065,7 +1069,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                                 sideOneType:
                                                                     'Şirket',
                                                                 sideOneID:
-                                                                    widget
+                                                                    widget!
                                                                         .company
                                                                         ?.id,
                                                                 sideTwoType:
@@ -1097,7 +1101,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                             _model.copmanyDetail =
                                                                 await CompaniesRecord
                                                                     .getDocumentOnce(
-                                                                        widget
+                                                                        widget!
                                                                             .company!);
 
                                                             await NotificationsRecord
@@ -1117,7 +1121,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                                     .id,
                                                                 isRead: false,
                                                                 isDelete: false,
-                                                                company: widget
+                                                                company: widget!
                                                                     .company,
                                                                 fullDescription:
                                                                     '${_model.copmanyDetail?.name} İsimli Şirket Cari Hesap Açmak istiyor.',
@@ -1144,7 +1148,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                                 type: WorkHistoryTypes
                                                                     .createCurrentAcountForCompany
                                                                     .name,
-                                                                company: widget
+                                                                company: widget!
                                                                     .company,
                                                                 currentAccount: _model
                                                                     .currentAccountPersonal
@@ -1491,7 +1495,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                                 sideOneType:
                                                                     'Şirket',
                                                                 sideOneID:
-                                                                    widget
+                                                                    widget!
                                                                         .company
                                                                         ?.id,
                                                                 sideTwoType:
@@ -1527,7 +1531,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                                 sideOneType:
                                                                     'Şirket',
                                                                 sideOneID:
-                                                                    widget
+                                                                    widget!
                                                                         .company
                                                                         ?.id,
                                                                 sideTwoType:
@@ -1559,7 +1563,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                             _model.copmanyDetail2 =
                                                                 await CompaniesRecord
                                                                     .getDocumentOnce(
-                                                                        widget
+                                                                        widget!
                                                                             .company!);
 
                                                             await CompanyNotificationsRecord
@@ -1575,7 +1579,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                                     'Cari Hesap Daveti',
                                                                 isRead: false,
                                                                 isDelete: false,
-                                                                company: widget
+                                                                company: widget!
                                                                     .company,
                                                                 currentAccount: _model
                                                                     .currentAccountCompany
@@ -1606,7 +1610,7 @@ class _CurrentAccountCreateForCompanyPageWidgetState
                                                                 type: WorkHistoryTypes
                                                                     .createCurrentAcountForCompany
                                                                     .name,
-                                                                company: widget
+                                                                company: widget!
                                                                     .company,
                                                                 currentAccount: _model
                                                                     .currentAccountCompany

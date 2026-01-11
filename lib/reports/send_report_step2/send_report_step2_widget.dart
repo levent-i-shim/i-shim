@@ -2,9 +2,12 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'send_report_step2_model.dart';
 export 'send_report_step2_model.dart';
 
@@ -147,7 +150,7 @@ class _SendReportStep2WidgetState extends State<SendReportStep2Widget> {
                     ),
                     StreamBuilder<List<CompanyTaskDutiesRecord>>(
                       stream: queryCompanyTaskDutiesRecord(
-                        parent: widget.dutiesForCompany?.companyRef,
+                        parent: widget!.dutiesForCompany?.companyRef,
                         queryBuilder: (companyTaskDutiesRecord) =>
                             companyTaskDutiesRecord
                                 .where(
@@ -161,7 +164,7 @@ class _SendReportStep2WidgetState extends State<SendReportStep2Widget> {
                                 .where(
                                   'dutiesForCompany',
                                   isEqualTo:
-                                      widget.dutiesForCompany?.reference,
+                                      widget!.dutiesForCompany?.reference,
                                 ),
                       ),
                       builder: (context, snapshot) {
@@ -219,14 +222,14 @@ class _SendReportStep2WidgetState extends State<SendReportStep2Widget> {
                                             ParamType.Document,
                                           ),
                                           'dutiesForCompany': serializeParam(
-                                            widget.dutiesForCompany,
+                                            widget!.dutiesForCompany,
                                             ParamType.Document,
                                           ),
                                         }.withoutNulls,
                                         extra: <String, dynamic>{
                                           'companyTaskDuties': containerVarItem,
                                           'dutiesForCompany':
-                                              widget.dutiesForCompany,
+                                              widget!.dutiesForCompany,
                                         },
                                       );
                                     },

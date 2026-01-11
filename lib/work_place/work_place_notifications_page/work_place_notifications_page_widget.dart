@@ -2,9 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'work_place_notifications_page_model.dart';
 export 'work_place_notifications_page_model.dart';
 
@@ -114,12 +118,12 @@ class _WorkPlaceNotificationsPageWidgetState
                 PagedListView<DocumentSnapshot<Object?>?,
                     WorkPlaceNotificationsRecord>.separated(
                   pagingController: _model.setListViewController1(
-                      WorkPlaceNotificationsRecord.collection(widget.workPlace)
+                      WorkPlaceNotificationsRecord.collection(widget!.workPlace)
                           .where(
                         'isRead',
                         isEqualTo: false,
                       ),
-                      parent: widget.workPlace),
+                      parent: widget!.workPlace),
                   padding: EdgeInsets.fromLTRB(
                     0,
                     4.0,
@@ -377,12 +381,12 @@ class _WorkPlaceNotificationsPageWidgetState
                 PagedListView<DocumentSnapshot<Object?>?,
                     WorkPlaceNotificationsRecord>.separated(
                   pagingController: _model.setListViewController2(
-                      WorkPlaceNotificationsRecord.collection(widget.workPlace)
+                      WorkPlaceNotificationsRecord.collection(widget!.workPlace)
                           .where(
                         'isRead',
                         isEqualTo: true,
                       ),
-                      parent: widget.workPlace),
+                      parent: widget!.workPlace),
                   padding: EdgeInsets.fromLTRB(
                     0,
                     4.0,

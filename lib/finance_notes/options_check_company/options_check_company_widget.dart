@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_check_company_model.dart';
 export 'options_check_company_model.dart';
 
@@ -166,7 +171,7 @@ class _OptionsCheckCompanyWidgetState extends State<OptionsCheckCompanyWidget> {
                 hoverColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 onTap: () async {
-                  await widget.checkCompanyDoc!.reference
+                  await widget!.checkCompanyDoc!.reference
                       .update(createFinancialNoteCompanyCheckRecordData(
                     paymentStatus: 'paid',
                   ));
@@ -257,12 +262,12 @@ class _OptionsCheckCompanyWidgetState extends State<OptionsCheckCompanyWidget> {
                         ParamType.bool,
                       ),
                       'companyPaymentDoc': serializeParam(
-                        widget.checkCompanyDoc,
+                        widget!.checkCompanyDoc,
                         ParamType.Document,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'companyPaymentDoc': widget.checkCompanyDoc,
+                      'companyPaymentDoc': widget!.checkCompanyDoc,
                     },
                   );
 
@@ -354,7 +359,7 @@ class _OptionsCheckCompanyWidgetState extends State<OptionsCheckCompanyWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.checkCompanyDoc!.reference.delete();
+                    await widget!.checkCompanyDoc!.reference.delete();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(

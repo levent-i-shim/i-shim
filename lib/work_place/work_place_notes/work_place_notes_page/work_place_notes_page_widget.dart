@@ -5,11 +5,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/work_place/work_place_notes/options_work_place_note/options_work_place_note_widget.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_notes_page_model.dart';
 export 'work_place_notes_page_model.dart';
 
@@ -127,13 +130,13 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  if (widget.canManage!) {
+                  if (widget!.canManage!) {
                     if (_model.tabBarCurrentIndex == 0) {
                       context.pushNamed(
                         AddNewWorkPlaceNotePageWidget.routeName,
                         queryParameters: {
                           'workPlace': serializeParam(
-                            widget.workPLace,
+                            widget!.workPLace,
                             ParamType.DocumentReference,
                           ),
                           'hasVehicleFault': serializeParam(
@@ -168,7 +171,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                           AddNewWorkPlaceNotePageWidget.routeName,
                           queryParameters: {
                             'workPlace': serializeParam(
-                              widget.workPLace,
+                              widget!.workPLace,
                               ParamType.DocumentReference,
                             ),
                             'hasVehicleFault': serializeParam(
@@ -203,7 +206,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                             AddNewWorkPlaceNotePageWidget.routeName,
                             queryParameters: {
                               'workPlace': serializeParam(
-                                widget.workPLace,
+                                widget!.workPLace,
                                 ParamType.DocumentReference,
                               ),
                               'hasVehicleFault': serializeParam(
@@ -238,7 +241,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                               AddNewWorkPlaceNotePageWidget.routeName,
                               queryParameters: {
                                 'workPlace': serializeParam(
-                                  widget.workPLace,
+                                  widget!.workPLace,
                                   ParamType.DocumentReference,
                                 ),
                                 'hasVehicleFault': serializeParam(
@@ -273,7 +276,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                 AddNewWorkPlaceNotePageWidget.routeName,
                                 queryParameters: {
                                   'workPlace': serializeParam(
-                                    widget.workPLace,
+                                    widget!.workPLace,
                                     ParamType.DocumentReference,
                                   ),
                                   'hasVehicleFault': serializeParam(
@@ -308,7 +311,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                   AddNewWorkPlaceNotePageWidget.routeName,
                                   queryParameters: {
                                     'workPlace': serializeParam(
-                                      widget.workPLace,
+                                      widget!.workPLace,
                                       ParamType.DocumentReference,
                                     ),
                                     'hasVehicleFault': serializeParam(
@@ -491,7 +494,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                               children: [
                                 StreamBuilder<List<WorkPlaceNotesRecord>>(
                                   stream: queryWorkPlaceNotesRecord(
-                                    parent: widget.workPLace,
+                                    parent: widget!.workPLace,
                                     queryBuilder: (workPlaceNotesRecord) =>
                                         workPlaceNotesRecord
                                             .where(
@@ -555,7 +558,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                     ParamType.Document,
                                                   ),
                                                   'canManage': serializeParam(
-                                                    widget.canManage,
+                                                    widget!.canManage,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -761,7 +764,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              if (widget
+                                                              if (widget!
                                                                   .canManage!) {
                                                                 await showAlignedDialog(
                                                                   context:
@@ -854,7 +857,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                 ),
                                 StreamBuilder<List<WorkPlaceNotesRecord>>(
                                   stream: queryWorkPlaceNotesRecord(
-                                    parent: widget.workPLace,
+                                    parent: widget!.workPLace,
                                     queryBuilder: (workPlaceNotesRecord) =>
                                         workPlaceNotesRecord
                                             .where(
@@ -918,7 +921,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                     ParamType.Document,
                                                   ),
                                                   'canManage': serializeParam(
-                                                    widget.canManage,
+                                                    widget!.canManage,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -1194,7 +1197,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              if (widget
+                                                              if (widget!
                                                                   .canManage!) {
                                                                 await showAlignedDialog(
                                                                   context:
@@ -1287,7 +1290,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                 ),
                                 StreamBuilder<List<WorkPlaceNotesRecord>>(
                                   stream: queryWorkPlaceNotesRecord(
-                                    parent: widget.workPLace,
+                                    parent: widget!.workPLace,
                                     queryBuilder: (workPlaceNotesRecord) =>
                                         workPlaceNotesRecord
                                             .where(
@@ -1351,7 +1354,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                     ParamType.Document,
                                                   ),
                                                   'canManage': serializeParam(
-                                                    widget.canManage,
+                                                    widget!.canManage,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -1557,7 +1560,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              if (widget
+                                                              if (widget!
                                                                   .canManage!) {
                                                                 await showAlignedDialog(
                                                                   context:
@@ -1650,7 +1653,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                 ),
                                 StreamBuilder<List<WorkPlaceNotesRecord>>(
                                   stream: queryWorkPlaceNotesRecord(
-                                    parent: widget.workPLace,
+                                    parent: widget!.workPLace,
                                     queryBuilder: (workPlaceNotesRecord) =>
                                         workPlaceNotesRecord
                                             .where(
@@ -1714,7 +1717,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                     ParamType.Document,
                                                   ),
                                                   'canManage': serializeParam(
-                                                    widget.canManage,
+                                                    widget!.canManage,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -1920,7 +1923,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              if (widget
+                                                              if (widget!
                                                                   .canManage!) {
                                                                 await showAlignedDialog(
                                                                   context:
@@ -2013,7 +2016,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                 ),
                                 StreamBuilder<List<WorkPlaceNotesRecord>>(
                                   stream: queryWorkPlaceNotesRecord(
-                                    parent: widget.workPLace,
+                                    parent: widget!.workPLace,
                                     queryBuilder: (workPlaceNotesRecord) =>
                                         workPlaceNotesRecord
                                             .where(
@@ -2077,7 +2080,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                     ParamType.Document,
                                                   ),
                                                   'canManage': serializeParam(
-                                                    widget.canManage,
+                                                    widget!.canManage,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -2283,7 +2286,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              if (widget
+                                                              if (widget!
                                                                   .canManage!) {
                                                                 await showAlignedDialog(
                                                                   context:
@@ -2376,7 +2379,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                 ),
                                 StreamBuilder<List<WorkPlaceNotesRecord>>(
                                   stream: queryWorkPlaceNotesRecord(
-                                    parent: widget.workPLace,
+                                    parent: widget!.workPLace,
                                     queryBuilder: (workPlaceNotesRecord) =>
                                         workPlaceNotesRecord
                                             .where(
@@ -2440,7 +2443,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                     ParamType.Document,
                                                   ),
                                                   'canManage': serializeParam(
-                                                    widget.canManage,
+                                                    widget!.canManage,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -2646,7 +2649,7 @@ class _WorkPlaceNotesPageWidgetState extends State<WorkPlaceNotesPageWidget>
                                                                 Colors
                                                                     .transparent,
                                                             onTap: () async {
-                                                              if (widget
+                                                              if (widget!
                                                                   .canManage!) {
                                                                 await showAlignedDialog(
                                                                   context:

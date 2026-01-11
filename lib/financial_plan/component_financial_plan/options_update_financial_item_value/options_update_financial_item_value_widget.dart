@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_update_financial_item_value_model.dart';
 export 'options_update_financial_item_value_model.dart';
 
@@ -38,7 +43,7 @@ class _OptionsUpdateFinancialItemValueWidgetState
     _model = createModel(context, () => OptionsUpdateFinancialItemValueModel());
 
     _model.inputItemValueTextController ??=
-        TextEditingController(text: widget.itemDocument?.value.toString());
+        TextEditingController(text: widget!.itemDocument?.value?.toString());
     _model.inputItemValueFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -262,7 +267,7 @@ class _OptionsUpdateFinancialItemValueWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await widget.itemRef!
+                          await widget!.itemRef!
                               .update(createFinancialPlansItemsRecordData(
                             value: double.tryParse(
                                 _model.inputItemValueTextController.text),

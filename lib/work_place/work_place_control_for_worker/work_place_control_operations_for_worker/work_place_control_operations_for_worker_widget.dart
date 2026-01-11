@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_operations_for_worker_model.dart';
 export 'work_place_control_operations_for_worker_model.dart';
 
@@ -121,13 +125,13 @@ class _WorkPlaceControlOperationsForWorkerWidgetState
                               24.0, 64.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget
+                              if (widget!
                                   .companyWorker!.vehicleCreationAuthority) {
                                 context.pushNamed(
                                   WorkPlaceVehiclesPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -135,7 +139,7 @@ class _WorkPlaceControlOperationsForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'canCreateVehicle': serializeParam(
@@ -167,12 +171,12 @@ class _WorkPlaceControlOperationsForWorkerWidgetState
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
                                 );
-                                if (widget.companyWorker
+                                if (widget!.companyWorker
                                         ?.authorizedByDepartment !=
                                     null) {
                                   _model.departmentAuth =
                                       await CompanyDepartmentsRecord
-                                          .getDocumentOnce(widget
+                                          .getDocumentOnce(widget!
                                               .companyWorker!
                                               .authorizedByDepartment!);
                                   if (_model.departmentAuth?.name ==
@@ -181,7 +185,7 @@ class _WorkPlaceControlOperationsForWorkerWidgetState
                                       CompanyVehiclesPageWidget.routeName,
                                       queryParameters: {
                                         'company': serializeParam(
-                                          widget
+                                          widget!
                                               .companyWorker?.parentReference,
                                           ParamType.DocumentReference,
                                         ),
@@ -281,19 +285,19 @@ class _WorkPlaceControlOperationsForWorkerWidgetState
                                 WorkPlaceTasksWorkerPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.companyWorker?.parentReference,
+                                    widget!.companyWorker?.parentReference,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.DocumentReference,
                                   ),
                                   'canSendTransaction': serializeParam(
-                                    widget.companyWorker?.canManageReports,
+                                    widget!.companyWorker?.canManageReports,
                                     ParamType.bool,
                                   ),
                                   'canCreate': serializeParam(
-                                    widget.companyWorker?.canCreateTask,
+                                    widget!.companyWorker?.canCreateTask,
                                     ParamType.bool,
                                   ),
                                 }.withoutNulls,
@@ -342,19 +346,19 @@ class _WorkPlaceControlOperationsForWorkerWidgetState
                                 WorkPlaceTasksWorkerPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.companyWorker?.parentReference,
+                                    widget!.companyWorker?.parentReference,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.DocumentReference,
                                   ),
                                   'canSendTransaction': serializeParam(
-                                    widget.companyWorker?.canAcceptTransaction,
+                                    widget!.companyWorker?.canAcceptTransaction,
                                     ParamType.bool,
                                   ),
                                   'canCreate': serializeParam(
-                                    widget.companyWorker?.canCreateTask,
+                                    widget!.companyWorker?.canCreateTask,
                                     ParamType.bool,
                                   ),
                                 }.withoutNulls,
@@ -399,16 +403,16 @@ class _WorkPlaceControlOperationsForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.stockAuthority) {
+                              if (widget!.companyWorker!.stockAuthority) {
                                 context.pushNamed(
                                   StocksPageWorkPlaceWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -481,13 +485,13 @@ class _WorkPlaceControlOperationsForWorkerWidgetState
                               24.0, 24.0, 24.0, 64.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget
+                              if (widget!
                                   .companyWorker!.formCreationAuthority) {
                                 context.pushNamed(
                                   ShowAllFormsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/financial_plan/component_financial_plan/options_financial_plan_items/options_financial_plan_items_widget.dart';
 import '/financial_plan/component_financial_plan/options_financial_plan_items_paid/options_financial_plan_items_paid_widget.dart';
@@ -7,12 +8,15 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'financial_plan_items_model.dart';
 export 'financial_plan_items_model.dart';
 
@@ -111,19 +115,19 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                       CreateFinancialPlanItemWidget.routeName,
                       queryParameters: {
                         'financialPlanDocument': serializeParam(
-                          widget.financialPlanDocumentRef,
+                          widget!.financialPlanDocumentRef,
                           ParamType.DocumentReference,
                         ),
                         'creatorUserRef': serializeParam(
-                          widget.creatorUserRef,
+                          widget!.creatorUserRef,
                           ParamType.DocumentReference,
                         ),
                         'companRef': serializeParam(
-                          widget.companyRef,
+                          widget!.companyRef,
                           ParamType.DocumentReference,
                         ),
                         'workPlaceRef': serializeParam(
-                          widget.workPlaceRef,
+                          widget!.workPlaceRef,
                           ParamType.DocumentReference,
                         ),
                       }.withoutNulls,
@@ -174,32 +178,32 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                       FinancialPlanIAuthorizeSettingsWidget.routeName,
                       queryParameters: {
                         'financialPlanDocumentRef': serializeParam(
-                          widget.financialPlanDocumentRef,
+                          widget!.financialPlanDocumentRef,
                           ParamType.DocumentReference,
                         ),
                         'creatorUserRef': serializeParam(
-                          widget.creatorUserRef,
+                          widget!.creatorUserRef,
                           ParamType.DocumentReference,
                         ),
                         'companyRef': serializeParam(
-                          widget.companyRef,
+                          widget!.companyRef,
                           ParamType.DocumentReference,
                         ),
                         'workPlaceRef': serializeParam(
-                          widget.workPlaceRef,
+                          widget!.workPlaceRef,
                           ParamType.DocumentReference,
                         ),
                         'planName': serializeParam(
-                          widget.planName,
+                          widget!.planName,
                           ParamType.String,
                         ),
                         'financialPlanDocument': serializeParam(
-                          widget.financialPlanDocument,
+                          widget!.financialPlanDocument,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'financialPlanDocument': widget.financialPlanDocument,
+                        'financialPlanDocument': widget!.financialPlanDocument,
                       },
                     );
                   },
@@ -245,7 +249,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                     onTap: () async {
                       HapticFeedback.vibrate();
 
-                      await widget.financialPlanDocumentRef!
+                      await widget!.financialPlanDocumentRef!
                           .update(createFinancialPlansRecordData(
                         totalCapitalRequirement: _model.unpaidTotal,
                       ));
@@ -277,7 +281,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                         10.0, 6.0, 10.0, 6.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.planName,
+                                        widget!.planName,
                                         'Plan Adı',
                                       ),
                                       textAlign: TextAlign.justify,
@@ -860,11 +864,11 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                   safeSetState(() {});
                                   _model.count2 =
                                       await queryFinancialPlansItemsRecordCount(
-                                    parent: widget.financialPlanDocumentRef,
+                                    parent: widget!.financialPlanDocumentRef,
                                   );
                                   _model.listOfDocuments2 =
                                       await queryFinancialPlansItemsRecordOnce(
-                                    parent: widget.financialPlanDocumentRef,
+                                    parent: widget!.financialPlanDocumentRef,
                                   );
                                   while (_model.itemIndex! <= _model.count2!) {
                                     _model.totalOfItems = (double var1,
@@ -890,7 +894,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                   safeSetState(() {});
                                   _model.paidCount =
                                       await queryFinancialPlansItemsRecordCount(
-                                    parent: widget.financialPlanDocumentRef,
+                                    parent: widget!.financialPlanDocumentRef,
                                     queryBuilder: (financialPlansItemsRecord) =>
                                         financialPlansItemsRecord.where(
                                       'isPaid',
@@ -899,7 +903,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                   );
                                   _model.paidListOfDocuments =
                                       await queryFinancialPlansItemsRecordOnce(
-                                    parent: widget.financialPlanDocumentRef,
+                                    parent: widget!.financialPlanDocumentRef,
                                     queryBuilder: (financialPlansItemsRecord) =>
                                         financialPlansItemsRecord.where(
                                       'isPaid',
@@ -933,7 +937,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                   safeSetState(() {});
                                   _model.unpaidCount =
                                       await queryFinancialPlansItemsRecordCount(
-                                    parent: widget.financialPlanDocumentRef,
+                                    parent: widget!.financialPlanDocumentRef,
                                     queryBuilder: (financialPlansItemsRecord) =>
                                         financialPlansItemsRecord
                                             .where(
@@ -947,7 +951,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                   );
                                   _model.unpaidListOfDocuments =
                                       await queryFinancialPlansItemsRecordOnce(
-                                    parent: widget.financialPlanDocumentRef,
+                                    parent: widget!.financialPlanDocumentRef,
                                     queryBuilder: (financialPlansItemsRecord) =>
                                         financialPlansItemsRecord
                                             .where(
@@ -977,7 +981,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                     safeSetState(() {});
                                   }
 
-                                  await widget.financialPlanDocumentRef!
+                                  await widget!.financialPlanDocumentRef!
                                       .update(createFinancialPlansRecordData(
                                     totalCapitalRequirement: _model.unpaidTotal,
                                   ));
@@ -991,7 +995,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                   safeSetState(() {});
                                   _model.postponedCount =
                                       await queryFinancialPlansItemsRecordCount(
-                                    parent: widget.financialPlanDocumentRef,
+                                    parent: widget!.financialPlanDocumentRef,
                                     queryBuilder: (financialPlansItemsRecord) =>
                                         financialPlansItemsRecord
                                             .where(
@@ -1005,7 +1009,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                   );
                                   _model.postponedListOfDocuments =
                                       await queryFinancialPlansItemsRecordOnce(
-                                    parent: widget.financialPlanDocumentRef,
+                                    parent: widget!.financialPlanDocumentRef,
                                     queryBuilder: (financialPlansItemsRecord) =>
                                         financialPlansItemsRecord
                                             .where(
@@ -1049,7 +1053,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                             children: [
                               StreamBuilder<List<FinancialPlansItemsRecord>>(
                                 stream: queryFinancialPlansItemsRecord(
-                                  parent: widget.financialPlanDocumentRef,
+                                  parent: widget!.financialPlanDocumentRef,
                                   queryBuilder: (financialPlansItemsRecord) =>
                                       financialPlansItemsRecord.orderBy(
                                           'creationTime',
@@ -1376,10 +1380,10 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                                                 child:
                                                                     OptionsFinancialPlanItemsWidget(
                                                                   financialPlanDocument:
-                                                                      widget
+                                                                      widget!
                                                                           .financialPlanDocument!,
                                                                   financialPlanDocumentRef:
-                                                                      widget
+                                                                      widget!
                                                                           .financialPlanDocumentRef!,
                                                                   itemDocument:
                                                                       listViewFinancialPlansItemsRecord,
@@ -1414,7 +1418,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                               ),
                               StreamBuilder<List<FinancialPlansItemsRecord>>(
                                 stream: queryFinancialPlansItemsRecord(
-                                  parent: widget.financialPlanDocumentRef,
+                                  parent: widget!.financialPlanDocumentRef,
                                   queryBuilder: (financialPlansItemsRecord) =>
                                       financialPlansItemsRecord
                                           .where(
@@ -1745,10 +1749,10 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                                                 child:
                                                                     OptionsFinancialPlanItemsPaidWidget(
                                                                   financialPlanDocument:
-                                                                      widget
+                                                                      widget!
                                                                           .financialPlanDocument!,
                                                                   financialPlanDocumentRef:
-                                                                      widget
+                                                                      widget!
                                                                           .financialPlanDocumentRef!,
                                                                   itemDocument:
                                                                       listViewFinancialPlansItemsRecord,
@@ -1783,7 +1787,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                               ),
                               StreamBuilder<List<FinancialPlansItemsRecord>>(
                                 stream: queryFinancialPlansItemsRecord(
-                                  parent: widget.financialPlanDocumentRef,
+                                  parent: widget!.financialPlanDocumentRef,
                                   queryBuilder: (financialPlansItemsRecord) =>
                                       financialPlansItemsRecord
                                           .where(
@@ -2118,10 +2122,10 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                                                 child:
                                                                     OptionsFinancialPlanItemsUnpaidWidget(
                                                                   financialPlanDocument:
-                                                                      widget
+                                                                      widget!
                                                                           .financialPlanDocument!,
                                                                   financialPlanDocumentRef:
-                                                                      widget
+                                                                      widget!
                                                                           .financialPlanDocumentRef!,
                                                                   itemDocument:
                                                                       listViewFinancialPlansItemsRecord,
@@ -2156,7 +2160,7 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                               ),
                               StreamBuilder<List<FinancialPlansItemsRecord>>(
                                 stream: queryFinancialPlansItemsRecord(
-                                  parent: widget.financialPlanDocumentRef,
+                                  parent: widget!.financialPlanDocumentRef,
                                   queryBuilder: (financialPlansItemsRecord) =>
                                       financialPlansItemsRecord
                                           .where(
@@ -2491,10 +2495,10 @@ class _FinancialPlanItemsWidgetState extends State<FinancialPlanItemsWidget>
                                                                 child:
                                                                     OptionsFinancialPlanItemsPostponedWidget(
                                                                   financialPlanDocument:
-                                                                      widget
+                                                                      widget!
                                                                           .financialPlanDocument!,
                                                                   financialPlanDocumentRef:
-                                                                      widget
+                                                                      widget!
                                                                           .financialPlanDocumentRef!,
                                                                   itemDocument:
                                                                       listViewFinancialPlansItemsRecord,

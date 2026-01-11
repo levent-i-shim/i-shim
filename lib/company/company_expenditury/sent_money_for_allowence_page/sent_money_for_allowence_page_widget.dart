@@ -8,9 +8,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'sent_money_for_allowence_page_model.dart';
 export 'sent_money_for_allowence_page_model.dart';
 
@@ -621,10 +624,10 @@ class _SentMoneyForAllowencePageWidgetState
                             onPressed: () async {
                               _model.copmanyDetailMoney =
                                   await CompaniesRecord.getDocumentOnce(
-                                      widget.company!);
+                                      widget!.company!);
                               _model.companyWorkerDetail =
                                   await CompanyWorkersRecord.getDocumentOnce(
-                                      widget.companyWorker!);
+                                      widget!.companyWorker!);
                               if (_model.isUploadPdf) {
                                 {
                                   safeSetState(() => _model
@@ -685,7 +688,7 @@ class _SentMoneyForAllowencePageWidgetState
                                   return;
                                 }
                                 if (_model.validate!) {
-                                  await widget.companyWorker!.update({
+                                  await widget!.companyWorker!.update({
                                     ...mapToFirestore(
                                       {
                                         'allowence': FieldValue.increment(
@@ -695,7 +698,7 @@ class _SentMoneyForAllowencePageWidgetState
                                     ),
                                   });
 
-                                  await widget.company!.update({
+                                  await widget!.company!.update({
                                     ...mapToFirestore(
                                       {
                                         'yearlyMoney': FieldValue.increment(
@@ -731,7 +734,7 @@ class _SentMoneyForAllowencePageWidgetState
                                         .set({
                                       ...createSentMoneyForAllowenceWorkPlaceRecordData(
                                         sender: currentUserReference,
-                                        receiver: widget.receiver,
+                                        receiver: widget!.receiver,
                                         sentMoney: double.tryParse(
                                             _model.priceTextController.text),
                                         note: _model.noteTextController.text,
@@ -750,7 +753,7 @@ class _SentMoneyForAllowencePageWidgetState
                                             .getDocumentFromData({
                                       ...createSentMoneyForAllowenceWorkPlaceRecordData(
                                         sender: currentUserReference,
-                                        receiver: widget.receiver,
+                                        receiver: widget!.receiver,
                                         sentMoney: double.tryParse(
                                             _model.priceTextController.text),
                                         note: _model.noteTextController.text,
@@ -767,12 +770,12 @@ class _SentMoneyForAllowencePageWidgetState
 
                                     var sentMoneyForAllowenceRecordReference1 =
                                         SentMoneyForAllowenceRecord.createDoc(
-                                            widget.company!);
+                                            widget!.company!);
                                     await sentMoneyForAllowenceRecordReference1
                                         .set({
                                       ...createSentMoneyForAllowenceRecordData(
                                         sender: currentUserReference,
-                                        receiver: widget.receiver,
+                                        receiver: widget!.receiver,
                                         sentMoney: double.tryParse(
                                             _model.priceTextController.text),
                                         note: _model.noteTextController.text,
@@ -792,7 +795,7 @@ class _SentMoneyForAllowencePageWidgetState
                                         .getDocumentFromData({
                                       ...createSentMoneyForAllowenceRecordData(
                                         sender: currentUserReference,
-                                        receiver: widget.receiver,
+                                        receiver: widget!.receiver,
                                         sentMoney: double.tryParse(
                                             _model.priceTextController.text),
                                         note: _model.noteTextController.text,
@@ -819,7 +822,7 @@ class _SentMoneyForAllowencePageWidgetState
                                         sentMoneyForAllowence:
                                             _model.sent1?.reference,
                                         fullDescription:
-                                            '${_model.sent1WorkPlace?.sentMoney.toString()} TL Gönderildi',
+                                            '${_model.sent1WorkPlace?.sentMoney?.toString()} TL Gönderildi',
                                       ),
                                       ...mapToFirestore(
                                         {
@@ -831,12 +834,12 @@ class _SentMoneyForAllowencePageWidgetState
                                   } else {
                                     var sentMoneyForAllowenceRecordReference2 =
                                         SentMoneyForAllowenceRecord.createDoc(
-                                            widget.company!);
+                                            widget!.company!);
                                     await sentMoneyForAllowenceRecordReference2
                                         .set({
                                       ...createSentMoneyForAllowenceRecordData(
                                         sender: currentUserReference,
-                                        receiver: widget.receiver,
+                                        receiver: widget!.receiver,
                                         sentMoney: double.tryParse(
                                             _model.priceTextController.text),
                                         note: _model.noteTextController.text,
@@ -852,7 +855,7 @@ class _SentMoneyForAllowencePageWidgetState
                                         .getDocumentFromData({
                                       ...createSentMoneyForAllowenceRecordData(
                                         sender: currentUserReference,
-                                        receiver: widget.receiver,
+                                        receiver: widget!.receiver,
                                         sentMoney: double.tryParse(
                                             _model.priceTextController.text),
                                         note: _model.noteTextController.text,
@@ -875,7 +878,7 @@ class _SentMoneyForAllowencePageWidgetState
                                         sentMoneyForAllowence:
                                             _model.sent2?.reference,
                                         fullDescription:
-                                            '${_model.sent2?.sentMoney.toString()} TL Gönderildi',
+                                            '${_model.sent2?.sentMoney?.toString()} TL Gönderildi',
                                       ),
                                       ...mapToFirestore(
                                         {
@@ -922,7 +925,7 @@ class _SentMoneyForAllowencePageWidgetState
                               } else {
                                 _model.companyWorkerAuthUserMoney =
                                     await queryCompanyWorkersRecordOnce(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyWorkersRecord) =>
                                       companyWorkersRecord.where(
                                     'userRef',
@@ -943,7 +946,7 @@ class _SentMoneyForAllowencePageWidgetState
                                     return;
                                   }
                                   if (_model.validate1!) {
-                                    await widget.companyWorker!.update({
+                                    await widget!.companyWorker!.update({
                                       ...mapToFirestore(
                                         {
                                           'allowence': FieldValue.increment(
@@ -974,7 +977,7 @@ class _SentMoneyForAllowencePageWidgetState
                                           .set({
                                         ...createSpentMonetForAllowenceWorkPlaceRecordData(
                                           sender: currentUserReference,
-                                          receiver: widget.receiver,
+                                          receiver: widget!.receiver,
                                           spendMoney: double.tryParse(
                                               _model.priceTextController.text),
                                           note: _model.noteTextController.text,
@@ -994,7 +997,7 @@ class _SentMoneyForAllowencePageWidgetState
                                               .getDocumentFromData({
                                         ...createSpentMonetForAllowenceWorkPlaceRecordData(
                                           sender: currentUserReference,
-                                          receiver: widget.receiver,
+                                          receiver: widget!.receiver,
                                           spendMoney: double.tryParse(
                                               _model.priceTextController.text),
                                           note: _model.noteTextController.text,
@@ -1011,12 +1014,12 @@ class _SentMoneyForAllowencePageWidgetState
 
                                       var spentMoneyForAllowenceRecordReference1 =
                                           SpentMoneyForAllowenceRecord
-                                              .createDoc(widget.company!);
+                                              .createDoc(widget!.company!);
                                       await spentMoneyForAllowenceRecordReference1
                                           .set({
                                         ...createSpentMoneyForAllowenceRecordData(
                                           sender: currentUserReference,
-                                          receiver: widget.receiver,
+                                          receiver: widget!.receiver,
                                           spendMoney: double.tryParse(
                                               _model.priceTextController.text),
                                           note: _model.noteTextController.text,
@@ -1038,7 +1041,7 @@ class _SentMoneyForAllowencePageWidgetState
                                               .getDocumentFromData({
                                         ...createSpentMoneyForAllowenceRecordData(
                                           sender: currentUserReference,
-                                          receiver: widget.receiver,
+                                          receiver: widget!.receiver,
                                           spendMoney: double.tryParse(
                                               _model.priceTextController.text),
                                           note: _model.noteTextController.text,
@@ -1082,7 +1085,7 @@ class _SentMoneyForAllowencePageWidgetState
                                           .set({
                                         ...createSpentMonetForAllowenceWorkPlaceRecordData(
                                           sender: currentUserReference,
-                                          receiver: widget.receiver,
+                                          receiver: widget!.receiver,
                                           spendMoney: double.tryParse(
                                               _model.priceTextController.text),
                                           note: _model.noteTextController.text,
@@ -1100,7 +1103,7 @@ class _SentMoneyForAllowencePageWidgetState
                                               .getDocumentFromData({
                                         ...createSpentMonetForAllowenceWorkPlaceRecordData(
                                           sender: currentUserReference,
-                                          receiver: widget.receiver,
+                                          receiver: widget!.receiver,
                                           spendMoney: double.tryParse(
                                               _model.priceTextController.text),
                                           note: _model.noteTextController.text,
@@ -1115,12 +1118,12 @@ class _SentMoneyForAllowencePageWidgetState
 
                                       var spentMoneyForAllowenceRecordReference2 =
                                           SpentMoneyForAllowenceRecord
-                                              .createDoc(widget.company!);
+                                              .createDoc(widget!.company!);
                                       await spentMoneyForAllowenceRecordReference2
                                           .set({
                                         ...createSpentMoneyForAllowenceRecordData(
                                           sender: currentUserReference,
-                                          receiver: widget.receiver,
+                                          receiver: widget!.receiver,
                                           spendMoney: double.tryParse(
                                               _model.priceTextController.text),
                                           note: _model.noteTextController.text,
@@ -1140,7 +1143,7 @@ class _SentMoneyForAllowencePageWidgetState
                                               .getDocumentFromData({
                                         ...createSpentMoneyForAllowenceRecordData(
                                           sender: currentUserReference,
-                                          receiver: widget.receiver,
+                                          receiver: widget!.receiver,
                                           spendMoney: double.tryParse(
                                               _model.priceTextController.text),
                                           note: _model.noteTextController.text,

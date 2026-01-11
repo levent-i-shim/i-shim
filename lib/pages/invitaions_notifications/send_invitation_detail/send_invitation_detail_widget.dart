@@ -1,13 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'send_invitation_detail_model.dart';
 export 'send_invitation_detail_model.dart';
 
@@ -41,16 +45,16 @@ class _SendInvitationDetailWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.departmentName = await actions.getDepartmentName(
-        widget.invitation!.company!.id,
-        widget.invitation!.department!.id,
+        widget!.invitation!.company!.id,
+        widget!.invitation!.department!.id,
       );
       _model.unitName = await actions.getUnitName(
-        widget.invitation!.company!.id,
-        widget.invitation!.unit!.id,
+        widget!.invitation!.company!.id,
+        widget!.invitation!.unit!.id,
       );
       _model.roleName = await actions.getRoleName(
-        widget.invitation!.company!.id,
-        widget.invitation!.role!.id,
+        widget!.invitation!.company!.id,
+        widget!.invitation!.role!.id,
       );
       _model.unitNameVariable = _model.unitName!;
       _model.departmentNameVariable = _model.departmentName!;
@@ -126,7 +130,7 @@ class _SendInvitationDetailWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                 child: StreamBuilder<UsersRecord>(
                   stream:
-                      UsersRecord.getDocument(widget.invitation!.receiver!),
+                      UsersRecord.getDocument(widget!.invitation!.receiver!),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -200,7 +204,7 @@ class _SendInvitationDetailWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: StreamBuilder<CompaniesRecord>(
                   stream:
-                      CompaniesRecord.getDocument(widget.invitation!.company!),
+                      CompaniesRecord.getDocument(widget!.invitation!.company!),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -426,7 +430,7 @@ class _SendInvitationDetailWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: StreamBuilder<WorkPlacesRecord>(
                   stream: WorkPlacesRecord.getDocument(
-                      widget.invitation!.workPlace!),
+                      widget!.invitation!.workPlace!),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -527,7 +531,7 @@ class _SendInvitationDetailWidgetState
                           EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
                       child: Text(
                         valueOrDefault<String>(
-                          widget.invitation?.salary.toString(),
+                          widget!.invitation?.salary?.toString(),
                           '0',
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -556,7 +560,7 @@ class _SendInvitationDetailWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                 child: Builder(
                   builder: (context) {
-                    if (widget.invitation?.isAccept ?? false) {
+                    if (widget!.invitation?.isAccept ?? false) {
                       return Text(
                         'Kabul Edildi',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -577,7 +581,7 @@ class _SendInvitationDetailWidgetState
                                   .fontStyle,
                             ),
                       );
-                    } else if (widget.invitation?.isReject ?? false) {
+                    } else if (widget!.invitation?.isReject ?? false) {
                       return Text(
                         'Reddedildi',
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -614,12 +618,12 @@ class _SendInvitationDetailWidgetState
                                   onPressed: () async {
                                     _model.notifi2 =
                                         await queryNotificationsRecordOnce(
-                                      parent: widget.invitation?.receiver,
+                                      parent: widget!.invitation?.receiver,
                                       queryBuilder: (notificationsRecord) =>
                                           notificationsRecord.where(
                                         'relatedDoc',
                                         isEqualTo:
-                                            widget.invitation?.reference.id,
+                                            widget!.invitation?.reference.id,
                                       ),
                                       singleRecord: true,
                                     ).then((s) => s.firstOrNull);
@@ -629,7 +633,7 @@ class _SendInvitationDetailWidgetState
                                       isDelete: true,
                                     ));
 
-                                    await widget.invitation!.reference
+                                    await widget!.invitation!.reference
                                         .update(createInvitationsRecordData(
                                       isDelete: true,
                                     ));

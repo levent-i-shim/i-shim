@@ -7,10 +7,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_role_page_model.dart';
 export 'add_role_page_model.dart';
 
@@ -51,7 +55,7 @@ class _AddRolePageWidgetState extends State<AddRolePageWidget> {
             )
             .where(
               'companyRef',
-              isEqualTo: widget.company,
+              isEqualTo: widget!.company,
             ),
       );
       for (int loop1Index = 0;
@@ -105,7 +109,7 @@ class _AddRolePageWidgetState extends State<AddRolePageWidget> {
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.companyName,
+              widget!.companyName,
               'Şirket İsmi',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -549,7 +553,7 @@ class _AddRolePageWidgetState extends State<AddRolePageWidget> {
 
                                   var companyRolesRecordReference =
                                       CompanyRolesRecord.createDoc(
-                                          widget.company!);
+                                          widget!.company!);
                                   await companyRolesRecordReference
                                       .set(createCompanyRolesRecordData(
                                     name: _model.textController.text,
@@ -578,7 +582,7 @@ class _AddRolePageWidgetState extends State<AddRolePageWidget> {
                                       type: WorkHistoryTypes.createRole.name,
                                       companyRole:
                                           _model.companyRole?.reference,
-                                      companyName: widget.companyName,
+                                      companyName: widget!.companyName,
                                       fullDescription:
                                           '${_model.companyRole?.name} Adında Rol Oluşturuldu',
                                     ),

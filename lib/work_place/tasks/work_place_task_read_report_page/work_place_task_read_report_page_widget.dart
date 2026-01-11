@@ -7,11 +7,15 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'work_place_task_read_report_page_model.dart';
 export 'work_place_task_read_report_page_model.dart';
 
@@ -55,11 +59,11 @@ class _WorkPlaceTaskReadReportPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.userRef = await actions.getUserDocRef(
-        widget.task!.userRef,
+        widget!.task!.userRef,
       );
       _model.userDetail = await UsersRecord.getDocumentOnce(_model.userRef!);
       _model.companyDetail =
-          await CompaniesRecord.getDocumentOnce(widget.company!);
+          await CompaniesRecord.getDocumentOnce(widget!.company!);
       _model.isOwner =
           _model.companyDetail?.owner == currentUserReference ? true : false;
       safeSetState(() {});
@@ -114,8 +118,8 @@ class _WorkPlaceTaskReadReportPageWidgetState
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      if (!(widget.isPartner! &&
-                          widget.canSendTransaction!)) {
+                      if (!(widget!.isPartner! &&
+                          widget!.canSendTransaction!)) {
                         if (_model.companyDetail?.owner !=
                             currentUserReference) {
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -152,9 +156,9 @@ class _WorkPlaceTaskReadReportPageWidgetState
                                 FocusManager.instance.primaryFocus?.unfocus();
                               },
                               child: TaskOptionsWidget(
-                                isStoped: widget.task!.isComplete,
+                                isStoped: widget!.task!.isComplete,
                                 isTask: true,
-                                task: widget.task,
+                                task: widget!.task,
                               ),
                             ),
                           );
@@ -196,7 +200,7 @@ class _WorkPlaceTaskReadReportPageWidgetState
                       padding: EdgeInsets.all(12.0),
                       child: StreamBuilder<UsersRecord>(
                         stream: UsersRecord.getDocument(
-                            widget.task!.createdUserRef!),
+                            widget!.task!.createdUserRef!),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -266,7 +270,7 @@ class _WorkPlaceTaskReadReportPageWidgetState
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.task?.name,
+                                          widget!.task?.name,
                                           'Görev Adı',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -325,7 +329,7 @@ class _WorkPlaceTaskReadReportPageWidgetState
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.task?.description,
+                                          widget!.task?.description,
                                           'Açıklama',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -475,7 +479,7 @@ class _WorkPlaceTaskReadReportPageWidgetState
                       alignment: AlignmentDirectional(0.0, 0.0),
                       child: Builder(
                         builder: (context) {
-                          if (widget.task?.isComplete ?? false) {
+                          if (widget!.task?.isComplete ?? false) {
                             return Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 12.0, 0.0, 0.0),
@@ -507,12 +511,12 @@ class _WorkPlaceTaskReadReportPageWidgetState
                               alignment: AlignmentDirectional(0.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  await widget.task!.reference
+                                  await widget!.task!.reference
                                       .update(createCompanyTasksRecordData(
                                     isComplete: true,
                                   ));
 
-                                  await widget.task!.workPlaceTask!
+                                  await widget!.task!.workPlaceTask!
                                       .update(createWorkPlaceTasksRecordData(
                                     isComplete: true,
                                   ));
@@ -603,12 +607,12 @@ class _WorkPlaceTaskReadReportPageWidgetState
                           20.0, 20.0, 20.0, 20.0),
                       child: StreamBuilder<List<CompanyReportsRecord>>(
                         stream: queryCompanyReportsRecord(
-                          parent: widget.company,
+                          parent: widget!.company,
                           queryBuilder: (companyReportsRecord) =>
                               companyReportsRecord
                                   .where(
                                     'task',
-                                    isEqualTo: widget.task?.reference,
+                                    isEqualTo: widget!.task?.reference,
                                   )
                                   .where(
                                     'isDelete',

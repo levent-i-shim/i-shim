@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'copmany_partnerships_page_model.dart';
 export 'copmany_partnerships_page_model.dart';
 
@@ -154,12 +157,12 @@ class _CopmanyPartnershipsPageWidgetState
                                   AddPartnerCompanyPageWidget.routeName,
                                   queryParameters: {
                                     'companyDetail': serializeParam(
-                                      widget.companyDetail,
+                                      widget!.companyDetail,
                                       ParamType.Document,
                                     ),
                                   }.withoutNulls,
                                   extra: <String, dynamic>{
-                                    'companyDetail': widget.companyDetail,
+                                    'companyDetail': widget!.companyDetail,
                                   },
                                 );
                               },
@@ -205,7 +208,7 @@ class _CopmanyPartnershipsPageWidgetState
                   child: Builder(
                     builder: (context) {
                       final partner =
-                          widget.companyDetail?.partners.toList() ?? [];
+                          widget!.companyDetail?.partners?.toList() ?? [];
 
                       return ListView.builder(
                         padding: EdgeInsets.zero,
@@ -253,7 +256,7 @@ class _CopmanyPartnershipsPageWidgetState
                                             partnershipsRecord.where(
                                           'companyRef',
                                           isEqualTo:
-                                              widget.companyDetail?.reference,
+                                              widget!.companyDetail?.reference,
                                         ),
                                         singleRecord: true,
                                       ),
@@ -304,7 +307,7 @@ class _CopmanyPartnershipsPageWidgetState
                                                   ParamType.Document,
                                                 ),
                                                 'company': serializeParam(
-                                                  widget.companyDetail,
+                                                  widget!.companyDetail,
                                                   ParamType.Document,
                                                 ),
                                               }.withoutNulls,
@@ -312,7 +315,7 @@ class _CopmanyPartnershipsPageWidgetState
                                                 'partnership':
                                                     containerPartnershipsRecord,
                                                 'company':
-                                                    widget.companyDetail,
+                                                    widget!.companyDetail,
                                               },
                                             );
                                           },

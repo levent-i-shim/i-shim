@@ -1,12 +1,18 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'create_task_step3_model.dart';
 export 'create_task_step3_model.dart';
 
@@ -47,14 +53,14 @@ class _CreateTaskStep3WidgetState extends State<CreateTaskStep3Widget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.isWorker!) {
+      if (widget!.isWorker!) {
         _model.companyDetail =
-            await CompaniesRecord.getDocumentOnce(widget.company!);
-        if (_model.companyDetail?.headOffice == widget.workPlace) {
+            await CompaniesRecord.getDocumentOnce(widget!.company!);
+        if (_model.companyDetail?.headOffice == widget!.workPlace) {
           _model.workPLaces = await queryWorkPlacesRecordOnce(
             queryBuilder: (workPlacesRecord) => workPlacesRecord.where(
               'companyRef',
-              isEqualTo: widget.company,
+              isEqualTo: widget!.company,
             ),
           );
           for (int loop1Index = 0;
@@ -69,7 +75,7 @@ class _CreateTaskStep3WidgetState extends State<CreateTaskStep3Widget> {
           }
         } else {
           _model.workPLace =
-              await WorkPlacesRecord.getDocumentOnce(widget.workPlace!);
+              await WorkPlacesRecord.getDocumentOnce(widget!.workPlace!);
           _model.addToWorkPlaces(WorkplaceStruct(
             id: _model.workPLace?.reference,
             name: _model.workPLace?.name,
@@ -122,7 +128,7 @@ class _CreateTaskStep3WidgetState extends State<CreateTaskStep3Widget> {
             children: [
               FFButtonWidget(
                 onPressed: () async {
-                  if (widget.canCreateWorkPlace!) {
+                  if (widget!.canCreateWorkPlace!) {
                     context.pushNamed(
                       IsyerikurWidget.routeName,
                       queryParameters: {
@@ -226,13 +232,13 @@ class _CreateTaskStep3WidgetState extends State<CreateTaskStep3Widget> {
                       ),
                     ),
                   ),
-                  if (!widget.isWorker!)
+                  if (!widget!.isWorker!)
                     StreamBuilder<List<WorkPlacesRecord>>(
                       stream: queryWorkPlacesRecord(
                         queryBuilder: (workPlacesRecord) => workPlacesRecord
                             .where(
                               'companyRef',
-                              isEqualTo: widget.company,
+                              isEqualTo: widget!.company,
                             )
                             .where(
                               'isDelete',
@@ -293,19 +299,19 @@ class _CreateTaskStep3WidgetState extends State<CreateTaskStep3Widget> {
                                             ParamType.DocumentReference,
                                           ),
                                           'company': serializeParam(
-                                            widget.company,
+                                            widget!.company,
                                             ParamType.DocumentReference,
                                           ),
                                           'canCreateForm': serializeParam(
-                                            widget.canCreateForm,
+                                            widget!.canCreateForm,
                                             ParamType.bool,
                                           ),
                                           'isDutyTask': serializeParam(
-                                            widget.isDutyTask,
+                                            widget!.isDutyTask,
                                             ParamType.bool,
                                           ),
                                           'canAddNewEmployee': serializeParam(
-                                            widget.canCreateWorkPlace,
+                                            widget!.canCreateWorkPlace,
                                             ParamType.bool,
                                           ),
                                         }.withoutNulls,
@@ -368,7 +374,7 @@ class _CreateTaskStep3WidgetState extends State<CreateTaskStep3Widget> {
                         );
                       },
                     ),
-                  if (widget.isWorker ?? true)
+                  if (widget!.isWorker ?? true)
                     Container(
                       decoration: BoxDecoration(),
                       child: Builder(
@@ -404,19 +410,19 @@ class _CreateTaskStep3WidgetState extends State<CreateTaskStep3Widget> {
                                         ParamType.DocumentReference,
                                       ),
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                       'canCreateForm': serializeParam(
-                                        widget.canCreateForm,
+                                        widget!.canCreateForm,
                                         ParamType.bool,
                                       ),
                                       'isDutyTask': serializeParam(
-                                        widget.isDutyTask,
+                                        widget!.isDutyTask,
                                         ParamType.bool,
                                       ),
                                       'canAddNewEmployee': serializeParam(
-                                        widget.canCreateWorkPlace,
+                                        widget!.canCreateWorkPlace,
                                         ParamType.bool,
                                       ),
                                     }.withoutNulls,

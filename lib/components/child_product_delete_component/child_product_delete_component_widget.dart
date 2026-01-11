@@ -1,9 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'child_product_delete_component_model.dart';
 export 'child_product_delete_component_model.dart';
 
@@ -203,12 +207,12 @@ class _ChildProductDeleteComponentWidgetState
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await widget.childProduct!.reference
+                          await widget!.childProduct!.reference
                               .update(createProductsRecordData(
                             isDelete: true,
                           ));
 
-                          await widget.deleteRequest!.reference
+                          await widget!.deleteRequest!.reference
                               .update(createDeletionRequestRecordData(
                             isDeleteRequest: true,
                           ));
@@ -249,12 +253,12 @@ class _ChildProductDeleteComponentWidgetState
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          if (widget.childProduct!.companyIncomes.isNotEmpty) {
+                          if (widget!.childProduct!.companyIncomes.isNotEmpty) {
                             for (int loop1Index = 0;
                                 loop1Index <
-                                    widget.childProduct!.companyIncomes.length;
+                                    widget!.childProduct!.companyIncomes.length;
                                 loop1Index++) {
-                              final currentLoop1Item = widget
+                              final currentLoop1Item = widget!
                                   .childProduct!.companyIncomes[loop1Index];
 
                               await currentLoop1Item
@@ -263,14 +267,14 @@ class _ChildProductDeleteComponentWidgetState
                               ));
                             }
                           }
-                          if (widget
+                          if (widget!
                               .childProduct!.companyPayments.isNotEmpty) {
                             for (int loop2Index = 0;
                                 loop2Index <
-                                    widget
+                                    widget!
                                         .childProduct!.companyPayments.length;
                                 loop2Index++) {
-                              final currentLoop2Item = widget
+                              final currentLoop2Item = widget!
                                   .childProduct!.companyPayments[loop2Index];
 
                               await currentLoop2Item
@@ -279,14 +283,14 @@ class _ChildProductDeleteComponentWidgetState
                               ));
                             }
                           }
-                          if (widget
+                          if (widget!
                               .childProduct!.workPlaceIncomes.isNotEmpty) {
                             for (int loop3Index = 0;
                                 loop3Index <
-                                    widget
+                                    widget!
                                         .childProduct!.workPlaceIncomes.length;
                                 loop3Index++) {
-                              final currentLoop3Item = widget
+                              final currentLoop3Item = widget!
                                   .childProduct!.workPlaceIncomes[loop3Index];
 
                               await currentLoop3Item
@@ -295,14 +299,14 @@ class _ChildProductDeleteComponentWidgetState
                               ));
                             }
                           }
-                          if (widget
+                          if (widget!
                               .childProduct!.workPlacePayments.isNotEmpty) {
                             for (int loop4Index = 0;
                                 loop4Index <
-                                    widget
+                                    widget!
                                         .childProduct!.workPlacePayments.length;
                                 loop4Index++) {
-                              final currentLoop4Item = widget
+                              final currentLoop4Item = widget!
                                   .childProduct!.workPlacePayments[loop4Index];
 
                               await currentLoop4Item
@@ -311,95 +315,95 @@ class _ChildProductDeleteComponentWidgetState
                               ));
                             }
                           }
-                          if (widget.childProduct!.bills.isNotEmpty) {
+                          if (widget!.childProduct!.bills.isNotEmpty) {
                             for (int loop5Index = 0;
-                                loop5Index < widget.childProduct!.bills.length;
+                                loop5Index < widget!.childProduct!.bills.length;
                                 loop5Index++) {
                               final currentLoop5Item =
-                                  widget.childProduct!.bills[loop5Index];
+                                  widget!.childProduct!.bills[loop5Index];
                               await currentLoop5Item.delete();
                             }
                           }
-                          if (widget.childProduct!.totalCost >
-                              widget.childProduct!.totalSoldCost) {
-                            await widget.workPlace!.update({
+                          if (widget!.childProduct!.totalCost >
+                              widget!.childProduct!.totalSoldCost) {
+                            await widget!.workPlace!.update({
                               ...mapToFirestore(
                                 {
                                   'totalMoney': FieldValue.increment(
-                                      widget.childProduct!.totalCost -
-                                          widget.childProduct!.totalSoldCost),
+                                      widget!.childProduct!.totalCost -
+                                          widget!.childProduct!.totalSoldCost),
                                   'yearlyMoney': FieldValue.increment(
-                                      widget.childProduct!.totalCost -
-                                          widget.childProduct!.totalSoldCost),
+                                      widget!.childProduct!.totalCost -
+                                          widget!.childProduct!.totalSoldCost),
                                 },
                               ),
                             });
 
-                            await widget.deleteRequest!.parentReference
+                            await widget!.deleteRequest!.parentReference
                                 .update({
                               ...mapToFirestore(
                                 {
                                   'totalMoney': FieldValue.increment(
-                                      widget.childProduct!.totalCost -
-                                          widget.childProduct!.totalSoldCost),
+                                      widget!.childProduct!.totalCost -
+                                          widget!.childProduct!.totalSoldCost),
                                   'yearlyMoney': FieldValue.increment(
-                                      widget.childProduct!.totalCost -
-                                          widget.childProduct!.totalSoldCost),
+                                      widget!.childProduct!.totalCost -
+                                          widget!.childProduct!.totalSoldCost),
                                 },
                               ),
                             });
                           } else {
-                            await widget.workPlace!.update({
+                            await widget!.workPlace!.update({
                               ...mapToFirestore(
                                 {
                                   'totalMoney': FieldValue.increment(
-                                      widget.childProduct!.totalCost -
-                                          widget.childProduct!.totalSoldCost),
+                                      widget!.childProduct!.totalCost -
+                                          widget!.childProduct!.totalSoldCost),
                                   'yearlyMoney': FieldValue.increment(
-                                      widget.childProduct!.totalCost -
-                                          widget.childProduct!.totalSoldCost),
+                                      widget!.childProduct!.totalCost -
+                                          widget!.childProduct!.totalSoldCost),
                                 },
                               ),
                             });
 
-                            await widget.deleteRequest!.parentReference
+                            await widget!.deleteRequest!.parentReference
                                 .update({
                               ...mapToFirestore(
                                 {
                                   'totalMoney': FieldValue.increment(
-                                      widget.childProduct!.totalCost -
-                                          widget.childProduct!.totalSoldCost),
+                                      widget!.childProduct!.totalCost -
+                                          widget!.childProduct!.totalSoldCost),
                                   'yearlyMoney': FieldValue.increment(
-                                      widget.childProduct!.totalCost -
-                                          widget.childProduct!.totalSoldCost),
+                                      widget!.childProduct!.totalCost -
+                                          widget!.childProduct!.totalSoldCost),
                                 },
                               ),
                             });
                           }
 
-                          await widget.deleteRequest!.reference
+                          await widget!.deleteRequest!.reference
                               .update(createDeletionRequestRecordData(
                             isDeleteRequest: true,
                           ));
                           _model.parentProduct =
                               await ParentProductsRecord.getDocumentOnce(
-                                  widget.childProduct!.parentProduct!);
+                                  widget!.childProduct!.parentProduct!);
 
-                          await widget.childProduct!.parentProduct!
+                          await widget!.childProduct!.parentProduct!
                               .update(createParentProductsRecordData(
                             averageCost: (_model.parentProduct!.totalCost -
-                                    widget.childProduct!.totalCost) /
+                                    widget!.childProduct!.totalCost) /
                                 (_model.parentProduct!.totalQuantity -
-                                    widget.childProduct!.totalProduct),
+                                    widget!.childProduct!.totalProduct),
                             totalQuantity: _model.parentProduct!.totalQuantity -
-                                widget.childProduct!.totalProduct,
+                                widget!.childProduct!.totalProduct,
                             totalCost: _model.parentProduct!.totalCost -
-                                widget.childProduct!.totalCost,
+                                widget!.childProduct!.totalCost,
                             soldQuantity: (_model.parentProduct!.soldQuantity -
-                                widget.childProduct!.soldQuantity),
+                                widget!.childProduct!.soldQuantity),
                             totalSoldCost:
                                 (_model.parentProduct!.totalSoldCost -
-                                    widget.childProduct!.totalSoldCost),
+                                    widget!.childProduct!.totalSoldCost),
                           ));
                           Navigator.pop(context);
 

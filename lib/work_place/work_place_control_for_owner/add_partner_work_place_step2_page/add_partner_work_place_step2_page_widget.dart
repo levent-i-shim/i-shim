@@ -5,9 +5,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_partner_work_place_step2_page_model.dart';
 export 'add_partner_work_place_step2_page_model.dart';
 
@@ -311,8 +314,8 @@ class _AddPartnerWorkPlaceStep2PageWidgetState
                         onPressed: () async {
                           _model.workPlaceDetail =
                               await WorkPlacesRecord.getDocumentOnce(
-                                  widget.workPlace!);
-                          if (widget.user?.reference == currentUserReference) {
+                                  widget!.workPlace!);
+                          if (widget!.user?.reference == currentUserReference) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -330,17 +333,17 @@ class _AddPartnerWorkPlaceStep2PageWidgetState
                           } else {
                             var partnershipInvitationRecordReference =
                                 PartnershipInvitationRecord.createDoc(
-                                    widget.user!.reference);
+                                    widget!.user!.reference);
                             await partnershipInvitationRecordReference.set({
                               ...createPartnershipInvitationRecordData(
                                 isCompanyPartnership: false,
                                 isAccept: false,
                                 isReject: false,
-                                company: widget.company,
+                                company: widget!.company,
                                 isDelete: false,
                                 sender: currentUserReference,
-                                receiver: widget.user?.reference,
-                                workPlace: widget.workPlace,
+                                receiver: widget!.user?.reference,
+                                workPlace: widget!.workPlace,
                                 workPlaceName: _model.workPlaceDetail?.name,
                                 sharePercent:
                                     double.tryParse(_model.textController.text),
@@ -358,11 +361,11 @@ class _AddPartnerWorkPlaceStep2PageWidgetState
                                 isCompanyPartnership: false,
                                 isAccept: false,
                                 isReject: false,
-                                company: widget.company,
+                                company: widget!.company,
                                 isDelete: false,
                                 sender: currentUserReference,
-                                receiver: widget.user?.reference,
-                                workPlace: widget.workPlace,
+                                receiver: widget!.user?.reference,
+                                workPlace: widget!.workPlace,
                                 workPlaceName: _model.workPlaceDetail?.name,
                                 sharePercent:
                                     double.tryParse(_model.textController.text),
@@ -375,7 +378,7 @@ class _AddPartnerWorkPlaceStep2PageWidgetState
                             }, partnershipInvitationRecordReference);
 
                             await NotificationsRecord.createDoc(
-                                    widget.user!.reference)
+                                    widget!.user!.reference)
                                 .set({
                               ...createNotificationsRecordData(
                                 type: NotificationTypes.createPartnership.name,
@@ -384,7 +387,7 @@ class _AddPartnerWorkPlaceStep2PageWidgetState
                                     _model.partnershipInvitation?.reference.id,
                                 isRead: false,
                                 isDelete: false,
-                                company: widget.company,
+                                company: widget!.company,
                                 fullDescription:
                                     '${_model.workPlaceDetail?.name} İsimli İşYerine Ortak Olarak atanmak için ${currentUserDisplayName} İsimli Kişiden Davet aldınız',
                               ),
@@ -454,9 +457,9 @@ class _AddPartnerWorkPlaceStep2PageWidgetState
                         onPressed: () async {
                           _model.workPlaceDetail2 =
                               await WorkPlacesRecord.getDocumentOnce(
-                                  widget.workPlace!);
+                                  widget!.workPlace!);
                           HapticFeedback.mediumImpact();
-                          if (widget.user?.reference == currentUserReference) {
+                          if (widget!.user?.reference == currentUserReference) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -472,11 +475,11 @@ class _AddPartnerWorkPlaceStep2PageWidgetState
                               ),
                             );
                           } else {
-                            await widget.workPlace!.update({
+                            await widget!.workPlace!.update({
                               ...mapToFirestore(
                                 {
                                   'partners': FieldValue.arrayUnion(
-                                      [widget.user?.reference]),
+                                      [widget!.user?.reference]),
                                 },
                               ),
                             });

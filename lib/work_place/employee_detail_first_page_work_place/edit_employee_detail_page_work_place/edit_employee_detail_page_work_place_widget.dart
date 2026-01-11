@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -5,11 +6,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_employee_detail_page_work_place_model.dart';
 export 'edit_employee_detail_page_work_place_model.dart';
 
@@ -53,11 +57,11 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.units = await queryCompanyUnitsRecordOnce(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyUnitsRecord) => companyUnitsRecord
             .where(
               'workplaceRef',
-              isEqualTo: widget.workPlace,
+              isEqualTo: widget!.workPlace,
             )
             .where(
               'isDelete',
@@ -69,15 +73,15 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
     });
 
     _model.textController1 ??=
-        TextEditingController(text: widget.companyWorker?.salary.toString());
+        TextEditingController(text: widget!.companyWorker?.salary?.toString());
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController(
-        text: widget.companyWorker?.workingHour.toString());
+        text: widget!.companyWorker?.workingHour?.toString());
     _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.textController3 ??= TextEditingController(
-        text: widget.companyWorker?.shiftSalary.toString());
+        text: widget!.companyWorker?.shiftSalary?.toString());
     _model.textFieldFocusNode3 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -182,12 +186,12 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                               ),
                               StreamBuilder<List<CompanyDepartmentsRecord>>(
                                 stream: queryCompanyDepartmentsRecord(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyDepartmentsRecord) =>
                                       companyDepartmentsRecord
                                           .where(
                                             'workPlace',
-                                            isEqualTo: widget.workPlace,
+                                            isEqualTo: widget!.workPlace,
                                           )
                                           .where(
                                             'isDelete',
@@ -219,10 +223,10 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                                     controller: _model
                                             .dropDownDepartmentValueController ??=
                                         FormFieldController<String>(
-                                      _model.dropDownDepartmentValue ??= widget
+                                      _model.dropDownDepartmentValue ??= widget!
                                           .companyWorker
                                           ?.departmentRefs
-                                          .firstOrNull
+                                          ?.firstOrNull
                                           ?.id,
                                     ),
                                     options: List<String>.from(
@@ -239,7 +243,7 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                                       _model.dep =
                                           await actions.getDepartmentDocRef(
                                         '',
-                                        widget.company!.id,
+                                        widget!.company!.id,
                                       );
                                       _model.companyUnits = _model.units!
                                           .where((e) =>
@@ -348,8 +352,8 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                                 controller:
                                     _model.dropDownUnitValueController ??=
                                         FormFieldController<String>(
-                                  _model.dropDownUnitValue ??= widget
-                                      .companyWorker?.unitRefs.firstOrNull?.id,
+                                  _model.dropDownUnitValue ??= widget!
+                                      .companyWorker?.unitRefs?.firstOrNull?.id,
                                 ),
                                 options: List<String>.from(_model.companyUnits
                                     .map((e) => e.reference.id)
@@ -449,12 +453,12 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                               ),
                               StreamBuilder<List<CompanyRolesRecord>>(
                                 stream: queryCompanyRolesRecord(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyRolesRecord) =>
                                       companyRolesRecord
                                           .where(
                                             'workPlaceRef',
-                                            isEqualTo: widget.workPlace,
+                                            isEqualTo: widget!.workPlace,
                                           )
                                           .where(
                                             'isDelete',
@@ -486,10 +490,10 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                                     controller:
                                         _model.dropDownRoleValueController ??=
                                             FormFieldController<String>(
-                                      _model.dropDownRoleValue ??= widget
+                                      _model.dropDownRoleValue ??= widget!
                                           .companyWorker
                                           ?.roleRefs
-                                          .firstOrNull
+                                          ?.firstOrNull
                                           ?.id,
                                     ),
                                     options: List<String>.from(
@@ -1093,8 +1097,8 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                     child: FFButtonWidget(
                       onPressed: () async {
                         var _shouldSetState = false;
-                        if (widget.isPartner!) {
-                          if (!widget.canManage!) {
+                        if (widget!.isPartner!) {
+                          if (!widget!.canManage!) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -1113,8 +1117,8 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                             return;
                           }
                         } else {
-                          if (widget.isWorker!) {
-                            if (!widget.canManage!) {
+                          if (widget!.isWorker!) {
+                            if (!widget!.canManage!) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -1137,18 +1141,18 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
 
                         _model.newRole = await actions.getRoleDocRef(
                           _model.dropDownRoleValue!,
-                          widget.company!.id,
+                          widget!.company!.id,
                         );
                         _shouldSetState = true;
                         _model.newUnit = await actions.getUnitDocRef(
                           _model.dropDownUnitValue!,
-                          widget.company!.id,
+                          widget!.company!.id,
                         );
                         _shouldSetState = true;
                         _model.newDepartment =
                             await actions.getDepartmentDocRef(
                           _model.dropDownDepartmentValue!,
-                          widget.company!.id,
+                          widget!.company!.id,
                         );
                         _shouldSetState = true;
                         _model.newRoleRefs = [];
@@ -1158,7 +1162,7 @@ class _EditEmployeeDetailPageWorkPlaceWidgetState
                         _model.addToNewUnitRefs(_model.newUnit!);
                         _model.addToNewDepRefs(_model.newDepartment!);
 
-                        await widget.companyWorker!.reference.update({
+                        await widget!.companyWorker!.reference.update({
                           ...createCompanyWorkersRecordData(
                             salary:
                                 double.tryParse(_model.textController1.text),

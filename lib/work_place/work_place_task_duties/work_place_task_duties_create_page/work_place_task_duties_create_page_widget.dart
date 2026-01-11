@@ -7,10 +7,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_task_duties_create_page_model.dart';
 export 'work_place_task_duties_create_page_model.dart';
 
@@ -66,7 +69,7 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<WorkPlaceWorkerRecord>>(
       stream: queryWorkPlaceWorkerRecord(
-        parent: widget.workPlace,
+        parent: widget!.workPlace,
         queryBuilder: (workPlaceWorkerRecord) => workPlaceWorkerRecord
             .where(
               'isDelete',
@@ -647,8 +650,8 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
                             child: FFButtonWidget(
                               onPressed: () async {
                                 var _shouldSetState = false;
-                                if (widget.isPartner!) {
-                                  if (!widget.canCreate!) {
+                                if (widget!.isPartner!) {
+                                  if (!widget!.canCreate!) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -668,8 +671,8 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
                                     return;
                                   }
                                 } else {
-                                  if (widget.isWorker!) {
-                                    if (!widget.canCreate!) {
+                                  if (widget!.isWorker!) {
+                                    if (!widget!.canCreate!) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -726,12 +729,12 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
                                   }
                                   _model.companyDetail =
                                       await CompaniesRecord.getDocumentOnce(
-                                          widget.company!);
+                                          widget!.company!);
                                   _shouldSetState = true;
 
                                   var dutiesForWorkPlaceRecordReference =
                                       DutiesForWorkPlaceRecord.createDoc(
-                                          widget.workPlace!);
+                                          widget!.workPlace!);
                                   await dutiesForWorkPlaceRecordReference.set({
                                     ...createDutiesForWorkPlaceRecordData(
                                       userRef: _model.userRef,
@@ -766,16 +769,16 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
 
                                   var dutiesForCompanyRecordReference =
                                       DutiesForCompanyRecord.createDoc(
-                                          widget.company!);
+                                          widget!.company!);
                                   await dutiesForCompanyRecordReference.set({
                                     ...createDutiesForCompanyRecordData(
                                       userRef: _model.userRef,
-                                      companyRef: widget.company,
+                                      companyRef: widget!.company,
                                       createdUserRef: currentUserReference,
                                       taskName: _model.textController.text,
                                       isComplete: false,
                                       isDelete: false,
-                                      workPlaceRef: widget.workPlace,
+                                      workPlaceRef: widget!.workPlace,
                                       workPlaceDutiesForCompany:
                                           _model.dutiesForWorkPlace?.reference,
                                     ),
@@ -790,12 +793,12 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
                                           .getDocumentFromData({
                                     ...createDutiesForCompanyRecordData(
                                       userRef: _model.userRef,
-                                      companyRef: widget.company,
+                                      companyRef: widget!.company,
                                       createdUserRef: currentUserReference,
                                       taskName: _model.textController.text,
                                       isComplete: false,
                                       isDelete: false,
-                                      workPlaceRef: widget.workPlace,
+                                      workPlaceRef: widget!.workPlace,
                                       workPlaceDutiesForCompany:
                                           _model.dutiesForWorkPlace?.reference,
                                     ),
@@ -817,7 +820,7 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
                                       isRead: false,
                                       isDelete: false,
                                       content: 'Sıralı Görev Eklendi',
-                                      company: widget.company,
+                                      company: widget!.company,
                                       fullDescription:
                                           '${_model.textController.text} isimli Sıralı Görev Eklendi',
                                       image: _model.companyDetail?.companyLogo,
@@ -897,19 +900,19 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
                                         .routeName,
                                     queryParameters: {
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                       'workPlace': serializeParam(
-                                        widget.workPlace,
+                                        widget!.workPlace,
                                         ParamType.DocumentReference,
                                       ),
                                       'isPartner': serializeParam(
-                                        widget.isPartner,
+                                        widget!.isPartner,
                                         ParamType.bool,
                                       ),
                                       'canCreate': serializeParam(
-                                        widget.canCreate,
+                                        widget!.canCreate,
                                         ParamType.bool,
                                       ),
                                       'dutiesForCompany': serializeParam(
@@ -917,7 +920,7 @@ class _WorkPlaceTaskDutiesCreatePageWidgetState
                                         ParamType.DocumentReference,
                                       ),
                                       'isWorker': serializeParam(
-                                        widget.isWorker,
+                                        widget!.isWorker,
                                         ParamType.bool,
                                       ),
                                     }.withoutNulls,

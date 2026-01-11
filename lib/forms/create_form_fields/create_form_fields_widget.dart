@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -6,10 +7,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'create_form_fields_model.dart';
 export 'create_form_fields_model.dart';
 
@@ -43,7 +48,7 @@ class _CreateFormFieldsWidgetState extends State<CreateFormFieldsWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.formFieldsCopy = await queryFormFieldsRecordOnce(
-        parent: widget.form?.reference,
+        parent: widget!.form?.reference,
       );
       _model.formFieldsPageState =
           _model.formFieldsCopy!.toList().cast<FormFieldsRecord>();
@@ -95,7 +100,7 @@ class _CreateFormFieldsWidgetState extends State<CreateFormFieldsWidget> {
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.form?.formName,
+              widget!.form?.formName,
               'Form Adı',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -545,7 +550,7 @@ class _CreateFormFieldsWidgetState extends State<CreateFormFieldsWidget> {
                                             (_model.options)!.isNotEmpty) {
                                           var formFieldsRecordReference1 =
                                               FormFieldsRecord.createDoc(
-                                                  widget.form!.reference);
+                                                  widget!.form!.reference);
                                           await formFieldsRecordReference1.set({
                                             ...createFormFieldsRecordData(
                                               fieldName:
@@ -604,7 +609,7 @@ class _CreateFormFieldsWidgetState extends State<CreateFormFieldsWidget> {
                                       } else {
                                         var formFieldsRecordReference2 =
                                             FormFieldsRecord.createDoc(
-                                                widget.form!.reference);
+                                                widget!.form!.reference);
                                         await formFieldsRecordReference2
                                             .set(createFormFieldsRecordData(
                                           fieldName:
@@ -1086,7 +1091,7 @@ class _CreateFormFieldsWidgetState extends State<CreateFormFieldsWidget> {
                               );
                             },
                           );
-                          if (widget.routeBack!) {
+                          if (widget!.routeBack!) {
                             context.safePop();
                             context.safePop();
                           } else {

@@ -1,12 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'choose_new_department_model.dart';
 export 'choose_new_department_model.dart';
 
@@ -53,7 +58,7 @@ class _ChooseNewDepartmentWidgetState extends State<ChooseNewDepartmentWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyDepartmentsRecord>>(
       stream: queryCompanyDepartmentsRecord(
-        parent: widget.company,
+        parent: widget!.company,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -227,10 +232,10 @@ class _ChooseNewDepartmentWidgetState extends State<ChooseNewDepartmentWidget> {
                                   _model.newDepartment =
                                       await actions.getDepartmentDocRef(
                                     _model.dropDownValue!,
-                                    widget.company!.id,
+                                    widget!.company!.id,
                                   );
                                   if (_model.newDepartment ==
-                                      widget.department?.reference) {
+                                      widget!.department?.reference) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -249,12 +254,12 @@ class _ChooseNewDepartmentWidgetState extends State<ChooseNewDepartmentWidget> {
                                   } else {
                                     _model.workers =
                                         await queryCompanyWorkersRecordOnce(
-                                      parent: widget.company,
+                                      parent: widget!.company,
                                       queryBuilder: (companyWorkersRecord) =>
                                           companyWorkersRecord.where(
                                         'departmentRefs',
                                         arrayContains:
-                                            widget.department?.reference,
+                                            widget!.department?.reference,
                                       ),
                                     );
                                     _model.addToNewDepartmentList(
@@ -292,12 +297,12 @@ class _ChooseNewDepartmentWidgetState extends State<ChooseNewDepartmentWidget> {
                                       }
                                     }
 
-                                    await widget.department!.reference.update(
+                                    await widget!.department!.reference.update(
                                         createCompanyDepartmentsRecordData(
                                       isDelete: true,
                                     ));
 
-                                    await widget
+                                    await widget!
                                         .department!.workPlaceDepartment!
                                         .update(
                                             createWorkPlaceDepartmentRecordData(
@@ -380,12 +385,12 @@ class _ChooseNewDepartmentWidgetState extends State<ChooseNewDepartmentWidget> {
                               onPressed: () async {
                                 _model.workersCopy =
                                     await queryCompanyWorkersRecordOnce(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyWorkersRecord) =>
                                       companyWorkersRecord.where(
                                     'departmentRefs',
                                     arrayContains:
-                                        widget.department?.reference,
+                                        widget!.department?.reference,
                                   ),
                                 );
                                 for (int loop1Index = 0;
@@ -402,7 +407,7 @@ class _ChooseNewDepartmentWidgetState extends State<ChooseNewDepartmentWidget> {
                                         {
                                           'departmentRefs':
                                               FieldValue.arrayRemove([
-                                            widget.department?.reference
+                                            widget!.department?.reference
                                           ]),
                                           'authorizedByDepartment':
                                               FieldValue.delete(),
@@ -415,7 +420,7 @@ class _ChooseNewDepartmentWidgetState extends State<ChooseNewDepartmentWidget> {
                                         {
                                           'departmentRefs':
                                               FieldValue.arrayRemove([
-                                            widget.department?.reference
+                                            widget!.department?.reference
                                           ]),
                                         },
                                       ),
@@ -423,12 +428,12 @@ class _ChooseNewDepartmentWidgetState extends State<ChooseNewDepartmentWidget> {
                                   }
                                 }
 
-                                await widget.department!.reference
+                                await widget!.department!.reference
                                     .update(createCompanyDepartmentsRecordData(
                                   isDelete: true,
                                 ));
 
-                                await widget.department!.workPlaceDepartment!
+                                await widget!.department!.workPlaceDepartment!
                                     .update(createWorkPlaceDepartmentRecordData(
                                   isDelete: true,
                                 ));

@@ -5,8 +5,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_role_page_work_place_model.dart';
 export 'add_role_page_work_place_model.dart';
 
@@ -320,8 +323,8 @@ class _AddRolePageWorkPlaceWidgetState
                           child: FFButtonWidget(
                             onPressed: () async {
                               var _shouldSetState = false;
-                              if (widget.isPartner!) {
-                                if (!widget.canManage!) {
+                              if (widget!.isPartner!) {
+                                if (!widget!.canManage!) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -341,8 +344,8 @@ class _AddRolePageWorkPlaceWidgetState
                                   return;
                                 }
                               } else {
-                                if (widget.isWorker!) {
-                                  if (!widget.canManage!) {
+                                if (widget!.isWorker!) {
+                                  if (!widget!.canManage!) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -373,7 +376,7 @@ class _AddRolePageWorkPlaceWidgetState
                               if (_model.validate!) {
                                 var workPlaceRolesRecordReference =
                                     WorkPlaceRolesRecord.createDoc(
-                                        widget.workPlace!);
+                                        widget!.workPlace!);
                                 await workPlaceRolesRecordReference
                                     .set(createWorkPlaceRolesRecordData(
                                   name: _model.textController.text,
@@ -392,12 +395,12 @@ class _AddRolePageWorkPlaceWidgetState
 
                                 var companyRolesRecordReference =
                                     CompanyRolesRecord.createDoc(
-                                        widget.company!);
+                                        widget!.company!);
                                 await companyRolesRecordReference
                                     .set(createCompanyRolesRecordData(
                                   name: _model.textController.text,
                                   isDelete: false,
-                                  workPlaceRef: widget.workPlace,
+                                  workPlaceRef: widget!.workPlace,
                                   workPlaceRoleRef: _model.ref?.reference,
                                   createdBy: currentUserReference,
                                 ));
@@ -406,7 +409,7 @@ class _AddRolePageWorkPlaceWidgetState
                                         createCompanyRolesRecordData(
                                           name: _model.textController.text,
                                           isDelete: false,
-                                          workPlaceRef: widget.workPlace,
+                                          workPlaceRef: widget!.workPlace,
                                           workPlaceRoleRef:
                                               _model.ref?.reference,
                                           createdBy: currentUserReference,

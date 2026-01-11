@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_update_financial_item_title_model.dart';
 export 'options_update_financial_item_title_model.dart';
 
@@ -38,7 +43,7 @@ class _OptionsUpdateFinancialItemTitleWidgetState
     _model = createModel(context, () => OptionsUpdateFinancialItemTitleModel());
 
     _model.inputItemTitleTextController ??=
-        TextEditingController(text: widget.itemDocument?.title);
+        TextEditingController(text: widget!.itemDocument?.title);
     _model.inputItemTitleFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -260,7 +265,7 @@ class _OptionsUpdateFinancialItemTitleWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await widget.itemRef!
+                          await widget!.itemRef!
                               .update(createFinancialPlansItemsRecordData(
                             title: _model.inputItemTitleTextController.text,
                           ));

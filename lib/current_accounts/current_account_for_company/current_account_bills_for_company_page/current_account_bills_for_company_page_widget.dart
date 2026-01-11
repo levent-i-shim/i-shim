@@ -1,14 +1,21 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_bills_for_company_page_model.dart';
 export 'current_account_bills_for_company_page_model.dart';
 
@@ -53,7 +60,7 @@ class _CurrentAccountBillsForCompanyPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.bills = await queryCurrentAccountBillRecordOnce(
-        parent: widget.currentAccount?.currentAccountId,
+        parent: widget!.currentAccount?.currentAccountId,
         queryBuilder: (currentAccountBillRecord) =>
             currentAccountBillRecord.where(
           'isAccept',
@@ -143,7 +150,7 @@ class _CurrentAccountBillsForCompanyPageWidgetState
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if (widget.currentAccount?.sideTwoType == 'Kullanmayan')
+              if (widget!.currentAccount?.sideTwoType == 'Kullanmayan')
                 Flexible(
                   flex: 1,
                   child: Padding(
@@ -172,7 +179,7 @@ class _CurrentAccountBillsForCompanyPageWidgetState
                           ),
                         ),
                         child: Visibility(
-                          visible: widget.currentAccount?.sideTwoType ==
+                          visible: widget!.currentAccount?.sideTwoType ==
                               'Kullanmayan',
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -218,8 +225,8 @@ class _CurrentAccountBillsForCompanyPageWidgetState
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      if (widget.isPartner) {
-                                        if (!widget.canManage) {
+                                      if (widget!.isPartner) {
+                                        if (!widget!.canManage) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -246,7 +253,7 @@ class _CurrentAccountBillsForCompanyPageWidgetState
                                         MatchCurrentAccountPageWidget.routeName,
                                         queryParameters: {
                                           'currentAccount': serializeParam(
-                                            widget.currentAccount
+                                            widget!.currentAccount
                                                 ?.currentAccountId,
                                             ParamType.DocumentReference,
                                           ),
@@ -308,7 +315,7 @@ class _CurrentAccountBillsForCompanyPageWidgetState
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      '${widget.currentAccount?.counterPartyName} İle Olan Tüm Faturalarınız'
+                                      '${widget!.currentAccount?.counterPartyName} İle Olan Tüm Faturalarınız'
                                           .maybeHandleOverflow(
                                         maxChars: 40,
                                       ),
@@ -343,8 +350,8 @@ class _CurrentAccountBillsForCompanyPageWidgetState
                                           0.0, 8.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if (widget.isPartner) {
-                                            if (!widget.canManage) {
+                                          if (widget!.isPartner) {
+                                            if (!widget!.canManage) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
@@ -374,17 +381,17 @@ class _CurrentAccountBillsForCompanyPageWidgetState
                                                 .routeName,
                                             queryParameters: {
                                               'currentAccount': serializeParam(
-                                                widget.currentAccount,
+                                                widget!.currentAccount,
                                                 ParamType.DataStruct,
                                               ),
                                               'currentAccountId':
                                                   serializeParam(
-                                                widget.currentAccount
+                                                widget!.currentAccount
                                                     ?.currentAccountId,
                                                 ParamType.DocumentReference,
                                               ),
                                               'company': serializeParam(
-                                                widget.company,
+                                                widget!.company,
                                                 ParamType.DocumentReference,
                                               ),
                                             }.withoutNulls,
@@ -473,19 +480,19 @@ class _CurrentAccountBillsForCompanyPageWidgetState
                                                 ParamType.Document,
                                               ),
                                               'currentAccount': serializeParam(
-                                                widget.currentAccount,
+                                                widget!.currentAccount,
                                                 ParamType.DataStruct,
                                               ),
                                               'company': serializeParam(
-                                                widget.company,
+                                                widget!.company,
                                                 ParamType.DocumentReference,
                                               ),
                                               'isPartner': serializeParam(
-                                                widget.isPartner,
+                                                widget!.isPartner,
                                                 ParamType.bool,
                                               ),
                                               'canManage': serializeParam(
-                                                widget.canManage,
+                                                widget!.canManage,
                                                 ParamType.bool,
                                               ),
                                             }.withoutNulls,
@@ -564,7 +571,7 @@ class _CurrentAccountBillsForCompanyPageWidgetState
                                                                     .spaceBetween,
                                                             children: [
                                                               Text(
-                                                                widget.currentAccount!
+                                                                widget!.currentAccount!
                                                                         .amISideOne
                                                                     ? (billItem
                                                                             .isSideOneSeller

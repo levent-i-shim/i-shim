@@ -7,9 +7,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_instrucion_for_department_model.dart';
 export 'company_instrucion_for_department_model.dart';
 
@@ -59,7 +63,7 @@ class _CompanyInstrucionForDepartmentWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyDepartmentsRecord>>(
       stream: queryCompanyDepartmentsRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyDepartmentsRecord) =>
             companyDepartmentsRecord.where(
           'isDelete',
@@ -318,7 +322,7 @@ class _CompanyInstrucionForDepartmentWidgetState
                                   _model.depRef =
                                       await actions.getDepartmentDocRef(
                                     _model.dropDownValue!,
-                                    widget.company!.id,
+                                    widget!.company!.id,
                                   );
 
                                   var instructionsRecordReference1 =
@@ -327,8 +331,8 @@ class _CompanyInstrucionForDepartmentWidgetState
                                   await instructionsRecordReference1.set({
                                     ...createInstructionsRecordData(
                                       description: _model.textController.text,
-                                      company: widget.company,
-                                      workPlace: widget.workPlace,
+                                      company: widget!.company,
+                                      workPlace: widget!.workPlace,
                                       amISender: true,
                                     ),
                                     ...mapToFirestore(
@@ -342,8 +346,8 @@ class _CompanyInstrucionForDepartmentWidgetState
                                       InstructionsRecord.getDocumentFromData({
                                     ...createInstructionsRecordData(
                                       description: _model.textController.text,
-                                      company: widget.company,
-                                      workPlace: widget.workPlace,
+                                      company: widget!.company,
+                                      workPlace: widget!.workPlace,
                                       amISender: true,
                                     ),
                                     ...mapToFirestore(
@@ -354,7 +358,7 @@ class _CompanyInstrucionForDepartmentWidgetState
                                   }, instructionsRecordReference1);
                                   _model.companyWorkers =
                                       await queryCompanyWorkersRecordOnce(
-                                    parent: widget.company,
+                                    parent: widget!.company,
                                     queryBuilder: (companyWorkersRecord) =>
                                         companyWorkersRecord
                                             .where(
@@ -386,8 +390,8 @@ class _CompanyInstrucionForDepartmentWidgetState
                                     await instructionsRecordReference2.set({
                                       ...createInstructionsRecordData(
                                         description: _model.textController.text,
-                                        company: widget.company,
-                                        workPlace: widget.workPlace,
+                                        company: widget!.company,
+                                        workPlace: widget!.workPlace,
                                         amISender: false,
                                         id: _model.refInstruction?.reference.id,
                                       ),
@@ -402,8 +406,8 @@ class _CompanyInstrucionForDepartmentWidgetState
                                         InstructionsRecord.getDocumentFromData({
                                       ...createInstructionsRecordData(
                                         description: _model.textController.text,
-                                        company: widget.company,
-                                        workPlace: widget.workPlace,
+                                        company: widget!.company,
+                                        workPlace: widget!.workPlace,
                                         amISender: false,
                                         id: _model.refInstruction?.reference.id,
                                       ),

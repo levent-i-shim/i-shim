@@ -6,10 +6,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'parent_products_page_model.dart';
 export 'parent_products_page_model.dart';
 
@@ -144,15 +147,15 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                     AddParentProductPageWidget.routeName,
                     queryParameters: {
                       'company': serializeParam(
-                        widget.company,
+                        widget!.company,
                         ParamType.DocumentReference,
                       ),
                       'workPlace': serializeParam(
-                        widget.workPlace,
+                        widget!.workPlace,
                         ParamType.DocumentReference,
                       ),
                       'isOwner': serializeParam(
-                        widget.isOwner,
+                        widget!.isOwner,
                         ParamType.bool,
                       ),
                     }.withoutNulls,
@@ -265,7 +268,7 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                     children: [
                       StreamBuilder<List<ParentProductsRecord>>(
                         stream: queryParentProductsRecord(
-                          parent: widget.company,
+                          parent: widget!.company,
                           queryBuilder: (parentProductsRecord) =>
                               parentProductsRecord.where(
                             'isDelete',
@@ -311,7 +314,7 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                       AllProductsPageWidget.routeName,
                                       queryParameters: {
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                         'parentProduct': serializeParam(
@@ -319,11 +322,11 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                           ParamType.Document,
                                         ),
                                         'workPlace': serializeParam(
-                                          widget.workPlace,
+                                          widget!.workPlace,
                                           ParamType.DocumentReference,
                                         ),
                                         'isOwner': serializeParam(
-                                          widget.isOwner,
+                                          widget!.isOwner,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,
@@ -725,7 +728,7 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                                                 ) ??
                                                                 false;
                                                         if (confirmDialogResponse) {
-                                                          if (widget
+                                                          if (widget!
                                                               .isOwner!) {
                                                             await listViewParentProductsRecord
                                                                 .reference
@@ -780,7 +783,7 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                                               var deletionRequestRecordReference =
                                                                   DeletionRequestRecord
                                                                       .createDoc(
-                                                                          widget
+                                                                          widget!
                                                                               .company!);
                                                               await deletionRequestRecordReference
                                                                   .set(
@@ -797,7 +800,7 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                                                     currentUserReference,
                                                                 isDeleteRequest:
                                                                     false,
-                                                                workPlace: widget
+                                                                workPlace: widget!
                                                                     .workPlace,
                                                               ));
                                                               _model.deletionRequest =
@@ -815,13 +818,13 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                                                             isDeleteRequest:
                                                                                 false,
                                                                             workPlace:
-                                                                                widget.workPlace,
+                                                                                widget!.workPlace,
                                                                           ),
                                                                           deletionRequestRecordReference);
                                                               _model.companyDetail =
                                                                   await CompaniesRecord
                                                                       .getDocumentOnce(
-                                                                          widget
+                                                                          widget!
                                                                               .company!);
 
                                                               await NotificationsRecord
@@ -842,11 +845,11 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                                                   isRead: false,
                                                                   isDelete:
                                                                       false,
-                                                                  company: widget
+                                                                  company: widget!
                                                                       .company,
                                                                   fullDescription:
                                                                       '${listViewParentProductsRecord.name} İsimli Üst Ürün için ${currentUserDisplayName} isimli kişi silinme talebinde bulundu',
-                                                                  workplace: widget
+                                                                  workplace: widget!
                                                                       .workPlace,
                                                                 ),
                                                                 ...mapToFirestore(
@@ -996,7 +999,7 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                       ),
                       StreamBuilder<List<ParentProductsRecord>>(
                         stream: queryParentProductsRecord(
-                          parent: widget.company,
+                          parent: widget!.company,
                           queryBuilder: (parentProductsRecord) =>
                               parentProductsRecord.where(
                             'isDelete',
@@ -1042,7 +1045,7 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                       AllProductsPageWidget.routeName,
                                       queryParameters: {
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                         'parentProduct': serializeParam(
@@ -1050,11 +1053,11 @@ class _ParentProductsPageWidgetState extends State<ParentProductsPageWidget>
                                           ParamType.Document,
                                         ),
                                         'workPlace': serializeParam(
-                                          widget.workPlace,
+                                          widget!.workPlace,
                                           ParamType.DocumentReference,
                                         ),
                                         'isOwner': serializeParam(
-                                          widget.isOwner,
+                                          widget!.isOwner,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,

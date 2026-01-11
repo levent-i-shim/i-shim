@@ -1,15 +1,19 @@
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_home_page_for_owner_model.dart';
 export 'work_place_home_page_for_owner_model.dart';
 
@@ -45,7 +49,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.budget = await actions.getWorkPlaceBudget(
-        widget.workPlace!.reference,
+        widget!.workPlace!.reference,
       );
       _model.dailyMoney = _model.budget?.day;
       _model.weeklyMoney = _model.budget?.week;
@@ -102,7 +106,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                   children: [
                     Text(
                       valueOrDefault<String>(
-                        widget.workPlace?.name,
+                        widget!.workPlace?.name,
                         'WorkPlace',
                       ),
                       style:
@@ -127,7 +131,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                               ),
                     ),
                     StreamBuilder<CompaniesRecord>(
-                      stream: CompaniesRecord.getDocument(widget.company!),
+                      stream: CompaniesRecord.getDocument(widget!.company!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -677,7 +681,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                     child: Text(
                                       valueOrDefault<String>(
                                         formatNumber(
-                                          widget.workPlace?.yearlyMoney,
+                                          widget!.workPlace?.yearlyMoney,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.commaDecimal,
                                         ),
@@ -779,7 +783,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                     child: Text(
                                       valueOrDefault<String>(
                                         formatNumber(
-                                          widget.workPlace?.totalMoney,
+                                          widget!.workPlace?.totalMoney,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.commaDecimal,
                                         ),
@@ -858,7 +862,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                             .routeName,
                                         queryParameters: {
                                           'company': serializeParam(
-                                            widget.company,
+                                            widget!.company,
                                             ParamType.DocumentReference,
                                           ),
                                           'canAddIncome': serializeParam(
@@ -866,7 +870,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                             ParamType.bool,
                                           ),
                                           'workPlace': serializeParam(
-                                            widget.workPlace?.reference,
+                                            widget!.workPlace?.reference,
                                             ParamType.DocumentReference,
                                           ),
                                           'isOwner': serializeParam(
@@ -964,7 +968,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                             .routeName,
                                         queryParameters: {
                                           'company': serializeParam(
-                                            widget.company,
+                                            widget!.company,
                                             ParamType.DocumentReference,
                                           ),
                                           'canAddPayment': serializeParam(
@@ -972,7 +976,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                             ParamType.bool,
                                           ),
                                           'workPlace': serializeParam(
-                                            widget.workPlace?.reference,
+                                            widget!.workPlace?.reference,
                                             ParamType.DocumentReference,
                                           ),
                                           'isOwner': serializeParam(
@@ -1069,11 +1073,11 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                         WorkPlaceWorkersPageWidget.routeName,
                                         queryParameters: {
                                           'company': serializeParam(
-                                            widget.company,
+                                            widget!.company,
                                             ParamType.DocumentReference,
                                           ),
                                           'workPlace': serializeParam(
-                                            widget.workPlace?.reference,
+                                            widget!.workPlace?.reference,
                                             ParamType.DocumentReference,
                                           ),
                                           'isPartner': serializeParam(
@@ -1190,7 +1194,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                         WorkPlaceVehiclesPageWidget.routeName,
                                         queryParameters: {
                                           'company': serializeParam(
-                                            widget.company,
+                                            widget!.company,
                                             ParamType.DocumentReference,
                                           ),
                                           'isPartner': serializeParam(
@@ -1198,7 +1202,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                             ParamType.bool,
                                           ),
                                           'workPlace': serializeParam(
-                                            widget.workPlace?.reference,
+                                            widget!.workPlace?.reference,
                                             ParamType.DocumentReference,
                                           ),
                                           'canCreateVehicle': serializeParam(
@@ -1316,11 +1320,11 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                         ParentProductsPageWidget.routeName,
                                         queryParameters: {
                                           'company': serializeParam(
-                                            widget.company,
+                                            widget!.company,
                                             ParamType.DocumentReference,
                                           ),
                                           'workPlace': serializeParam(
-                                            widget.workPlace?.reference,
+                                            widget!.workPlace?.reference,
                                             ParamType.DocumentReference,
                                           ),
                                           'isOwner': serializeParam(
@@ -1932,16 +1936,16 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                 WorkPlaceControlFinancePageWidget.routeName,
                                 queryParameters: {
                                   'workPlace': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.Document,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'workPlace': widget.workPlace,
+                                  'workPlace': widget!.workPlace,
                                 },
                               );
                             },
@@ -1987,12 +1991,12 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                 WorkPlaceOrganizationPageWidget.routeName,
                                 queryParameters: {
                                   'workPlace': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'workPlace': widget.workPlace,
+                                  'workPlace': widget!.workPlace,
                                 },
                               );
                             },
@@ -2039,12 +2043,12 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                 WorkPlaceControlOperationsPageWidget.routeName,
                                 queryParameters: {
                                   'workPlace': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'workPlace': widget.workPlace,
+                                  'workPlace': widget!.workPlace,
                                 },
                               );
                             },
@@ -2091,12 +2095,12 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                 PartnersWorkPlacePageWidget.routeName,
                                 queryParameters: {
                                   'workPlaceRef': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'workPlaceRef': widget.workPlace,
+                                  'workPlaceRef': widget!.workPlace,
                                 },
                               );
                             },
@@ -2143,11 +2147,11 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                 WorkPlaceNotificationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlace?.companyRef,
+                                    widget!.workPlace?.companyRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace?.reference,
+                                    widget!.workPlace?.reference,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -2196,12 +2200,12 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                 WorkplaceComplexWidget.routeName,
                                 queryParameters: {
                                   'workPlace': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'workPlace': widget.workPlace,
+                                  'workPlace': widget!.workPlace,
                                 },
                               );
                             },
@@ -2249,12 +2253,12 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'workPlace': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'workPlace': widget.workPlace,
+                                  'workPlace': widget!.workPlace,
                                 },
                               );
                             },
@@ -2385,7 +2389,7 @@ class _WorkPlaceHomePageForOwnerWidgetState
                                 WorkPlaceNotesPageWidget.routeName,
                                 queryParameters: {
                                   'workPLace': serializeParam(
-                                    widget.workPlace?.reference,
+                                    widget!.workPlace?.reference,
                                     ParamType.DocumentReference,
                                   ),
                                   'canManage': serializeParam(

@@ -7,9 +7,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'instructions_department_page_work_place_model.dart';
 export 'instructions_department_page_work_place_model.dart';
 
@@ -66,7 +70,7 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyDepartmentsRecord>>(
       stream: queryCompanyDepartmentsRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyDepartmentsRecord) => companyDepartmentsRecord
             .where(
               'isDelete',
@@ -74,7 +78,7 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
             )
             .where(
               'workPlace',
-              isEqualTo: widget.workPlace,
+              isEqualTo: widget!.workPlace,
             ),
       ),
       builder: (context, snapshot) {
@@ -316,8 +320,8 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
                             child: FFButtonWidget(
                               onPressed: () async {
                                 var _shouldSetState = false;
-                                if (widget.isPartner!) {
-                                  if (!widget.canSendInstruction!) {
+                                if (widget!.isPartner!) {
+                                  if (!widget!.canSendInstruction!) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -337,8 +341,8 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
                                     return;
                                   }
                                 } else {
-                                  if (widget.isWorker!) {
-                                    if (!widget.canSendInstruction!) {
+                                  if (widget!.isWorker!) {
+                                    if (!widget!.canSendInstruction!) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -379,7 +383,7 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
                                   _model.depRef =
                                       await actions.getDepartmentDocRef(
                                     _model.dropDownValue!,
-                                    widget.company!.id,
+                                    widget!.company!.id,
                                   );
                                   _shouldSetState = true;
 
@@ -389,8 +393,8 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
                                   await instructionsRecordReference1.set({
                                     ...createInstructionsRecordData(
                                       description: _model.textController.text,
-                                      company: widget.company,
-                                      workPlace: widget.workPlace,
+                                      company: widget!.company,
+                                      workPlace: widget!.workPlace,
                                       amISender: true,
                                     ),
                                     ...mapToFirestore(
@@ -404,8 +408,8 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
                                       InstructionsRecord.getDocumentFromData({
                                     ...createInstructionsRecordData(
                                       description: _model.textController.text,
-                                      company: widget.company,
-                                      workPlace: widget.workPlace,
+                                      company: widget!.company,
+                                      workPlace: widget!.workPlace,
                                       amISender: true,
                                     ),
                                     ...mapToFirestore(
@@ -417,7 +421,7 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
                                   _shouldSetState = true;
                                   _model.companyWorkers =
                                       await queryCompanyWorkersRecordOnce(
-                                    parent: widget.company,
+                                    parent: widget!.company,
                                     queryBuilder: (companyWorkersRecord) =>
                                         companyWorkersRecord
                                             .where(
@@ -450,8 +454,8 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
                                     await instructionsRecordReference2.set({
                                       ...createInstructionsRecordData(
                                         description: _model.textController.text,
-                                        company: widget.company,
-                                        workPlace: widget.workPlace,
+                                        company: widget!.company,
+                                        workPlace: widget!.workPlace,
                                         amISender: false,
                                         id: _model.refInstruction?.reference.id,
                                       ),
@@ -466,8 +470,8 @@ class _InstructionsDepartmentPageWorkPlaceWidgetState
                                         InstructionsRecord.getDocumentFromData({
                                       ...createInstructionsRecordData(
                                         description: _model.textController.text,
-                                        company: widget.company,
-                                        workPlace: widget.workPlace,
+                                        company: widget!.company,
+                                        workPlace: widget!.workPlace,
                                         amISender: false,
                                         id: _model.refInstruction?.reference.id,
                                       ),

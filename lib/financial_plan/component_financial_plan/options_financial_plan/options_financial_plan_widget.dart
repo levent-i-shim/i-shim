@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/financial_plan/component_financial_plan/options_update_financial_plan_name/options_update_financial_plan_name_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_financial_plan_model.dart';
 export 'options_financial_plan_model.dart';
 
@@ -177,9 +182,9 @@ class _OptionsFinancialPlanWidgetState
                           alignment: AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
                           child: OptionsUpdateFinancialPlanNameWidget(
-                            financialPlanRef: widget.financialPlanDocumentRef!,
+                            financialPlanRef: widget!.financialPlanDocumentRef!,
                             financialPlanDocument:
-                                widget.financialPlanDocument!,
+                                widget!.financialPlanDocument!,
                           ),
                         );
                       },
@@ -270,11 +275,11 @@ class _OptionsFinancialPlanWidgetState
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.financialPlanDocument!.reference
+                    await widget!.financialPlanDocument!.reference
                         .update(createFinancialPlansRecordData(
                       isDeleted: true,
                     ));
-                    await widget.financialPlanDocumentRef!.delete();
+                    await widget!.financialPlanDocumentRef!.delete();
                   }
                   Navigator.pop(context);
                 },

@@ -4,8 +4,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'spend_expanditury_detail_page_model.dart';
 export 'spend_expanditury_detail_page_model.dart';
 
@@ -151,7 +155,7 @@ class _SpendExpandituryDetailPageWidgetState
                                       flex: 8,
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.spentMoneyForAllowence
+                                          widget!.spentMoneyForAllowence
                                               ?.senderName,
                                           'isim',
                                         ),
@@ -186,14 +190,14 @@ class _SpendExpandituryDetailPageWidgetState
                             ),
                           ),
                         ),
-                        if (widget.spentMoneyForAllowence?.hasReceiver() ??
+                        if (widget!.spentMoneyForAllowence?.hasReceiver() ??
                             true)
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 18.0, 8.0, 18.0, 0.0),
                             child: StreamBuilder<UsersRecord>(
                               stream: UsersRecord.getDocument(
-                                  widget.spentMoneyForAllowence!.receiver!),
+                                  widget!.spentMoneyForAllowence!.receiver!),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
@@ -357,7 +361,7 @@ class _SpendExpandituryDetailPageWidgetState
                                       flex: 8,
                                       child: Text(
                                         '${formatNumber(
-                                          widget.spentMoneyForAllowence
+                                          widget!.spentMoneyForAllowence
                                               ?.spendMoney,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.commaDecimal,
@@ -445,7 +449,7 @@ class _SpendExpandituryDetailPageWidgetState
                                       flex: 8,
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.spentMoneyForAllowence?.note,
+                                          widget!.spentMoneyForAllowence?.note,
                                           'not',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -532,7 +536,7 @@ class _SpendExpandituryDetailPageWidgetState
                                       child: Text(
                                         dateTimeFormat(
                                             "d/M/y",
-                                            widget
+                                            widget!
                                                 .spentMoneyForAllowence!.date!),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -568,7 +572,7 @@ class _SpendExpandituryDetailPageWidgetState
                       ],
                     ),
                   ),
-                  if (widget.spentMoneyForAllowence?.hasImageUrl() ?? true)
+                  if (widget!.spentMoneyForAllowence?.hasImageUrl() ?? true)
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
@@ -584,23 +588,23 @@ class _SpendExpandituryDetailPageWidgetState
                               type: PageTransitionType.fade,
                               child: FlutterFlowExpandedImageView(
                                 image: Image.network(
-                                  widget.spentMoneyForAllowence!.imageUrl,
+                                  widget!.spentMoneyForAllowence!.imageUrl,
                                   fit: BoxFit.contain,
                                 ),
                                 allowRotation: false,
-                                tag: widget.spentMoneyForAllowence!.imageUrl,
+                                tag: widget!.spentMoneyForAllowence!.imageUrl,
                                 useHeroAnimation: true,
                               ),
                             ),
                           );
                         },
                         child: Hero(
-                          tag: widget.spentMoneyForAllowence!.imageUrl,
+                          tag: widget!.spentMoneyForAllowence!.imageUrl,
                           transitionOnUserGestures: true,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8.0),
                             child: Image.network(
-                              widget.spentMoneyForAllowence!.imageUrl,
+                              widget!.spentMoneyForAllowence!.imageUrl,
                               width: 200.0,
                               height: 200.0,
                               fit: BoxFit.contain,
@@ -609,12 +613,12 @@ class _SpendExpandituryDetailPageWidgetState
                         ),
                       ),
                     ),
-                  if (widget.spentMoneyForAllowence?.hasPdfUrl() ?? true)
+                  if (widget!.spentMoneyForAllowence?.hasPdfUrl() ?? true)
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                       child: FlutterFlowPdfViewer(
-                        networkPath: widget.spentMoneyForAllowence!.pdfUrl,
+                        networkPath: widget!.spentMoneyForAllowence!.pdfUrl,
                         height: 400.0,
                         horizontalScroll: false,
                       ),

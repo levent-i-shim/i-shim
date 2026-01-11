@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_finance_note_company_model.dart';
 export 'options_finance_note_company_model.dart';
 
@@ -175,12 +180,12 @@ class _OptionsFinanceNoteCompanyWidgetState
                         ParamType.bool,
                       ),
                       'noteFinance': serializeParam(
-                        widget.noteFinanceCompany,
+                        widget!.noteFinanceCompany,
                         ParamType.Document,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'noteFinance': widget.noteFinanceCompany,
+                      'noteFinance': widget!.noteFinanceCompany,
                     },
                   );
 
@@ -272,7 +277,7 @@ class _OptionsFinanceNoteCompanyWidgetState
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.noteFinanceCompany!.reference
+                    await widget!.noteFinanceCompany!.reference
                         .update(createFinancialMonitoringNotesRecordData(
                       isDeleted: true,
                     ));

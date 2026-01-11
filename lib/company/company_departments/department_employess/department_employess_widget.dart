@@ -7,12 +7,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'department_employess_model.dart';
 export 'department_employess_model.dart';
 
@@ -70,11 +73,11 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyWorkersRecord>>(
       stream: queryCompanyWorkersRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyWorkersRecord) => companyWorkersRecord
             .where(
               'departmentRefs',
-              arrayContains: widget.department?.reference,
+              arrayContains: widget!.department?.reference,
             )
             .where(
               'isDelete',
@@ -129,7 +132,7 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
               ),
               title: Text(
                 valueOrDefault<String>(
-                  widget.departmentName,
+                  widget!.departmentName,
                   'Departman Adı',
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -166,10 +169,10 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                         onTap: () async {
                           _model.companyDetailCopy =
                               await CompaniesRecord.getDocumentOnce(
-                                  widget.company!);
+                                  widget!.company!);
                           if (_model.companyDetailCopy?.owner ==
                               currentUserReference) {
-                            if (widget.department?.name ==
+                            if (widget!.department?.name ==
                                 'Makine ve Ekipman Yönetimi') {
                               var confirmDialogResponse =
                                   await showDialog<bool>(
@@ -214,8 +217,8 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                                               ?.unfocus();
                                         },
                                         child: ChooseNewDepartmentWidget(
-                                          company: widget.company!,
-                                          department: widget.department!,
+                                          company: widget!.company!,
+                                          department: widget!.department!,
                                         ),
                                       ),
                                     );
@@ -266,8 +269,8 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                                               ?.unfocus();
                                         },
                                         child: ChooseNewDepartmentWidget(
-                                          company: widget.company!,
-                                          department: widget.department!,
+                                          company: widget!.company!,
+                                          department: widget!.department!,
                                         ),
                                       ),
                                     );
@@ -359,7 +362,7 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                           controller: _model.dropDownValueController ??=
                               FormFieldController<String>(
                             _model.dropDownValue ??=
-                                widget.department?.authorized?.id,
+                                widget!.department?.authorized?.id,
                           ),
                           options: List<String>.from(
                               departmentEmployessCompanyWorkersRecordList
@@ -422,7 +425,7 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                           onPressed: () async {
                             _model.companyDetail =
                                 await CompaniesRecord.getDocumentOnce(
-                                    widget.company!);
+                                    widget!.company!);
                             if (_model.companyDetail?.owner ==
                                 currentUserReference) {
                               _model.userRef = await actions.getUserDocRef(
@@ -430,18 +433,18 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                               );
                               _model.userRefOldAuth =
                                   await queryCompanyWorkersRecordOnce(
-                                parent: widget.company,
+                                parent: widget!.company,
                                 queryBuilder: (companyWorkersRecord) =>
                                     companyWorkersRecord
                                         .where(
                                           'userRef',
                                           isEqualTo:
-                                              widget.department?.authorized,
+                                              widget!.department?.authorized,
                                         )
                                         .where(
                                           'departmentRefs',
                                           arrayContains:
-                                              widget.department?.reference,
+                                              widget!.department?.reference,
                                         ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
@@ -459,7 +462,7 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                                 });
                                 _model.workPlaceWorker =
                                     await queryWorkPlaceWorkerRecordOnce(
-                                  parent: widget.department?.workPlace,
+                                  parent: widget!.department?.workPlace,
                                   queryBuilder: (workPlaceWorkerRecord) =>
                                       workPlaceWorkerRecord.where(
                                     'user',
@@ -482,7 +485,7 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                               }
                               _model.companyWorker =
                                   await queryCompanyWorkersRecordOnce(
-                                parent: widget.company,
+                                parent: widget!.company,
                                 queryBuilder: (companyWorkersRecord) =>
                                     companyWorkersRecord.where(
                                   'userRef',
@@ -494,17 +497,17 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                               await _model.companyWorker!.reference
                                   .update(createCompanyWorkersRecordData(
                                 authorizedByDepartment:
-                                    widget.department?.reference,
+                                    widget!.department?.reference,
                                 canAcceptTransaction: true,
                               ));
 
-                              await widget.department!.reference
+                              await widget!.department!.reference
                                   .update(createCompanyDepartmentsRecordData(
                                 authorized: _model.userRef,
                               ));
                               _model.workPlaceWorkerNewUser =
                                   await queryWorkPlaceWorkerRecordOnce(
-                                parent: widget.department?.workPlace,
+                                parent: widget!.department?.workPlace,
                                 queryBuilder: (workPlaceWorkerRecord) =>
                                     workPlaceWorkerRecord.where(
                                   'user',
@@ -517,7 +520,7 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                                   .update(createWorkPlaceWorkerRecordData(
                                 canAcceptTransaction: true,
                                 authorizedByDepartment:
-                                    widget.department?.reference,
+                                    widget!.department?.reference,
                               ));
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -676,27 +679,27 @@ class _DepartmentEmployessWidgetState extends State<DepartmentEmployessWidget> {
                                               ParamType.DocumentReference,
                                             ),
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'canManageEmployee': serializeParam(
-                                              widget.canManageEmployee,
+                                              widget!.canManageEmployee,
                                               ParamType.bool,
                                             ),
                                             'canViewTask': serializeParam(
-                                              widget.canViewTask,
+                                              widget!.canViewTask,
                                               ParamType.bool,
                                             ),
                                             'canManageTask': serializeParam(
-                                              widget.canManageTask,
+                                              widget!.canManageTask,
                                               ParamType.bool,
                                             ),
                                             'canSendMoney': serializeParam(
-                                              widget.canSendMoney,
+                                              widget!.canSendMoney,
                                               ParamType.bool,
                                             ),
                                             'isOwner': serializeParam(
-                                              widget.isOwner,
+                                              widget!.isOwner,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,

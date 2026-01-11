@@ -2,9 +2,12 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_vehicle_payments_model.dart';
 export 'company_vehicle_payments_model.dart';
 
@@ -63,20 +66,20 @@ class _CompanyVehiclePaymentsWidgetState
               CopmanyVehicleAddPaymentWidget.routeName,
               queryParameters: {
                 'company': serializeParam(
-                  widget.vehicle?.parentReference,
+                  widget!.vehicle?.parentReference,
                   ParamType.DocumentReference,
                 ),
                 'companyVehicle': serializeParam(
-                  widget.vehicle,
+                  widget!.vehicle,
                   ParamType.Document,
                 ),
                 'isOwner': serializeParam(
-                  widget.isOwner,
+                  widget!.isOwner,
                   ParamType.bool,
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{
-                'companyVehicle': widget.vehicle,
+                'companyVehicle': widget!.vehicle,
               },
             );
           },
@@ -113,12 +116,12 @@ class _CompanyVehiclePaymentsWidgetState
           top: true,
           child: StreamBuilder<List<CompanyVehiclePaymentsRecord>>(
             stream: queryCompanyVehiclePaymentsRecord(
-              parent: widget.vehicle?.parentReference,
+              parent: widget!.vehicle?.parentReference,
               queryBuilder: (companyVehiclePaymentsRecord) =>
                   companyVehiclePaymentsRecord
                       .where(
                         'vehicle',
-                        isEqualTo: widget.vehicle?.reference,
+                        isEqualTo: widget!.vehicle?.reference,
                       )
                       .where(
                         'isAccept',
@@ -193,7 +196,7 @@ class _CompanyVehiclePaymentsWidgetState
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      if (widget.vehicle?.type ==
+                                      if (widget!.vehicle?.type ==
                                           'construction') {
                                         return ClipRRect(
                                           borderRadius:
@@ -204,7 +207,7 @@ class _CompanyVehiclePaymentsWidgetState
                                             fit: BoxFit.cover,
                                           ),
                                         );
-                                      } else if (widget.vehicle?.type ==
+                                      } else if (widget!.vehicle?.type ==
                                           'car') {
                                         return ClipRRect(
                                           borderRadius:
@@ -287,7 +290,7 @@ class _CompanyVehiclePaymentsWidgetState
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      widget.vehicle?.plate,
+                                                      widget!.vehicle?.plate,
                                                       'plaka',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -382,7 +385,7 @@ class _CompanyVehiclePaymentsWidgetState
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      widget.vehicle?.brand,
+                                                      widget!.vehicle?.brand,
                                                       'Marka',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -477,7 +480,7 @@ class _CompanyVehiclePaymentsWidgetState
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      widget.vehicle?.model,
+                                                      widget!.vehicle?.model,
                                                       'Model',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -572,7 +575,7 @@ class _CompanyVehiclePaymentsWidgetState
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      widget.vehicle?.year,
+                                                      widget!.vehicle?.year,
                                                       'Yıl',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -669,7 +672,7 @@ class _CompanyVehiclePaymentsWidgetState
                                                     valueOrDefault<String>(
                                                       dateTimeFormat(
                                                           "d/M/y",
-                                                          widget
+                                                          widget!
                                                               .vehicle?.time),
                                                       'Tarih',
                                                     ),
@@ -765,9 +768,9 @@ class _CompanyVehiclePaymentsWidgetState
                                                   ),
                                                   Text(
                                                     valueOrDefault<String>(
-                                                      widget
+                                                      widget!
                                                           .vehicle?.totalPayment
-                                                          .toString(),
+                                                          ?.toString(),
                                                       'Gider',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -808,7 +811,7 @@ class _CompanyVehiclePaymentsWidgetState
                                       ),
                                       Builder(
                                         builder: (context) {
-                                          if (widget.vehicle?.type ==
+                                          if (widget!.vehicle?.type ==
                                               'construction') {
                                             return Padding(
                                               padding: EdgeInsetsDirectional
@@ -868,9 +871,9 @@ class _CompanyVehiclePaymentsWidgetState
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.vehicle
+                                                            widget!.vehicle
                                                                 ?.averageLitersPerHour
-                                                                .toString(),
+                                                                ?.toString(),
                                                             '0',
                                                           ),
                                                           style: FlutterFlowTheme
@@ -966,9 +969,9 @@ class _CompanyVehiclePaymentsWidgetState
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.vehicle
+                                                            widget!.vehicle
                                                                 ?.averageLitersPerKm
-                                                                .toString(),
+                                                                ?.toString(),
                                                             '0',
                                                           ),
                                                           style: FlutterFlowTheme
@@ -1010,7 +1013,7 @@ class _CompanyVehiclePaymentsWidgetState
                                       ),
                                       Builder(
                                         builder: (context) {
-                                          if (widget.vehicle?.type ==
+                                          if (widget!.vehicle?.type ==
                                               'construction') {
                                             return Padding(
                                               padding: EdgeInsetsDirectional
@@ -1070,9 +1073,9 @@ class _CompanyVehiclePaymentsWidgetState
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.vehicle
+                                                            widget!.vehicle
                                                                 ?.litersPerHour
-                                                                .toString(),
+                                                                ?.toString(),
                                                             '0',
                                                           ),
                                                           style: FlutterFlowTheme
@@ -1168,9 +1171,9 @@ class _CompanyVehiclePaymentsWidgetState
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.vehicle
+                                                            widget!.vehicle
                                                                 ?.litersPerKm
-                                                                .toString(),
+                                                                ?.toString(),
                                                             '0',
                                                           ),
                                                           style: FlutterFlowTheme
@@ -1212,7 +1215,7 @@ class _CompanyVehiclePaymentsWidgetState
                                       ),
                                       Builder(
                                         builder: (context) {
-                                          if (widget.vehicle?.type ==
+                                          if (widget!.vehicle?.type ==
                                               'construction') {
                                             return Padding(
                                               padding: EdgeInsetsDirectional
@@ -1272,9 +1275,9 @@ class _CompanyVehiclePaymentsWidgetState
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.vehicle
+                                                            widget!.vehicle
                                                                 ?.workingHours
-                                                                .toString(),
+                                                                ?.toString(),
                                                             '0',
                                                           ),
                                                           style: FlutterFlowTheme
@@ -1370,8 +1373,8 @@ class _CompanyVehiclePaymentsWidgetState
                                                         Text(
                                                           valueOrDefault<
                                                               String>(
-                                                            widget.vehicle?.km
-                                                                .toString(),
+                                                            widget!.vehicle?.km
+                                                                ?.toString(),
                                                             '0',
                                                           ),
                                                           style: FlutterFlowTheme

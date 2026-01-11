@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'show_form_fields_page_model.dart';
 export 'show_form_fields_page_model.dart';
 
@@ -54,7 +58,7 @@ class _ShowFormFieldsPageWidgetState extends State<ShowFormFieldsPageWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<FormFieldsRecord>>(
       stream: queryFormFieldsRecord(
-        parent: widget.form?.reference,
+        parent: widget!.form?.reference,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -136,7 +140,7 @@ class _ShowFormFieldsPageWidgetState extends State<ShowFormFieldsPageWidget> {
                                     CreateFormFieldsWidget.routeName,
                                     queryParameters: {
                                       'form': serializeParam(
-                                        widget.form,
+                                        widget!.form,
                                         ParamType.Document,
                                       ),
                                       'routeBack': serializeParam(
@@ -145,7 +149,7 @@ class _ShowFormFieldsPageWidgetState extends State<ShowFormFieldsPageWidget> {
                                       ),
                                     }.withoutNulls,
                                     extra: <String, dynamic>{
-                                      'form': widget.form,
+                                      'form': widget!.form,
                                     },
                                   );
                                 },
@@ -192,7 +196,7 @@ class _ShowFormFieldsPageWidgetState extends State<ShowFormFieldsPageWidget> {
                                   20.0, 12.0, 20.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  if (widget.canManage) {
+                                  if (widget!.canManage) {
                                     var confirmDialogResponse =
                                         await showDialog<bool>(
                                               context: context,
@@ -222,7 +226,7 @@ class _ShowFormFieldsPageWidgetState extends State<ShowFormFieldsPageWidget> {
                                             ) ??
                                             false;
                                     if (confirmDialogResponse) {
-                                      await widget.form!.reference
+                                      await widget!.form!.reference
                                           .update(createFormsRecordData(
                                         isDelete: true,
                                       ));

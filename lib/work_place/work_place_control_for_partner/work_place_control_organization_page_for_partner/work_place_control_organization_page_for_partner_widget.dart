@@ -3,9 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_organization_page_for_partner_model.dart';
 export 'work_place_control_organization_page_for_partner_model.dart';
 
@@ -119,16 +121,16 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                               24.0, 64.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewEmployee) {
+                              if (widget!.partnerDetail!.canViewEmployee) {
                                 context.pushNamed(
                                   WorkPlaceWorkersPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -136,7 +138,7 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.partnerDetail?.canManageWorkers,
+                                      widget!.partnerDetail?.canManageWorkers,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -144,11 +146,11 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget.partnerDetail?.canManageWorkers,
+                                      widget!.partnerDetail?.canManageWorkers,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.partnerDetail?.canManageTask,
+                                      widget!.partnerDetail?.canManageTask,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -213,11 +215,11 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                 DepartmansPageWorkPlaceWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.partnerDetail?.company,
+                                    widget!.partnerDetail?.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.partnerDetail?.workPlaceRef,
+                                    widget!.partnerDetail?.workPlaceRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(
@@ -225,15 +227,15 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                     ParamType.bool,
                                   ),
                                   'canManageDepartment': serializeParam(
-                                    widget.partnerDetail?.canManageDepartments,
+                                    widget!.partnerDetail?.canManageDepartments,
                                     ParamType.bool,
                                   ),
                                   'canViewEmployee': serializeParam(
-                                    widget.partnerDetail?.canViewEmployee,
+                                    widget!.partnerDetail?.canViewEmployee,
                                     ParamType.bool,
                                   ),
                                   'canManageEmployee': serializeParam(
-                                    widget.partnerDetail?.canManageWorkers,
+                                    widget!.partnerDetail?.canManageWorkers,
                                     ParamType.bool,
                                   ),
                                   'isWorker': serializeParam(
@@ -286,11 +288,11 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                 RolesPageWorkPlaceWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.partnerDetail?.company,
+                                    widget!.partnerDetail?.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.partnerDetail?.workPlaceRef,
+                                    widget!.partnerDetail?.workPlaceRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(
@@ -298,15 +300,15 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                     ParamType.bool,
                                   ),
                                   'canManageRole': serializeParam(
-                                    widget.partnerDetail?.canManageRoles,
+                                    widget!.partnerDetail?.canManageRoles,
                                     ParamType.bool,
                                   ),
                                   'canViewEmployee': serializeParam(
-                                    widget.partnerDetail?.canViewEmployee,
+                                    widget!.partnerDetail?.canViewEmployee,
                                     ParamType.bool,
                                   ),
                                   'canManageEmployee': serializeParam(
-                                    widget.partnerDetail?.canManageWorkers,
+                                    widget!.partnerDetail?.canManageWorkers,
                                     ParamType.bool,
                                   ),
                                   'isWorker': serializeParam(
@@ -314,12 +316,12 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                     ParamType.bool,
                                   ),
                                   'canSendMoney': serializeParam(
-                                    widget.partnerDetail
+                                    widget!.partnerDetail
                                         ?.canManageEmployeeExpense,
                                     ParamType.bool,
                                   ),
                                   'canManageTask': serializeParam(
-                                    widget.partnerDetail?.canManageTask,
+                                    widget!.partnerDetail?.canManageTask,
                                     ParamType.bool,
                                   ),
                                 }.withoutNulls,
@@ -368,11 +370,11 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                 UnitsPageWorkPlaceWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.partnerDetail?.company,
+                                    widget!.partnerDetail?.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.partnerDetail?.workPlaceRef,
+                                    widget!.partnerDetail?.workPlaceRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(
@@ -380,15 +382,15 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                     ParamType.bool,
                                   ),
                                   'canManageEmployee': serializeParam(
-                                    widget.partnerDetail?.canManageWorkers,
+                                    widget!.partnerDetail?.canManageWorkers,
                                     ParamType.bool,
                                   ),
                                   'canManageUnit': serializeParam(
-                                    widget.partnerDetail?.canManageUnits,
+                                    widget!.partnerDetail?.canManageUnits,
                                     ParamType.bool,
                                   ),
                                   'canViewEmployee': serializeParam(
-                                    widget.partnerDetail?.canViewEmployee,
+                                    widget!.partnerDetail?.canViewEmployee,
                                     ParamType.bool,
                                   ),
                                   'isWorker': serializeParam(
@@ -396,12 +398,12 @@ class _WorkPlaceControlOrganizationPageForPartnerWidgetState
                                     ParamType.bool,
                                   ),
                                   'canSendMoney': serializeParam(
-                                    widget.partnerDetail
+                                    widget!.partnerDetail
                                         ?.canManageEmployeeExpense,
                                     ParamType.bool,
                                   ),
                                   'canManageTask': serializeParam(
-                                    widget.partnerDetail?.canManageTask,
+                                    widget!.partnerDetail?.canManageTask,
                                     ParamType.bool,
                                   ),
                                 }.withoutNulls,

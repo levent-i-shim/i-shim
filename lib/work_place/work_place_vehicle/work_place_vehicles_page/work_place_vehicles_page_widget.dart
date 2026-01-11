@@ -3,10 +3,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'work_place_vehicles_page_model.dart';
 export 'work_place_vehicles_page_model.dart';
 
@@ -69,8 +72,8 @@ class _WorkPlaceVehiclesPageWidgetState
         backgroundColor: Colors.black,
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            if (widget.isPartner!) {
-              if (!widget.canCreateVehicle!) {
+            if (widget!.isPartner!) {
+              if (!widget!.canCreateVehicle!) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -86,8 +89,8 @@ class _WorkPlaceVehiclesPageWidgetState
                 return;
               }
             } else {
-              if (widget.isWorker!) {
-                if (!widget.canCreateVehicle!) {
+              if (widget!.isWorker!) {
+                if (!widget!.canCreateVehicle!) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
@@ -109,23 +112,23 @@ class _WorkPlaceVehiclesPageWidgetState
               WorkPlaceAddVehicleWidget.routeName,
               queryParameters: {
                 'company': serializeParam(
-                  widget.company,
+                  widget!.company,
                   ParamType.DocumentReference,
                 ),
                 'workPlace': serializeParam(
-                  widget.workPlace,
+                  widget!.workPlace,
                   ParamType.DocumentReference,
                 ),
                 'isPartner': serializeParam(
-                  widget.isPartner,
+                  widget!.isPartner,
                   ParamType.bool,
                 ),
                 'canAddVehicle': serializeParam(
-                  widget.canCreateVehicle,
+                  widget!.canCreateVehicle,
                   ParamType.bool,
                 ),
                 'isWorker': serializeParam(
-                  widget.isWorker,
+                  widget!.isWorker,
                   ParamType.bool,
                 ),
               }.withoutNulls,
@@ -202,16 +205,16 @@ class _WorkPlaceVehiclesPageWidgetState
                   PagedListView<DocumentSnapshot<Object?>?,
                       CompanyVehiclesRecord>(
                     pagingController: _model.setListViewController1(
-                        CompanyVehiclesRecord.collection(widget.company)
+                        CompanyVehiclesRecord.collection(widget!.company)
                             .where(
                               'workPlace',
-                              isEqualTo: widget.workPlace,
+                              isEqualTo: widget!.workPlace,
                             )
                             .where(
                               'type',
                               isEqualTo: 'construction',
                             ),
-                        parent: widget.company),
+                        parent: widget!.company),
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     reverse: false,
@@ -437,8 +440,8 @@ class _WorkPlaceVehiclesPageWidgetState
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        if (widget.isPartner!) {
-                                          if (!widget
+                                        if (widget!.isPartner!) {
+                                          if (!widget!
                                               .canCreateVehiclePayment!) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
@@ -461,8 +464,8 @@ class _WorkPlaceVehiclesPageWidgetState
                                             return;
                                           }
                                         } else {
-                                          if (widget.isWorker!) {
-                                            if (!widget
+                                          if (widget!.isWorker!) {
+                                            if (!widget!
                                                 .canCreateVehiclePayment!) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
@@ -498,24 +501,24 @@ class _WorkPlaceVehiclesPageWidgetState
                                               ParamType.Document,
                                             ),
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'workPlace': serializeParam(
-                                              widget.workPlace,
+                                              widget!.workPlace,
                                               ParamType.DocumentReference,
                                             ),
                                             'isPartner': serializeParam(
-                                              widget.isPartner,
+                                              widget!.isPartner,
                                               ParamType.bool,
                                             ),
                                             'canCreateVehiclePayment':
                                                 serializeParam(
-                                              widget.canCreateVehiclePayment,
+                                              widget!.canCreateVehiclePayment,
                                               ParamType.bool,
                                             ),
                                             'isWorker': serializeParam(
-                                              widget.isWorker,
+                                              widget!.isWorker,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,
@@ -603,16 +606,16 @@ class _WorkPlaceVehiclesPageWidgetState
                   PagedListView<DocumentSnapshot<Object?>?,
                       CompanyVehiclesRecord>(
                     pagingController: _model.setListViewController2(
-                        CompanyVehiclesRecord.collection(widget.company)
+                        CompanyVehiclesRecord.collection(widget!.company)
                             .where(
                               'workPlace',
-                              isEqualTo: widget.workPlace,
+                              isEqualTo: widget!.workPlace,
                             )
                             .where(
                               'type',
                               isEqualTo: 'car',
                             ),
-                        parent: widget.company),
+                        parent: widget!.company),
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     reverse: false,
@@ -838,8 +841,8 @@ class _WorkPlaceVehiclesPageWidgetState
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        if (widget.isPartner!) {
-                                          if (!widget
+                                        if (widget!.isPartner!) {
+                                          if (!widget!
                                               .canCreateVehiclePayment!) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
@@ -862,8 +865,8 @@ class _WorkPlaceVehiclesPageWidgetState
                                             return;
                                           }
                                         } else {
-                                          if (widget.isWorker!) {
-                                            if (!widget
+                                          if (widget!.isWorker!) {
+                                            if (!widget!
                                                 .canCreateVehiclePayment!) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
@@ -899,24 +902,24 @@ class _WorkPlaceVehiclesPageWidgetState
                                               ParamType.Document,
                                             ),
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'workPlace': serializeParam(
-                                              widget.workPlace,
+                                              widget!.workPlace,
                                               ParamType.DocumentReference,
                                             ),
                                             'isPartner': serializeParam(
-                                              widget.isPartner,
+                                              widget!.isPartner,
                                               ParamType.bool,
                                             ),
                                             'canCreateVehiclePayment':
                                                 serializeParam(
-                                              widget.canCreateVehiclePayment,
+                                              widget!.canCreateVehiclePayment,
                                               ParamType.bool,
                                             ),
                                             'isWorker': serializeParam(
-                                              widget.isWorker,
+                                              widget!.isWorker,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,
@@ -1004,16 +1007,16 @@ class _WorkPlaceVehiclesPageWidgetState
                   PagedListView<DocumentSnapshot<Object?>?,
                       CompanyVehiclesRecord>(
                     pagingController: _model.setListViewController3(
-                        CompanyVehiclesRecord.collection(widget.company)
+                        CompanyVehiclesRecord.collection(widget!.company)
                             .where(
                               'workPlace',
-                              isEqualTo: widget.workPlace,
+                              isEqualTo: widget!.workPlace,
                             )
                             .where(
                               'type',
                               isEqualTo: 'truck',
                             ),
-                        parent: widget.company),
+                        parent: widget!.company),
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     reverse: false,
@@ -1239,8 +1242,8 @@ class _WorkPlaceVehiclesPageWidgetState
                                     ),
                                     FFButtonWidget(
                                       onPressed: () async {
-                                        if (widget.isPartner!) {
-                                          if (!widget
+                                        if (widget!.isPartner!) {
+                                          if (!widget!
                                               .canCreateVehiclePayment!) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
@@ -1263,8 +1266,8 @@ class _WorkPlaceVehiclesPageWidgetState
                                             return;
                                           }
                                         } else {
-                                          if (widget.isWorker!) {
-                                            if (!widget
+                                          if (widget!.isWorker!) {
+                                            if (!widget!
                                                 .canCreateVehiclePayment!) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
@@ -1300,24 +1303,24 @@ class _WorkPlaceVehiclesPageWidgetState
                                               ParamType.Document,
                                             ),
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'workPlace': serializeParam(
-                                              widget.workPlace,
+                                              widget!.workPlace,
                                               ParamType.DocumentReference,
                                             ),
                                             'isPartner': serializeParam(
-                                              widget.isPartner,
+                                              widget!.isPartner,
                                               ParamType.bool,
                                             ),
                                             'canCreateVehiclePayment':
                                                 serializeParam(
-                                              widget.canCreateVehiclePayment,
+                                              widget!.canCreateVehiclePayment,
                                               ParamType.bool,
                                             ),
                                             'isWorker': serializeParam(
-                                              widget.isWorker,
+                                              widget!.isWorker,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,

@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_current_account_model.dart';
 export 'add_current_account_model.dart';
 
@@ -54,7 +57,7 @@ class _AddCurrentAccountWidgetState extends State<AddCurrentAccountWidget> {
     _model.textFieldCompanyCustomerFocusNode ??= FocusNode();
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteFinanceCompany?.content : '');
+        text: widget!.isEdit! ? widget!.noteFinanceCompany?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -138,8 +141,8 @@ class _AddCurrentAccountWidgetState extends State<AddCurrentAccountWidget> {
                         return;
                       }
                       if (_model.validate!) {
-                        if (widget.isEdit!) {
-                          await widget.noteFinanceCompany!.reference
+                        if (widget!.isEdit!) {
+                          await widget!.noteFinanceCompany!.reference
                               .update(createFinancialMonitoringNotesRecordData(
                             content: _model.textFieldContentTextController.text,
                           ));

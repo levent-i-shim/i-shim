@@ -2,9 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_task_duties_page_model.dart';
 export 'company_task_duties_page_model.dart';
 
@@ -84,7 +88,7 @@ class _CompanyTaskDutiesPageWidgetState
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.companyName,
+              widget!.companyName,
               'Şirket İsmi',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -182,8 +186,8 @@ class _CompanyTaskDutiesPageWidgetState
                               size: 24.0,
                             ),
                             onPressed: () async {
-                              if (widget.isPartner) {
-                                if (!widget.canCreate) {
+                              if (widget!.isPartner) {
+                                if (!widget!.canCreate) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -207,11 +211,11 @@ class _CompanyTaskDutiesPageWidgetState
                                 CompanyTaskDutiesCreatePageWidget.routeName,
                                 queryParameters: {
                                   'companyName': serializeParam(
-                                    widget.companyName,
+                                    widget!.companyName,
                                     ParamType.String,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -235,7 +239,7 @@ class _CompanyTaskDutiesPageWidgetState
                     ),
                     child: StreamBuilder<List<DutiesForCompanyRecord>>(
                       stream: queryDutiesForCompanyRecord(
-                        parent: widget.company,
+                        parent: widget!.company,
                         queryBuilder: (dutiesForCompanyRecord) =>
                             dutiesForCompanyRecord.where(
                           'isDelete',
@@ -284,11 +288,11 @@ class _CompanyTaskDutiesPageWidgetState
                                           .routeName,
                                       queryParameters: {
                                         'companyName': serializeParam(
-                                          widget.companyName,
+                                          widget!.companyName,
                                           ParamType.String,
                                         ),
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                         'dutiesForCompanyRef': serializeParam(
@@ -301,15 +305,15 @@ class _CompanyTaskDutiesPageWidgetState
                                           ParamType.Document,
                                         ),
                                         'isPartner': serializeParam(
-                                          widget.isPartner,
+                                          widget!.isPartner,
                                           ParamType.bool,
                                         ),
                                         'canCreate': serializeParam(
-                                          widget.canCreate,
+                                          widget!.canCreate,
                                           ParamType.bool,
                                         ),
                                         'canManage': serializeParam(
-                                          widget.canManage,
+                                          widget!.canManage,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,

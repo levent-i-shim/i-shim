@@ -7,8 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'report_result_page_add_payment_for_owner_model.dart';
 export 'report_result_page_add_payment_for_owner_model.dart';
 
@@ -826,7 +829,7 @@ class _ReportResultPageAddPaymentForOwnerWidgetState
                       onPressed: () async {
                         var workPlacePayments2025RecordReference =
                             WorkPlacePayments2025Record.createDoc(
-                                widget.workPlace!);
+                                widget!.workPlace!);
                         await workPlacePayments2025RecordReference.set({
                           ...createWorkPlacePayments2025RecordData(
                             value: double.tryParse(
@@ -867,7 +870,7 @@ class _ReportResultPageAddPaymentForOwnerWidgetState
 
                         var companyPayments2025RecordReference =
                             CompanyPayments2025Record.createDoc(
-                                widget.company!);
+                                widget!.company!);
                         await companyPayments2025RecordReference.set({
                           ...createCompanyPayments2025RecordData(
                             value: double.tryParse(
@@ -879,7 +882,7 @@ class _ReportResultPageAddPaymentForOwnerWidgetState
                                 _model.textFieldDetailTextController.text,
                             isExpected: false,
                             isDelete: false,
-                            workPlace: widget.workPlace,
+                            workPlace: widget!.workPlace,
                             workPlacePayment:
                                 _model.paymentworkPlace?.reference,
                           ),
@@ -901,7 +904,7 @@ class _ReportResultPageAddPaymentForOwnerWidgetState
                                 _model.textFieldDetailTextController.text,
                             isExpected: false,
                             isDelete: false,
-                            workPlace: widget.workPlace,
+                            workPlace: widget!.workPlace,
                             workPlacePayment:
                                 _model.paymentworkPlace?.reference,
                           ),
@@ -912,7 +915,7 @@ class _ReportResultPageAddPaymentForOwnerWidgetState
                           ),
                         }, companyPayments2025RecordReference);
 
-                        await widget.company!.update({
+                        await widget!.company!.update({
                           ...mapToFirestore(
                             {
                               'yearlyMoney': FieldValue.increment(
@@ -924,7 +927,7 @@ class _ReportResultPageAddPaymentForOwnerWidgetState
                           ),
                         });
 
-                        await widget.workPlace!.update({
+                        await widget!.workPlace!.update({
                           ...mapToFirestore(
                             {
                               'yearlyMoney': FieldValue.increment(
@@ -942,7 +945,7 @@ class _ReportResultPageAddPaymentForOwnerWidgetState
                             description: 'İşlem Onaylandı Gider Olarak Girildi',
                             type: WorkHistoryTypes.expenseEntered.name,
                             fullDescription:
-                                '${widget.companyName} isimli şirketinizde ${_model.textFieldValueTextController.text} TL Gider Olarak girildi',
+                                '${widget!.companyName} isimli şirketinizde ${_model.textFieldValueTextController.text} TL Gider Olarak girildi',
                             isIncome: false,
                             companyPayment: _model.payment?.reference,
                           ),

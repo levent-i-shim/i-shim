@@ -2,9 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_task_duties_page_model.dart';
 export 'work_place_task_duties_page_model.dart';
 
@@ -159,8 +163,8 @@ class _WorkPlaceTaskDutiesPageWidgetState
                             size: 24.0,
                           ),
                           onPressed: () async {
-                            if (widget.isPartner!) {
-                              if (!widget.canCreateTask!) {
+                            if (widget!.isPartner!) {
+                              if (!widget!.canCreateTask!) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -178,8 +182,8 @@ class _WorkPlaceTaskDutiesPageWidgetState
                                 return;
                               }
                             } else {
-                              if (widget.isWorker!) {
-                                if (!widget.canCreateTask!) {
+                              if (widget!.isWorker!) {
+                                if (!widget!.canCreateTask!) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -204,23 +208,23 @@ class _WorkPlaceTaskDutiesPageWidgetState
                               WorkPlaceTaskDutiesCreatePageWidget.routeName,
                               queryParameters: {
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'workPlace': serializeParam(
-                                  widget.workPlace,
+                                  widget!.workPlace,
                                   ParamType.DocumentReference,
                                 ),
                                 'isPartner': serializeParam(
-                                  widget.isPartner,
+                                  widget!.isPartner,
                                   ParamType.bool,
                                 ),
                                 'canCreate': serializeParam(
-                                  widget.canCreateTask,
+                                  widget!.canCreateTask,
                                   ParamType.bool,
                                 ),
                                 'isWorker': serializeParam(
-                                  widget.isWorker,
+                                  widget!.isWorker,
                                   ParamType.bool,
                                 ),
                               }.withoutNulls,
@@ -242,7 +246,7 @@ class _WorkPlaceTaskDutiesPageWidgetState
                     ),
                     child: StreamBuilder<List<DutiesForCompanyRecord>>(
                       stream: queryDutiesForCompanyRecord(
-                        parent: widget.company,
+                        parent: widget!.company,
                         queryBuilder: (dutiesForCompanyRecord) =>
                             dutiesForCompanyRecord.where(
                           'isDelete',
@@ -291,11 +295,11 @@ class _WorkPlaceTaskDutiesPageWidgetState
                                           .routeName,
                                       queryParameters: {
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                         'workPlace': serializeParam(
-                                          widget.workPlace,
+                                          widget!.workPlace,
                                           ParamType.DocumentReference,
                                         ),
                                         'dutiesForCompany': serializeParam(
@@ -303,15 +307,15 @@ class _WorkPlaceTaskDutiesPageWidgetState
                                           ParamType.Document,
                                         ),
                                         'isPartner': serializeParam(
-                                          widget.isPartner,
+                                          widget!.isPartner,
                                           ParamType.bool,
                                         ),
                                         'canCreate': serializeParam(
-                                          widget.canCreateTask,
+                                          widget!.canCreateTask,
                                           ParamType.bool,
                                         ),
                                         'canManage': serializeParam(
-                                          widget.canManageTask,
+                                          widget!.canManageTask,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,

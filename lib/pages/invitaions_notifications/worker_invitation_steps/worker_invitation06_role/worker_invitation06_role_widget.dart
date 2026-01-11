@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'worker_invitation06_role_model.dart';
 export 'worker_invitation06_role_model.dart';
 
@@ -163,7 +166,7 @@ class _WorkerInvitation06RoleWidgetState
                         Flexible(
                           child: StreamBuilder<List<CompanyRolesRecord>>(
                             stream: queryCompanyRolesRecord(
-                              parent: widget.company,
+                              parent: widget!.company,
                               queryBuilder: (companyRolesRecord) =>
                                   companyRolesRecord
                                       .where(
@@ -172,7 +175,7 @@ class _WorkerInvitation06RoleWidgetState
                                       )
                                       .where(
                                         'workPlaceRef',
-                                        isEqualTo: widget.workerPlace,
+                                        isEqualTo: widget!.workerPlace,
                                       ),
                             ),
                             builder: (context, snapshot) {
@@ -403,49 +406,49 @@ class _WorkerInvitation06RoleWidgetState
                                                                     {
                                                                   'company':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .company,
                                                                     ParamType
                                                                         .DocumentReference,
                                                                   ),
                                                                   'workerName':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerName,
                                                                     ParamType
                                                                         .String,
                                                                   ),
                                                                   'workerRef':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerRef,
                                                                     ParamType
                                                                         .DocumentReference,
                                                                   ),
                                                                   'workerPlace':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerPlace,
                                                                     ParamType
                                                                         .DocumentReference,
                                                                   ),
                                                                   'workerUnit':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerUnit,
                                                                     ParamType
                                                                         .DocumentReference,
                                                                   ),
                                                                   'workerDepartment':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerDepartment,
                                                                     ParamType
                                                                         .DocumentReference,
                                                                   ),
                                                                   'companyName':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .companyName,
                                                                     ParamType
                                                                         .String,
@@ -459,14 +462,14 @@ class _WorkerInvitation06RoleWidgetState
                                                                   ),
                                                                   'workPlaceName':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workPlaceName,
                                                                     ParamType
                                                                         .String,
                                                                   ),
                                                                   'routeBack':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .routeBack,
                                                                     ParamType
                                                                         .bool,

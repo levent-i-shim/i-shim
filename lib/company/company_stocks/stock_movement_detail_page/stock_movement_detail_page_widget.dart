@@ -2,8 +2,11 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'stock_movement_detail_page_model.dart';
 export 'stock_movement_detail_page_model.dart';
 
@@ -122,7 +125,7 @@ class _StockMovementDetailPageWidgetState
                         children: [
                           StreamBuilder<StocksRecord>(
                             stream: StocksRecord.getDocument(
-                                widget.stockMovement!.stockRef!),
+                                widget!.stockMovement!.stockRef!),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
@@ -293,7 +296,7 @@ class _StockMovementDetailPageWidgetState
                                             0.0, 0.0, 8.0, 0.0),
                                         child: Builder(
                                           builder: (context) {
-                                            if (widget.stockMovement
+                                            if (widget!.stockMovement
                                                     ?.movementType !=
                                                 'in') {
                                               return Icon(
@@ -312,7 +315,7 @@ class _StockMovementDetailPageWidgetState
                                         ),
                                       ),
                                       Text(
-                                        widget.stockMovement?.movementType ==
+                                        widget!.stockMovement?.movementType ==
                                                 'in'
                                             ? 'Eklendi'
                                             : 'Azaldı',
@@ -406,7 +409,7 @@ class _StockMovementDetailPageWidgetState
                                     0.0, 0.0, 12.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.stockMovement?.quantity.toString(),
+                                    widget!.stockMovement?.quantity?.toString(),
                                     '0',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -494,7 +497,7 @@ class _StockMovementDetailPageWidgetState
                                     0.0, 0.0, 12.0, 0.0),
                                 child: Text(
                                   dateTimeFormat(
-                                      "d/M/y", widget.stockMovement!.date!),
+                                      "d/M/y", widget!.stockMovement!.date!),
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -580,7 +583,7 @@ class _StockMovementDetailPageWidgetState
                                     0.0, 0.0, 12.0, 0.0),
                                 child: StreamBuilder<UsersRecord>(
                                   stream: UsersRecord.getDocument(
-                                      widget.stockMovement!.creatorUserRef!),
+                                      widget!.stockMovement!.creatorUserRef!),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
                                     if (!snapshot.hasData) {

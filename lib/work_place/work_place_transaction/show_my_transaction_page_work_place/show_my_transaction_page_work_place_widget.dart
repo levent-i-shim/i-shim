@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'show_my_transaction_page_work_place_model.dart';
 export 'show_my_transaction_page_work_place_model.dart';
 
@@ -92,13 +95,13 @@ class _ShowMyTransactionPageWorkPlaceWidgetState
           child: PagedListView<DocumentSnapshot<Object?>?,
               WorkPlaceTransactionRecord>(
             pagingController: _model.setListViewController(
-                WorkPlaceTransactionRecord.collection(widget.workPlace)
+                WorkPlaceTransactionRecord.collection(widget!.workPlace)
                     .where(
                       'receiverRef',
                       isEqualTo: currentUserReference,
                     )
                     .orderBy('date', descending: true),
-                parent: widget.workPlace),
+                parent: widget!.workPlace),
             padding: EdgeInsets.zero,
             reverse: false,
             scrollDirection: Axis.vertical,
@@ -256,8 +259,8 @@ class _ShowMyTransactionPageWorkPlaceWidgetState
                                       0.0, 0.0, 0.0, 16.0),
                                   child: FFButtonWidget(
                                     onPressed: () async {
-                                      if (widget.isPartner!) {
-                                        if (!widget.canManage!) {
+                                      if (widget!.isPartner!) {
+                                        if (!widget!.canManage!) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -286,12 +289,12 @@ class _ShowMyTransactionPageWorkPlaceWidgetState
                                               .routeName,
                                           queryParameters: {
                                             'isPartner': serializeParam(
-                                              widget.isPartner,
+                                              widget!.isPartner,
                                               ParamType.bool,
                                             ),
                                             'canManageTransaction':
                                                 serializeParam(
-                                              widget.canManage,
+                                              widget!.canManage,
                                               ParamType.bool,
                                             ),
                                             'canManageStock': serializeParam(
@@ -303,15 +306,15 @@ class _ShowMyTransactionPageWorkPlaceWidgetState
                                               ParamType.Document,
                                             ),
                                             'workPlace': serializeParam(
-                                              widget.workPlace,
+                                              widget!.workPlace,
                                               ParamType.DocumentReference,
                                             ),
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'isWorker': serializeParam(
-                                              widget.isWorker,
+                                              widget!.isWorker,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,
@@ -332,23 +335,23 @@ class _ShowMyTransactionPageWorkPlaceWidgetState
                                                 ParamType.Document,
                                               ),
                                               'isPartner': serializeParam(
-                                                widget.isPartner,
+                                                widget!.isPartner,
                                                 ParamType.bool,
                                               ),
                                               'canManage': serializeParam(
-                                                widget.canManage,
+                                                widget!.canManage,
                                                 ParamType.bool,
                                               ),
                                               'company': serializeParam(
-                                                widget.company,
+                                                widget!.company,
                                                 ParamType.DocumentReference,
                                               ),
                                               'workPlace': serializeParam(
-                                                widget.workPlace,
+                                                widget!.workPlace,
                                                 ParamType.DocumentReference,
                                               ),
                                               'isWorker': serializeParam(
-                                                widget.isWorker,
+                                                widget!.isWorker,
                                                 ParamType.bool,
                                               ),
                                             }.withoutNulls,

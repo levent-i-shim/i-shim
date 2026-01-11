@@ -7,10 +7,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'limited_sirket_kur_model.dart';
 export 'limited_sirket_kur_model.dart';
 
@@ -338,7 +341,7 @@ class _LimitedSirketKurWidgetState extends State<LimitedSirketKurWidget> {
                                           name: _model.textController.text,
                                           owner: currentUserReference,
                                           status: _model.dropDownValue,
-                                          type: widget.companyType,
+                                          type: widget!.companyType,
                                           totalMoney: 0.0,
                                           yearlyMoney: 0.0,
                                           isDelete: false,
@@ -350,7 +353,7 @@ class _LimitedSirketKurWidgetState extends State<LimitedSirketKurWidget> {
                                                       .textController.text,
                                                   owner: currentUserReference,
                                                   status: _model.dropDownValue,
-                                                  type: widget.companyType,
+                                                  type: widget!.companyType,
                                                   totalMoney: 0.0,
                                                   yearlyMoney: 0.0,
                                                   isDelete: false,
@@ -535,7 +538,7 @@ class _LimitedSirketKurWidgetState extends State<LimitedSirketKurWidget> {
                                                     .secondary,
                                           ),
                                         );
-                                        if (widget.invitation) {
+                                        if (widget!.invitation) {
                                           context.safePop();
                                           context.safePop();
                                         } else {

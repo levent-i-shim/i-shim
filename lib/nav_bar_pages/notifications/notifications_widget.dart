@@ -6,13 +6,16 @@ import '/components/new_nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'notifications_model.dart';
 export 'notifications_model.dart';
@@ -444,9 +447,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                               containerNotificationsRecordList
                                                                                   .map(
                                                                                     (record) => TextSearchItem.fromTerms(record, [
-                                                                                      record.type,
-                                                                                      record.content,
-                                                                                      record.fullDescription
+                                                                                      record.type!,
+                                                                                      record.content!,
+                                                                                      record.fullDescription!
                                                                                     ]),
                                                                                   )
                                                                                   .toList(),
@@ -593,6 +596,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                   ),
                                                                 ),
                                                                 if (_model.textController1
+                                                                            .text ==
+                                                                        null ||
+                                                                    _model.textController1
                                                                             .text ==
                                                                         '')
                                                                   Builder(
@@ -1182,6 +1188,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                     },
                                                                   ),
                                                                 if (_model.textController1
+                                                                            .text !=
+                                                                        null &&
+                                                                    _model.textController1
                                                                             .text !=
                                                                         '')
                                                                   Builder(
@@ -1781,6 +1790,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                 ),
                                                                 if (_model.textController1
                                                                             .text ==
+                                                                        null ||
+                                                                    _model.textController1
+                                                                            .text ==
                                                                         '')
                                                                   Builder(
                                                                     builder:
@@ -2236,6 +2248,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                     },
                                                                   ),
                                                                 if (_model.textController1
+                                                                            .text !=
+                                                                        null &&
+                                                                    _model.textController1
                                                                             .text !=
                                                                         '')
                                                                   Builder(
@@ -2850,9 +2865,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                               containerWorkPlaceNotificationsRecordList
                                                                                   .map(
                                                                                     (record) => TextSearchItem.fromTerms(record, [
-                                                                                      record.type,
-                                                                                      record.content,
-                                                                                      record.fullDescription
+                                                                                      record.type!,
+                                                                                      record.content!,
+                                                                                      record.fullDescription!
                                                                                     ]),
                                                                                   )
                                                                                   .toList(),
@@ -2975,6 +2990,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                     ),
                                                                   ),
                                                                   if (_model.textController2
+                                                                              .text ==
+                                                                          null ||
+                                                                      _model.textController2
                                                                               .text ==
                                                                           '')
                                                                     Builder(
@@ -3121,6 +3139,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                       },
                                                                     ),
                                                                   if (_model.textController2
+                                                                              .text !=
+                                                                          null &&
+                                                                      _model.textController2
                                                                               .text !=
                                                                           '')
                                                                     Builder(
@@ -3299,6 +3320,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                   ),
                                                                   if (_model.textController2
                                                                               .text ==
+                                                                          null ||
+                                                                      _model.textController2
+                                                                              .text ==
                                                                           '')
                                                                     Builder(
                                                                       builder:
@@ -3444,6 +3468,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                       },
                                                                     ),
                                                                   if (_model.textController2
+                                                                              .text !=
+                                                                          null &&
+                                                                      _model.textController2
                                                                               .text !=
                                                                           '')
                                                                     Builder(
@@ -3788,9 +3815,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                               containerCompanyNotificationsRecordList
                                                                                   .map(
                                                                                     (record) => TextSearchItem.fromTerms(record, [
-                                                                                      record.content,
-                                                                                      record.fullDescription,
-                                                                                      record.type
+                                                                                      record.content!,
+                                                                                      record.fullDescription!,
+                                                                                      record.type!
                                                                                     ]),
                                                                                   )
                                                                                   .toList(),
@@ -3937,6 +3964,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                   ),
                                                                 ),
                                                                 if (_model.textController3
+                                                                            .text ==
+                                                                        null ||
+                                                                    _model.textController3
                                                                             .text ==
                                                                         '')
                                                                   Builder(
@@ -4136,6 +4166,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                     },
                                                                   ),
                                                                 if (_model.textController3
+                                                                            .text !=
+                                                                        null &&
+                                                                    _model.textController3
                                                                             .text !=
                                                                         '')
                                                                   Builder(
@@ -4373,6 +4406,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                 ),
                                                                 if (_model.textController3
                                                                             .text ==
+                                                                        null ||
+                                                                    _model.textController3
+                                                                            .text ==
                                                                         '')
                                                                   Builder(
                                                                     builder:
@@ -4571,6 +4607,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                                                                     },
                                                                   ),
                                                                 if (_model.textController3
+                                                                            .text !=
+                                                                        null &&
+                                                                    _model.textController3
                                                                             .text !=
                                                                         '')
                                                                   Builder(

@@ -2,9 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'partners_work_place_page_model.dart';
 export 'partners_work_place_page_model.dart';
 
@@ -63,11 +67,11 @@ class _PartnersWorkPlacePageWidgetState
               AddPartnerWorkPlacePageWidget.routeName,
               queryParameters: {
                 'company': serializeParam(
-                  widget.workPlaceRef?.companyRef,
+                  widget!.workPlaceRef?.companyRef,
                   ParamType.DocumentReference,
                 ),
                 'wokrPlace': serializeParam(
-                  widget.workPlaceRef?.reference,
+                  widget!.workPlaceRef?.reference,
                   ParamType.DocumentReference,
                 ),
               }.withoutNulls,
@@ -107,7 +111,7 @@ class _PartnersWorkPlacePageWidgetState
           child: Builder(
             builder: (context) {
               final partner =
-                  widget.workPlaceRef?.partnerships.toList() ?? [];
+                  widget!.workPlaceRef?.partnerships?.toList() ?? [];
 
               return ListView.builder(
                 padding: EdgeInsets.zero,

@@ -9,9 +9,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_add_vehicle_payment_page_model.dart';
 export 'work_place_add_vehicle_payment_page_model.dart';
 
@@ -130,7 +133,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    if (widget.isWorker ?? true)
+                    if (widget!.isWorker ?? true)
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 12.0, 24.0, 12.0),
@@ -202,7 +205,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                       child: StreamBuilder<
                                           List<WorkPlaceWorkerRecord>>(
                                         stream: queryWorkPlaceWorkerRecord(
-                                          parent: widget.workPlace,
+                                          parent: widget!.workPlace,
                                           queryBuilder:
                                               (workPlaceWorkerRecord) =>
                                                   workPlaceWorkerRecord
@@ -841,7 +844,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                         ),
                       ),
                     ),
-                    if (!widget.isWorker!)
+                    if (!widget!.isWorker!)
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 12.0, 24.0, 12.0),
@@ -1049,7 +1052,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                           ),
                         ),
                       ),
-                    if (widget.type != 'construction')
+                    if (widget!.type != 'construction')
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 12.0, 24.0, 12.0),
@@ -1258,7 +1261,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                           ),
                         ),
                       ),
-                    if (widget.type == 'construction')
+                    if (widget!.type == 'construction')
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 12.0, 24.0, 12.0),
@@ -1643,8 +1646,8 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                           _shouldSetState = true;
                           if (_model.validate!) {
                             if (_model.isFuel) {
-                              if (widget.type == 'construction') {
-                                if (widget.vehicle!.workingHours >=
+                              if (widget!.type == 'construction') {
+                                if (widget!.vehicle!.workingHours >=
                                     (double.parse(
                                         _model.textController5.text))) {
                                   ScaffoldMessenger.of(context).showSnackBar(
@@ -1666,7 +1669,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                   return;
                                 }
                               } else {
-                                if (widget.vehicle!.km >=
+                                if (widget!.vehicle!.km >=
                                     (double.parse(valueOrDefault<String>(
                                       _model.textController4.text,
                                       '0',
@@ -1737,10 +1740,10 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                               }
                             }
 
-                            if (widget.isWorker!) {
+                            if (widget!.isWorker!) {
                               var workPlaceVehiclePaymentsRecordReference1 =
                                   WorkPlaceVehiclePaymentsRecord.createDoc(
-                                      widget.workPlace!);
+                                      widget!.workPlace!);
                               await workPlaceVehiclePaymentsRecordReference1
                                   .set(createWorkPlaceVehiclePaymentsRecordData(
                                 type: _model.dropDownTypeValue,
@@ -1749,7 +1752,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                     _model.textController2.text),
                                 image: _model.uploadedFileUrl_uploadDataMrxlo,
                                 isAccept: false,
-                                vehicle: widget.vehicle?.reference,
+                                vehicle: widget!.vehicle?.reference,
                                 createdByUser: currentUserReference,
                                 km: double.tryParse(
                                     _model.textController4.text),
@@ -1767,7 +1770,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                         image: _model
                                             .uploadedFileUrl_uploadDataMrxlo,
                                         isAccept: false,
-                                        vehicle: widget.vehicle?.reference,
+                                        vehicle: widget!.vehicle?.reference,
                                         createdByUser: currentUserReference,
                                         km: double.tryParse(
                                             _model.textController4.text),
@@ -1779,7 +1782,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
 
                               var companyVehiclePaymentsRecordReference1 =
                                   CompanyVehiclePaymentsRecord.createDoc(
-                                      widget.company!);
+                                      widget!.company!);
                               await companyVehiclePaymentsRecordReference1
                                   .set(createCompanyVehiclePaymentsRecordData(
                                 type: _model.dropDownTypeValue,
@@ -1788,7 +1791,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                     _model.textController2.text),
                                 image: _model.uploadedFileUrl_uploadDataMrxlo,
                                 isAccept: false,
-                                vehicle: widget.vehicle?.reference,
+                                vehicle: widget!.vehicle?.reference,
                                 createdByUser: currentUserReference,
                                 workPlaceVehiclePayment:
                                     _model.workPlaceVehiclePayment?.reference,
@@ -1808,7 +1811,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                         image: _model
                                             .uploadedFileUrl_uploadDataMrxlo,
                                         isAccept: false,
-                                        vehicle: widget.vehicle?.reference,
+                                        vehicle: widget!.vehicle?.reference,
                                         createdByUser: currentUserReference,
                                         workPlaceVehiclePayment: _model
                                             .workPlaceVehiclePayment?.reference,
@@ -1825,7 +1828,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                               _shouldSetState = true;
 
                               await WorkPlaceTransactionRecord.createDoc(
-                                      widget.workPlace!)
+                                      widget!.workPlace!)
                                   .set({
                                 ...createWorkPlaceTransactionRecordData(
                                   name: 'Araç Gideri',
@@ -1868,12 +1871,12 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                 ...createAjandaRecordData(
                                   description: 'Araç Gideri Eklendi',
                                   type: WorkHistoryTypes.addVehiclePayment.name,
-                                  company: widget.company,
+                                  company: widget!.company,
                                   fullDescription:
                                       '${_model.textController2.text} Tutarında ${_model.dropDownTypeValue} Masrafı Onaya Gönderildi.',
                                   vehiclePayment:
                                       _model.companyVehiclePayment?.reference,
-                                  companyVehicle: widget.vehicle?.reference,
+                                  companyVehicle: widget!.vehicle?.reference,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -1884,7 +1887,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                             } else {
                               var workPlaceVehiclePaymentsRecordReference2 =
                                   WorkPlaceVehiclePaymentsRecord.createDoc(
-                                      widget.workPlace!);
+                                      widget!.workPlace!);
                               await workPlaceVehiclePaymentsRecordReference2
                                   .set(createWorkPlaceVehiclePaymentsRecordData(
                                 type: _model.dropDownTypeValue,
@@ -1893,7 +1896,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                     _model.textController2.text),
                                 image: _model.uploadedFileUrl_uploadDataMrxlo,
                                 isAccept: true,
-                                vehicle: widget.vehicle?.reference,
+                                vehicle: widget!.vehicle?.reference,
                                 createdByUser: currentUserReference,
                                 km: double.tryParse(
                                     _model.textController4.text),
@@ -1911,7 +1914,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                         image: _model
                                             .uploadedFileUrl_uploadDataMrxlo,
                                         isAccept: true,
-                                        vehicle: widget.vehicle?.reference,
+                                        vehicle: widget!.vehicle?.reference,
                                         createdByUser: currentUserReference,
                                         km: double.tryParse(
                                             _model.textController4.text),
@@ -1923,7 +1926,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
 
                               var companyVehiclePaymentsRecordReference2 =
                                   CompanyVehiclePaymentsRecord.createDoc(
-                                      widget.company!);
+                                      widget!.company!);
                               await companyVehiclePaymentsRecordReference2
                                   .set(createCompanyVehiclePaymentsRecordData(
                                 type: _model.dropDownTypeValue,
@@ -1932,7 +1935,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                     _model.textController2.text),
                                 image: _model.uploadedFileUrl_uploadDataMrxlo,
                                 isAccept: true,
-                                vehicle: widget.vehicle?.reference,
+                                vehicle: widget!.vehicle?.reference,
                                 createdByUser: currentUserReference,
                                 workPlaceVehiclePayment: _model
                                     .vehiclePaymentWorkPlaceOwner?.reference,
@@ -1952,7 +1955,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                         image: _model
                                             .uploadedFileUrl_uploadDataMrxlo,
                                         isAccept: true,
-                                        vehicle: widget.vehicle?.reference,
+                                        vehicle: widget!.vehicle?.reference,
                                         createdByUser: currentUserReference,
                                         workPlaceVehiclePayment: _model
                                             .vehiclePaymentWorkPlaceOwner
@@ -1967,7 +1970,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
 
                               var workPlacePayments2025RecordReference =
                                   WorkPlacePayments2025Record.createDoc(
-                                      widget.workPlace!);
+                                      widget!.workPlace!);
                               await workPlacePayments2025RecordReference.set({
                                 ...createWorkPlacePayments2025RecordData(
                                   value: double.tryParse(
@@ -1975,7 +1978,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                   type: _model.dropDownTypeValue,
                                   toWhom: _model.textController3.text,
                                   description: _model.textController1.text,
-                                  vehicle: widget.vehicle?.reference,
+                                  vehicle: widget!.vehicle?.reference,
                                   isExpected: false,
                                   isDelete: false,
                                 ),
@@ -1994,7 +1997,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                   type: _model.dropDownTypeValue,
                                   toWhom: _model.textController3.text,
                                   description: _model.textController1.text,
-                                  vehicle: widget.vehicle?.reference,
+                                  vehicle: widget!.vehicle?.reference,
                                   isExpected: false,
                                   isDelete: false,
                                 ),
@@ -2008,7 +2011,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
 
                               var companyPayments2025RecordReference =
                                   CompanyPayments2025Record.createDoc(
-                                      widget.company!);
+                                      widget!.company!);
                               await companyPayments2025RecordReference.set({
                                 ...createCompanyPayments2025RecordData(
                                   value: double.tryParse(
@@ -2016,12 +2019,12 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                   type: _model.dropDownTypeValue,
                                   toWhom: _model.textController3.text,
                                   description: _model.textController1.text,
-                                  vehicle: widget.vehicle?.reference,
+                                  vehicle: widget!.vehicle?.reference,
                                   isExpected: false,
                                   isDelete: false,
                                   workPlacePayment:
                                       _model.payment2workPlaceOwner?.reference,
-                                  workPlace: widget.workPlace,
+                                  workPlace: widget!.workPlace,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -2037,12 +2040,12 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                   type: _model.dropDownTypeValue,
                                   toWhom: _model.textController3.text,
                                   description: _model.textController1.text,
-                                  vehicle: widget.vehicle?.reference,
+                                  vehicle: widget!.vehicle?.reference,
                                   isExpected: false,
                                   isDelete: false,
                                   workPlacePayment:
                                       _model.payment2workPlaceOwner?.reference,
-                                  workPlace: widget.workPlace,
+                                  workPlace: widget!.workPlace,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -2052,7 +2055,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                               }, companyPayments2025RecordReference);
                               _shouldSetState = true;
 
-                              await widget.company!.update({
+                              await widget!.company!.update({
                                 ...mapToFirestore(
                                   {
                                     'yearlyMoney': FieldValue.increment(
@@ -2065,7 +2068,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                 ),
                               });
 
-                              await widget.workPlace!.update({
+                              await widget!.workPlace!.update({
                                 ...mapToFirestore(
                                   {
                                     'yearlyMoney': FieldValue.increment(
@@ -2092,18 +2095,18 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                 ),
                               );
                               if (_model.dropDownTypeValue == 'Yakıt') {
-                                if (widget.vehicle?.type == 'construction') {
+                                if (widget!.vehicle?.type == 'construction') {
                                   _model.average =
                                       await actions.calculateCostVehicle(
                                     double.parse(_model.textController5.text),
-                                    widget.vehicle!.workingHours,
+                                    widget!.vehicle!.workingHours,
                                     double.parse(_model.textController2.text),
-                                    widget.vehicle!.averageLitersPerHour,
-                                    widget.vehicle!.averageCounter,
+                                    widget!.vehicle!.averageLitersPerHour,
+                                    widget!.vehicle!.averageCounter,
                                   );
                                   _shouldSetState = true;
 
-                                  await widget.vehicle!.reference.update({
+                                  await widget!.vehicle!.reference.update({
                                     ...createCompanyVehiclesRecordData(
                                       workingHours: double.tryParse(
                                           _model.textController5.text),
@@ -2123,7 +2126,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                     ),
                                   });
 
-                                  await widget.vehicle!.workPlaceVehicles!
+                                  await widget!.vehicle!.workPlaceVehicles!
                                       .update({
                                     ...createWorkPlaceVehicleRecordData(
                                       workingHours: double.tryParse(
@@ -2147,14 +2150,14 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                   _model.average2 =
                                       await actions.calculateCostVehicle(
                                     double.parse(_model.textController4.text),
-                                    widget.vehicle!.km,
+                                    widget!.vehicle!.km,
                                     double.parse(_model.textController2.text),
-                                    widget.vehicle!.averageLitersPerKm,
-                                    widget.vehicle!.averageCounter,
+                                    widget!.vehicle!.averageLitersPerKm,
+                                    widget!.vehicle!.averageCounter,
                                   );
                                   _shouldSetState = true;
 
-                                  await widget.vehicle!.reference.update({
+                                  await widget!.vehicle!.reference.update({
                                     ...createCompanyVehiclesRecordData(
                                       km: double.tryParse(
                                           _model.textController4.text),
@@ -2173,7 +2176,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                     ),
                                   });
 
-                                  await widget.vehicle!.workPlaceVehicles!
+                                  await widget!.vehicle!.workPlaceVehicles!
                                       .update({
                                     ...createWorkPlaceVehicleRecordData(
                                       km: double.tryParse(
@@ -2194,7 +2197,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                   });
                                 }
                               } else {
-                                await widget.vehicle!.reference.update({
+                                await widget!.vehicle!.reference.update({
                                   ...mapToFirestore(
                                     {
                                       'totalPayment': FieldValue.increment(
@@ -2204,7 +2207,7 @@ class _WorkPlaceAddVehiclePaymentPageWidgetState
                                   ),
                                 });
 
-                                await widget.vehicle!.workPlaceVehicles!
+                                await widget!.vehicle!.workPlaceVehicles!
                                     .update({
                                   ...mapToFirestore(
                                     {

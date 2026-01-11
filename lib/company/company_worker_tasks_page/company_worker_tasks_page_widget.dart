@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_worker_tasks_page_model.dart';
 export 'company_worker_tasks_page_model.dart';
 
@@ -52,7 +55,7 @@ class _CompanyWorkerTasksPageWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<CompaniesRecord>(
       stream:
-          CompaniesRecord.getDocument(widget.companyWorker!.parentReference),
+          CompaniesRecord.getDocument(widget!.companyWorker!.parentReference),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -118,8 +121,8 @@ class _CompanyWorkerTasksPageWidgetState
                         children: [
                           FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canCreateTask ||
-                                  widget.companyWorker!
+                              if (widget!.companyWorker!.canCreateTask ||
+                                  widget!.companyWorker!
                                       .hasAuthorizedByDepartment()) {
                                 context.pushNamed(
                                   CompanyTaskAddWidget.routeName,
@@ -187,8 +190,8 @@ class _CompanyWorkerTasksPageWidgetState
                           ),
                           FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canCreateTask ||
-                                  widget.companyWorker!
+                              if (widget!.companyWorker!.canCreateTask ||
+                                  widget!.companyWorker!
                                       .hasAuthorizedByDepartment()) {
                                 context.pushNamed(
                                   CompanyTaskDutiesCreatePageWidget.routeName,
@@ -284,7 +287,7 @@ class _CompanyWorkerTasksPageWidgetState
                     ),
                     StreamBuilder<List<CompanyTasksRecord>>(
                       stream: queryCompanyTasksRecord(
-                        parent: widget.companyWorker?.parentReference,
+                        parent: widget!.companyWorker?.parentReference,
                         queryBuilder: (companyTasksRecord) => companyTasksRecord
                             .where(
                               'userRef',
@@ -536,7 +539,7 @@ class _CompanyWorkerTasksPageWidgetState
                     ),
                     StreamBuilder<List<DutiesForCompanyRecord>>(
                       stream: queryDutiesForCompanyRecord(
-                        parent: widget.companyWorker?.parentReference,
+                        parent: widget!.companyWorker?.parentReference,
                         queryBuilder: (dutiesForCompanyRecord) =>
                             dutiesForCompanyRecord
                                 .where(
@@ -768,7 +771,7 @@ class _CompanyWorkerTasksPageWidgetState
                     ),
                     StreamBuilder<List<CompanyTasksRecord>>(
                       stream: queryCompanyTasksRecord(
-                        parent: widget.companyWorker?.parentReference,
+                        parent: widget!.companyWorker?.parentReference,
                         queryBuilder: (companyTasksRecord) => companyTasksRecord
                             .where(
                               'createdUserRef',
@@ -970,7 +973,7 @@ class _CompanyWorkerTasksPageWidgetState
                       decoration: BoxDecoration(),
                       child: StreamBuilder<List<DutiesForCompanyRecord>>(
                         stream: queryDutiesForCompanyRecord(
-                          parent: widget.companyWorker?.parentReference,
+                          parent: widget!.companyWorker?.parentReference,
                           queryBuilder: (dutiesForCompanyRecord) =>
                               dutiesForCompanyRecord
                                   .where(
@@ -1198,7 +1201,7 @@ class _CompanyWorkerTasksPageWidgetState
                     ),
                     StreamBuilder<List<CompanyTasksRecord>>(
                       stream: queryCompanyTasksRecord(
-                        parent: widget.companyWorker?.parentReference,
+                        parent: widget!.companyWorker?.parentReference,
                         queryBuilder: (companyTasksRecord) => companyTasksRecord
                             .where(
                               'visibleTo',
@@ -1410,7 +1413,7 @@ class _CompanyWorkerTasksPageWidgetState
                     ),
                     StreamBuilder<List<DutiesForCompanyRecord>>(
                       stream: queryDutiesForCompanyRecord(
-                        parent: widget.companyWorker?.parentReference,
+                        parent: widget!.companyWorker?.parentReference,
                         queryBuilder: (dutiesForCompanyRecord) =>
                             dutiesForCompanyRecord
                                 .where(

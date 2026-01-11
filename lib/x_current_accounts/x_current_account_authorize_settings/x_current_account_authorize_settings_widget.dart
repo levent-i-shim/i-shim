@@ -3,10 +3,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'x_current_account_authorize_settings_model.dart';
 export 'x_current_account_authorize_settings_model.dart';
 
@@ -134,17 +137,17 @@ class _XCurrentAccountAuthorizeSettingsWidgetState
                         AddXCurrentAccountAuthorizeToMonitorWidget.routeName,
                         queryParameters: {
                           'xCurrentAccountDocument': serializeParam(
-                            widget.xCurrentAccountDocument,
+                            widget!.xCurrentAccountDocument,
                             ParamType.Document,
                           ),
                           'xCurrentAccountDocumentRef': serializeParam(
-                            widget.xCurrentAccountDocumentRef,
+                            widget!.xCurrentAccountDocumentRef,
                             ParamType.DocumentReference,
                           ),
                         }.withoutNulls,
                         extra: <String, dynamic>{
                           'xCurrentAccountDocument':
-                              widget.xCurrentAccountDocument,
+                              widget!.xCurrentAccountDocument,
                         },
                       );
                     } else {
@@ -153,17 +156,17 @@ class _XCurrentAccountAuthorizeSettingsWidgetState
                           AddXCurrentAccountAuthorizeToModifyWidget.routeName,
                           queryParameters: {
                             'xCurrentAccountDocument': serializeParam(
-                              widget.xCurrentAccountDocument,
+                              widget!.xCurrentAccountDocument,
                               ParamType.Document,
                             ),
                             'xCurrentAccountDocumentRef': serializeParam(
-                              widget.xCurrentAccountDocumentRef,
+                              widget!.xCurrentAccountDocumentRef,
                               ParamType.DocumentReference,
                             ),
                           }.withoutNulls,
                           extra: <String, dynamic>{
                             'xCurrentAccountDocument':
-                                widget.xCurrentAccountDocument,
+                                widget!.xCurrentAccountDocument,
                           },
                         );
                       }
@@ -355,10 +358,10 @@ class _XCurrentAccountAuthorizeSettingsWidgetState
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      final authorizedUsersToMonitor = widget
+                                      final authorizedUsersToMonitor = widget!
                                               .xCurrentAccountDocument
                                               ?.authorizedUsersToMonitor
-                                              .toList() ??
+                                              ?.toList() ??
                                           [];
 
                                       return ListView.builder(
@@ -539,10 +542,10 @@ class _XCurrentAccountAuthorizeSettingsWidgetState
                                 children: [
                                   Builder(
                                     builder: (context) {
-                                      final authorizedUsersToModify = widget
+                                      final authorizedUsersToModify = widget!
                                               .xCurrentAccountDocument
                                               ?.authorizedUsersToModify
-                                              .toList() ??
+                                              ?.toList() ??
                                           [];
 
                                       return ListView.builder(

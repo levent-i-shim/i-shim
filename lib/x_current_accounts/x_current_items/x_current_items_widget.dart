@@ -5,11 +5,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/x_current_accounts/options_x_current_account_activities/options_x_current_account_activities_widget.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'x_current_items_model.dart';
 export 'x_current_items_model.dart';
 
@@ -99,7 +102,7 @@ class _XCurrentItemsWidgetState extends State<XCurrentItemsWidget>
                       CreateXCurrentActivityWidget.routeName,
                       queryParameters: {
                         'xCurrentAccountDocumentRef': serializeParam(
-                          widget.xCurrentAccountDocumentRef,
+                          widget!.xCurrentAccountDocumentRef,
                           ParamType.DocumentReference,
                         ),
                         'creatorUserRef': serializeParam(
@@ -107,13 +110,13 @@ class _XCurrentItemsWidgetState extends State<XCurrentItemsWidget>
                           ParamType.DocumentReference,
                         ),
                         'xCurrentAccountDocument': serializeParam(
-                          widget.xCurrentAccountDocument,
+                          widget!.xCurrentAccountDocument,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
                         'xCurrentAccountDocument':
-                            widget.xCurrentAccountDocument,
+                            widget!.xCurrentAccountDocument,
                       },
                     );
                   },
@@ -162,17 +165,17 @@ class _XCurrentItemsWidgetState extends State<XCurrentItemsWidget>
                       XCurrentAccountAuthorizeSettingsWidget.routeName,
                       queryParameters: {
                         'xCurrentAccountDocumentRef': serializeParam(
-                          widget.xCurrentAccountDocumentRef,
+                          widget!.xCurrentAccountDocumentRef,
                           ParamType.DocumentReference,
                         ),
                         'xCurrentAccountDocument': serializeParam(
-                          widget.xCurrentAccountDocument,
+                          widget!.xCurrentAccountDocument,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
                         'xCurrentAccountDocument':
-                            widget.xCurrentAccountDocument,
+                            widget!.xCurrentAccountDocument,
                       },
                     );
                   },
@@ -568,7 +571,7 @@ class _XCurrentItemsWidgetState extends State<XCurrentItemsWidget>
                             children: [
                               StreamBuilder<List<XCurrentActivitiesRecord>>(
                                 stream: queryXCurrentActivitiesRecord(
-                                  parent: widget
+                                  parent: widget!
                                       .xCurrentAccountDocument?.reference,
                                   queryBuilder: (xCurrentActivitiesRecord) =>
                                       xCurrentActivitiesRecord.orderBy(
@@ -896,10 +899,10 @@ class _XCurrentItemsWidgetState extends State<XCurrentItemsWidget>
                                                                 child:
                                                                     OptionsXCurrentAccountActivitiesWidget(
                                                                   xCurrentAccountDocument:
-                                                                      widget
+                                                                      widget!
                                                                           .xCurrentAccountDocument!,
                                                                   xCurrentAccountDocumentRef:
-                                                                      widget
+                                                                      widget!
                                                                           .xCurrentAccountDocumentRef!,
                                                                   xCurrentActivityDocument:
                                                                       listViewXCurrentActivitiesRecord,
@@ -934,7 +937,7 @@ class _XCurrentItemsWidgetState extends State<XCurrentItemsWidget>
                               ),
                               StreamBuilder<List<XCurrentActivitiesRecord>>(
                                 stream: queryXCurrentActivitiesRecord(
-                                  parent: widget
+                                  parent: widget!
                                       .xCurrentAccountDocument?.reference,
                                   queryBuilder: (xCurrentActivitiesRecord) =>
                                       xCurrentActivitiesRecord.orderBy(

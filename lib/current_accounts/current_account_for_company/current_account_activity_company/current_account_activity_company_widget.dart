@@ -1,16 +1,23 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_activity_company_model.dart';
 export 'current_account_activity_company_model.dart';
 
@@ -56,16 +63,16 @@ class _CurrentAccountActivityCompanyWidgetState
             currentAccountRecord.where(Filter.or(
           Filter(
             'sideOneID',
-            isEqualTo: widget.company?.id,
+            isEqualTo: widget!.company?.id,
           ),
           Filter(
             'sideTwoID',
-            isEqualTo: widget.company?.id,
+            isEqualTo: widget!.company?.id,
           ),
         )),
       );
       _model.currentAccountCount = await queryCompanyNotificationsRecordCount(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyNotificationsRecord) => companyNotificationsRecord
             .where(
               'type',
@@ -78,7 +85,7 @@ class _CurrentAccountActivityCompanyWidgetState
       );
       _model.currentAccountBillCount =
           await queryCompanyNotificationsRecordCount(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyNotificationsRecord) => companyNotificationsRecord
             .where(
               'type',
@@ -91,7 +98,7 @@ class _CurrentAccountActivityCompanyWidgetState
       );
       _model.currentAccountPaidCount =
           await queryCompanyNotificationsRecordCount(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyNotificationsRecord) => companyNotificationsRecord
             .where(
               'type',
@@ -105,7 +112,7 @@ class _CurrentAccountActivityCompanyWidgetState
       );
       _model.currentAccountMatchCount =
           await queryCompanyNotificationsRecordCount(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyNotificationsRecord) => companyNotificationsRecord
             .where(
               'type',
@@ -135,7 +142,7 @@ class _CurrentAccountActivityCompanyWidgetState
               .where((e) => e.isAccepted)
               .toList()[loop1Index];
           _model.amISideOnePartner = await actions.isEqual(
-            widget.company!.id,
+            widget!.company!.id,
             currentLoop1Item.sideOneID,
           );
           if (_model.amISideOnePartner!) {
@@ -697,8 +704,8 @@ class _CurrentAccountActivityCompanyWidgetState
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            if (widget.isPartner) {
-                                              if (!widget.canManage) {
+                                            if (widget!.isPartner) {
+                                              if (!widget!.canManage) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
@@ -728,7 +735,7 @@ class _CurrentAccountActivityCompanyWidgetState
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -853,15 +860,15 @@ class _CurrentAccountActivityCompanyWidgetState
                                                   ParamType.bool,
                                                 ),
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'isPartner': serializeParam(
-                                                  widget.isPartner,
+                                                  widget!.isPartner,
                                                   ParamType.bool,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -985,15 +992,15 @@ class _CurrentAccountActivityCompanyWidgetState
                                                   ParamType.bool,
                                                 ),
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'isPartner': serializeParam(
-                                                  widget.isPartner,
+                                                  widget!.isPartner,
                                                   ParamType.bool,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -1108,8 +1115,8 @@ class _CurrentAccountActivityCompanyWidgetState
                                           hoverColor: Colors.transparent,
                                           highlightColor: Colors.transparent,
                                           onTap: () async {
-                                            if (widget.isPartner) {
-                                              if (!widget.canManage) {
+                                            if (widget!.isPartner) {
+                                              if (!widget!.canManage) {
                                                 ScaffoldMessenger.of(context)
                                                     .showSnackBar(
                                                   SnackBar(
@@ -1139,7 +1146,7 @@ class _CurrentAccountActivityCompanyWidgetState
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -1292,15 +1299,15 @@ class _CurrentAccountActivityCompanyWidgetState
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'isPartner': serializeParam(
-                                                  widget.isPartner,
+                                                  widget!.isPartner,
                                                   ParamType.bool,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -1391,15 +1398,15 @@ class _CurrentAccountActivityCompanyWidgetState
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'isPartner': serializeParam(
-                                                  widget.isPartner,
+                                                  widget!.isPartner,
                                                   ParamType.bool,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -1758,8 +1765,8 @@ class _CurrentAccountActivityCompanyWidgetState
                               ),
                               FFButtonWidget(
                                 onPressed: () async {
-                                  if (widget.isPartner) {
-                                    if (!widget.canManage) {
+                                  if (widget!.isPartner) {
+                                    if (!widget!.canManage) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -1787,7 +1794,7 @@ class _CurrentAccountActivityCompanyWidgetState
                                         .routeName,
                                     queryParameters: {
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -1862,15 +1869,15 @@ class _CurrentAccountActivityCompanyWidgetState
                                               ParamType.DataStruct,
                                             ),
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'isPartner': serializeParam(
-                                              widget.isPartner,
+                                              widget!.isPartner,
                                               ParamType.bool,
                                             ),
                                             'canManage': serializeParam(
-                                              widget.canManage,
+                                              widget!.canManage,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,

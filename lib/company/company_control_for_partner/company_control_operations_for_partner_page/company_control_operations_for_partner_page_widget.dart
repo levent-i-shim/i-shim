@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_control_operations_for_partner_page_model.dart';
 export 'company_control_operations_for_partner_page_model.dart';
 
@@ -121,20 +124,20 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                               24.0, 64.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewVehicles) {
+                              if (widget!.partner!.canViewVehicles) {
                                 context.pushNamed(
                                   CompanyVehiclesPageWidget.routeName,
                                   queryParameters: {
                                     'canAddVehicle': serializeParam(
-                                      widget.partner?.canManageVehicles,
+                                      widget!.partner?.canManageVehicles,
                                       ParamType.bool,
                                     ),
                                     'canCreateVehiclePayment': serializeParam(
-                                      widget.partner?.canManageVehicles,
+                                      widget!.partner?.canManageVehicles,
                                       ParamType.bool,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -199,7 +202,7 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewTasks) {
+                              if (widget!.partner!.canViewTasks) {
                                 context.pushNamed(
                                   CompanyTasksPageWidget.routeName,
                                   queryParameters: {
@@ -208,7 +211,7 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                                       ParamType.String,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -216,11 +219,11 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canCreate': serializeParam(
-                                      widget.partner?.canCreateTasks,
+                                      widget!.partner?.canCreateTasks,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.partner?.canManageTasks,
+                                      widget!.partner?.canManageTasks,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -281,7 +284,7 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewTasks) {
+                              if (widget!.partner!.canViewTasks) {
                                 context.pushNamed(
                                   CompanyTaskDutiesPageWidget.routeName,
                                   queryParameters: {
@@ -290,7 +293,7 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                                       ParamType.String,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -298,11 +301,11 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canCreate': serializeParam(
-                                      widget.partner?.canCreateTasks,
+                                      widget!.partner?.canCreateTasks,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.partner?.canManageTasks,
+                                      widget!.partner?.canManageTasks,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -363,12 +366,12 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewStock) {
+                              if (widget!.partner!.canViewStock) {
                                 context.pushNamed(
                                   StocksPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -376,7 +379,7 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.partner?.canManageStock,
+                                      widget!.partner?.canManageStock,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -437,12 +440,12 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                               24.0, 24.0, 24.0, 64.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewForms) {
+                              if (widget!.partner!.canViewForms) {
                                 context.pushNamed(
                                   ShowAllFormsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -450,7 +453,7 @@ class _CompanyControlOperationsForPartnerPageWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.partner?.canManageForms,
+                                      widget!.partner?.canManageForms,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,

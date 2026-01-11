@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_worker_company_page_model.dart';
 export 'company_worker_company_page_model.dart';
 
@@ -43,7 +46,7 @@ class _CompanyWorkerCompanyPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.companyDetail =
-          await CompaniesRecord.getDocumentOnce(widget.company!);
+          await CompaniesRecord.getDocumentOnce(widget!.company!);
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -60,7 +63,7 @@ class _CompanyWorkerCompanyPageWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyWorkersRecord>>(
       stream: queryCompanyWorkersRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyWorkersRecord) => companyWorkersRecord.where(
           'userRef',
           isEqualTo: currentUserReference,
@@ -179,11 +182,11 @@ class _CompanyWorkerCompanyPageWidgetState
                                                   queryParameters: {
                                                     'companyName':
                                                         serializeParam(
-                                                      widget.companyName,
+                                                      widget!.companyName,
                                                       ParamType.String,
                                                     ),
                                                     'company': serializeParam(
-                                                      widget.company,
+                                                      widget!.company,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -191,26 +194,26 @@ class _CompanyWorkerCompanyPageWidgetState
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord!
                                                               .canManageReports ||
-                                                          companyWorkerCompanyPageCompanyWorkersRecord
+                                                          companyWorkerCompanyPageCompanyWorkersRecord!
                                                               .hasAuthorizedByDepartment(),
                                                       ParamType.bool,
                                                     ),
                                                     'canViewTask':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .canManageReports,
+                                                          ?.canManageReports,
                                                       ParamType.bool,
                                                     ),
                                                     'canManageTask':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .canManageReports,
+                                                          ?.canManageReports,
                                                       ParamType.bool,
                                                     ),
                                                     'canSendMoney':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .expanditureAuthority,
+                                                          ?.expanditureAuthority,
                                                       ParamType.bool,
                                                     ),
                                                     'isOwner': serializeParam(
@@ -220,7 +223,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                     'canAddRole':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .roleCreationAuthority,
+                                                          ?.roleCreationAuthority,
                                                       ParamType.bool,
                                                     ),
                                                   }.withoutNulls,
@@ -308,39 +311,39 @@ class _CompanyWorkerCompanyPageWidgetState
                                                       .routeName,
                                                   queryParameters: {
                                                     'company': serializeParam(
-                                                      widget.company,
+                                                      widget!.company,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
                                                     'companyName':
                                                         serializeParam(
-                                                      widget.companyName,
+                                                      widget!.companyName,
                                                       ParamType.String,
                                                     ),
                                                     'canManageEmployee':
                                                         serializeParam(
-                                                      companyWorkerCompanyPageCompanyWorkersRecord
+                                                      companyWorkerCompanyPageCompanyWorkersRecord!
                                                               .canManageReports ||
-                                                          companyWorkerCompanyPageCompanyWorkersRecord
+                                                          companyWorkerCompanyPageCompanyWorkersRecord!
                                                               .hasAuthorizedByDepartment(),
                                                       ParamType.bool,
                                                     ),
                                                     'canViewTask':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .canManageReports,
+                                                          ?.canManageReports,
                                                       ParamType.bool,
                                                     ),
                                                     'canManageTask':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .canManageReports,
+                                                          ?.canManageReports,
                                                       ParamType.bool,
                                                     ),
                                                     'canSendMoney':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .expanditureAuthority,
+                                                          ?.expanditureAuthority,
                                                       ParamType.bool,
                                                     ),
                                                     'isOwner': serializeParam(
@@ -350,7 +353,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                     'canAddDepartmnet':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .departmentCreationAuthority,
+                                                          ?.departmentCreationAuthority,
                                                       ParamType.bool,
                                                     ),
                                                   }.withoutNulls,
@@ -443,34 +446,34 @@ class _CompanyWorkerCompanyPageWidgetState
                                                       .routeName,
                                                   queryParameters: {
                                                     'company': serializeParam(
-                                                      widget.company,
+                                                      widget!.company,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
                                                     'canManageEmployee':
                                                         serializeParam(
-                                                      companyWorkerCompanyPageCompanyWorkersRecord
+                                                      companyWorkerCompanyPageCompanyWorkersRecord!
                                                               .canManageReports ||
-                                                          companyWorkerCompanyPageCompanyWorkersRecord
+                                                          companyWorkerCompanyPageCompanyWorkersRecord!
                                                               .hasAuthorizedByDepartment(),
                                                       ParamType.bool,
                                                     ),
                                                     'canViewTask':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .canManageReports,
+                                                          ?.canManageReports,
                                                       ParamType.bool,
                                                     ),
                                                     'canManageTask':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .canManageReports,
+                                                          ?.canManageReports,
                                                       ParamType.bool,
                                                     ),
                                                     'canSendMoney':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .expanditureAuthority,
+                                                          ?.expanditureAuthority,
                                                       ParamType.bool,
                                                     ),
                                                     'isOwner': serializeParam(
@@ -480,7 +483,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                     'canAddUnit':
                                                         serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .unitCreationAuthority,
+                                                          ?.unitCreationAuthority,
                                                       ParamType.bool,
                                                     ),
                                                   }.withoutNulls,
@@ -566,7 +569,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                 _model.department =
                                                     await CompanyDepartmentsRecord
                                                         .getDocumentOnce(
-                                                            companyWorkerCompanyPageCompanyWorkersRecord
+                                                            companyWorkerCompanyPageCompanyWorkersRecord!
                                                                 .authorizedByDepartment!);
 
                                                 context.pushNamed(
@@ -584,15 +587,15 @@ class _CompanyWorkerCompanyPageWidgetState
                                                       ParamType.String,
                                                     ),
                                                     'company': serializeParam(
-                                                      widget.company,
+                                                      widget!.company,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
                                                     'canManageEmployee':
                                                         serializeParam(
-                                                      companyWorkerCompanyPageCompanyWorkersRecord
+                                                      companyWorkerCompanyPageCompanyWorkersRecord!
                                                               .canManageReports ||
-                                                          companyWorkerCompanyPageCompanyWorkersRecord
+                                                          companyWorkerCompanyPageCompanyWorkersRecord!
                                                               .hasAuthorizedByDepartment(),
                                                       ParamType.bool,
                                                     ),
@@ -781,7 +784,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                       .routeName,
                                                   queryParameters: {
                                                     'company': serializeParam(
-                                                      widget.company,
+                                                      widget!.company,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -921,7 +924,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                 MyVaultPageWidget.routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                 }.withoutNulls,
@@ -1010,7 +1013,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'companyRef': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'isPartner': serializeParam(
@@ -1024,7 +1027,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                   'canManageStock':
                                                       serializeParam(
                                                     companyWorkerCompanyPageCompanyWorkersRecord
-                                                        .stockAuthority,
+                                                        ?.stockAuthority,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -1118,7 +1121,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'workPlace': serializeParam(
@@ -1204,7 +1207,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                               ConfirmationsPageWidget.routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -1333,7 +1336,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                 StocksPageWidget.routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                 }.withoutNulls,
@@ -1459,14 +1462,14 @@ class _CompanyWorkerCompanyPageWidgetState
                                           onPressed: () async {
                                             if (companyWorkerCompanyPageCompanyWorkersRecord!
                                                     .currentAccountAuthority ||
-                                                companyWorkerCompanyPageCompanyWorkersRecord
+                                                companyWorkerCompanyPageCompanyWorkersRecord!
                                                     .hasAuthorizedByDepartment()) {
                                               context.pushNamed(
                                                 CurrentAccountActivityCompanyWidget
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                 }.withoutNulls,
@@ -1555,7 +1558,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'workPlace': serializeParam(
@@ -1662,7 +1665,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'canAddVehicle':
@@ -1700,7 +1703,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                         .routeName,
                                                     queryParameters: {
                                                       'company': serializeParam(
-                                                        widget.company,
+                                                        widget!.company,
                                                         ParamType
                                                             .DocumentReference,
                                                       ),
@@ -1888,13 +1891,13 @@ class _CompanyWorkerCompanyPageWidgetState
                                                 IncomesPageWidget.routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'canAddIncome':
                                                       serializeParam(
                                                     companyWorkerCompanyPageCompanyWorkersRecord
-                                                        .canAddManuelIncomeExpense,
+                                                        ?.canAddManuelIncomeExpense,
                                                     ParamType.bool,
                                                   ),
                                                   'isOwner': serializeParam(
@@ -1965,13 +1968,13 @@ class _CompanyWorkerCompanyPageWidgetState
                                                 PaymentsPageWidget.routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'canAddPayment':
                                                       serializeParam(
                                                     companyWorkerCompanyPageCompanyWorkersRecord
-                                                        .canAddManuelIncomeExpense,
+                                                        ?.canAddManuelIncomeExpense,
                                                     ParamType.bool,
                                                   ),
                                                   'isOwner': serializeParam(
@@ -2085,7 +2088,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'workPlace': serializeParam(
@@ -2156,7 +2159,7 @@ class _CompanyWorkerCompanyPageWidgetState
                                                       .routeName,
                                                   queryParameters: {
                                                     'company': serializeParam(
-                                                      widget.company,
+                                                      widget!.company,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -2233,13 +2236,13 @@ class _CompanyWorkerCompanyPageWidgetState
                                                       .routeName,
                                                   queryParameters: {
                                                     'company': serializeParam(
-                                                      widget.company,
+                                                      widget!.company,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
                                                     'canManage': serializeParam(
                                                       companyWorkerCompanyPageCompanyWorkersRecord
-                                                          .canManageNotes,
+                                                          ?.canManageNotes,
                                                       ParamType.bool,
                                                     ),
                                                   }.withoutNulls,

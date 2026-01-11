@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_tasks_worker_page_model.dart';
 export 'work_place_tasks_worker_page_model.dart';
 
@@ -99,16 +102,16 @@ class _WorkPlaceTasksWorkerPageWidgetState
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          if (widget.canCreate!) {
+                          if (widget!.canCreate!) {
                             context.pushNamed(
                               WorkPlaceCreateTaskPageWidget.routeName,
                               queryParameters: {
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'workPlace': serializeParam(
-                                  widget.workPlace,
+                                  widget!.workPlace,
                                   ParamType.DocumentReference,
                                 ),
                                 'isPartner': serializeParam(
@@ -116,7 +119,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                                   ParamType.bool,
                                 ),
                                 'canCreate': serializeParam(
-                                  widget.canCreate,
+                                  widget!.canCreate,
                                   ParamType.bool,
                                 ),
                                 'isWorker': serializeParam(
@@ -175,16 +178,16 @@ class _WorkPlaceTasksWorkerPageWidgetState
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          if (widget.canCreate!) {
+                          if (widget!.canCreate!) {
                             context.pushNamed(
                               WorkPlaceTaskDutiesCreatePageWidget.routeName,
                               queryParameters: {
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'workPlace': serializeParam(
-                                  widget.workPlace,
+                                  widget!.workPlace,
                                   ParamType.DocumentReference,
                                 ),
                                 'isPartner': serializeParam(
@@ -192,7 +195,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                                   ParamType.bool,
                                 ),
                                 'canCreate': serializeParam(
-                                  widget.canCreate,
+                                  widget!.canCreate,
                                   ParamType.bool,
                                 ),
                                 'isWorker': serializeParam(
@@ -278,7 +281,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                 ),
                 StreamBuilder<List<CompanyTasksRecord>>(
                   stream: queryCompanyTasksRecord(
-                    parent: widget.company,
+                    parent: widget!.company,
                     queryBuilder: (companyTasksRecord) => companyTasksRecord
                         .where(
                           'userRef',
@@ -515,7 +518,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                 ),
                 StreamBuilder<List<DutiesForCompanyRecord>>(
                   stream: queryDutiesForCompanyRecord(
-                    parent: widget.company,
+                    parent: widget!.company,
                     queryBuilder: (dutiesForCompanyRecord) =>
                         dutiesForCompanyRecord
                             .where(
@@ -733,7 +736,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                 ),
                 StreamBuilder<List<CompanyTasksRecord>>(
                   stream: queryCompanyTasksRecord(
-                    parent: widget.company,
+                    parent: widget!.company,
                     queryBuilder: (companyTasksRecord) => companyTasksRecord
                         .where(
                           'createdUserRef',
@@ -871,11 +874,11 @@ class _WorkPlaceTasksWorkerPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'workPlace': serializeParam(
-                                                    widget.workPlace,
+                                                    widget!.workPlace,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'isPartner': serializeParam(
@@ -884,7 +887,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                                                   ),
                                                   'canSendTransaction':
                                                       serializeParam(
-                                                    widget.canSendTransaction,
+                                                    widget!.canSendTransaction,
                                                     ParamType.bool,
                                                   ),
                                                   'task': serializeParam(
@@ -950,7 +953,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                   decoration: BoxDecoration(),
                   child: StreamBuilder<List<DutiesForCompanyRecord>>(
                     stream: queryDutiesForCompanyRecord(
-                      parent: widget.company,
+                      parent: widget!.company,
                       queryBuilder: (dutiesForCompanyRecord) =>
                           dutiesForCompanyRecord
                               .where(
@@ -1090,12 +1093,12 @@ class _WorkPlaceTasksWorkerPageWidgetState
                                                       .routeName,
                                                   queryParameters: {
                                                     'company': serializeParam(
-                                                      widget.company,
+                                                      widget!.company,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
                                                     'workPlace': serializeParam(
-                                                      widget.workPlace,
+                                                      widget!.workPlace,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -1109,11 +1112,11 @@ class _WorkPlaceTasksWorkerPageWidgetState
                                                       ParamType.bool,
                                                     ),
                                                     'canCreate': serializeParam(
-                                                      widget.canCreate,
+                                                      widget!.canCreate,
                                                       ParamType.bool,
                                                     ),
                                                     'canManage': serializeParam(
-                                                      widget
+                                                      widget!
                                                           .canSendTransaction,
                                                       ParamType.bool,
                                                     ),
@@ -1172,7 +1175,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                 ),
                 StreamBuilder<List<CompanyTasksRecord>>(
                   stream: queryCompanyTasksRecord(
-                    parent: widget.company,
+                    parent: widget!.company,
                     queryBuilder: (companyTasksRecord) => companyTasksRecord
                         .where(
                           'visibleTo',
@@ -1310,11 +1313,11 @@ class _WorkPlaceTasksWorkerPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'workPlace': serializeParam(
-                                                    widget.workPlace,
+                                                    widget!.workPlace,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'isPartner': serializeParam(
@@ -1387,7 +1390,7 @@ class _WorkPlaceTasksWorkerPageWidgetState
                 ),
                 StreamBuilder<List<DutiesForCompanyRecord>>(
                   stream: queryDutiesForCompanyRecord(
-                    parent: widget.company,
+                    parent: widget!.company,
                     queryBuilder: (dutiesForCompanyRecord) =>
                         dutiesForCompanyRecord
                             .where(
@@ -1525,11 +1528,11 @@ class _WorkPlaceTasksWorkerPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'workPlace': serializeParam(
-                                                    widget.workPlace,
+                                                    widget!.workPlace,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'dutiesForCompany':

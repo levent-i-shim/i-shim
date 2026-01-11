@@ -1,11 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'expanded_payment_company_bill_page_model.dart';
 export 'expanded_payment_company_bill_page_model.dart';
 
@@ -55,7 +61,7 @@ class _ExpandedPaymentCompanyBillPageWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyPayments2025Record>>(
       stream: queryCompanyPayments2025Record(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyPayments2025Record) => companyPayments2025Record
             .where(
               'isExpected',
@@ -210,7 +216,7 @@ class _ExpandedPaymentCompanyBillPageWidgetState
                                                         await actions.isEqual(
                                                       _model.currentAccount!
                                                           .sideOneID,
-                                                      widget.company!.id,
+                                                      widget!.company!.id,
                                                     );
                                                     if (_model.currentAccount
                                                             ?.sideTwoType ==
@@ -271,18 +277,18 @@ class _ExpandedPaymentCompanyBillPageWidgetState
                                                           ),
                                                           'company':
                                                               serializeParam(
-                                                            widget.company,
+                                                            widget!.company,
                                                             ParamType
                                                                 .DocumentReference,
                                                           ),
                                                           'isPartner':
                                                               serializeParam(
-                                                            widget.isPartner,
+                                                            widget!.isPartner,
                                                             ParamType.bool,
                                                           ),
                                                           'canManage':
                                                               serializeParam(
-                                                            widget.canManage,
+                                                            widget!.canManage,
                                                             ParamType.bool,
                                                           ),
                                                         }.withoutNulls,
@@ -371,19 +377,19 @@ class _ExpandedPaymentCompanyBillPageWidgetState
                                                               ),
                                                               'company':
                                                                   serializeParam(
-                                                                widget.company,
+                                                                widget!.company,
                                                                 ParamType
                                                                     .DocumentReference,
                                                               ),
                                                               'isPartner':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .isPartner,
                                                                 ParamType.bool,
                                                               ),
                                                               'canManage':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .canManage,
                                                                 ParamType.bool,
                                                               ),
@@ -466,19 +472,19 @@ class _ExpandedPaymentCompanyBillPageWidgetState
                                                               ),
                                                               'company':
                                                                   serializeParam(
-                                                                widget.company,
+                                                                widget!.company,
                                                                 ParamType
                                                                     .DocumentReference,
                                                               ),
                                                               'isPartner':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .isPartner,
                                                                 ParamType.bool,
                                                               ),
                                                               'canManage':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .canManage,
                                                                 ParamType.bool,
                                                               ),
@@ -567,19 +573,19 @@ class _ExpandedPaymentCompanyBillPageWidgetState
                                                               ),
                                                               'company':
                                                                   serializeParam(
-                                                                widget.company,
+                                                                widget!.company,
                                                                 ParamType
                                                                     .DocumentReference,
                                                               ),
                                                               'isPartner':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .isPartner,
                                                                 ParamType.bool,
                                                               ),
                                                               'canManage':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .canManage,
                                                                 ParamType.bool,
                                                               ),
@@ -662,19 +668,19 @@ class _ExpandedPaymentCompanyBillPageWidgetState
                                                               ),
                                                               'company':
                                                                   serializeParam(
-                                                                widget.company,
+                                                                widget!.company,
                                                                 ParamType
                                                                     .DocumentReference,
                                                               ),
                                                               'isPartner':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .isPartner,
                                                                 ParamType.bool,
                                                               ),
                                                               'canManage':
                                                                   serializeParam(
-                                                                widget
+                                                                widget!
                                                                     .canManage,
                                                                 ParamType.bool,
                                                               ),

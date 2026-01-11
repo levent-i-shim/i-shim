@@ -6,9 +6,14 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'work_place_task_duties_read_report_page_model.dart';
 export 'work_place_task_duties_read_report_page_model.dart';
 
@@ -66,11 +71,11 @@ class _WorkPlaceTaskDutiesReadReportPageWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyReportsRecord>>(
       stream: queryCompanyReportsRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyReportsRecord) => companyReportsRecord
             .where(
               'duty',
-              isEqualTo: widget.companyTaskDuties?.reference,
+              isEqualTo: widget!.companyTaskDuties?.reference,
             )
             .where(
               'hasResponse',
@@ -139,10 +144,10 @@ class _WorkPlaceTaskDutiesReadReportPageWidgetState
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           var _shouldSetState = false;
-                          if (!(widget.isPartner! && widget.canManage!)) {
+                          if (!(widget!.isPartner! && widget!.canManage!)) {
                             _model.companyDetail =
                                 await CompaniesRecord.getDocumentOnce(
-                                    widget.company!);
+                                    widget!.company!);
                             _shouldSetState = true;
                             if (_model.companyDetail?.owner !=
                                 currentUserReference) {
@@ -183,9 +188,9 @@ class _WorkPlaceTaskDutiesReadReportPageWidgetState
                                   },
                                   child: TaskOptionsWidget(
                                     isStoped:
-                                        widget.companyTaskDuties!.isComplete,
+                                        widget!.companyTaskDuties!.isComplete,
                                     isTask: false,
-                                    taskDuties: widget.companyTaskDuties,
+                                    taskDuties: widget!.companyTaskDuties,
                                   ),
                                 ),
                               );
@@ -280,7 +285,7 @@ class _WorkPlaceTaskDutiesReadReportPageWidgetState
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.companyTaskDuties?.name,
+                                          widget!.companyTaskDuties?.name,
                                           'görev ismi',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -339,7 +344,7 @@ class _WorkPlaceTaskDutiesReadReportPageWidgetState
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.companyTaskDuties?.name,
+                                          widget!.companyTaskDuties?.name,
                                           'görev ismi',
                                         ),
                                         style: FlutterFlowTheme.of(context)

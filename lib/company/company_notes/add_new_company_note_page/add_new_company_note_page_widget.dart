@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_new_company_note_page_model.dart';
 export 'add_new_company_note_page_model.dart';
 
@@ -122,17 +125,17 @@ class _AddNewCompanyNotePageWidgetState
                     }
                     if (_model.validate!) {
                       var companyNotesRecordReference =
-                          CompanyNotesRecord.createDoc(widget.company!);
+                          CompanyNotesRecord.createDoc(widget!.company!);
                       await companyNotesRecordReference.set({
                         ...createCompanyNotesRecordData(
                           title: _model.textFieldTitleTextController.text,
                           content: _model.textFieldContentTextController.text,
                           isDelete: false,
-                          hasCompanyRecord: widget.hasCompanyRecord,
-                          hasMachineFailure: widget.hasMachineFailure,
-                          hasPersonnelNote: widget.hasPersonnelNote,
-                          hasFinancialNote: widget.hasFinancialNote,
-                          hasTaxNote: widget.hasTaxNote,
+                          hasCompanyRecord: widget!.hasCompanyRecord,
+                          hasMachineFailure: widget!.hasMachineFailure,
+                          hasPersonnelNote: widget!.hasPersonnelNote,
+                          hasFinancialNote: widget!.hasFinancialNote,
+                          hasTaxNote: widget!.hasTaxNote,
                           addedBy: currentUserReference,
                         ),
                         ...mapToFirestore(
@@ -147,11 +150,11 @@ class _AddNewCompanyNotePageWidgetState
                           title: _model.textFieldTitleTextController.text,
                           content: _model.textFieldContentTextController.text,
                           isDelete: false,
-                          hasCompanyRecord: widget.hasCompanyRecord,
-                          hasMachineFailure: widget.hasMachineFailure,
-                          hasPersonnelNote: widget.hasPersonnelNote,
-                          hasFinancialNote: widget.hasFinancialNote,
-                          hasTaxNote: widget.hasTaxNote,
+                          hasCompanyRecord: widget!.hasCompanyRecord,
+                          hasMachineFailure: widget!.hasMachineFailure,
+                          hasPersonnelNote: widget!.hasPersonnelNote,
+                          hasFinancialNote: widget!.hasFinancialNote,
+                          hasTaxNote: widget!.hasTaxNote,
                           addedBy: currentUserReference,
                         ),
                         ...mapToFirestore(

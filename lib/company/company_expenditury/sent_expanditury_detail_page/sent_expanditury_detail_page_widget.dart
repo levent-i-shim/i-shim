@@ -4,8 +4,10 @@ import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'sent_expanditury_detail_page_model.dart';
 export 'sent_expanditury_detail_page_model.dart';
 
@@ -49,7 +51,7 @@ class _SentExpandituryDetailPageWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<UsersRecord>(
-      stream: UsersRecord.getDocument(widget.sentMoneyForAllowence!.receiver!),
+      stream: UsersRecord.getDocument(widget!.sentMoneyForAllowence!.receiver!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -179,7 +181,7 @@ class _SentExpandituryDetailPageWidgetState
                                           flex: 8,
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget.sentMoneyForAllowence
+                                              widget!.sentMoneyForAllowence
                                                   ?.senderName,
                                               'isim',
                                             ),
@@ -370,7 +372,7 @@ class _SentExpandituryDetailPageWidgetState
                                           flex: 8,
                                           child: Text(
                                             '${formatNumber(
-                                              widget.sentMoneyForAllowence
+                                              widget!.sentMoneyForAllowence
                                                   ?.sentMoney,
                                               formatType: FormatType.decimal,
                                               decimalType:
@@ -469,7 +471,7 @@ class _SentExpandituryDetailPageWidgetState
                                           flex: 8,
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget
+                                              widget!
                                                   .sentMoneyForAllowence?.note,
                                               'not',
                                             ),
@@ -567,7 +569,7 @@ class _SentExpandituryDetailPageWidgetState
                                           child: Text(
                                             dateTimeFormat(
                                                 "d/M/y",
-                                                widget.sentMoneyForAllowence!
+                                                widget!.sentMoneyForAllowence!
                                                     .date!),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -614,9 +616,9 @@ class _SentExpandituryDetailPageWidgetState
                           onPressed: () async {
                             await downloadFile(
                               filename:
-                                  '${sentExpandituryDetailPageUsersRecord.displayName}PDF${dateTimeFormat("d/M/y", widget.sentMoneyForAllowence?.date)}',
+                                  '${sentExpandituryDetailPageUsersRecord.displayName}PDF${dateTimeFormat("d/M/y", widget!.sentMoneyForAllowence?.date)}',
                               url: valueOrDefault<String>(
-                                widget.sentMoneyForAllowence?.pdfUrl,
+                                widget!.sentMoneyForAllowence?.pdfUrl,
                                 'deneme',
                               ),
                             );
@@ -658,7 +660,7 @@ class _SentExpandituryDetailPageWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                         child: FlutterFlowPdfViewer(
-                          networkPath: widget.sentMoneyForAllowence!.pdfUrl,
+                          networkPath: widget!.sentMoneyForAllowence!.pdfUrl,
                           height: 500.0,
                           horizontalScroll: false,
                         ),

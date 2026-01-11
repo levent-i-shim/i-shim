@@ -1,16 +1,20 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/financial_plan/options_income_plan_items/options_income_plan_items_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'income_plan_items_model.dart';
 export 'income_plan_items_model.dart';
 
@@ -53,10 +57,10 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.count = await queryIncomePlanItemsRecordCount(
-        parent: widget.incomePlanDocumentRef,
+        parent: widget!.incomePlanDocumentRef,
       );
       _model.listOfDocuments = await queryIncomePlanItemsRecordOnce(
-        parent: widget.incomePlanDocumentRef,
+        parent: widget!.incomePlanDocumentRef,
       );
       while (_model.itemIndex! <= _model.count!) {
         _model.totalOfItems = (double var1, double var2, double var3) {
@@ -71,7 +75,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
       }
       HapticFeedback.vibrate();
 
-      await widget.incomePlanDocumentRef!.update(createIncomePlansRecordData(
+      await widget!.incomePlanDocumentRef!.update(createIncomePlansRecordData(
         totalCapitalIncome: _model.totalOfItems,
       ));
     });
@@ -134,19 +138,19 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                       CreateIncomePlanItemWidget.routeName,
                       queryParameters: {
                         'incomePlanDocument': serializeParam(
-                          widget.incomePlanDocumentRef,
+                          widget!.incomePlanDocumentRef,
                           ParamType.DocumentReference,
                         ),
                         'creatorUserRef': serializeParam(
-                          widget.creatorUserRef,
+                          widget!.creatorUserRef,
                           ParamType.DocumentReference,
                         ),
                         'companRef': serializeParam(
-                          widget.companyRef,
+                          widget!.companyRef,
                           ParamType.DocumentReference,
                         ),
                         'workPlaceRef': serializeParam(
-                          widget.workPlaceRef,
+                          widget!.workPlaceRef,
                           ParamType.DocumentReference,
                         ),
                       }.withoutNulls,
@@ -197,32 +201,32 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                       IncomePlanIAuthorizeSettingsWidget.routeName,
                       queryParameters: {
                         'incomePlanDocumentRef': serializeParam(
-                          widget.incomePlanDocumentRef,
+                          widget!.incomePlanDocumentRef,
                           ParamType.DocumentReference,
                         ),
                         'creatorUserRef': serializeParam(
-                          widget.creatorUserRef,
+                          widget!.creatorUserRef,
                           ParamType.DocumentReference,
                         ),
                         'companyRef': serializeParam(
-                          widget.companyRef,
+                          widget!.companyRef,
                           ParamType.DocumentReference,
                         ),
                         'workPlaceRef': serializeParam(
-                          widget.workPlaceRef,
+                          widget!.workPlaceRef,
                           ParamType.DocumentReference,
                         ),
                         'planName': serializeParam(
-                          widget.planName,
+                          widget!.planName,
                           ParamType.String,
                         ),
                         'incomePlanDocument': serializeParam(
-                          widget.incomePlanDocument,
+                          widget!.incomePlanDocument,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'incomePlanDocument': widget.incomePlanDocument,
+                        'incomePlanDocument': widget!.incomePlanDocument,
                       },
                     );
                   },
@@ -268,7 +272,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                     onTap: () async {
                       HapticFeedback.vibrate();
 
-                      await widget.incomePlanDocumentRef!
+                      await widget!.incomePlanDocumentRef!
                           .update(createIncomePlansRecordData(
                         totalCapitalIncome: _model.totalOfItems,
                       ));
@@ -300,7 +304,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                         10.0, 6.0, 10.0, 6.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.planName,
+                                        widget!.planName,
                                         'Plan Adı',
                                       ),
                                       textAlign: TextAlign.justify,
@@ -642,7 +646,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                   safeSetState(() {});
                                   _model.count2 =
                                       await queryIncomePlanItemsRecordCount(
-                                    parent: widget.incomePlanDocumentRef,
+                                    parent: widget!.incomePlanDocumentRef,
                                     queryBuilder: (incomePlanItemsRecord) =>
                                         incomePlanItemsRecord.where(
                                       'status',
@@ -651,7 +655,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                   );
                                   _model.listOfDocuments2 =
                                       await queryIncomePlanItemsRecordOnce(
-                                    parent: widget.incomePlanDocumentRef,
+                                    parent: widget!.incomePlanDocumentRef,
                                     queryBuilder: (incomePlanItemsRecord) =>
                                         incomePlanItemsRecord.where(
                                       'status',
@@ -674,7 +678,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                   }
                                   HapticFeedback.vibrate();
 
-                                  await widget.incomePlanDocumentRef!
+                                  await widget!.incomePlanDocumentRef!
                                       .update(createIncomePlansRecordData(
                                     totalCapitalIncome: _model.totalOfItems,
                                   ));
@@ -688,7 +692,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                   HapticFeedback.heavyImpact();
                                   _model.count3 =
                                       await queryIncomePlanItemsRecordCount(
-                                    parent: widget.incomePlanDocumentRef,
+                                    parent: widget!.incomePlanDocumentRef,
                                     queryBuilder: (incomePlanItemsRecord) =>
                                         incomePlanItemsRecord.where(
                                       'status',
@@ -697,7 +701,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                   );
                                   _model.listOfDocuments3 =
                                       await queryIncomePlanItemsRecordOnce(
-                                    parent: widget.incomePlanDocumentRef,
+                                    parent: widget!.incomePlanDocumentRef,
                                     queryBuilder: (incomePlanItemsRecord) =>
                                         incomePlanItemsRecord.where(
                                       'status',
@@ -723,7 +727,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                   }
                                   HapticFeedback.vibrate();
 
-                                  await widget.incomePlanDocumentRef!
+                                  await widget!.incomePlanDocumentRef!
                                       .update(createIncomePlansRecordData(
                                     totalCapitalIncome: _model.totalOfItems,
                                   ));
@@ -741,7 +745,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                             children: [
                               StreamBuilder<List<IncomePlanItemsRecord>>(
                                 stream: queryIncomePlanItemsRecord(
-                                  parent: widget.incomePlanDocumentRef,
+                                  parent: widget!.incomePlanDocumentRef,
                                   queryBuilder: (incomePlanItemsRecord) =>
                                       incomePlanItemsRecord
                                           .where(
@@ -1071,10 +1075,10 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                                                 child:
                                                                     OptionsIncomePlanItemsWidget(
                                                                   incomePlanDocument:
-                                                                      widget
+                                                                      widget!
                                                                           .incomePlanDocument!,
                                                                   incomePlanDocumentRef:
-                                                                      widget
+                                                                      widget!
                                                                           .incomePlanDocumentRef!,
                                                                   itemDocument:
                                                                       listViewIncomePlanItemsRecord,
@@ -1109,7 +1113,7 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                               ),
                               StreamBuilder<List<IncomePlanItemsRecord>>(
                                 stream: queryIncomePlanItemsRecord(
-                                  parent: widget.incomePlanDocumentRef,
+                                  parent: widget!.incomePlanDocumentRef,
                                   queryBuilder: (incomePlanItemsRecord) =>
                                       incomePlanItemsRecord
                                           .where(
@@ -1439,10 +1443,10 @@ class _IncomePlanItemsWidgetState extends State<IncomePlanItemsWidget>
                                                                 child:
                                                                     OptionsIncomePlanItemsWidget(
                                                                   incomePlanDocument:
-                                                                      widget
+                                                                      widget!
                                                                           .incomePlanDocument!,
                                                                   incomePlanDocumentRef:
-                                                                      widget
+                                                                      widget!
                                                                           .incomePlanDocumentRef!,
                                                                   itemDocument:
                                                                       listViewIncomePlanItemsRecord,

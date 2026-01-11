@@ -2,8 +2,11 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'workplace_complex_model.dart';
 export 'workplace_complex_model.dart';
 
@@ -217,7 +220,7 @@ class _WorkplaceComplexWidgetState extends State<WorkplaceComplexWidget> {
                                         0.0, 0.0, 4.0, 0.0),
                                     child: SelectionArea(
                                         child: Text(
-                                      widget.workPlace!.reference.id,
+                                      widget!.workPlace!.reference.id,
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -252,7 +255,7 @@ class _WorkplaceComplexWidgetState extends State<WorkplaceComplexWidget> {
                       EdgeInsetsDirectional.fromSTEB(18.0, 18.0, 18.0, 18.0),
                   child: StreamBuilder<CompaniesRecord>(
                     stream: CompaniesRecord.getDocument(
-                        widget.workPlace!.companyRef!),
+                        widget!.workPlace!.companyRef!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -382,7 +385,7 @@ class _WorkplaceComplexWidgetState extends State<WorkplaceComplexWidget> {
                                   12.0, 12.0, 12.0, 12.0),
                               child: FutureBuilder<int>(
                                 future: queryWorkPlaceWorkerRecordCount(
-                                  parent: widget.workPlace?.reference,
+                                  parent: widget!.workPlace?.reference,
                                   queryBuilder: (workPlaceWorkerRecord) =>
                                       workPlaceWorkerRecord.where(
                                     'isDelete',

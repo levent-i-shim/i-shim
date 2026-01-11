@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'instructions_create_page_work_place_model.dart';
 export 'instructions_create_page_work_place_model.dart';
 
@@ -110,8 +113,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                         EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (widget.isPartner!) {
-                          if (!widget.canCreate!) {
+                        if (widget!.isPartner!) {
+                          if (!widget!.canCreate!) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -129,8 +132,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                             return;
                           }
                         } else {
-                          if (widget.isWorker!) {
-                            if (!widget.canCreate!) {
+                          if (widget!.isWorker!) {
+                            if (!widget!.canCreate!) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -154,23 +157,23 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                           InstructionWorkPlacePageWorkPlaceWidget.routeName,
                           queryParameters: {
                             'workPlace': serializeParam(
-                              widget.workPlace,
+                              widget!.workPlace,
                               ParamType.DocumentReference,
                             ),
                             'company': serializeParam(
-                              widget.company,
+                              widget!.company,
                               ParamType.DocumentReference,
                             ),
                             'canCreateInstructions': serializeParam(
-                              widget.canCreate,
+                              widget!.canCreate,
                               ParamType.bool,
                             ),
                             'isPartner': serializeParam(
-                              widget.isPartner,
+                              widget!.isPartner,
                               ParamType.bool,
                             ),
                             'isWorker': serializeParam(
-                              widget.isWorker,
+                              widget!.isWorker,
                               ParamType.bool,
                             ),
                           }.withoutNulls,
@@ -215,8 +218,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                         EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (widget.isPartner!) {
-                          if (!widget.canCreate!) {
+                        if (widget!.isPartner!) {
+                          if (!widget!.canCreate!) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -234,8 +237,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                             return;
                           }
                         } else {
-                          if (widget.isWorker!) {
-                            if (!widget.canCreate!) {
+                          if (widget!.isWorker!) {
+                            if (!widget!.canCreate!) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -259,23 +262,23 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                           UnitInstructionsPageWorkPlaceWidget.routeName,
                           queryParameters: {
                             'company': serializeParam(
-                              widget.company,
+                              widget!.company,
                               ParamType.DocumentReference,
                             ),
                             'workPlace': serializeParam(
-                              widget.workPlace,
+                              widget!.workPlace,
                               ParamType.DocumentReference,
                             ),
                             'isPartner': serializeParam(
-                              widget.isPartner,
+                              widget!.isPartner,
                               ParamType.bool,
                             ),
                             'canCreate': serializeParam(
-                              widget.canCreate,
+                              widget!.canCreate,
                               ParamType.bool,
                             ),
                             'isWorker': serializeParam(
-                              widget.isWorker,
+                              widget!.isWorker,
                               ParamType.bool,
                             ),
                           }.withoutNulls,
@@ -324,8 +327,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                         EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (widget.isPartner!) {
-                          if (!widget.canCreate!) {
+                        if (widget!.isPartner!) {
+                          if (!widget!.canCreate!) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -343,8 +346,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                             return;
                           }
                         } else {
-                          if (widget.isWorker!) {
-                            if (!widget.canCreate!) {
+                          if (widget!.isWorker!) {
+                            if (!widget!.canCreate!) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -368,23 +371,23 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                           InstructionsDepartmentPageWorkPlaceWidget.routeName,
                           queryParameters: {
                             'company': serializeParam(
-                              widget.company,
+                              widget!.company,
                               ParamType.DocumentReference,
                             ),
                             'workPlace': serializeParam(
-                              widget.workPlace,
+                              widget!.workPlace,
                               ParamType.DocumentReference,
                             ),
                             'isPartner': serializeParam(
-                              widget.isPartner,
+                              widget!.isPartner,
                               ParamType.bool,
                             ),
                             'canSendInstruction': serializeParam(
-                              widget.canCreate,
+                              widget!.canCreate,
                               ParamType.bool,
                             ),
                             'isWorker': serializeParam(
-                              widget.isWorker,
+                              widget!.isWorker,
                               ParamType.bool,
                             ),
                           }.withoutNulls,
@@ -429,8 +432,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                         EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (widget.isPartner!) {
-                          if (!widget.canCreate!) {
+                        if (widget!.isPartner!) {
+                          if (!widget!.canCreate!) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -448,8 +451,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                             return;
                           }
                         } else {
-                          if (widget.isWorker!) {
-                            if (!widget.canCreate!) {
+                          if (widget!.isWorker!) {
+                            if (!widget!.canCreate!) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -473,23 +476,23 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                           RoleInstructionPageWorkPlaceWidget.routeName,
                           queryParameters: {
                             'company': serializeParam(
-                              widget.company,
+                              widget!.company,
                               ParamType.DocumentReference,
                             ),
                             'workPlace': serializeParam(
-                              widget.workPlace,
+                              widget!.workPlace,
                               ParamType.DocumentReference,
                             ),
                             'isPartner': serializeParam(
-                              widget.isPartner,
+                              widget!.isPartner,
                               ParamType.bool,
                             ),
                             'canCreate': serializeParam(
-                              widget.canCreate,
+                              widget!.canCreate,
                               ParamType.bool,
                             ),
                             'isWorker': serializeParam(
-                              widget.isWorker,
+                              widget!.isWorker,
                               ParamType.bool,
                             ),
                           }.withoutNulls,
@@ -538,8 +541,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                         EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (widget.isPartner!) {
-                          if (!widget.canCreate!) {
+                        if (widget!.isPartner!) {
+                          if (!widget!.canCreate!) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -557,8 +560,8 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                             return;
                           }
                         } else {
-                          if (widget.isWorker!) {
-                            if (!widget.canCreate!) {
+                          if (widget!.isWorker!) {
+                            if (!widget!.canCreate!) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -582,23 +585,23 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                           PersonInstructionsPageWorkPlaceWidget.routeName,
                           queryParameters: {
                             'company': serializeParam(
-                              widget.company,
+                              widget!.company,
                               ParamType.DocumentReference,
                             ),
                             'workPlace': serializeParam(
-                              widget.workPlace,
+                              widget!.workPlace,
                               ParamType.DocumentReference,
                             ),
                             'isPartner': serializeParam(
-                              widget.isPartner,
+                              widget!.isPartner,
                               ParamType.bool,
                             ),
                             'canCreate': serializeParam(
-                              widget.canCreate,
+                              widget!.canCreate,
                               ParamType.bool,
                             ),
                             'isWorker': serializeParam(
-                              widget.isWorker,
+                              widget!.isWorker,
                               ParamType.bool,
                             ),
                           }.withoutNulls,
@@ -674,7 +677,7 @@ class _InstructionsCreatePageWorkPlaceWidgetState
                                 )
                                 .where(
                                   'workPlace',
-                                  isEqualTo: widget.workPlace,
+                                  isEqualTo: widget!.workPlace,
                                 )
                                 .orderBy('creationTime', descending: true),
                             parent: currentUserReference),

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -5,9 +6,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_employee_detail_model.dart';
 export 'edit_employee_detail_model.dart';
 
@@ -46,15 +50,15 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
     _model = createModel(context, () => EditEmployeeDetailModel());
 
     _model.textController1 ??=
-        TextEditingController(text: widget.copmanyWorker?.salary.toString());
+        TextEditingController(text: widget!.copmanyWorker?.salary?.toString());
     _model.textFieldFocusNode1 ??= FocusNode();
 
     _model.textController2 ??= TextEditingController(
-        text: widget.copmanyWorker?.workingHour.toString());
+        text: widget!.copmanyWorker?.workingHour?.toString());
     _model.textFieldFocusNode2 ??= FocusNode();
 
     _model.textController3 ??= TextEditingController(
-        text: widget.copmanyWorker?.shiftSalary.toString());
+        text: widget!.copmanyWorker?.shiftSalary?.toString());
     _model.textFieldFocusNode3 ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -71,7 +75,7 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyDepartmentsRecord>>(
       stream: queryCompanyDepartmentsRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyDepartmentsRecord) =>
             companyDepartmentsRecord.where(
           'isDelete',
@@ -132,7 +136,7 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
               top: true,
               child: StreamBuilder<List<CompanyRolesRecord>>(
                 stream: queryCompanyRolesRecord(
-                  parent: widget.company,
+                  parent: widget!.company,
                   queryBuilder: (companyRolesRecord) =>
                       companyRolesRecord.where(
                     'isDelete',
@@ -177,7 +181,7 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                 12.0, 20.0, 12.0, 0.0),
                             child: StreamBuilder<List<CompanyUnitsRecord>>(
                               stream: queryCompanyUnitsRecord(
-                                parent: widget.company,
+                                parent: widget!.company,
                                 queryBuilder: (companyUnitsRecord) =>
                                     companyUnitsRecord.where(
                                   'isDelete',
@@ -267,10 +271,10 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                                         FormFieldController<
                                                             String>(
                                                       _model.dropDownDepartmentValue ??=
-                                                          widget
+                                                          widget!
                                                               .copmanyWorker
                                                               ?.departmentRefs
-                                                              .firstOrNull
+                                                              ?.firstOrNull
                                                               ?.id,
                                                     ),
                                                     options: List<String>.from(
@@ -411,10 +415,10 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                                           FormFieldController<
                                                               String>(
                                                         _model.dropDownUnitValue ??=
-                                                            widget
+                                                            widget!
                                                                 .copmanyWorker
                                                                 ?.unitRefs
-                                                                .firstOrNull
+                                                                ?.firstOrNull
                                                                 ?.id,
                                                       ),
                                                       options: List<
@@ -560,10 +564,10 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                                           FormFieldController<
                                                               String>(
                                                         _model.dropDownRoleValue1 ??=
-                                                            widget
+                                                            widget!
                                                                 .copmanyWorker
                                                                 ?.roleRefs
-                                                                .firstOrNull
+                                                                ?.firstOrNull
                                                                 ?.id,
                                                       ),
                                                       options: List<
@@ -657,7 +661,7 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                                   (workPlacesRecord) =>
                                                       workPlacesRecord.where(
                                                 'companyRef',
-                                                isEqualTo: widget.company,
+                                                isEqualTo: widget!.company,
                                               ),
                                             ),
                                             builder: (context, snapshot) {
@@ -748,7 +752,7 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                                                       .dropDownRoleValue2 ??=
                                                                   List<
                                                                       String>.from(
-                                                            widget.workPlaceIds
+                                                            widget!.workPlaceIds
                                                                     ?.map((e) =>
                                                                         e.id)
                                                                     .toList() ??
@@ -1543,18 +1547,18 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                               _model.newRole =
                                                   await actions.getRoleDocRef(
                                                 _model.dropDownRoleValue1!,
-                                                widget.company!.id,
+                                                widget!.company!.id,
                                               );
                                               _model.newUnit =
                                                   await actions.getUnitDocRef(
                                                 _model.dropDownUnitValue!,
-                                                widget.company!.id,
+                                                widget!.company!.id,
                                               );
                                               _model.newDepartment =
                                                   await actions
                                                       .getDepartmentDocRef(
                                                 _model.dropDownDepartmentValue!,
-                                                widget.company!.id,
+                                                widget!.company!.id,
                                               );
                                               _model.newRoleRefs = [];
                                               _model.newDepartmentRefs = [];
@@ -1567,7 +1571,7 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                               _model.addToNewUnitRefs(
                                                   _model.newUnit!);
 
-                                              await widget
+                                              await widget!
                                                   .copmanyWorker!.reference
                                                   .update({
                                                 ...createCompanyWorkersRecordData(
@@ -1609,7 +1613,7 @@ class _EditEmployeeDetailWidgetState extends State<EditEmployeeDetailWidget> {
                                                     _model.workPlace!);
                                               }
 
-                                              await widget.myWorkedWorkPlace!
+                                              await widget!.myWorkedWorkPlace!
                                                   .update({
                                                 ...mapToFirestore(
                                                   {

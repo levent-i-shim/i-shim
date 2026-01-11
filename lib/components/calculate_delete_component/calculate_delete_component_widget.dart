@@ -1,9 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'calculate_delete_component_model.dart';
 export 'calculate_delete_component_model.dart';
 
@@ -203,12 +207,12 @@ class _CalculateDeleteComponentWidgetState
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await widget.calculate!.reference
+                          await widget!.calculate!.reference
                               .update(createCalculationsRecordData(
                             isDelete: true,
                           ));
 
-                          await widget.deleteRequest!.reference
+                          await widget!.deleteRequest!.reference
                               .update(createDeletionRequestRecordData(
                             isDeleteRequest: true,
                           ));
@@ -249,13 +253,13 @@ class _CalculateDeleteComponentWidgetState
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          if (widget.calculate!.companyIncomes.isNotEmpty) {
+                          if (widget!.calculate!.companyIncomes.isNotEmpty) {
                             for (int loop1Index = 0;
                                 loop1Index <
-                                    widget.calculate!.companyIncomes.length;
+                                    widget!.calculate!.companyIncomes.length;
                                 loop1Index++) {
                               final currentLoop1Item =
-                                  widget.calculate!.companyIncomes[loop1Index];
+                                  widget!.calculate!.companyIncomes[loop1Index];
 
                               await currentLoop1Item
                                   .update(createCompanyIncomes2025RecordData(
@@ -263,12 +267,12 @@ class _CalculateDeleteComponentWidgetState
                               ));
                             }
                           }
-                          if (widget.calculate!.workPlaceIncomes.isNotEmpty) {
+                          if (widget!.calculate!.workPlaceIncomes.isNotEmpty) {
                             for (int loop2Index = 0;
                                 loop2Index <
-                                    widget.calculate!.workPlaceIncomes.length;
+                                    widget!.calculate!.workPlaceIncomes.length;
                                 loop2Index++) {
-                              final currentLoop2Item = widget
+                              final currentLoop2Item = widget!
                                   .calculate!.workPlaceIncomes[loop2Index];
 
                               await currentLoop2Item
@@ -277,104 +281,104 @@ class _CalculateDeleteComponentWidgetState
                               ));
                             }
                           }
-                          if (widget.calculate!.bills.isNotEmpty) {
+                          if (widget!.calculate!.bills.isNotEmpty) {
                             for (int loop3Index = 0;
-                                loop3Index < widget.calculate!.bills.length;
+                                loop3Index < widget!.calculate!.bills.length;
                                 loop3Index++) {
                               final currentLoop3Item =
-                                  widget.calculate!.bills[loop3Index];
+                                  widget!.calculate!.bills[loop3Index];
                               await currentLoop3Item.delete();
                             }
                           }
 
-                          await widget.workPlace!.update({
+                          await widget!.workPlace!.update({
                             ...mapToFirestore(
                               {
-                                'totalMoney': FieldValue.increment((widget
+                                'totalMoney': FieldValue.increment((widget!
                                             .calculate!.cost *
-                                        widget.calculate!.productQuantity) -
-                                    widget.calculate!.totalSoldCost),
-                                'yearlyMoney': FieldValue.increment((widget
+                                        widget!.calculate!.productQuantity) -
+                                    widget!.calculate!.totalSoldCost),
+                                'yearlyMoney': FieldValue.increment((widget!
                                             .calculate!.cost *
-                                        widget.calculate!.productQuantity) -
-                                    widget.calculate!.totalSoldCost),
+                                        widget!.calculate!.productQuantity) -
+                                    widget!.calculate!.totalSoldCost),
                               },
                             ),
                           });
 
-                          await widget.deleteRequest!.parentReference.update({
+                          await widget!.deleteRequest!.parentReference.update({
                             ...mapToFirestore(
                               {
-                                'totalMoney': FieldValue.increment((widget
+                                'totalMoney': FieldValue.increment((widget!
                                             .calculate!.cost *
-                                        widget.calculate!.productQuantity) -
-                                    widget.calculate!.totalSoldCost),
-                                'yearlyMoney': FieldValue.increment((widget
+                                        widget!.calculate!.productQuantity) -
+                                    widget!.calculate!.totalSoldCost),
+                                'yearlyMoney': FieldValue.increment((widget!
                                             .calculate!.cost *
-                                        widget.calculate!.productQuantity) -
-                                    widget.calculate!.totalSoldCost),
+                                        widget!.calculate!.productQuantity) -
+                                    widget!.calculate!.totalSoldCost),
                               },
                             ),
                           });
 
-                          await widget.deleteRequest!.reference
+                          await widget!.deleteRequest!.reference
                               .update(createDeletionRequestRecordData(
                             isDeleteRequest: true,
                           ));
                           _model.parentProduct =
                               await ParentProductsRecord.getDocumentOnce(
-                                  widget.calculate!.parentProduct!);
+                                  widget!.calculate!.parentProduct!);
 
-                          await widget.calculate!.parentProduct!
+                          await widget!.calculate!.parentProduct!
                               .update(createParentProductsRecordData(
                             averageCost: (_model.parentProduct!.totalCost -
-                                    (widget.calculate!.cost *
-                                        widget.calculate!.productQuantity)) /
+                                    (widget!.calculate!.cost *
+                                        widget!.calculate!.productQuantity)) /
                                 (_model.parentProduct!.totalQuantity -
-                                    widget.calculate!.productQuantity),
+                                    widget!.calculate!.productQuantity),
                             totalQuantity: _model.parentProduct!.totalQuantity -
-                                widget.calculate!.productQuantity,
+                                widget!.calculate!.productQuantity,
                             totalCost: _model.parentProduct!.totalCost -
-                                (widget.calculate!.cost *
-                                    widget.calculate!.productQuantity),
+                                (widget!.calculate!.cost *
+                                    widget!.calculate!.productQuantity),
                             soldQuantity: (_model.parentProduct!.soldQuantity -
-                                widget.calculate!.soldQuantity),
+                                widget!.calculate!.soldQuantity),
                             totalSoldCost:
                                 (_model.parentProduct!.totalSoldCost -
-                                    widget.calculate!.totalSoldCost),
+                                    widget!.calculate!.totalSoldCost),
                           ));
                           _model.childProductDocument =
                               await ProductsRecord.getDocumentOnce(
-                                  widget.calculate!.parentReference);
+                                  widget!.calculate!.parentReference);
 
-                          await widget.calculate!.parentReference
+                          await widget!.calculate!.parentReference
                               .update(createProductsRecordData(
                             averageCost: (_model
                                         .childProductDocument!.totalCost -
-                                    (widget.calculate!.cost *
-                                        widget.calculate!.productQuantity)) /
+                                    (widget!.calculate!.cost *
+                                        widget!.calculate!.productQuantity)) /
                                 (_model.childProductDocument!.totalProduct -
-                                    widget.calculate!.productQuantity),
+                                    widget!.calculate!.productQuantity),
                             totalCost: _model.childProductDocument!.totalCost -
-                                (widget.calculate!.cost *
-                                    widget.calculate!.productQuantity),
+                                (widget!.calculate!.cost *
+                                    widget!.calculate!.productQuantity),
                             soldQuantity:
                                 (_model.childProductDocument!.soldQuantity -
-                                    widget.calculate!.soldQuantity),
+                                    widget!.calculate!.soldQuantity),
                             totalSoldCost:
                                 (_model.childProductDocument!.totalSoldCost -
-                                    widget.calculate!.totalSoldCost),
+                                    widget!.calculate!.totalSoldCost),
                             totalProduct:
                                 _model.childProductDocument!.totalProduct -
-                                    widget.calculate!.productQuantity,
+                                    widget!.calculate!.productQuantity,
                           ));
 
-                          await widget.calculate!.workPlacePaymentRef!
+                          await widget!.calculate!.workPlacePaymentRef!
                               .update(createWorkPlacePayments2025RecordData(
                             isDelete: true,
                           ));
 
-                          await widget.calculate!.companyPaymentRef!
+                          await widget!.calculate!.companyPaymentRef!
                               .update(createCompanyPayments2025RecordData(
                             isDelete: true,
                           ));

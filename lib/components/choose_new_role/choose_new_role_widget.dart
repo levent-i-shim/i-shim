@@ -1,12 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'choose_new_role_model.dart';
 export 'choose_new_role_model.dart';
 
@@ -52,7 +57,7 @@ class _ChooseNewRoleWidgetState extends State<ChooseNewRoleWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyRolesRecord>>(
       stream: queryCompanyRolesRecord(
-        parent: widget.companyId,
+        parent: widget!.companyId,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -221,9 +226,9 @@ class _ChooseNewRoleWidgetState extends State<ChooseNewRoleWidget> {
                               if (_model.validateForm!) {
                                 _model.newRole = await actions.getRoleDocRef(
                                   _model.dropDownValue!,
-                                  widget.companyId!.id,
+                                  widget!.companyId!.id,
                                 );
-                                if (_model.newRole == widget.role?.reference) {
+                                if (_model.newRole == widget!.role?.reference) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -242,11 +247,11 @@ class _ChooseNewRoleWidgetState extends State<ChooseNewRoleWidget> {
                                 } else {
                                   _model.workers =
                                       await queryCompanyWorkersRecordOnce(
-                                    parent: widget.companyId,
+                                    parent: widget!.companyId,
                                     queryBuilder: (companyWorkersRecord) =>
                                         companyWorkersRecord.where(
                                       'roleRefs',
-                                      arrayContains: widget.role?.reference,
+                                      arrayContains: widget!.role?.reference,
                                     ),
                                   );
                                   _model.addToNewRoleRefs(_model.newRole!);
@@ -265,12 +270,12 @@ class _ChooseNewRoleWidgetState extends State<ChooseNewRoleWidget> {
                                     });
                                   }
 
-                                  await widget.role!.reference
+                                  await widget!.role!.reference
                                       .update(createCompanyRolesRecordData(
                                     isDelete: true,
                                   ));
 
-                                  await widget.role!.workPlaceRoleRef!
+                                  await widget!.role!.workPlaceRoleRef!
                                       .update(createWorkPlaceRolesRecordData(
                                     isDelete: true,
                                   ));
@@ -350,11 +355,11 @@ class _ChooseNewRoleWidgetState extends State<ChooseNewRoleWidget> {
                             onPressed: () async {
                               _model.workersCopy =
                                   await queryCompanyWorkersRecordOnce(
-                                parent: widget.companyId,
+                                parent: widget!.companyId,
                                 queryBuilder: (companyWorkersRecord) =>
                                     companyWorkersRecord.where(
                                   'roleRefs',
-                                  arrayContains: widget.role?.reference,
+                                  arrayContains: widget!.role?.reference,
                                 ),
                               );
                               for (int loop1Index = 0;
@@ -367,18 +372,18 @@ class _ChooseNewRoleWidgetState extends State<ChooseNewRoleWidget> {
                                   ...mapToFirestore(
                                     {
                                       'roleRefs': FieldValue.arrayRemove(
-                                          [widget.role?.reference]),
+                                          [widget!.role?.reference]),
                                     },
                                   ),
                                 });
                               }
 
-                              await widget.role!.reference
+                              await widget!.role!.reference
                                   .update(createCompanyRolesRecordData(
                                 isDelete: true,
                               ));
 
-                              await widget.role!.workPlaceRoleRef!
+                              await widget!.role!.workPlaceRoleRef!
                                   .update(createWorkPlaceRolesRecordData(
                                 isDelete: true,
                               ));

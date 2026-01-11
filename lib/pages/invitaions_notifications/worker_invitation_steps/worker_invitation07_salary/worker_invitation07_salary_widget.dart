@@ -6,10 +6,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'worker_invitation07_salary_model.dart';
 export 'worker_invitation07_salary_model.dart';
 
@@ -575,7 +578,7 @@ class _WorkerInvitation07SalaryWidgetState
                                   child: FFButtonWidget(
                                     onPressed: () async {
                                       _model.isEqual = await actions.isEqualRef(
-                                        widget.workerRef!.id,
+                                        widget!.workerRef!.id,
                                         currentUserReference!,
                                       );
                                       if (_model.isEqual!) {
@@ -607,27 +610,27 @@ class _WorkerInvitation07SalaryWidgetState
 
                                         var invitationsRecordReference =
                                             InvitationsRecord.createDoc(
-                                                widget.workerRef!);
+                                                widget!.workerRef!);
                                         await invitationsRecordReference.set({
                                           ...createInvitationsRecordData(
-                                            company: widget.company,
-                                            workPlace: widget.workerPlace,
+                                            company: widget!.company,
+                                            workPlace: widget!.workerPlace,
                                             sender: currentUserReference,
-                                            receiver: widget.workerRef,
+                                            receiver: widget!.workerRef,
                                             type: NotificationTypes
                                                 .invitation.name,
-                                            unit: widget.workerUnit,
+                                            unit: widget!.workerUnit,
                                             department:
-                                                widget.workerDepartment,
-                                            role: widget.workerRole,
+                                                widget!.workerDepartment,
+                                            role: widget!.workerRole,
                                             isAccept: false,
                                             isReject: false,
                                             isDelete: false,
-                                            companyName: widget.companyName,
+                                            companyName: widget!.companyName,
                                             salary: double.tryParse(
                                                 _model.textController1.text),
                                             workPlaceName:
-                                                widget.workPlaceName,
+                                                widget!.workPlaceName,
                                             workingHour: double.tryParse(
                                                 _model.textController2.text),
                                             shiftSalary: double.tryParse(
@@ -644,24 +647,24 @@ class _WorkerInvitation07SalaryWidgetState
                                             InvitationsRecord
                                                 .getDocumentFromData({
                                           ...createInvitationsRecordData(
-                                            company: widget.company,
-                                            workPlace: widget.workerPlace,
+                                            company: widget!.company,
+                                            workPlace: widget!.workerPlace,
                                             sender: currentUserReference,
-                                            receiver: widget.workerRef,
+                                            receiver: widget!.workerRef,
                                             type: NotificationTypes
                                                 .invitation.name,
-                                            unit: widget.workerUnit,
+                                            unit: widget!.workerUnit,
                                             department:
-                                                widget.workerDepartment,
-                                            role: widget.workerRole,
+                                                widget!.workerDepartment,
+                                            role: widget!.workerRole,
                                             isAccept: false,
                                             isReject: false,
                                             isDelete: false,
-                                            companyName: widget.companyName,
+                                            companyName: widget!.companyName,
                                             salary: double.tryParse(
                                                 _model.textController1.text),
                                             workPlaceName:
-                                                widget.workPlaceName,
+                                                widget!.workPlaceName,
                                             workingHour: double.tryParse(
                                                 _model.textController2.text),
                                             shiftSalary: double.tryParse(
@@ -676,10 +679,10 @@ class _WorkerInvitation07SalaryWidgetState
                                         _model.companyDetail =
                                             await CompaniesRecord
                                                 .getDocumentOnce(
-                                                    widget.company!);
+                                                    widget!.company!);
 
                                         await NotificationsRecord.createDoc(
-                                                widget.workerRef!)
+                                                widget!.workerRef!)
                                             .set({
                                           ...createNotificationsRecordData(
                                             type: NotificationTypes
@@ -692,7 +695,7 @@ class _WorkerInvitation07SalaryWidgetState
                                             isRead: false,
                                             isDelete: false,
                                             fullDescription:
-                                                '${widget.companyName} İsimli Şirket Size Bir Davetiye Gönderdi',
+                                                '${widget!.companyName} İsimli Şirket Size Bir Davetiye Gönderdi',
                                             image: _model
                                                 .companyDetail?.companyLogo,
                                           ),
@@ -723,9 +726,9 @@ class _WorkerInvitation07SalaryWidgetState
                                         );
                                         _model.userDetail =
                                             await UsersRecord.getDocumentOnce(
-                                                widget.workerRef!);
+                                                widget!.workerRef!);
 
-                                        await widget.workerRef!.update({
+                                        await widget!.workerRef!.update({
                                           ...mapToFirestore(
                                             {
                                               'notificationCount':
@@ -737,12 +740,12 @@ class _WorkerInvitation07SalaryWidgetState
                                           notificationTitle:
                                               'İş Daveti Aldınız',
                                           notificationText:
-                                              '${widget.companyName} İsimli Şirketten Yeni Bir iş Davetiniz Var',
-                                          userRefs: [widget.workerRef!],
+                                              '${widget!.companyName} İsimli Şirketten Yeni Bir iş Davetiniz Var',
+                                          userRefs: [widget!.workerRef!],
                                           initialPageName: 'Profile',
                                           parameterData: {},
                                         );
-                                        if (widget.routeBack!) {
+                                        if (widget!.routeBack!) {
                                           context.safePop();
                                           context.safePop();
                                           context.safePop();

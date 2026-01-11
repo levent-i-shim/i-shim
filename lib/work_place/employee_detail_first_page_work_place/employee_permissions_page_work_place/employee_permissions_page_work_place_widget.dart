@@ -1,10 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'employee_permissions_page_work_place_model.dart';
 export 'employee_permissions_page_work_place_model.dart';
 
@@ -46,32 +50,32 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
     _model =
         createModel(context, () => EmployeePermissionsPageWorkPlaceModel());
 
-    _model.switchFormValue = widget.companyWorker!.formCreationAuthority;
-    _model.switchRoleValue = widget.companyWorker!.roleCreationAuthority;
-    _model.switchUnitValue = widget.companyWorker!.unitCreationAuthority;
+    _model.switchFormValue = widget!.companyWorker!.formCreationAuthority;
+    _model.switchRoleValue = widget!.companyWorker!.roleCreationAuthority;
+    _model.switchUnitValue = widget!.companyWorker!.unitCreationAuthority;
     _model.switchDepartmentValue =
-        widget.companyWorker!.departmentCreationAuthority;
+        widget!.companyWorker!.departmentCreationAuthority;
     _model.switchVehicleAuthorityValue =
-        widget.companyWorker!.vehicleCreationAuthority;
-    _model.switchStockValue = widget.companyWorker!.stockAuthority;
-    _model.switchExpandituryValue = widget.companyWorker!.expanditureAuthority;
+        widget!.companyWorker!.vehicleCreationAuthority;
+    _model.switchStockValue = widget!.companyWorker!.stockAuthority;
+    _model.switchExpandituryValue = widget!.companyWorker!.expanditureAuthority;
     _model.switchCurrentAccountValue =
-        widget.companyWorker!.currentAccountAuthority;
-    _model.switchManageUserValue = widget.companyWorker!.canManageUsers;
-    _model.switchCreateTaskValue = widget.companyWorker!.canCreateTask;
-    _model.switchManageReportsValue = widget.companyWorker!.canManageReports;
-    _model.switchSendMoneyValue = widget.companyWorker!.canSendMoney;
+        widget!.companyWorker!.currentAccountAuthority;
+    _model.switchManageUserValue = widget!.companyWorker!.canManageUsers;
+    _model.switchCreateTaskValue = widget!.companyWorker!.canCreateTask;
+    _model.switchManageReportsValue = widget!.companyWorker!.canManageReports;
+    _model.switchSendMoneyValue = widget!.companyWorker!.canSendMoney;
     _model.switchCanViewIncomeExpenseValue =
-        widget.companyWorker!.canViewIncomeExpense;
+        widget!.companyWorker!.canViewIncomeExpense;
     _model.switchCanAddManuelExpenseIncomeValue =
-        widget.companyWorker!.canAddManuelIncomeExpense;
-    _model.switchCanViewEmployeeValue = widget.companyWorker!.canViewEmployee;
+        widget!.companyWorker!.canAddManuelIncomeExpense;
+    _model.switchCanViewEmployeeValue = widget!.companyWorker!.canViewEmployee;
     _model.switchCanSendInstructionValue =
-        widget.companyWorker!.canSendInstruction;
+        widget!.companyWorker!.canSendInstruction;
     _model.switchCanAddCostAccountValue =
-        widget.companyWorker!.canAddCostAccount;
-    _model.switchCanViewNotesValue = widget.companyWorker!.canViewNotes;
-    _model.switchCanManageNotesValue = widget.companyWorker!.canManageNotes;
+        widget!.companyWorker!.canAddCostAccount;
+    _model.switchCanViewNotesValue = widget!.companyWorker!.canViewNotes;
+    _model.switchCanManageNotesValue = widget!.companyWorker!.canManageNotes;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -186,7 +190,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchFormValue!,
                             onChanged: (newValue) async {
                               safeSetState(
-                                  () => _model.switchFormValue = newValue);
+                                  () => _model.switchFormValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -239,7 +243,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchRoleValue!,
                             onChanged: (newValue) async {
                               safeSetState(
-                                  () => _model.switchRoleValue = newValue);
+                                  () => _model.switchRoleValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -292,7 +296,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchUnitValue!,
                             onChanged: (newValue) async {
                               safeSetState(
-                                  () => _model.switchUnitValue = newValue);
+                                  () => _model.switchUnitValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -345,7 +349,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchDepartmentValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchDepartmentValue = newValue);
+                                  _model.switchDepartmentValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -398,7 +402,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchVehicleAuthorityValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchVehicleAuthorityValue = newValue);
+                                  .switchVehicleAuthorityValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -451,7 +455,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchStockValue!,
                             onChanged: (newValue) async {
                               safeSetState(
-                                  () => _model.switchStockValue = newValue);
+                                  () => _model.switchStockValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -504,7 +508,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchExpandituryValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchExpandituryValue = newValue);
+                                  _model.switchExpandituryValue = newValue!);
                             },
                             activeColor: Color(0xFF00FF04),
                             activeTrackColor:
@@ -556,7 +560,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchCurrentAccountValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCurrentAccountValue = newValue);
+                                  _model.switchCurrentAccountValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -609,7 +613,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchManageUserValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchManageUserValue = newValue);
+                                  _model.switchManageUserValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -660,7 +664,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                           value: _model.switchCreateTaskValue!,
                           onChanged: (newValue) async {
                             safeSetState(
-                                () => _model.switchCreateTaskValue = newValue);
+                                () => _model.switchCreateTaskValue = newValue!);
                           },
                           activeColor: FlutterFlowTheme.of(context).primary,
                           activeTrackColor:
@@ -712,7 +716,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchManageReportsValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchManageReportsValue = newValue);
+                                  _model.switchManageReportsValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -761,7 +765,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchSendMoneyValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchSendMoneyValue = newValue);
+                                  _model.switchSendMoneyValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -814,7 +818,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchCanViewIncomeExpenseValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanViewIncomeExpenseValue = newValue);
+                                  .switchCanViewIncomeExpenseValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -868,7 +872,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             onChanged: (newValue) async {
                               safeSetState(() =>
                                   _model.switchCanAddManuelExpenseIncomeValue =
-                                      newValue);
+                                      newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -921,7 +925,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchCanViewEmployeeValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanViewEmployeeValue = newValue);
+                                  .switchCanViewEmployeeValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -974,7 +978,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchCanSendInstructionValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanSendInstructionValue = newValue);
+                                  .switchCanSendInstructionValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -1027,7 +1031,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchCanAddCostAccountValue!,
                             onChanged: (newValue) async {
                               safeSetState(() => _model
-                                  .switchCanAddCostAccountValue = newValue);
+                                  .switchCanAddCostAccountValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -1080,7 +1084,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchCanViewNotesValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanViewNotesValue = newValue);
+                                  _model.switchCanViewNotesValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -1133,7 +1137,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             value: _model.switchCanManageNotesValue!,
                             onChanged: (newValue) async {
                               safeSetState(() =>
-                                  _model.switchCanManageNotesValue = newValue);
+                                  _model.switchCanManageNotesValue = newValue!);
                             },
                             activeColor: FlutterFlowTheme.of(context).primary,
                             activeTrackColor:
@@ -1151,8 +1155,8 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                           EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
-                          if (widget.isPartner!) {
-                            if (!widget.canManageEmployee!) {
+                          if (widget!.isPartner!) {
+                            if (!widget!.canManageEmployee!) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -1170,8 +1174,8 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                               return;
                             }
                           } else {
-                            if (widget.isWorker!) {
-                              if (!widget.canManageEmployee!) {
+                            if (widget!.isWorker!) {
+                              if (!widget!.canManageEmployee!) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -1191,7 +1195,7 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             }
                           }
 
-                          await widget.companyWorker!.reference
+                          await widget!.companyWorker!.reference
                               .update(createCompanyWorkersRecordData(
                             expanditureAuthority: _model.switchExpandituryValue,
                             formCreationAuthority: _model.switchFormValue,
@@ -1221,12 +1225,12 @@ class _EmployeePermissionsPageWorkPlaceWidgetState
                             canManageNotes: _model.switchCanManageNotesValue,
                           ));
                           if (_model.switchExpandituryValue == true) {
-                            await widget.workPlace!.update({
+                            await widget!.workPlace!.update({
                               ...mapToFirestore(
                                 {
                                   'expenditureAuthorizedOfficers':
                                       FieldValue.arrayUnion(
-                                          [widget.companyWorker?.userRef]),
+                                          [widget!.companyWorker?.userRef]),
                                 },
                               ),
                             });

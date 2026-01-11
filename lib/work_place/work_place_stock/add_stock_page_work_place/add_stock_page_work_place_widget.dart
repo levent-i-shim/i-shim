@@ -7,8 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_stock_page_work_place_model.dart';
 export 'add_stock_page_work_place_model.dart';
 
@@ -958,8 +961,8 @@ class _AddStockPageWorkPlaceWidgetState
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   var _shouldSetState = false;
-                                  if (widget.isPartner!) {
-                                    if (!widget.canCreate!) {
+                                  if (widget!.isPartner!) {
+                                    if (!widget!.canCreate!) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -982,8 +985,8 @@ class _AddStockPageWorkPlaceWidgetState
                                       return;
                                     }
                                   } else {
-                                    if (widget.isWorker!) {
-                                      if (!widget.canCreate!) {
+                                    if (widget!.isWorker!) {
+                                      if (!widget!.canCreate!) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -1022,7 +1025,7 @@ class _AddStockPageWorkPlaceWidgetState
                                   if (_model.validate!) {
                                     var workPlaceStocksRecordReference =
                                         WorkPlaceStocksRecord.createDoc(
-                                            widget.workPlace!);
+                                            widget!.workPlace!);
                                     await workPlaceStocksRecordReference.set({
                                       ...createWorkPlaceStocksRecordData(
                                         name: _model.textController1.text,
@@ -1070,7 +1073,7 @@ class _AddStockPageWorkPlaceWidgetState
 
                                     var stocksRecordReference =
                                         StocksRecord.createDoc(
-                                            widget.company!);
+                                            widget!.company!);
                                     await stocksRecordReference.set({
                                       ...createStocksRecordData(
                                         name: _model.textController1.text,
@@ -1084,7 +1087,7 @@ class _AddStockPageWorkPlaceWidgetState
                                                 _model.textController3.text),
                                         pricePerUnit: double.tryParse(
                                             _model.textController2.text),
-                                        workPlace: widget.workPlace,
+                                        workPlace: widget!.workPlace,
                                         workPlaceStock:
                                             _model.stockWorkPlace?.reference,
                                       ),
@@ -1109,7 +1112,7 @@ class _AddStockPageWorkPlaceWidgetState
                                                 _model.textController3.text),
                                         pricePerUnit: double.tryParse(
                                             _model.textController2.text),
-                                        workPlace: widget.workPlace,
+                                        workPlace: widget!.workPlace,
                                         workPlaceStock:
                                             _model.stockWorkPlace?.reference,
                                       ),

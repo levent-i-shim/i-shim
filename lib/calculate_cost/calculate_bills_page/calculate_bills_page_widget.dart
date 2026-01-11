@@ -2,9 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'calculate_bills_page_model.dart';
 export 'calculate_bills_page_model.dart';
 
@@ -83,7 +87,7 @@ class _CalculateBillsPageWidgetState extends State<CalculateBillsPageWidget> {
             padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 8.0),
             child: Builder(
               builder: (context) {
-                final bill = widget.allBills!.toList();
+                final bill = widget!.allBills!.toList();
 
                 return ListView.builder(
                   padding: EdgeInsets.zero,
@@ -190,7 +194,7 @@ class _CalculateBillsPageWidgetState extends State<CalculateBillsPageWidget> {
                                                   ParamType.Document,
                                                 ),
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'currentAccount':

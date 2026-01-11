@@ -1,13 +1,19 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'all_calculate_products_page_model.dart';
 export 'all_calculate_products_page_model.dart';
 
@@ -50,7 +56,7 @@ class _AllCalculateProductsPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.calculations = await queryCalculationsRecordOnce(
-        parent: widget.product?.reference,
+        parent: widget!.product?.reference,
         queryBuilder: (calculationsRecord) => calculationsRecord.where(
           'isDelete',
           isEqualTo: false,
@@ -117,7 +123,7 @@ class _AllCalculateProductsPageWidgetState
             children: [
               Text(
                 valueOrDefault<String>(
-                  widget.product?.name,
+                  widget!.product?.name,
                   'İsim',
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -147,14 +153,14 @@ class _AllCalculateProductsPageWidgetState
                       onPressed: () async {
                         _model.productFields =
                             await queryProductFieldsRecordOnce(
-                          parent: widget.product?.reference,
+                          parent: widget!.product?.reference,
                         );
 
                         context.pushNamed(
                           CalculateCostPageWidget.routeName,
                           queryParameters: {
                             'product': serializeParam(
-                              widget.product,
+                              widget!.product,
                               ParamType.Document,
                             ),
                             'productFields': serializeParam(
@@ -163,18 +169,18 @@ class _AllCalculateProductsPageWidgetState
                               isList: true,
                             ),
                             'parentProduct': serializeParam(
-                              widget.parentProduct,
+                              widget!.parentProduct,
                               ParamType.Document,
                             ),
                             'workPlace': serializeParam(
-                              widget.workPlace,
+                              widget!.workPlace,
                               ParamType.DocumentReference,
                             ),
                           }.withoutNulls,
                           extra: <String, dynamic>{
-                            'product': widget.product,
+                            'product': widget!.product,
                             'productFields': _model.productFields,
-                            'parentProduct': widget.parentProduct,
+                            'parentProduct': widget!.parentProduct,
                           },
                         );
 
@@ -227,7 +233,7 @@ class _AllCalculateProductsPageWidgetState
           top: true,
           child: StreamBuilder<List<CalculationsRecord>>(
             stream: queryCalculationsRecord(
-              parent: widget.product?.reference,
+              parent: widget!.product?.reference,
               queryBuilder: (calculationsRecord) => calculationsRecord.where(
                 'isDelete',
                 isEqualTo: false,
@@ -424,22 +430,22 @@ class _AllCalculateProductsPageWidgetState
                                                         ParamType.Document,
                                                       ),
                                                       'product': serializeParam(
-                                                        widget.product,
+                                                        widget!.product,
                                                         ParamType.Document,
                                                       ),
                                                       'parentProduct':
                                                           serializeParam(
-                                                        widget.parentProduct,
+                                                        widget!.parentProduct,
                                                         ParamType.Document,
                                                       ),
                                                       'workPlace':
                                                           serializeParam(
-                                                        widget.workPlace,
+                                                        widget!.workPlace,
                                                         ParamType
                                                             .DocumentReference,
                                                       ),
                                                       'isOwner': serializeParam(
-                                                        widget.isOwner,
+                                                        widget!.isOwner,
                                                         ParamType.bool,
                                                       ),
                                                     }.withoutNulls,
@@ -447,9 +453,9 @@ class _AllCalculateProductsPageWidgetState
                                                       'calculate':
                                                           containerVarItem,
                                                       'product':
-                                                          widget.product,
+                                                          widget!.product,
                                                       'parentProduct':
-                                                          widget.parentProduct,
+                                                          widget!.parentProduct,
                                                     },
                                                   );
                                                 },
@@ -527,7 +533,7 @@ class _AllCalculateProductsPageWidgetState
                                                                 Flexible(
                                                                   flex: 8,
                                                                   child: Text(
-                                                                    '${containerVarItem.productQuantity.toString()} ${widget.product?.unit} Başına Birim Maliyet: ',
+                                                                    '${containerVarItem.productQuantity.toString()} ${widget!.product?.unit} Başına Birim Maliyet: ',
                                                                     textAlign:
                                                                         TextAlign
                                                                             .start,
@@ -629,7 +635,7 @@ class _AllCalculateProductsPageWidgetState
                                                                 Flexible(
                                                                   flex: 8,
                                                                   child: Text(
-                                                                    '${containerVarItem.productQuantity.toString()} ${widget.product?.unit}Toplam Maliyet: ',
+                                                                    '${containerVarItem.productQuantity.toString()} ${widget!.product?.unit}Toplam Maliyet: ',
                                                                     textAlign:
                                                                         TextAlign
                                                                             .start,
@@ -764,28 +770,28 @@ class _AllCalculateProductsPageWidgetState
                                                                         {
                                                                       'company':
                                                                           serializeParam(
-                                                                        widget
+                                                                        widget!
                                                                             .company,
                                                                         ParamType
                                                                             .DocumentReference,
                                                                       ),
                                                                       'childProduct':
                                                                           serializeParam(
-                                                                        widget
+                                                                        widget!
                                                                             .product,
                                                                         ParamType
                                                                             .Document,
                                                                       ),
                                                                       'parentProduct':
                                                                           serializeParam(
-                                                                        widget
+                                                                        widget!
                                                                             .parentProduct,
                                                                         ParamType
                                                                             .Document,
                                                                       ),
                                                                       'workPlace':
                                                                           serializeParam(
-                                                                        widget
+                                                                        widget!
                                                                             .workPlace,
                                                                         ParamType
                                                                             .DocumentReference,
@@ -800,10 +806,10 @@ class _AllCalculateProductsPageWidgetState
                                                                     extra: <String,
                                                                         dynamic>{
                                                                       'childProduct':
-                                                                          widget
+                                                                          widget!
                                                                               .product,
                                                                       'parentProduct':
-                                                                          widget
+                                                                          widget!
                                                                               .parentProduct,
                                                                       'calculation':
                                                                           containerVarItem,
@@ -938,7 +944,7 @@ class _AllCalculateProductsPageWidgetState
                                                   isList: true,
                                                 ),
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -1000,7 +1006,7 @@ class _AllCalculateProductsPageWidgetState
                                                         Flexible(
                                                           flex: 8,
                                                           child: Text(
-                                                            '${containerVarItem.soldQuantity.toString()} ${widget.product?.unit} Başına Birim Satış Tutarı: ',
+                                                            '${containerVarItem.soldQuantity.toString()} ${widget!.product?.unit} Başına Birim Satış Tutarı: ',
                                                             textAlign:
                                                                 TextAlign.start,
                                                             style: FlutterFlowTheme

@@ -1,9 +1,12 @@
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_bill_company_model.dart';
 export 'options_bill_company_model.dart';
 
@@ -170,12 +173,12 @@ class _OptionsBillCompanyWidgetState extends State<OptionsBillCompanyWidget> {
                     UpdateBillPageWidget.routeName,
                     queryParameters: {
                       'whicBill': serializeParam(
-                        widget.companyBillDocRef,
+                        widget!.companyBillDocRef,
                         ParamType.Document,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'whicBill': widget.companyBillDocRef,
+                      'whicBill': widget!.companyBillDocRef,
                     },
                   );
 
@@ -267,7 +270,7 @@ class _OptionsBillCompanyWidgetState extends State<OptionsBillCompanyWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.companyBillDocRef!.reference.delete();
+                    await widget!.companyBillDocRef!.reference.delete();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(

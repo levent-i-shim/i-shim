@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_organization_for_worker_model.dart';
 export 'work_place_control_organization_for_worker_model.dart';
 
@@ -121,16 +125,16 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                               24.0, 64.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canViewEmployee) {
+                              if (widget!.companyWorker!.canViewEmployee) {
                                 context.pushNamed(
                                   WorkPlaceWorkersPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -138,7 +142,7 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.companyWorker?.canManageUsers,
+                                      widget!.companyWorker?.canManageUsers,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -146,12 +150,12 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget
+                                      widget!
                                           .companyWorker?.expanditureAuthority,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.companyWorker?.canManageReports,
+                                      widget!.companyWorker?.canManageReports,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -212,11 +216,11 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!
+                              if (widget!.companyWorker!
                                   .hasAuthorizedByDepartment()) {
                                 _model.department =
                                     await CompanyDepartmentsRecord
-                                        .getDocumentOnce(widget.companyWorker!
+                                        .getDocumentOnce(widget!.companyWorker!
                                             .authorizedByDepartment!);
 
                                 context.pushNamed(
@@ -236,7 +240,7 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'workplace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isWorker': serializeParam(
@@ -244,7 +248,7 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'departmentRefs': serializeParam(
@@ -252,15 +256,15 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.Document,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.companyWorker?.canManageReports,
+                                      widget!.companyWorker?.canManageReports,
                                       ParamType.bool,
                                     ),
                                     'canViewTask': serializeParam(
-                                      widget.companyWorker?.canCreateTask,
+                                      widget!.companyWorker?.canCreateTask,
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget
+                                      widget!
                                           .companyWorker?.expanditureAuthority,
                                       ParamType.bool,
                                     ),
@@ -327,16 +331,16 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canViewEmployee) {
+                              if (widget!.companyWorker!.canViewEmployee) {
                                 context.pushNamed(
                                   DepartmansPageWorkPlaceWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -344,16 +348,16 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManageDepartment': serializeParam(
-                                      widget.companyWorker
+                                      widget!.companyWorker
                                           ?.departmentCreationAuthority,
                                       ParamType.bool,
                                     ),
                                     'canViewEmployee': serializeParam(
-                                      widget.companyWorker?.canViewEmployee,
+                                      widget!.companyWorker?.canViewEmployee,
                                       ParamType.bool,
                                     ),
                                     'canManageEmployee': serializeParam(
-                                      widget.companyWorker?.canManageUsers,
+                                      widget!.companyWorker?.canManageUsers,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -418,16 +422,16 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canViewEmployee) {
+                              if (widget!.companyWorker!.canViewEmployee) {
                                 context.pushNamed(
                                   RolesPageWorkPlaceWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -435,16 +439,16 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManageRole': serializeParam(
-                                      widget
+                                      widget!
                                           .companyWorker?.roleCreationAuthority,
                                       ParamType.bool,
                                     ),
                                     'canViewEmployee': serializeParam(
-                                      widget.companyWorker?.canViewEmployee,
+                                      widget!.companyWorker?.canViewEmployee,
                                       ParamType.bool,
                                     ),
                                     'canManageEmployee': serializeParam(
-                                      widget.companyWorker?.canManageUsers,
+                                      widget!.companyWorker?.canManageUsers,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -452,12 +456,12 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget
+                                      widget!
                                           .companyWorker?.expanditureAuthority,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.companyWorker?.canManageReports,
+                                      widget!.companyWorker?.canManageReports,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -518,16 +522,16 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                               24.0, 24.0, 24.0, 64.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canViewEmployee) {
+                              if (widget!.companyWorker!.canViewEmployee) {
                                 context.pushNamed(
                                   UnitsPageWorkPlaceWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -535,16 +539,16 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManageEmployee': serializeParam(
-                                      widget.companyWorker?.canManageUsers,
+                                      widget!.companyWorker?.canManageUsers,
                                       ParamType.bool,
                                     ),
                                     'canManageUnit': serializeParam(
-                                      widget
+                                      widget!
                                           .companyWorker?.unitCreationAuthority,
                                       ParamType.bool,
                                     ),
                                     'canViewEmployee': serializeParam(
-                                      widget.companyWorker?.canViewEmployee,
+                                      widget!.companyWorker?.canViewEmployee,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -552,12 +556,12 @@ class _WorkPlaceControlOrganizationForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget
+                                      widget!
                                           .companyWorker?.expanditureAuthority,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.companyWorker?.canManageReports,
+                                      widget!.companyWorker?.canManageReports,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,

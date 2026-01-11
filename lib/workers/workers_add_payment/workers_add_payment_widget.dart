@@ -1,5 +1,7 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
+import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
@@ -8,10 +10,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'workers_add_payment_model.dart';
 export 'workers_add_payment_model.dart';
 
@@ -159,14 +164,14 @@ class _WorkersAddPaymentWidgetState extends State<WorkersAddPaymentWidget> {
                         }
                       }
 
-                      await WorkPlaceSalaryRecord.createDoc(widget.workPlaces!)
+                      await WorkPlaceSalaryRecord.createDoc(widget!.workPlaces!)
                           .set(createWorkPlaceSalaryRecordData(
                         date: getCurrentTimestamp,
                         isDelete: false,
                         value: double.tryParse(_model
                             .howMuchSalaryAreYouPayingTextController.text),
                         paidForWhichMonth: _model.whichMonthValue,
-                        workerUserDocRef: widget.workerUserRef,
+                        workerUserDocRef: widget!.workerUserRef,
                         paymentPdfUrl: _model.uploadedFileUrl_uploadPDFData,
                         content: _model.contentTextController.text,
                       ));
@@ -270,14 +275,14 @@ class _WorkersAddPaymentWidgetState extends State<WorkersAddPaymentWidget> {
                         }
                       }
 
-                      await WorkPlaceSalaryRecord.createDoc(widget.workPlaces!)
+                      await WorkPlaceSalaryRecord.createDoc(widget!.workPlaces!)
                           .set(createWorkPlaceSalaryRecordData(
                         date: getCurrentTimestamp,
                         isDelete: false,
                         value: double.tryParse(_model
                             .howMuchSalaryAreYouPayingTextController.text),
                         paidForWhichMonth: _model.whichMonthValue,
-                        workerUserDocRef: widget.workerUserRef,
+                        workerUserDocRef: widget!.workerUserRef,
                         paymentImageUrl: _model.uploadedFileUrl_uploadMediaData,
                         content: _model.contentTextController.text,
                       ));
@@ -339,16 +344,16 @@ class _WorkersAddPaymentWidgetState extends State<WorkersAddPaymentWidget> {
                     onPressed: () async {
                       HapticFeedback.heavyImpact();
 
-                      await WorkPlaceSalaryRecord.createDoc(widget.workPlaces!)
+                      await WorkPlaceSalaryRecord.createDoc(widget!.workPlaces!)
                           .set(createWorkPlaceSalaryRecordData(
                         date: getCurrentTimestamp,
                         isDelete: false,
                         value: double.tryParse(_model
                             .howMuchSalaryAreYouPayingTextController.text),
                         paidForWhichMonth: _model.whichMonthValue,
-                        workerUserDocRef: widget.workerUserRef,
+                        workerUserDocRef: widget!.workerUserRef,
                         content: _model.contentTextController.text,
-                        paidToWhomName: widget.workPlaceWorkerDoc?.userName,
+                        paidToWhomName: widget!.workPlaceWorkerDoc?.userName,
                       ));
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -993,7 +998,9 @@ class _WorkersAddPaymentWidgetState extends State<WorkersAddPaymentWidget> {
                                           color: Colors.white,
                                           size: 36.0,
                                         ),
-                                        if ((_model.uploadedLocalFile_uploadMediaPayment
+                                        if (_model.uploadedLocalFile_uploadMediaPayment !=
+                                                null &&
+                                            (_model.uploadedLocalFile_uploadMediaPayment
                                                     .bytes?.isNotEmpty ??
                                                 false))
                                           Align(

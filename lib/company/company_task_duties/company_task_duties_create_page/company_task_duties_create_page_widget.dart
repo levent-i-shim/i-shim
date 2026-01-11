@@ -7,10 +7,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_task_duties_create_page_model.dart';
 export 'company_task_duties_create_page_model.dart';
 
@@ -85,7 +89,7 @@ class _CompanyTaskDutiesCreatePageWidgetState
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.companyName,
+              widget!.companyName,
               'Şirket İsmi',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -406,7 +410,7 @@ class _CompanyTaskDutiesCreatePageWidgetState
                                             workPlacesRecord
                                                 .where(
                                                   'companyRef',
-                                                  isEqualTo: widget.company,
+                                                  isEqualTo: widget!.company,
                                                 )
                                                 .where(
                                                   'isDelete',
@@ -844,11 +848,11 @@ class _CompanyTaskDutiesCreatePageWidgetState
 
                               var dutiesForCompanyRecordReference =
                                   DutiesForCompanyRecord.createDoc(
-                                      widget.company!);
+                                      widget!.company!);
                               await dutiesForCompanyRecordReference.set({
                                 ...createDutiesForCompanyRecordData(
                                   userRef: _model.userRef,
-                                  companyRef: widget.company,
+                                  companyRef: widget!.company,
                                   createdUserRef: currentUserReference,
                                   taskName: _model.textController.text,
                                   isComplete: false,
@@ -867,7 +871,7 @@ class _CompanyTaskDutiesCreatePageWidgetState
                                   DutiesForCompanyRecord.getDocumentFromData({
                                 ...createDutiesForCompanyRecordData(
                                   userRef: _model.userRef,
-                                  companyRef: widget.company,
+                                  companyRef: widget!.company,
                                   createdUserRef: currentUserReference,
                                   taskName: _model.textController.text,
                                   isComplete: false,
@@ -884,7 +888,7 @@ class _CompanyTaskDutiesCreatePageWidgetState
                               }, dutiesForCompanyRecordReference);
                               _model.companyDetail =
                                   await CompaniesRecord.getDocumentOnce(
-                                      widget.company!);
+                                      widget!.company!);
 
                               await NotificationsRecord.createDoc(
                                       _model.userRef!)
@@ -896,7 +900,7 @@ class _CompanyTaskDutiesCreatePageWidgetState
                                   isRead: false,
                                   isDelete: false,
                                   content: 'Sıralı Görev Eklendi',
-                                  company: widget.company,
+                                  company: widget!.company,
                                   fullDescription:
                                       '${_model.textController.text} isimli Sıralı Görev Eklendi',
                                   image: _model.companyDetail?.companyLogo,
@@ -926,7 +930,7 @@ class _CompanyTaskDutiesCreatePageWidgetState
                                   type: WorkHistoryTypes.createDuty.name,
                                   companyDuty:
                                       _model.dutiesForCompany?.reference,
-                                  companyName: widget.companyName,
+                                  companyName: widget!.companyName,
                                   fullDescription:
                                       '${_model.dutiesForCompany?.taskName} Sıralı Görevi Oluşturuldu',
                                 ),
@@ -972,7 +976,7 @@ class _CompanyTaskDutiesCreatePageWidgetState
                                 CompanyTasksForDutyCreatePageWidget.routeName,
                                 queryParameters: {
                                   'companyName': serializeParam(
-                                    widget.companyName,
+                                    widget!.companyName,
                                     ParamType.String,
                                   ),
                                   'dutiesForCompany': serializeParam(
@@ -980,7 +984,7 @@ class _CompanyTaskDutiesCreatePageWidgetState
                                     ParamType.DocumentReference,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,

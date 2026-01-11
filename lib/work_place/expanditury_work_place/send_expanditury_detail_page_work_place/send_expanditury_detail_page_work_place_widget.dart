@@ -4,8 +4,10 @@ import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'send_expanditury_detail_page_work_place_model.dart';
 export 'send_expanditury_detail_page_work_place_model.dart';
 
@@ -150,7 +152,7 @@ class _SendExpandituryDetailPageWorkPlaceWidgetState
                                     flex: 8,
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget
+                                        widget!
                                             .sendMoneyForAllowence?.senderName,
                                         'isim',
                                       ),
@@ -190,7 +192,7 @@ class _SendExpandituryDetailPageWorkPlaceWidgetState
                             18.0, 8.0, 18.0, 0.0),
                         child: StreamBuilder<UsersRecord>(
                           stream: UsersRecord.getDocument(
-                              widget.sendMoneyForAllowence!.receiver!),
+                              widget!.sendMoneyForAllowence!.receiver!),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
@@ -348,7 +350,7 @@ class _SendExpandituryDetailPageWorkPlaceWidgetState
                                     child: Text(
                                       '${valueOrDefault<String>(
                                         formatNumber(
-                                          widget
+                                          widget!
                                               .sendMoneyForAllowence?.sentMoney,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.commaDecimal,
@@ -438,7 +440,7 @@ class _SendExpandituryDetailPageWorkPlaceWidgetState
                                     flex: 8,
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.sendMoneyForAllowence?.note,
+                                        widget!.sendMoneyForAllowence?.note,
                                         'Not',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -526,7 +528,7 @@ class _SendExpandituryDetailPageWorkPlaceWidgetState
                                       valueOrDefault<String>(
                                         dateTimeFormat(
                                             "d/M/y",
-                                            widget
+                                            widget!
                                                 .sendMoneyForAllowence?.date),
                                         'Tarih',
                                       ),
@@ -570,9 +572,9 @@ class _SendExpandituryDetailPageWorkPlaceWidgetState
                     onPressed: () async {
                       await downloadFile(
                         filename:
-                            'PDF${dateTimeFormat("d/M/y", widget.sendMoneyForAllowence?.date)}',
+                            'PDF${dateTimeFormat("d/M/y", widget!.sendMoneyForAllowence?.date)}',
                         url: valueOrDefault<String>(
-                          widget.sendMoneyForAllowence?.pdfUrl,
+                          widget!.sendMoneyForAllowence?.pdfUrl,
                           'deneme',
                         ),
                       );
@@ -612,7 +614,7 @@ class _SendExpandituryDetailPageWorkPlaceWidgetState
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                   child: FlutterFlowPdfViewer(
-                    networkPath: widget.sendMoneyForAllowence!.pdfUrl,
+                    networkPath: widget!.sendMoneyForAllowence!.pdfUrl,
                     height: 300.0,
                     horizontalScroll: false,
                   ),

@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_units_page_model.dart';
 export 'company_units_page_model.dart';
 
@@ -60,7 +63,7 @@ class _CompanyUnitsPageWidgetState extends State<CompanyUnitsPageWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyUnitsRecord>>(
       stream: queryCompanyUnitsRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyUnitsRecord) => companyUnitsRecord.where(
           'isDelete',
           isEqualTo: false,
@@ -185,12 +188,12 @@ class _CompanyUnitsPageWidgetState extends State<CompanyUnitsPageWidget> {
                                   0.0, 0.0, 8.0, 0.0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  if (widget.canAddUnit!) {
+                                  if (widget!.canAddUnit!) {
                                     context.pushNamed(
                                       CompanyUnitAddPageWidget.routeName,
                                       queryParameters: {
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                       }.withoutNulls,
@@ -288,7 +291,7 @@ class _CompanyUnitsPageWidgetState extends State<CompanyUnitsPageWidget> {
                                           CompanyUnitEmployeesWidget.routeName,
                                           queryParameters: {
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'unitName': serializeParam(
@@ -300,23 +303,23 @@ class _CompanyUnitsPageWidgetState extends State<CompanyUnitsPageWidget> {
                                               ParamType.Document,
                                             ),
                                             'isOwner': serializeParam(
-                                              widget.isOwner,
+                                              widget!.isOwner,
                                               ParamType.bool,
                                             ),
                                             'canSendMoney': serializeParam(
-                                              widget.canSendMoney,
+                                              widget!.canSendMoney,
                                               ParamType.bool,
                                             ),
                                             'canManageTask': serializeParam(
-                                              widget.canManageTask,
+                                              widget!.canManageTask,
                                               ParamType.bool,
                                             ),
                                             'canViewTask': serializeParam(
-                                              widget.canViewTask,
+                                              widget!.canViewTask,
                                               ParamType.bool,
                                             ),
                                             'canManageEmployee': serializeParam(
-                                              widget.canManageEmployee,
+                                              widget!.canManageEmployee,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,

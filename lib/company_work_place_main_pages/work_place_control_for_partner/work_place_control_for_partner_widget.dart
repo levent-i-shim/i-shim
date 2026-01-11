@@ -1,14 +1,19 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_for_partner_model.dart';
 export 'work_place_control_for_partner_model.dart';
 
@@ -42,9 +47,9 @@ class _WorkPlaceControlForPartnerWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.workPlaceDocument = await WorkPlacesRecord.getDocumentOnce(
-          widget.workPlacePartnership!.workPlaceRef!);
+          widget!.workPlacePartnership!.workPlaceRef!);
       _model.budget = await actions.getWorkPlaceBudget(
-        widget.workPlacePartnership!.workPlaceRef!,
+        widget!.workPlacePartnership!.workPlaceRef!,
       );
       _model.dailyMoney = _model.budget?.day;
       _model.weeklyMoney = _model.budget?.week;
@@ -117,7 +122,7 @@ class _WorkPlaceControlForPartnerWidgetState
               ),
               StreamBuilder<CompaniesRecord>(
                 stream: CompaniesRecord.getDocument(
-                    widget.workPlacePartnership!.company!),
+                    widget!.workPlacePartnership!.company!),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {
@@ -801,22 +806,22 @@ class _WorkPlaceControlForPartnerWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget
+                              if (widget!
                                   .workPlacePartnership!.canViewIncomeExpense) {
                                 context.pushNamed(
                                   IncomesPageWorkPlaceCopyWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.workPlacePartnership?.company,
+                                      widget!.workPlacePartnership?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddIncome': serializeParam(
-                                      widget.workPlacePartnership
+                                      widget!.workPlacePartnership
                                           ?.canAddManuelExpenseIncome,
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget
+                                      widget!
                                           .workPlacePartnership?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
@@ -910,22 +915,22 @@ class _WorkPlaceControlForPartnerWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget
+                              if (widget!
                                   .workPlacePartnership!.canViewIncomeExpense) {
                                 context.pushNamed(
                                   PaymentsPageWorkPlaceCopyWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.workPlacePartnership?.company,
+                                      widget!.workPlacePartnership?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddPayment': serializeParam(
-                                      widget.workPlacePartnership
+                                      widget!.workPlacePartnership
                                           ?.canAddManuelExpenseIncome,
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget
+                                      widget!
                                           .workPlacePartnership?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
@@ -1019,17 +1024,17 @@ class _WorkPlaceControlForPartnerWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget
+                              if (widget!
                                   .workPlacePartnership!.canViewEmployee) {
                                 context.pushNamed(
                                   WorkPlaceWorkersPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.workPlacePartnership?.company,
+                                      widget!.workPlacePartnership?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget
+                                      widget!
                                           .workPlacePartnership?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
@@ -1038,7 +1043,7 @@ class _WorkPlaceControlForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.workPlacePartnership
+                                      widget!.workPlacePartnership
                                           ?.canManageWorkers,
                                       ParamType.bool,
                                     ),
@@ -1047,12 +1052,12 @@ class _WorkPlaceControlForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget.workPlacePartnership
+                                      widget!.workPlacePartnership
                                           ?.canManageEmployeeExpense,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget
+                                      widget!
                                           .workPlacePartnership?.canManageTask,
                                       ParamType.bool,
                                     ),
@@ -1145,13 +1150,13 @@ class _WorkPlaceControlForPartnerWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget
+                              if (widget!
                                   .workPlacePartnership!.canViewVehicles) {
                                 context.pushNamed(
                                   WorkPlaceVehiclesPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.workPlacePartnership?.company,
+                                      widget!.workPlacePartnership?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -1159,17 +1164,17 @@ class _WorkPlaceControlForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget
+                                      widget!
                                           .workPlacePartnership?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'canCreateVehicle': serializeParam(
-                                      widget.workPlacePartnership
+                                      widget!.workPlacePartnership
                                           ?.canManageVehicles,
                                       ParamType.bool,
                                     ),
                                     'canCreateVehiclePayment': serializeParam(
-                                      widget.workPlacePartnership
+                                      widget!.workPlacePartnership
                                           ?.canManageVehicles,
                                       ParamType.bool,
                                     ),
@@ -1266,17 +1271,17 @@ class _WorkPlaceControlForPartnerWidgetState
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget
+                              if (widget!
                                   .workPlacePartnership!.canCalculateCost) {
                                 context.pushNamed(
                                   ParentProductsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.workPlacePartnership?.company,
+                                      widget!.workPlacePartnership?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget
+                                      widget!
                                           .workPlacePartnership?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
@@ -1469,12 +1474,12 @@ class _WorkPlaceControlForPartnerWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partnerDetail': serializeParam(
-                                    widget.workPlacePartnership,
+                                    widget!.workPlacePartnership,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partnerDetail': widget.workPlacePartnership,
+                                  'partnerDetail': widget!.workPlacePartnership,
                                 },
                               );
                             },
@@ -1521,12 +1526,12 @@ class _WorkPlaceControlForPartnerWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partnerDetail': serializeParam(
-                                    widget.workPlacePartnership,
+                                    widget!.workPlacePartnership,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partnerDetail': widget.workPlacePartnership,
+                                  'partnerDetail': widget!.workPlacePartnership,
                                 },
                               );
                             },
@@ -1573,12 +1578,12 @@ class _WorkPlaceControlForPartnerWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partnerDetail': serializeParam(
-                                    widget.workPlacePartnership,
+                                    widget!.workPlacePartnership,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partnerDetail': widget.workPlacePartnership,
+                                  'partnerDetail': widget!.workPlacePartnership,
                                 },
                               );
                             },
@@ -1624,11 +1629,11 @@ class _WorkPlaceControlForPartnerWidgetState
                                 WorkPlaceNotificationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlacePartnership?.company,
+                                    widget!.workPlacePartnership?.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlacePartnership?.workPlaceRef,
+                                    widget!.workPlacePartnership?.workPlaceRef,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -1730,12 +1735,12 @@ class _WorkPlaceControlForPartnerWidgetState
                                     .routeName,
                                 queryParameters: {
                                   'partnerDetail': serializeParam(
-                                    widget.workPlacePartnership,
+                                    widget!.workPlacePartnership,
                                     ParamType.Document,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'partnerDetail': widget.workPlacePartnership,
+                                  'partnerDetail': widget!.workPlacePartnership,
                                 },
                               );
                             },
@@ -1866,7 +1871,7 @@ class _WorkPlaceControlForPartnerWidgetState
                                 WorkPlaceNotesPageWidget.routeName,
                                 queryParameters: {
                                   'workPLace': serializeParam(
-                                    widget.workPlacePartnership?.workPlaceRef,
+                                    widget!.workPlacePartnership?.workPlaceRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'canManage': serializeParam(

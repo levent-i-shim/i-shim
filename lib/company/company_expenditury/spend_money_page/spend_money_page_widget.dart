@@ -8,8 +8,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'spend_money_page_model.dart';
 export 'spend_money_page_model.dart';
 
@@ -825,7 +828,7 @@ class _SpendMoneyPageWidgetState extends State<SpendMoneyPageWidget> {
                                     if (_model.isUploadPdf) {
                                       var spentMonetForAllowenceWorkPlaceRecordReference1 =
                                           SpentMonetForAllowenceWorkPlaceRecord
-                                              .createDoc(widget
+                                              .createDoc(widget!
                                                   .companyWorker!.workPlace!);
                                       await spentMonetForAllowenceWorkPlaceRecordReference1
                                           .set({
@@ -870,7 +873,7 @@ class _SpendMoneyPageWidgetState extends State<SpendMoneyPageWidget> {
 
                                       var spentMoneyForAllowenceRecordReference1 =
                                           SpentMoneyForAllowenceRecord
-                                              .createDoc(widget.companyWorker!
+                                              .createDoc(widget!.companyWorker!
                                                   .parentReference);
                                       await spentMoneyForAllowenceRecordReference1
                                           .set({
@@ -937,7 +940,7 @@ class _SpendMoneyPageWidgetState extends State<SpendMoneyPageWidget> {
                                     } else {
                                       var spentMonetForAllowenceWorkPlaceRecordReference2 =
                                           SpentMonetForAllowenceWorkPlaceRecord
-                                              .createDoc(widget
+                                              .createDoc(widget!
                                                   .companyWorker!.workPlace!);
                                       await spentMonetForAllowenceWorkPlaceRecordReference2
                                           .set({
@@ -978,7 +981,7 @@ class _SpendMoneyPageWidgetState extends State<SpendMoneyPageWidget> {
 
                                       var spentMoneyForAllowenceRecordReference2 =
                                           SpentMoneyForAllowenceRecord
-                                              .createDoc(widget.companyWorker!
+                                              .createDoc(widget!.companyWorker!
                                                   .parentReference);
                                       await spentMoneyForAllowenceRecordReference2
                                           .set({
@@ -1056,7 +1059,7 @@ class _SpendMoneyPageWidgetState extends State<SpendMoneyPageWidget> {
                                       ),
                                     );
 
-                                    await widget.companyWorker!.reference
+                                    await widget!.companyWorker!.reference
                                         .update({
                                       ...mapToFirestore(
                                         {
@@ -1071,7 +1074,7 @@ class _SpendMoneyPageWidgetState extends State<SpendMoneyPageWidget> {
                                     if (_model.isUploadPdf) {
                                       var spentMonetForAllowenceWorkPlaceRecordReference3 =
                                           SpentMonetForAllowenceWorkPlaceRecord
-                                              .createDoc(widget
+                                              .createDoc(widget!
                                                   .companyWorker!.workPlace!);
                                       await spentMonetForAllowenceWorkPlaceRecordReference3
                                           .set({
@@ -1112,7 +1115,7 @@ class _SpendMoneyPageWidgetState extends State<SpendMoneyPageWidget> {
 
                                       var spentMoneyForAllowenceRecordReference3 =
                                           SpentMoneyForAllowenceRecord
-                                              .createDoc(widget.companyWorker!
+                                              .createDoc(widget!.companyWorker!
                                                   .parentReference);
                                       await spentMoneyForAllowenceRecordReference3
                                           .set({
@@ -1191,7 +1194,7 @@ class _SpendMoneyPageWidgetState extends State<SpendMoneyPageWidget> {
                                         ),
                                       );
 
-                                      await widget.companyWorker!.reference
+                                      await widget!.companyWorker!.reference
                                           .update({
                                         ...mapToFirestore(
                                           {

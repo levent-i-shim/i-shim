@@ -1,15 +1,19 @@
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'form_create_graphic_page_model.dart';
 export 'form_create_graphic_page_model.dart';
 
@@ -162,13 +166,13 @@ class _FormCreateGraphicPageWidgetState
                                     controller: _model
                                             .dropDownFormFieldValueController ??=
                                         FormFieldController<String>(null),
-                                    options: widget.formFields!
+                                    options: widget!.formFields!
                                         .map((e) => e.fieldName)
                                         .toList(),
                                     onChanged: (val) async {
                                       safeSetState(() =>
                                           _model.dropDownFormFieldValue = val);
-                                      _model.fieldValueType = widget
+                                      _model.fieldValueType = widget!
                                           .formFields!
                                           .where((e) =>
                                               e.fieldName ==
@@ -179,7 +183,7 @@ class _FormCreateGraphicPageWidgetState
                                       safeSetState(() {});
                                       if (_model.fieldValueType ==
                                           FieldValueType.DropDown.name) {
-                                        _model.dropDownItems = widget
+                                        _model.dropDownItems = widget!
                                             .formFields!
                                             .where((e) =>
                                                 e.fieldName ==
@@ -2438,6 +2442,8 @@ class _FormCreateGraphicPageWidgetState
                                                 child: Text(
                                                   () {
                                                     if (conditionItem.text !=
+                                                            null &&
+                                                        conditionItem.text !=
                                                             '') {
                                                       return conditionItem.text;
                                                     } else if (conditionItem
@@ -2446,10 +2452,15 @@ class _FormCreateGraphicPageWidgetState
                                                       return dateTimeFormat(
                                                           "d/M/y",
                                                           conditionItem.date!);
-                                                    } else                                                    return conditionItem
-                                                        .number
-                                                        .toString();
-                                                  
+                                                    } else if (conditionItem
+                                                            .number !=
+                                                        null) {
+                                                      return conditionItem
+                                                          .number
+                                                          .toString();
+                                                    } else {
+                                                      return 'geçersiz';
+                                                    }
                                                   }(),
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -2559,7 +2570,7 @@ class _FormCreateGraphicPageWidgetState
                                           controller: _model
                                                   .dropDownFormFieldXValueController ??=
                                               FormFieldController<String>(null),
-                                          options: widget.formFields!
+                                          options: widget!.formFields!
                                               .where((e) =>
                                                   (e.fieldValueType ==
                                                       FieldValueType
@@ -2689,7 +2700,7 @@ class _FormCreateGraphicPageWidgetState
                                           controller: _model
                                                   .dropDownFormFieldYValueController ??=
                                               FormFieldController<String>(null),
-                                          options: widget.formFields!
+                                          options: widget!.formFields!
                                               .where((e) =>
                                                   e.fieldValueType ==
                                                   FieldValueType.Number.name)
@@ -2779,7 +2790,7 @@ class _FormCreateGraphicPageWidgetState
                                 _model.graphicPairs =
                                     await actions.queryFieldValuesAsChartPairs(
                                   _model.conditions.toList(),
-                                  widget
+                                  widget!
                                       .formFields!.firstOrNull!.parentReference,
                                   _model.dropDownFormFieldXValue!,
                                   _model.dropDownFormFieldYValue!,

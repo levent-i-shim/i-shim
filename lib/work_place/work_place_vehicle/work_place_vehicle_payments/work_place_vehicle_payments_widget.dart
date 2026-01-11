@@ -2,10 +2,14 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'work_place_vehicle_payments_model.dart';
 export 'work_place_vehicle_payments_model.dart';
 
@@ -68,8 +72,8 @@ class _WorkPlaceVehiclePaymentsWidgetState
         backgroundColor: Colors.black,
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            if (widget.isPartner!) {
-              if (!widget.canCreateVehiclePayment!) {
+            if (widget!.isPartner!) {
+              if (!widget!.canCreateVehiclePayment!) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -85,8 +89,8 @@ class _WorkPlaceVehiclePaymentsWidgetState
                 return;
               }
             } else {
-              if (widget.isWorker!) {
-                if (!widget.canCreateVehiclePayment!) {
+              if (widget!.isWorker!) {
+                if (!widget!.canCreateVehiclePayment!) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
@@ -108,36 +112,36 @@ class _WorkPlaceVehiclePaymentsWidgetState
               WorkPlaceAddVehiclePaymentPageWidget.routeName,
               queryParameters: {
                 'company': serializeParam(
-                  widget.company,
+                  widget!.company,
                   ParamType.DocumentReference,
                 ),
                 'vehicle': serializeParam(
-                  widget.vehicle,
+                  widget!.vehicle,
                   ParamType.Document,
                 ),
                 'isPartner': serializeParam(
-                  widget.isPartner,
+                  widget!.isPartner,
                   ParamType.bool,
                 ),
                 'canCreate': serializeParam(
-                  widget.canCreateVehiclePayment,
+                  widget!.canCreateVehiclePayment,
                   ParamType.bool,
                 ),
                 'workPlace': serializeParam(
-                  widget.workPlace,
+                  widget!.workPlace,
                   ParamType.DocumentReference,
                 ),
                 'isWorker': serializeParam(
-                  widget.isWorker,
+                  widget!.isWorker,
                   ParamType.bool,
                 ),
                 'type': serializeParam(
-                  widget.vehicle?.type,
+                  widget!.vehicle?.type,
                   ParamType.String,
                 ),
               }.withoutNulls,
               extra: <String, dynamic>{
-                'vehicle': widget.vehicle,
+                'vehicle': widget!.vehicle,
               },
             );
           },
@@ -221,7 +225,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                             children: [
                               Builder(
                                 builder: (context) {
-                                  if (widget.vehicle?.type == 'construction') {
+                                  if (widget!.vehicle?.type == 'construction') {
                                     return ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.asset(
@@ -230,7 +234,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                         fit: BoxFit.cover,
                                       ),
                                     );
-                                  } else if (widget.vehicle?.type == 'car') {
+                                  } else if (widget!.vehicle?.type == 'car') {
                                     return ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: Image.asset(
@@ -309,7 +313,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  widget.vehicle?.plate,
+                                                  widget!.vehicle?.plate,
                                                   'plaka',
                                                 ),
                                                 style:
@@ -403,7 +407,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  widget.vehicle?.brand,
+                                                  widget!.vehicle?.brand,
                                                   'Marka',
                                                 ),
                                                 style:
@@ -497,7 +501,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  widget.vehicle?.model,
+                                                  widget!.vehicle?.model,
                                                   'Model',
                                                 ),
                                                 style:
@@ -591,7 +595,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  widget.vehicle?.year,
+                                                  widget!.vehicle?.year,
                                                   'Yıl',
                                                 ),
                                                 style:
@@ -686,7 +690,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                               Text(
                                                 valueOrDefault<String>(
                                                   dateTimeFormat("d/M/y",
-                                                      widget.vehicle?.time),
+                                                      widget!.vehicle?.time),
                                                   'Tarih',
                                                 ),
                                                 style:
@@ -780,8 +784,8 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                               ),
                                               Text(
                                                 valueOrDefault<String>(
-                                                  widget.vehicle?.totalPayment
-                                                      .toString(),
+                                                  widget!.vehicle?.totalPayment
+                                                      ?.toString(),
                                                   'Gider',
                                                 ),
                                                 style:
@@ -822,7 +826,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                   ),
                                   Builder(
                                     builder: (context) {
-                                      if (widget.vehicle?.type ==
+                                      if (widget!.vehicle?.type ==
                                           'construction') {
                                         return Padding(
                                           padding:
@@ -882,9 +886,9 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                                     ),
                                                     Text(
                                                       valueOrDefault<String>(
-                                                        widget.vehicle
+                                                        widget!.vehicle
                                                             ?.averageLitersPerHour
-                                                            .toString(),
+                                                            ?.toString(),
                                                         '0',
                                                       ),
                                                       style:
@@ -981,9 +985,9 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                                     ),
                                                     Text(
                                                       valueOrDefault<String>(
-                                                        widget.vehicle
+                                                        widget!.vehicle
                                                             ?.averageLitersPerKm
-                                                            .toString(),
+                                                            ?.toString(),
                                                         '0',
                                                       ),
                                                       style:
@@ -1026,7 +1030,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                   ),
                                   Builder(
                                     builder: (context) {
-                                      if (widget.vehicle?.type ==
+                                      if (widget!.vehicle?.type ==
                                           'construction') {
                                         return Padding(
                                           padding:
@@ -1086,9 +1090,9 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                                     ),
                                                     Text(
                                                       valueOrDefault<String>(
-                                                        widget.vehicle
+                                                        widget!.vehicle
                                                             ?.litersPerHour
-                                                            .toString(),
+                                                            ?.toString(),
                                                         '0',
                                                       ),
                                                       style:
@@ -1185,9 +1189,9 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                                     ),
                                                     Text(
                                                       valueOrDefault<String>(
-                                                        widget.vehicle
+                                                        widget!.vehicle
                                                             ?.litersPerKm
-                                                            .toString(),
+                                                            ?.toString(),
                                                         'Gider',
                                                       ),
                                                       style:
@@ -1230,7 +1234,7 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                   ),
                                   Builder(
                                     builder: (context) {
-                                      if (widget.vehicle?.type ==
+                                      if (widget!.vehicle?.type ==
                                           'construction') {
                                         return Padding(
                                           padding:
@@ -1290,9 +1294,9 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                                     ),
                                                     Text(
                                                       valueOrDefault<String>(
-                                                        widget.vehicle
+                                                        widget!.vehicle
                                                             ?.workingHours
-                                                            .toString(),
+                                                            ?.toString(),
                                                         '0',
                                                       ),
                                                       style:
@@ -1389,8 +1393,8 @@ class _WorkPlaceVehiclePaymentsWidgetState
                                                     ),
                                                     Text(
                                                       valueOrDefault<String>(
-                                                        widget.vehicle?.km
-                                                            .toString(),
+                                                        widget!.vehicle?.km
+                                                            ?.toString(),
                                                         '0',
                                                       ),
                                                       style:
@@ -1444,16 +1448,16 @@ class _WorkPlaceVehiclePaymentsWidgetState
                         CompanyVehiclePaymentsRecord>(
                       pagingController: _model.setListViewController(
                           CompanyVehiclePaymentsRecord.collection(
-                                  widget.vehicle?.parentReference)
+                                  widget!.vehicle?.parentReference)
                               .where(
                                 'vehicle',
-                                isEqualTo: widget.vehicle?.reference,
+                                isEqualTo: widget!.vehicle?.reference,
                               )
                               .where(
                                 'isAccept',
                                 isEqualTo: true,
                               ),
-                          parent: widget.vehicle?.parentReference),
+                          parent: widget!.vehicle?.parentReference),
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       reverse: false,

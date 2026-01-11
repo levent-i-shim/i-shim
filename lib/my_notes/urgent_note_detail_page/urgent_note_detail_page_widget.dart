@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'urgent_note_detail_page_model.dart';
 export 'urgent_note_detail_page_model.dart';
 
@@ -101,7 +105,7 @@ class _UrgentNoteDetailPageWidgetState
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.note!.reference
+                  await widget!.note!.reference
                       .update(createUrgentNotesRecordData(
                     isDeleted: true,
                   ));
@@ -232,7 +236,7 @@ class _UrgentNoteDetailPageWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Created on: ${dateTimeFormat("d/M/y", widget.note?.creationTime)}',
+                          'Created on: ${dateTimeFormat("d/M/y", widget!.note?.creationTime)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -267,7 +271,7 @@ class _UrgentNoteDetailPageWidgetState
                                 0.0, 20.0, 0.0, 12.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.note?.title,
+                                widget!.note?.title,
                                 'Başlık',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -292,7 +296,7 @@ class _UrgentNoteDetailPageWidgetState
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.note?.content,
+                              widget!.note?.content,
                               'İçerik',
                             ),
                             style: FlutterFlowTheme.of(context)

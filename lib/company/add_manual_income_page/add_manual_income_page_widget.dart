@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -5,10 +6,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_manual_income_page_model.dart';
 export 'add_manual_income_page_model.dart';
 
@@ -44,28 +48,28 @@ class _AddManualIncomePageWidgetState extends State<AddManualIncomePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.isEdit!) {
+      if (widget!.isEdit!) {
         safeSetState(() {
           _model.textFieldGelirKaynakTextController?.text =
-              widget.companyIncome!.fromWhom;
+              widget!.companyIncome!.fromWhom;
         });
         safeSetState(() {
           _model.textFieldGelirDetailTextController?.text =
-              widget.companyIncome!.description;
+              widget!.companyIncome!.description;
         });
         safeSetState(() {
           _model.textFieldValueTextController?.text =
-              widget.companyIncome!.value.toString();
+              widget!.companyIncome!.value.toString();
         });
         safeSetState(() {
           _model.dropDownTypeValueController?.value =
-              widget.companyIncome!.type;
-          _model.dropDownTypeValue = widget.companyIncome!.type;
+              widget!.companyIncome!.type;
+          _model.dropDownTypeValue = widget!.companyIncome!.type;
         });
         safeSetState(() {
           _model.dropDownWorkPlaceValueController?.value =
-              widget.companyIncome!.workPlace!.id;
-          _model.dropDownWorkPlaceValue = widget.companyIncome!.workPlace!.id;
+              widget!.companyIncome!.workPlace!.id;
+          _model.dropDownWorkPlaceValue = widget!.companyIncome!.workPlace!.id;
         });
       }
     });
@@ -693,7 +697,7 @@ class _AddManualIncomePageWidgetState extends State<AddManualIncomePageWidget> {
                                 ),
                               ),
                             ),
-                            if (!widget.isEdit!)
+                            if (!widget!.isEdit!)
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     4.0, 18.0, 0.0, 0.0),
@@ -720,7 +724,7 @@ class _AddManualIncomePageWidgetState extends State<AddManualIncomePageWidget> {
                                       ),
                                 ),
                               ),
-                            if (!widget.isEdit!)
+                            if (!widget!.isEdit!)
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 4.0, 0.0, 0.0),
@@ -734,7 +738,7 @@ class _AddManualIncomePageWidgetState extends State<AddManualIncomePageWidget> {
                                             )
                                             .where(
                                               'companyRef',
-                                              isEqualTo: widget.company,
+                                              isEqualTo: widget!.company,
                                             ),
                                   ),
                                   builder: (context, snapshot) {
@@ -830,40 +834,40 @@ class _AddManualIncomePageWidgetState extends State<AddManualIncomePageWidget> {
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 4.0),
                     child: FFButtonWidget(
                       onPressed: () async {
-                        if (widget.isEdit!) {
-                          await widget.company!.update({
+                        if (widget!.isEdit!) {
+                          await widget!.company!.update({
                             ...mapToFirestore(
                               {
                                 'totalMoney': FieldValue.increment(double.parse(
                                         _model.textFieldValueTextController
                                             .text) -
-                                    widget.companyIncome!.value),
+                                    widget!.companyIncome!.value),
                                 'yearlyMoney': FieldValue.increment(
                                     double.parse(_model
                                             .textFieldValueTextController
                                             .text) -
-                                        widget.companyIncome!.value),
+                                        widget!.companyIncome!.value),
                               },
                             ),
                           });
 
-                          await widget.companyIncome!.workPlace!.update({
+                          await widget!.companyIncome!.workPlace!.update({
                             ...mapToFirestore(
                               {
                                 'totalMoney': FieldValue.increment(double.parse(
                                         _model.textFieldValueTextController
                                             .text) -
-                                    widget.companyIncome!.value),
+                                    widget!.companyIncome!.value),
                                 'yearlyMoney': FieldValue.increment(
                                     double.parse(_model
                                             .textFieldValueTextController
                                             .text) -
-                                        widget.companyIncome!.value),
+                                        widget!.companyIncome!.value),
                               },
                             ),
                           });
 
-                          await widget.companyIncome!.reference
+                          await widget!.companyIncome!.reference
                               .update(createCompanyIncomes2025RecordData(
                             value: double.tryParse(
                                 _model.textFieldValueTextController.text),
@@ -874,7 +878,7 @@ class _AddManualIncomePageWidgetState extends State<AddManualIncomePageWidget> {
                                 _model.textFieldGelirDetailTextController.text,
                           ));
 
-                          await widget.companyIncome!.workPlaceIncome!
+                          await widget!.companyIncome!.workPlaceIncome!
                               .update(createWorkPlaceIncomes2025RecordData(
                             value: double.tryParse(
                                 _model.textFieldValueTextController.text),
@@ -945,7 +949,7 @@ class _AddManualIncomePageWidgetState extends State<AddManualIncomePageWidget> {
                           }, workPlaceIncomes2025RecordReference);
 
                           await CompanyIncomes2025Record.createDoc(
-                                  widget.company!)
+                                  widget!.company!)
                               .set({
                             ...createCompanyIncomes2025RecordData(
                               value: double.tryParse(
@@ -968,7 +972,7 @@ class _AddManualIncomePageWidgetState extends State<AddManualIncomePageWidget> {
                             ),
                           });
 
-                          await widget.company!.update({
+                          await widget!.company!.update({
                             ...mapToFirestore(
                               {
                                 'yearlyMoney': FieldValue.increment(

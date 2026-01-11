@@ -2,9 +2,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_control_operations_page_model.dart';
 export 'company_control_operations_page_model.dart';
 
@@ -129,7 +132,7 @@ class _CompanyControlOperationsPageWidgetState
                                     ParamType.bool,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'isOwner': serializeParam(
@@ -186,7 +189,7 @@ class _CompanyControlOperationsPageWidgetState
                                     ParamType.String,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -239,7 +242,7 @@ class _CompanyControlOperationsPageWidgetState
                                     ParamType.String,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -288,7 +291,7 @@ class _CompanyControlOperationsPageWidgetState
                                 StocksPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -337,7 +340,7 @@ class _CompanyControlOperationsPageWidgetState
                                 ShowAllFormsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(

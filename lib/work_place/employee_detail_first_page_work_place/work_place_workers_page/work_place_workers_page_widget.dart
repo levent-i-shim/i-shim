@@ -1,13 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/x_current_accounts/add_robot_work_place_worker/add_robot_work_place_worker_widget.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'work_place_workers_page_model.dart';
 export 'work_place_workers_page_model.dart';
 
@@ -141,7 +145,7 @@ class _WorkPlaceWorkersPageWidgetState
                                         ?.unfocus();
                                   },
                                   child: AddRobotWorkPlaceWorkerWidget(
-                                    workPlace: widget.workPlace!,
+                                    workPlace: widget!.workPlace!,
                                   ),
                                 ),
                               );
@@ -301,7 +305,7 @@ class _WorkPlaceWorkersPageWidgetState
                       child: PagedListView<DocumentSnapshot<Object?>?,
                           WorkPlaceWorkerRecord>(
                         pagingController: _model.setListViewController(
-                            WorkPlaceWorkerRecord.collection(widget.workPlace)
+                            WorkPlaceWorkerRecord.collection(widget!.workPlace)
                                 .where(
                                   'isDelete',
                                   isEqualTo: false,
@@ -310,7 +314,7 @@ class _WorkPlaceWorkersPageWidgetState
                                   'isWorker',
                                   isEqualTo: true,
                                 ),
-                            parent: widget.workPlace),
+                            parent: widget!.workPlace),
                         padding: EdgeInsets.zero,
                         primary: false,
                         reverse: false,
@@ -357,8 +361,8 @@ class _WorkPlaceWorkersPageWidgetState
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     var _shouldSetState = false;
-                                    if (widget.isPartner!) {
-                                      if (!widget.canManage!) {
+                                    if (widget!.isPartner!) {
+                                      if (!widget!.canManage!) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -382,8 +386,8 @@ class _WorkPlaceWorkersPageWidgetState
                                         return;
                                       }
                                     } else {
-                                      if (widget.isWorker!) {
-                                        if (!widget.canManage!) {
+                                      if (widget!.isWorker!) {
+                                        if (!widget!.canManage!) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -417,7 +421,7 @@ class _WorkPlaceWorkersPageWidgetState
                                     _shouldSetState = true;
                                     _model.workPlaceRef =
                                         await WorkPlacesRecord.getDocumentOnce(
-                                            widget.workPlace!);
+                                            widget!.workPlace!);
                                     _shouldSetState = true;
 
                                     context.pushNamed(
@@ -429,35 +433,35 @@ class _WorkPlaceWorkersPageWidgetState
                                           ParamType.DocumentReference,
                                         ),
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                         'canManageEmployee': serializeParam(
-                                          widget.canManage,
+                                          widget!.canManage,
                                           ParamType.bool,
                                         ),
                                         'canViewTask': serializeParam(
-                                          widget.canManageTask,
+                                          widget!.canManageTask,
                                           ParamType.bool,
                                         ),
                                         'canManageTask': serializeParam(
-                                          widget.canManageTask,
+                                          widget!.canManageTask,
                                           ParamType.bool,
                                         ),
                                         'canSendMoney': serializeParam(
-                                          widget.canSendMoney,
+                                          widget!.canSendMoney,
                                           ParamType.bool,
                                         ),
                                         'workPlace': serializeParam(
-                                          widget.workPlace,
+                                          widget!.workPlace,
                                           ParamType.DocumentReference,
                                         ),
                                         'isPartner': serializeParam(
-                                          widget.isPartner,
+                                          widget!.isPartner,
                                           ParamType.bool,
                                         ),
                                         'isWorker': serializeParam(
-                                          widget.isWorker,
+                                          widget!.isWorker,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,

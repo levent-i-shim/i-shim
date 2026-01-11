@@ -7,11 +7,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_sold_page_model.dart';
 export 'add_sold_page_model.dart';
 
@@ -54,20 +58,20 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
         queryBuilder: (currentAccountRecord) => currentAccountRecord
             .where(
               'sideOneID',
-              isEqualTo: widget.company?.id,
+              isEqualTo: widget!.company?.id,
             )
             .where(
               'sideTwoType',
               isEqualTo: 'Kullanmayan',
             ),
       );
-      _model.remainingQuantity = widget.calculation!.productQuantity -
-          widget.calculation!.soldQuantity;
+      _model.remainingQuantity = widget!.calculation!.productQuantity -
+          widget!.calculation!.soldQuantity;
       safeSetState(() {});
     });
 
     _model.textFieldNameTextController ??=
-        TextEditingController(text: widget.parentProduct?.name);
+        TextEditingController(text: widget!.parentProduct?.name);
     _model.textFieldNameFocusNode ??= FocusNode();
 
     _model.textFieldQuantityTextController ??= TextEditingController();
@@ -77,7 +81,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
     _model.textFieldValuePerUnitFocusNode ??= FocusNode();
 
     _model.textFieldPurchaseTypeTextController1 ??=
-        TextEditingController(text: widget.childProduct?.name);
+        TextEditingController(text: widget!.childProduct?.name);
     _model.textFieldPurchaseTypeFocusNode1 ??= FocusNode();
 
     _model.textFieldNotTextController ??= TextEditingController();
@@ -139,7 +143,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                     CurrentAccountCreateForCompanyPageWidget.routeName,
                     queryParameters: {
                       'company': serializeParam(
-                        widget.company,
+                        widget!.company,
                         ParamType.DocumentReference,
                       ),
                     }.withoutNulls,
@@ -1534,7 +1538,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                                 _model
                                                     .dropDownCurrentAcountValue)
                                             .toList()
-                                            .firstOrNull;
+                                            ?.firstOrNull;
                                         safeSetState(() {});
                                       },
                                       width: 200.0,
@@ -1655,7 +1659,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                                     .textFieldNotTextController
                                                     .text,
                                                 unit:
-                                                    widget.childProduct?.unit,
+                                                    widget!.childProduct?.unit,
                                                 valuePerUnit: double.tryParse(_model
                                                     .textFieldValuePerUnitTextController
                                                     .text),
@@ -1701,7 +1705,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                                             purchaseNote: _model
                                                                 .textFieldNotTextController
                                                                 .text,
-                                                            unit: widget
+                                                            unit: widget!
                                                                 .childProduct
                                                                 ?.unit,
                                                             valuePerUnit: double
@@ -1766,7 +1770,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                                       : 0.0);
                                               safeSetState(() {});
 
-                                              await widget
+                                              await widget!
                                                   .calculation!.reference
                                                   .update({
                                                 ...mapToFirestore(
@@ -1783,7 +1787,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                                 ),
                                               });
 
-                                              await widget
+                                              await widget!
                                                   .parentProduct!.reference
                                                   .update({
                                                 ...mapToFirestore(
@@ -1800,7 +1804,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                                 ),
                                               });
 
-                                              await widget
+                                              await widget!
                                                   .parentProduct!.reference
                                                   .update({
                                                 ...mapToFirestore(
@@ -3270,7 +3274,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                               description: 'Fatura Oluşturma talebi gönderildi',
                               type: WorkHistoryTypes
                                   .createCurrentAccountsBillForCompany.name,
-                              company: widget.company,
+                              company: widget!.company,
                               fullDescription:
                                   '${_model.totalMoney.toString()} Fiyatında Fatura Oluşturma talebi gönderildi',
                               currentAccountBill: _model.bill2?.reference,
@@ -3286,12 +3290,12 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
 
                           var workPlaceIncomes2025RecordReference =
                               WorkPlaceIncomes2025Record.createDoc(
-                                  widget.workPlace!);
+                                  widget!.workPlace!);
                           await workPlaceIncomes2025RecordReference
                               .set(createWorkPlaceIncomes2025RecordData(
                             value: _model.totalMoney,
                             type:
-                                'Ürün Satışı ${widget.parentProduct?.name} -> ${widget.childProduct?.name}',
+                                'Ürün Satışı ${widget!.parentProduct?.name} -> ${widget!.childProduct?.name}',
                             billRef: _model.bill2?.reference,
                             date: _model.datePicked,
                             isExpected: false,
@@ -3305,7 +3309,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                   createWorkPlaceIncomes2025RecordData(
                                     value: _model.totalMoney,
                                     type:
-                                        'Ürün Satışı ${widget.parentProduct?.name} -> ${widget.childProduct?.name}',
+                                        'Ürün Satışı ${widget!.parentProduct?.name} -> ${widget!.childProduct?.name}',
                                     billRef: _model.bill2?.reference,
                                     date: _model.datePicked,
                                     isExpected: false,
@@ -3319,12 +3323,12 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
 
                           var companyIncomes2025RecordReference =
                               CompanyIncomes2025Record.createDoc(
-                                  widget.company!);
+                                  widget!.company!);
                           await companyIncomes2025RecordReference
                               .set(createCompanyIncomes2025RecordData(
                             value: _model.totalMoney,
                             type:
-                                'Ürün Satışı ${widget.parentProduct?.name} -> ${widget.childProduct?.name}',
+                                'Ürün Satışı ${widget!.parentProduct?.name} -> ${widget!.childProduct?.name}',
                             billRef: _model.bill2?.reference,
                             date: _model.datePicked,
                             isExpected: false,
@@ -3333,10 +3337,10 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                             description:
                                 _model.activities.firstOrNull?.purchaseNote,
                             workPlaceIncome: _model.workPlaceIncome?.reference,
-                            workPlace: widget.workPlace,
-                            childProduct: widget.childProduct?.reference,
-                            parentProduct: widget.parentProduct?.reference,
-                            calculation: widget.calculation?.reference,
+                            workPlace: widget!.workPlace,
+                            childProduct: widget!.childProduct?.reference,
+                            parentProduct: widget!.parentProduct?.reference,
+                            calculation: widget!.calculation?.reference,
                             isProductIncome: true,
                           ));
                           _model.companyIncome =
@@ -3344,7 +3348,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                   createCompanyIncomes2025RecordData(
                                     value: _model.totalMoney,
                                     type:
-                                        'Ürün Satışı ${widget.parentProduct?.name} -> ${widget.childProduct?.name}',
+                                        'Ürün Satışı ${widget!.parentProduct?.name} -> ${widget!.childProduct?.name}',
                                     billRef: _model.bill2?.reference,
                                     date: _model.datePicked,
                                     isExpected: false,
@@ -3355,12 +3359,12 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                                         .activities.firstOrNull?.purchaseNote,
                                     workPlaceIncome:
                                         _model.workPlaceIncome?.reference,
-                                    workPlace: widget.workPlace,
+                                    workPlace: widget!.workPlace,
                                     childProduct:
-                                        widget.childProduct?.reference,
+                                        widget!.childProduct?.reference,
                                     parentProduct:
-                                        widget.parentProduct?.reference,
-                                    calculation: widget.calculation?.reference,
+                                        widget!.parentProduct?.reference,
+                                    calculation: widget!.calculation?.reference,
                                     isProductIncome: true,
                                   ),
                                   companyIncomes2025RecordReference);
@@ -3374,7 +3378,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                             ),
                           });
 
-                          await widget.company!.update({
+                          await widget!.company!.update({
                             ...mapToFirestore(
                               {
                                 'totalMoney': FieldValue.increment(
@@ -3385,7 +3389,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                             ),
                           });
 
-                          await widget.workPlace!.update({
+                          await widget!.workPlace!.update({
                             ...mapToFirestore(
                               {
                                 'totalMoney': FieldValue.increment(
@@ -3396,7 +3400,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                             ),
                           });
 
-                          await widget.calculation!.reference.update({
+                          await widget!.calculation!.reference.update({
                             ...mapToFirestore(
                               {
                                 'soldQuantity': FieldValue.increment(
@@ -3413,7 +3417,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                             ),
                           });
 
-                          await widget.childProduct!.reference.update({
+                          await widget!.childProduct!.reference.update({
                             ...mapToFirestore(
                               {
                                 'soldQuantity': FieldValue.increment(
@@ -3430,7 +3434,7 @@ class _AddSoldPageWidgetState extends State<AddSoldPageWidget> {
                             ),
                           });
 
-                          await widget.parentProduct!.reference.update({
+                          await widget!.parentProduct!.reference.update({
                             ...mapToFirestore(
                               {
                                 'soldQuantity': FieldValue.increment(

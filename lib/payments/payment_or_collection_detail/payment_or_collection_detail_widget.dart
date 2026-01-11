@@ -4,8 +4,10 @@ import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'payment_or_collection_detail_model.dart';
 export 'payment_or_collection_detail_model.dart';
 
@@ -183,7 +185,7 @@ class _PaymentOrCollectionDetailWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Oluşturma Tarihi : ${dateTimeFormat("d/M/y", widget.paymentDocument?.creationDate)}',
+                          'Oluşturma Tarihi : ${dateTimeFormat("d/M/y", widget!.paymentDocument?.creationDate)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -253,7 +255,7 @@ class _PaymentOrCollectionDetailWidgetState
                                     child: Text(
                                       valueOrDefault<String>(
                                         formatNumber(
-                                          widget.paymentDocument?.value,
+                                          widget!.paymentDocument?.value,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.commaDecimal,
                                           currency: '₺ ',
@@ -317,7 +319,7 @@ class _PaymentOrCollectionDetailWidgetState
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget
+                                        widget!
                                             .paymentDocument?.incomeOrExpense,
                                         'Gelir / Gider',
                                       ),
@@ -378,7 +380,7 @@ class _PaymentOrCollectionDetailWidgetState
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.paymentDocument?.companyName,
+                                        widget!.paymentDocument?.companyName,
                                         'İçerik',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -450,7 +452,7 @@ class _PaymentOrCollectionDetailWidgetState
                                             0.0, 8.0, 0.0, 8.0),
                                         child: Text(
                                           valueOrDefault<String>(
-                                            widget.paymentDocument?.content,
+                                            widget!.paymentDocument?.content,
                                             'İçerik',
                                           ),
                                           style: FlutterFlowTheme.of(context)
@@ -517,7 +519,7 @@ class _PaymentOrCollectionDetailWidgetState
                                       child: SelectionArea(
                                           child: Text(
                                         '${valueOrDefault<String>(
-                                          widget.paymentDocument?.reference.id,
+                                          widget!.paymentDocument?.reference.id,
                                           'Fatura Kimlik No',
                                         )}',
                                         style: FlutterFlowTheme.of(context)
@@ -585,8 +587,8 @@ class _PaymentOrCollectionDetailWidgetState
                                           ),
                                     ),
                                   ),
-                                  if (widget.paymentDocument?.pdfUrl != null &&
-                                      widget.paymentDocument?.pdfUrl != '')
+                                  if (widget!.paymentDocument?.pdfUrl != null &&
+                                      widget!.paymentDocument?.pdfUrl != '')
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 4.0, 4.0, 6.0),
@@ -598,14 +600,14 @@ class _PaymentOrCollectionDetailWidgetState
                                         ),
                                         child: FlutterFlowPdfViewer(
                                           networkPath:
-                                              widget.paymentDocument!.pdfUrl,
+                                              widget!.paymentDocument!.pdfUrl,
                                           horizontalScroll: false,
                                         ),
                                       ),
                                     ),
-                                  if (widget.paymentDocument?.imageUrl !=
+                                  if (widget!.paymentDocument?.imageUrl !=
                                           null &&
-                                      widget.paymentDocument?.imageUrl != '')
+                                      widget!.paymentDocument?.imageUrl != '')
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 6.0, 4.0, 4.0),
@@ -636,7 +638,7 @@ class _PaymentOrCollectionDetailWidgetState
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.network(
-                                                    widget.paymentDocument!
+                                                    widget!.paymentDocument!
                                                         .imageUrl,
                                                     width: 320.0,
                                                     height: 240.0,

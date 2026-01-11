@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:text_search/text_search.dart';
 import 'match_current_account_page_model.dart';
 export 'match_current_account_page_model.dart';
@@ -208,7 +211,7 @@ class _MatchCurrentAccountPageWidgetState
                                                 (record) =>
                                                     TextSearchItem.fromTerms(
                                                         record,
-                                                        [record.displayName]),
+                                                        [record.displayName!]),
                                               )
                                               .toList(),
                                         )
@@ -344,7 +347,7 @@ class _MatchCurrentAccountPageWidgetState
                                               .map(
                                                 (record) =>
                                                     TextSearchItem.fromTerms(
-                                                        record, [record.name]),
+                                                        record, [record.name!]),
                                               )
                                               .toList(),
                                         )
@@ -709,7 +712,7 @@ class _MatchCurrentAccountPageWidgetState
                                                                     .name,
                                                                 content:
                                                                     'Cari Hesap İlişkilendirme Daveti',
-                                                                relatedDoc: widget
+                                                                relatedDoc: widget!
                                                                     .currentAccount
                                                                     ?.id,
                                                                 isRead: false,
@@ -1061,7 +1064,7 @@ class _MatchCurrentAccountPageWidgetState
                                                                 isRead: false,
                                                                 isDelete: false,
                                                                 currentAccount:
-                                                                    widget
+                                                                    widget!
                                                                         .currentAccount,
                                                                 fullDescription:
                                                                     '${currentUserDisplayName} İsimli Kişi Cari Hesabı sizinle ilişkilendirmek istiyor',

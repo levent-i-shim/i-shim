@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/payments/options_update_investment_plan_name/options_update_investment_plan_name_widget.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_investment_plans_model.dart';
 export 'options_investment_plans_model.dart';
 
@@ -178,9 +183,9 @@ class _OptionsInvestmentPlansWidgetState
                               .resolve(Directionality.of(context)),
                           child: OptionsUpdateInvestmentPlanNameWidget(
                             investmentPlanRef:
-                                widget.investmentPlanDocumentRef!,
+                                widget!.investmentPlanDocumentRef!,
                             investmentPlanDocument:
-                                widget.investmentPlanDocument!,
+                                widget!.investmentPlanDocument!,
                           ),
                         );
                       },
@@ -271,11 +276,11 @@ class _OptionsInvestmentPlansWidgetState
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.investmentPlanDocumentRef!
+                    await widget!.investmentPlanDocumentRef!
                         .update(createInvestmentPlansRecordData(
                       isDeleted: true,
                     ));
-                    await widget.investmentPlanDocumentRef!.delete();
+                    await widget!.investmentPlanDocumentRef!.delete();
                   }
                   Navigator.pop(context);
                 },

@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -5,10 +6,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_manual_payment_page_work_place_model.dart';
 export 'add_manual_payment_page_work_place_model.dart';
 
@@ -47,29 +51,29 @@ class _AddManualPaymentPageWorkPlaceWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.isEdit!) {
+      if (widget!.isEdit!) {
         safeSetState(() {
           _model.textFieldKaynakTextController?.text =
-              widget.companyPayment!.toWhom;
+              widget!.companyPayment!.toWhom;
         });
         safeSetState(() {
           _model.textFieldDetailTextController?.text =
-              widget.companyPayment!.description;
+              widget!.companyPayment!.description;
         });
         safeSetState(() {
           _model.textFieldValueTextController?.text =
-              widget.companyPayment!.value.toString();
+              widget!.companyPayment!.value.toString();
         });
         safeSetState(() {
           _model.dropDownPeriodValueController?.value =
-              widget.companyPayment!.paymentPeriodTime;
+              widget!.companyPayment!.paymentPeriodTime;
           _model.dropDownPeriodValue =
-              widget.companyPayment!.paymentPeriodTime;
+              widget!.companyPayment!.paymentPeriodTime;
         });
         safeSetState(() {
           _model.dropDownTypeValueController?.value =
-              widget.companyPayment!.type;
-          _model.dropDownTypeValue = widget.companyPayment!.type;
+              widget!.companyPayment!.type;
+          _model.dropDownTypeValue = widget!.companyPayment!.type;
         });
       }
     });
@@ -797,12 +801,12 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                           return;
                         }
                         if (_model.validate!) {
-                          if (widget.isEdit!) {
-                            if (widget.companyPayment!
+                          if (widget!.isEdit!) {
+                            if (widget!.companyPayment!
                                 .hasPaymentPeriodTime()) {
                               _model.dailyOld = await actions.hesapla(
-                                widget.companyPayment!.paymentPeriodTime,
-                                widget.companyPayment!.value,
+                                widget!.companyPayment!.paymentPeriodTime,
+                                widget!.companyPayment!.value,
                               );
                               _model.dailynew = await actions.hesapla(
                                 _model.dropDownPeriodValue!,
@@ -810,19 +814,19 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                                     _model.textFieldValueTextController.text),
                               );
 
-                              await widget.company!.update({
+                              await widget!.company!.update({
                                 ...mapToFirestore(
                                   {
                                     'totalMoney': FieldValue.increment(
                                         double.parse(_model
                                                 .textFieldValueTextController
                                                 .text) -
-                                            widget.companyPayment!.value),
+                                            widget!.companyPayment!.value),
                                     'yearlyMoney': FieldValue.increment(
                                         double.parse(_model
                                                 .textFieldValueTextController
                                                 .text) -
-                                            widget.companyPayment!.value),
+                                            widget!.companyPayment!.value),
                                     'dailyPayment': FieldValue.increment(
                                         (_model.dailynew!) -
                                             (_model.dailyOld!)),
@@ -830,19 +834,19 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                                 ),
                               });
 
-                              await widget.companyPayment!.workPlace!.update({
+                              await widget!.companyPayment!.workPlace!.update({
                                 ...mapToFirestore(
                                   {
                                     'totalMoney': FieldValue.increment(
                                         double.parse(_model
                                                 .textFieldValueTextController
                                                 .text) -
-                                            widget.companyPayment!.value),
+                                            widget!.companyPayment!.value),
                                     'yearlyMoney': FieldValue.increment(
                                         double.parse(_model
                                                 .textFieldValueTextController
                                                 .text) -
-                                            widget.companyPayment!.value),
+                                            widget!.companyPayment!.value),
                                     'dailyPayment': FieldValue.increment(
                                         (_model.dailynew!) -
                                             (_model.dailyOld!)),
@@ -850,42 +854,42 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                                 ),
                               });
                             } else {
-                              await widget.company!.update({
+                              await widget!.company!.update({
                                 ...mapToFirestore(
                                   {
                                     'totalMoney': FieldValue.increment(
                                         double.parse(_model
                                                 .textFieldValueTextController
                                                 .text) -
-                                            widget.companyPayment!.value),
+                                            widget!.companyPayment!.value),
                                     'yearlyMoney': FieldValue.increment(
                                         double.parse(_model
                                                 .textFieldValueTextController
                                                 .text) -
-                                            widget.companyPayment!.value),
+                                            widget!.companyPayment!.value),
                                   },
                                 ),
                               });
 
-                              await widget.companyPayment!.workPlace!.update({
+                              await widget!.companyPayment!.workPlace!.update({
                                 ...mapToFirestore(
                                   {
                                     'totalMoney': FieldValue.increment(
                                         double.parse(_model
                                                 .textFieldValueTextController
                                                 .text) -
-                                            widget.companyPayment!.value),
+                                            widget!.companyPayment!.value),
                                     'yearlyMoney': FieldValue.increment(
                                         double.parse(_model
                                                 .textFieldValueTextController
                                                 .text) -
-                                            widget.companyPayment!.value),
+                                            widget!.companyPayment!.value),
                                   },
                                 ),
                               });
                             }
 
-                            await widget.companyPayment!.reference
+                            await widget!.companyPayment!.reference
                                 .update(createCompanyPayments2025RecordData(
                               value: double.tryParse(
                                   _model.textFieldValueTextController.text),
@@ -896,7 +900,7 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                               paymentPeriodTime: _model.dropDownPeriodValue,
                             ));
 
-                            await widget.companyPayment!.workPlacePayment!
+                            await widget!.companyPayment!.workPlacePayment!
                                 .update(createWorkPlacePayments2025RecordData(
                               value: double.tryParse(
                                   _model.textFieldValueTextController.text),
@@ -923,7 +927,7 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                           } else {
                             var workPlacePayments2025RecordReference =
                                 WorkPlacePayments2025Record.createDoc(
-                                    widget.workPlace!);
+                                    widget!.workPlace!);
                             await workPlacePayments2025RecordReference.set({
                               ...createWorkPlacePayments2025RecordData(
                                 value: double.tryParse(
@@ -966,7 +970,7 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                             }, workPlacePayments2025RecordReference);
 
                             await CompanyPayments2025Record.createDoc(
-                                    widget.company!)
+                                    widget!.company!)
                                 .set({
                               ...createCompanyPayments2025RecordData(
                                 value: double.tryParse(
@@ -979,7 +983,7 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                                 paymentPeriodTime: _model.dropDownPeriodValue,
                                 toWhom:
                                     _model.textFieldKaynakTextController.text,
-                                workPlace: widget.workPlace,
+                                workPlace: widget!.workPlace,
                                 workPlacePayment:
                                     _model.workPlacePaymnet?.reference,
                               ),
@@ -997,7 +1001,7 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                                     _model.textFieldValueTextController.text),
                               );
 
-                              await widget.company!.update({
+                              await widget!.company!.update({
                                 ...mapToFirestore(
                                   {
                                     'dailyPayment':
@@ -1014,7 +1018,7 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                                 ),
                               });
 
-                              await widget.workPlace!.update({
+                              await widget!.workPlace!.update({
                                 ...mapToFirestore(
                                   {
                                     'dailyPayment':
@@ -1031,7 +1035,7 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                                 ),
                               });
                             } else {
-                              await widget.company!.update({
+                              await widget!.company!.update({
                                 ...mapToFirestore(
                                   {
                                     'totalMoney': FieldValue.increment(
@@ -1046,7 +1050,7 @@ class _AddManualPaymentPageWorkPlaceWidgetState
                                 ),
                               });
 
-                              await widget.workPlace!.update({
+                              await widget!.workPlace!.update({
                                 ...mapToFirestore(
                                   {
                                     'totalMoney': FieldValue.increment(

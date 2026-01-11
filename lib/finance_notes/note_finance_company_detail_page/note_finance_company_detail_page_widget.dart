@@ -1,12 +1,16 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'note_finance_company_detail_page_model.dart';
 export 'note_finance_company_detail_page_model.dart';
 
@@ -102,7 +106,7 @@ class _NoteFinanceCompanyDetailPageWidgetState
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.noteFinanceCompany!.reference
+                  await widget!.noteFinanceCompany!.reference
                       .update(createFinancialMonitoringNotesRecordData(
                     isDeleted: true,
                   ));
@@ -165,12 +169,12 @@ class _NoteFinanceCompanyDetailPageWidgetState
                           ParamType.bool,
                         ),
                         'noteFinanceCompany': serializeParam(
-                          widget.noteFinanceCompany,
+                          widget!.noteFinanceCompany,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'noteFinanceCompany': widget.noteFinanceCompany,
+                        'noteFinanceCompany': widget!.noteFinanceCompany,
                       },
                     );
                   },
@@ -240,7 +244,7 @@ class _NoteFinanceCompanyDetailPageWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Oluşturma Tarihi : ${dateTimeFormat("d/M/y", widget.noteFinanceCompany?.creationDate)}',
+                          'Oluşturma Tarihi : ${dateTimeFormat("d/M/y", widget!.noteFinanceCompany?.creationDate)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -276,7 +280,7 @@ class _NoteFinanceCompanyDetailPageWidgetState
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.noteFinanceCompany?.value.toString(),
+                                widget!.noteFinanceCompany?.value?.toString(),
                                 'İçerik',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -303,7 +307,7 @@ class _NoteFinanceCompanyDetailPageWidgetState
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.noteFinanceCompany?.incomeOrExpense,
+                                widget!.noteFinanceCompany?.incomeOrExpense,
                                 'İçerik',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -330,7 +334,7 @@ class _NoteFinanceCompanyDetailPageWidgetState
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.noteFinanceCompany?.companyName,
+                                widget!.noteFinanceCompany?.companyName,
                                 'İçerik',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -357,7 +361,7 @@ class _NoteFinanceCompanyDetailPageWidgetState
                                 0.0, 8.0, 0.0, 8.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.noteFinanceCompany?.content,
+                                widget!.noteFinanceCompany?.content,
                                 'İçerik',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -379,8 +383,8 @@ class _NoteFinanceCompanyDetailPageWidgetState
                                   ),
                             ),
                           ),
-                          if (widget.noteFinanceCompany?.imagePath != null &&
-                              widget.noteFinanceCompany?.imagePath != '')
+                          if (widget!.noteFinanceCompany?.imagePath != null &&
+                              widget!.noteFinanceCompany?.imagePath != '')
                             Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Container(
@@ -394,15 +398,15 @@ class _NoteFinanceCompanyDetailPageWidgetState
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
-                                      widget.noteFinanceCompany!.imagePath,
+                                      widget!.noteFinanceCompany!.imagePath,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                          if (widget.noteFinanceCompany?.pdfUrl != null &&
-                              widget.noteFinanceCompany?.pdfUrl != '')
+                          if (widget!.noteFinanceCompany?.pdfUrl != null &&
+                              widget!.noteFinanceCompany?.pdfUrl != '')
                             Padding(
                               padding: EdgeInsets.all(4.0),
                               child: Container(
@@ -415,7 +419,7 @@ class _NoteFinanceCompanyDetailPageWidgetState
                                   padding: EdgeInsets.all(8.0),
                                   child: FlutterFlowPdfViewer(
                                     networkPath:
-                                        widget.noteFinanceCompany!.pdfUrl,
+                                        widget!.noteFinanceCompany!.pdfUrl,
                                     horizontalScroll: false,
                                   ),
                                 ),

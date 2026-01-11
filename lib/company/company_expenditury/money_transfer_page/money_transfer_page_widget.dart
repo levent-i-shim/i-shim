@@ -10,9 +10,12 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'money_transfer_page_model.dart';
 export 'money_transfer_page_model.dart';
 
@@ -127,7 +130,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
                     decoration: BoxDecoration(),
                     child: StreamBuilder<List<CompanyWorkersRecord>>(
                       stream: queryCompanyWorkersRecord(
-                        parent: widget.companyWorker?.parentReference,
+                        parent: widget!.companyWorker?.parentReference,
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
@@ -1058,7 +1061,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
                                         if (_model.isUploadPdf) {
                                           var spentMonetForAllowenceWorkPlaceRecordReference1 =
                                               SpentMonetForAllowenceWorkPlaceRecord
-                                                  .createDoc(widget
+                                                  .createDoc(widget!
                                                       .companyWorker!
                                                       .workPlace!);
                                           await spentMonetForAllowenceWorkPlaceRecordReference1
@@ -1110,7 +1113,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
 
                                           var spentMoneyForAllowenceRecordReference1 =
                                               SpentMoneyForAllowenceRecord
-                                                  .createDoc(widget
+                                                  .createDoc(widget!
                                                       .companyWorker!
                                                       .parentReference);
                                           await spentMoneyForAllowenceRecordReference1
@@ -1186,7 +1189,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
                                         } else {
                                           var spentMonetForAllowenceWorkPlaceRecordReference2 =
                                               SpentMonetForAllowenceWorkPlaceRecord
-                                                  .createDoc(widget
+                                                  .createDoc(widget!
                                                       .companyWorker!
                                                       .workPlace!);
                                           await spentMonetForAllowenceWorkPlaceRecordReference2
@@ -1234,7 +1237,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
 
                                           var spentMoneyForAllowenceRecordReference2 =
                                               SpentMoneyForAllowenceRecord
-                                                  .createDoc(widget
+                                                  .createDoc(widget!
                                                       .companyWorker!
                                                       .parentReference);
                                           await spentMoneyForAllowenceRecordReference2
@@ -1324,7 +1327,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
                                           ),
                                         );
 
-                                        await widget.companyWorker!.reference
+                                        await widget!.companyWorker!.reference
                                             .update({
                                           ...mapToFirestore(
                                             {
@@ -1345,7 +1348,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
 
                                           var spentMonetForAllowenceWorkPlaceRecordReference3 =
                                               SpentMonetForAllowenceWorkPlaceRecord
-                                                  .createDoc(widget
+                                                  .createDoc(widget!
                                                       .companyWorker!
                                                       .workPlace!);
                                           await spentMonetForAllowenceWorkPlaceRecordReference3
@@ -1393,7 +1396,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
 
                                           var spentMoneyForAllowenceRecordReference3 =
                                               SpentMoneyForAllowenceRecord
-                                                  .createDoc(widget
+                                                  .createDoc(widget!
                                                       .companyWorker!
                                                       .parentReference);
                                           await spentMoneyForAllowenceRecordReference3
@@ -1481,7 +1484,7 @@ class _MoneyTransferPageWidgetState extends State<MoneyTransferPageWidget> {
                                             ),
                                           );
 
-                                          await widget.companyWorker!.reference
+                                          await widget!.companyWorker!.reference
                                               .update({
                                             ...mapToFirestore(
                                               {

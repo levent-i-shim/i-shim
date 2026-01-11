@@ -4,13 +4,17 @@ import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'business_track_model.dart';
 export 'business_track_model.dart';
 
@@ -104,7 +108,7 @@ class _BusinessTrackWidgetState extends State<BusinessTrackWidget>
                     children: [
                       Text(
                         valueOrDefault<String>(
-                          widget.workPlaceDocument?.name,
+                          widget!.workPlaceDocument?.name,
                           'İşletme Adı',
                         ),
                         textAlign: TextAlign.center,
@@ -2612,7 +2616,7 @@ class _BusinessTrackWidgetState extends State<BusinessTrackWidget>
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              widget
+                                                              widget!
                                                                   .companyDocument
                                                                   ?.name,
                                                               'Şirket İsmi',
@@ -2659,7 +2663,7 @@ class _BusinessTrackWidgetState extends State<BusinessTrackWidget>
                                                           child: Text(
                                                             valueOrDefault<
                                                                 String>(
-                                                              widget
+                                                              widget!
                                                                   .workPlaceDocument
                                                                   ?.name,
                                                               'İşyeri İsmi',

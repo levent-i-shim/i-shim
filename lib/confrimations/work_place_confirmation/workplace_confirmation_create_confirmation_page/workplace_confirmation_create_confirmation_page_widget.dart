@@ -1,17 +1,21 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'workplace_confirmation_create_confirmation_page_model.dart';
 export 'workplace_confirmation_create_confirmation_page_model.dart';
 
@@ -46,7 +50,7 @@ class _WorkplaceConfirmationCreateConfirmationPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.users = await queryWorkPlaceWorkerRecordOnce(
-        parent: widget.workPlace,
+        parent: widget!.workPlace,
       );
       for (int loop1Index = 0;
           loop1Index < _model.users!.length;
@@ -61,7 +65,7 @@ class _WorkplaceConfirmationCreateConfirmationPageWidgetState
         ));
       }
       _model.workplaceDetail =
-          await WorkPlacesRecord.getDocumentOnce(widget.workPlace!);
+          await WorkPlacesRecord.getDocumentOnce(widget!.workPlace!);
       _model.owner =
           await UsersRecord.getDocumentOnce(_model.workplaceDetail!.owner!);
       _model.addToUsersForDropdown(UserDetailDataStruct(

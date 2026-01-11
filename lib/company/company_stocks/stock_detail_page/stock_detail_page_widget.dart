@@ -3,10 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'stock_detail_page_model.dart';
 export 'stock_detail_page_model.dart';
 
@@ -80,7 +82,7 @@ class _StockDetailPageWidgetState extends State<StockDetailPageWidget> {
                 flex: 4,
                 child: Text(
                   valueOrDefault<String>(
-                    widget.stock?.name,
+                    widget!.stock?.name,
                     'Stok İsmi',
                   ),
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -112,12 +114,12 @@ class _StockDetailPageWidgetState extends State<StockDetailPageWidget> {
                       StockOperationPageWidget.routeName,
                       queryParameters: {
                         'stock': serializeParam(
-                          widget.stock,
+                          widget!.stock,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'stock': widget.stock,
+                        'stock': widget!.stock,
                       },
                     );
                   },
@@ -177,13 +179,13 @@ class _StockDetailPageWidgetState extends State<StockDetailPageWidget> {
             child:
                 PagedListView<DocumentSnapshot<Object?>?, StockMovementRecord>(
               pagingController: _model.setListViewController(
-                  StockMovementRecord.collection(widget.stock?.parentReference)
+                  StockMovementRecord.collection(widget!.stock?.parentReference)
                       .where(
                         'stockRef',
-                        isEqualTo: widget.stock?.reference,
+                        isEqualTo: widget!.stock?.reference,
                       )
                       .orderBy('date', descending: true),
-                  parent: widget.stock?.parentReference),
+                  parent: widget!.stock?.parentReference),
               padding: EdgeInsets.zero,
               primary: false,
               reverse: false,

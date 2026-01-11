@@ -1,15 +1,19 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_bills_detail_for_company_page_model.dart';
 export 'current_account_bills_detail_for_company_page_model.dart';
 
@@ -53,12 +57,12 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       for (int loop1Index = 0;
-          loop1Index < widget.bill!.activities.length;
+          loop1Index < widget!.bill!.activities.length;
           loop1Index++) {
-        final currentLoop1Item = widget.bill!.activities[loop1Index];
+        final currentLoop1Item = widget!.bill!.activities[loop1Index];
         _model.activiryDetail =
             await CurrentAccountActivityRecord.getDocumentOnce(
-                widget.bill!.activities.elementAtOrNull(loop1Index)!);
+                widget!.bill!.activities.elementAtOrNull(loop1Index)!);
         _model.addToActivity(_model.activiryDetail!);
         safeSetState(() {});
       }
@@ -272,7 +276,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                       Text(
                                         valueOrDefault<String>(
                                           formatNumber(
-                                            widget.bill?.totalValue,
+                                            widget!.bill?.totalValue,
                                             formatType: FormatType.decimal,
                                             decimalType:
                                                 DecimalType.commaDecimal,
@@ -345,8 +349,8 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                             ),
                                       ),
                                       Text(
-                                        (widget.bill!.totalValue -
-                                                widget.bill!.totalKdv)
+                                        (widget!.bill!.totalValue -
+                                                widget!.bill!.totalKdv)
                                             .toString(),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
@@ -416,7 +420,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                       Text(
                                         valueOrDefault<String>(
                                           formatNumber(
-                                            widget.bill?.totalKdv,
+                                            widget!.bill?.totalKdv,
                                             formatType: FormatType.decimal,
                                             decimalType:
                                                 DecimalType.commaDecimal,
@@ -491,7 +495,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                       Text(
                                         valueOrDefault<String>(
                                           formatNumber(
-                                            widget.bill?.totalTevkifat,
+                                            widget!.bill?.totalTevkifat,
                                             formatType: FormatType.decimal,
                                             decimalType:
                                                 DecimalType.commaDecimal,
@@ -564,11 +568,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                             ),
                                       ),
                                       Text(
-                                        widget.currentAccount!.amISideOne
-                                            ? (widget.bill!.isSideOneSeller
+                                        widget!.currentAccount!.amISideOne
+                                            ? (widget!.bill!.isSideOneSeller
                                                 ? 'Sizsiniz'
                                                 : 'Karşı Taraf')
-                                            : (widget.bill!.isSideOneSeller
+                                            : (widget!.bill!.isSideOneSeller
                                                 ? 'Karşı Taraf'
                                                 : 'Sizsiniz'),
                                         style: FlutterFlowTheme.of(context)
@@ -637,7 +641,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                             ),
                                       ),
                                       Text(
-                                        widget.bill!.isPaid
+                                        widget!.bill!.isPaid
                                             ? 'Ödendi'
                                             : 'Ödenmedi',
                                         style: FlutterFlowTheme.of(context)
@@ -1462,15 +1466,15 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                     );
                   },
                 ),
-                if ((widget.bill?.isAccept == true) && !widget.bill!.isPaid)
+                if ((widget!.bill?.isAccept == true) && !widget!.bill!.isPaid)
                   Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(36.0, 18.0, 36.0, 0.0),
                     child: FFButtonWidget(
                       onPressed: () async {
                         var _shouldSetState = false;
-                        if (widget.isPartner) {
-                          if (!widget.canManage) {
+                        if (widget!.isPartner) {
+                          if (!widget!.canManage) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -1489,14 +1493,14 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             return;
                           }
                         }
-                        if (widget.currentAccount?.sideTwoType ==
+                        if (widget!.currentAccount?.sideTwoType ==
                             'Kullanmayan') {
-                          if (widget.bill!.isSideOneSeller) {
-                            if (widget.currentAccount?.sideOneType ==
+                          if (widget!.bill!.isSideOneSeller) {
+                            if (widget!.currentAccount?.sideOneType ==
                                 'Şirket') {
                               _model.companySideOneIncomeNotUser =
                                   await actions.getCompanyDocRef(
-                                widget.currentAccount!.sideOneId,
+                                widget!.currentAccount!.sideOneId,
                               );
                               _shouldSetState = true;
                               _model.companyIncomeNotUser =
@@ -1505,7 +1509,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 queryBuilder: (companyIncomes2025Record) =>
                                     companyIncomes2025Record.where(
                                   'billRef',
-                                  isEqualTo: widget.bill?.reference,
+                                  isEqualTo: widget!.bill?.reference,
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
@@ -1518,7 +1522,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             } else {
                               _model.userSideOneIncomeNotUser =
                                   await actions.getUserDocRef(
-                                widget.currentAccount!.sideOneId,
+                                widget!.currentAccount!.sideOneId,
                               );
                               _shouldSetState = true;
                               _model.userSideOneIncomeRefNotUser =
@@ -1527,7 +1531,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 queryBuilder: (userIncomeRecord) =>
                                     userIncomeRecord.where(
                                   'billRef',
-                                  isEqualTo: widget.bill?.reference,
+                                  isEqualTo: widget!.bill?.reference,
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
@@ -1540,11 +1544,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                               ));
                             }
                           } else {
-                            if (widget.currentAccount?.sideOneType ==
+                            if (widget!.currentAccount?.sideOneType ==
                                 'Şirket') {
                               _model.companySideOnePaymentNotUser =
                                   await actions.getCompanyDocRef(
-                                widget.currentAccount!.sideOneId,
+                                widget!.currentAccount!.sideOneId,
                               );
                               _shouldSetState = true;
                               _model.sideOnePaymentRefNotUser =
@@ -1553,7 +1557,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 queryBuilder: (companyPayments2025Record) =>
                                     companyPayments2025Record.where(
                                   'billRef',
-                                  isEqualTo: widget.bill?.reference,
+                                  isEqualTo: widget!.bill?.reference,
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
@@ -1566,7 +1570,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             } else {
                               _model.userSideOnePaymentNotUser =
                                   await actions.getUserDocRef(
-                                widget.currentAccount!.sideOneId,
+                                widget!.currentAccount!.sideOneId,
                               );
                               _shouldSetState = true;
                               _model.userSideOnePaymentRefNotUser =
@@ -1575,7 +1579,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 queryBuilder: (userPaymentRecord) =>
                                     userPaymentRecord.where(
                                   'billRef',
-                                  isEqualTo: widget.bill?.reference,
+                                  isEqualTo: widget!.bill?.reference,
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
@@ -1589,13 +1593,13 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             }
                           }
 
-                          if (!widget.bill!.isPaid) {
-                            await widget.bill!.reference
+                          if (!widget!.bill!.isPaid) {
+                            await widget!.bill!.reference
                                 .update(createCurrentAccountBillRecordData(
                               isPaid: true,
                             ));
 
-                            await widget.currentAccount!.currentAccountId!
+                            await widget!.currentAccount!.currentAccountId!
                                 .update({
                               ...mapToFirestore(
                                 {
@@ -1603,76 +1607,76 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                       FieldValue.increment(-(1)),
                                   'totalValueForSideOne':
                                       FieldValue.increment(() {
-                                    if (widget.bill!.isSideOneSeller &&
-                                        widget.currentAccount!.amISideOne) {
-                                      return widget.bill!.totalValue;
-                                    } else if (widget.bill!.isSideOneSeller &&
-                                        !widget.currentAccount!.amISideOne) {
-                                      return (-1 * widget.bill!.totalValue);
-                                    } else if (!widget.bill!.isSideOneSeller &&
-                                        widget.currentAccount!.amISideOne) {
-                                      return (-1 * widget.bill!.totalValue);
+                                    if (widget!.bill!.isSideOneSeller &&
+                                        widget!.currentAccount!.amISideOne) {
+                                      return widget!.bill!.totalValue;
+                                    } else if (widget!.bill!.isSideOneSeller &&
+                                        !widget!.currentAccount!.amISideOne) {
+                                      return (-1 * widget!.bill!.totalValue);
+                                    } else if (!widget!.bill!.isSideOneSeller &&
+                                        widget!.currentAccount!.amISideOne) {
+                                      return (-1 * widget!.bill!.totalValue);
                                     } else {
-                                      return widget.bill!.totalValue;
+                                      return widget!.bill!.totalValue;
                                     }
                                   }()),
                                   'totalValueForSideTwo':
                                       FieldValue.increment(() {
-                                    if (widget.bill!.isSideOneSeller &&
-                                        widget.currentAccount!.amISideOne) {
-                                      return (-1 * widget.bill!.totalValue);
-                                    } else if (widget.bill!.isSideOneSeller &&
-                                        !widget.currentAccount!.amISideOne) {
-                                      return widget.bill!.totalValue;
-                                    } else if (!widget.bill!.isSideOneSeller &&
-                                        widget.currentAccount!.amISideOne) {
-                                      return widget.bill!.totalValue;
+                                    if (widget!.bill!.isSideOneSeller &&
+                                        widget!.currentAccount!.amISideOne) {
+                                      return (-1 * widget!.bill!.totalValue);
+                                    } else if (widget!.bill!.isSideOneSeller &&
+                                        !widget!.currentAccount!.amISideOne) {
+                                      return widget!.bill!.totalValue;
+                                    } else if (!widget!.bill!.isSideOneSeller &&
+                                        widget!.currentAccount!.amISideOne) {
+                                      return widget!.bill!.totalValue;
                                     } else {
-                                      return (-1 * widget.bill!.totalValue);
+                                      return (-1 * widget!.bill!.totalValue);
                                     }
                                   }()),
                                   'expandedValueForSideOne':
                                       FieldValue.increment(
-                                          widget.bill!.isSideOneSeller
-                                              ? (-1 * widget.bill!.totalValue)
-                                              : widget.bill!.totalValue),
+                                          widget!.bill!.isSideOneSeller
+                                              ? (-1 * widget!.bill!.totalValue)
+                                              : widget!.bill!.totalValue),
                                   'expandedValueForTwo': FieldValue.increment(
-                                      widget.bill!.isSideOneSeller
-                                          ? widget.bill!.totalValue
-                                          : (-1 * widget.bill!.totalValue)),
+                                      widget!.bill!.isSideOneSeller
+                                          ? widget!.bill!.totalValue
+                                          : (-1 * widget!.bill!.totalValue)),
                                 },
                               ),
                             });
 
-                            await widget.company!.update({
+                            await widget!.company!.update({
                               ...mapToFirestore(
                                 {
                                   'totalMoney': FieldValue.increment(() {
-                                    if (widget.bill!.isSideOneSeller &&
-                                        widget.currentAccount!.amISideOne) {
-                                      return widget.bill!.totalValue;
-                                    } else if (!widget.bill!.isSideOneSeller &&
-                                        widget.currentAccount!.amISideOne) {
-                                      return (-1 * widget.bill!.totalValue);
-                                    } else if (widget.bill!.isSideOneSeller &&
-                                        !widget.currentAccount!.amISideOne) {
-                                      return (-1 * widget.bill!.totalValue);
+                                    if (widget!.bill!.isSideOneSeller &&
+                                        widget!.currentAccount!.amISideOne) {
+                                      return widget!.bill!.totalValue;
+                                    } else if (!widget!.bill!.isSideOneSeller &&
+                                        widget!.currentAccount!.amISideOne) {
+                                      return (-1 * widget!.bill!.totalValue);
+                                    } else if (widget!.bill!.isSideOneSeller &&
+                                        !widget!.currentAccount!.amISideOne) {
+                                      return (-1 * widget!.bill!.totalValue);
                                     } else {
-                                      return widget.bill!.totalValue;
+                                      return widget!.bill!.totalValue;
                                     }
                                   }()),
                                   'yearlyMoney': FieldValue.increment(() {
-                                    if (widget.bill!.isSideOneSeller &&
-                                        widget.currentAccount!.amISideOne) {
-                                      return widget.bill!.totalValue;
-                                    } else if (!widget.bill!.isSideOneSeller &&
-                                        widget.currentAccount!.amISideOne) {
-                                      return (-1 * widget.bill!.totalValue);
-                                    } else if (widget.bill!.isSideOneSeller &&
-                                        !widget.currentAccount!.amISideOne) {
-                                      return (-1 * widget.bill!.totalValue);
+                                    if (widget!.bill!.isSideOneSeller &&
+                                        widget!.currentAccount!.amISideOne) {
+                                      return widget!.bill!.totalValue;
+                                    } else if (!widget!.bill!.isSideOneSeller &&
+                                        widget!.currentAccount!.amISideOne) {
+                                      return (-1 * widget!.bill!.totalValue);
+                                    } else if (widget!.bill!.isSideOneSeller &&
+                                        !widget!.currentAccount!.amISideOne) {
+                                      return (-1 * widget!.bill!.totalValue);
                                     } else {
-                                      return widget.bill!.totalValue;
+                                      return widget!.bill!.totalValue;
                                     }
                                   }()),
                                 },
@@ -1680,16 +1684,16 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             });
                           }
                         } else {
-                          if (((widget.currentAccount?.amISideOne == true) &&
-                                  (widget.currentAccount?.sideTwoType ==
+                          if (((widget!.currentAccount?.amISideOne == true) &&
+                                  (widget!.currentAccount?.sideTwoType ==
                                       'Şirket')) ||
-                              ((widget.currentAccount?.amISideOne == false) &&
-                                  (widget.currentAccount?.sideOneType ==
+                              ((widget!.currentAccount?.amISideOne == false) &&
+                                  (widget!.currentAccount?.sideOneType ==
                                       'Şirket'))) {
-                            if (widget.currentAccount!.amISideOne) {
+                            if (widget!.currentAccount!.amISideOne) {
                               _model.companyRef =
                                   await actions.getCompanyDocRef(
-                                widget.currentAccount!.sideTwoId,
+                                widget!.currentAccount!.sideTwoId,
                               );
                               _shouldSetState = true;
 
@@ -1704,11 +1708,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   isRead: false,
                                   isDelete: false,
                                   fullDescription:
-                                      '${widget.bill?.totalValue.toString()} Tutarındaki Fatura için Ödendi Onayı Gerekli',
+                                      '${widget!.bill?.totalValue?.toString()} Tutarındaki Fatura için Ödendi Onayı Gerekli',
                                   currentAccount:
-                                      widget.currentAccount?.currentAccountId,
-                                  currentAccountBill: widget.bill?.reference,
-                                  company: widget.company,
+                                      widget!.currentAccount?.currentAccountId,
+                                  currentAccountBill: widget!.bill?.reference,
+                                  company: widget!.company,
                                   isAccept: false,
                                 ),
                                 ...mapToFirestore(
@@ -1721,7 +1725,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             } else {
                               _model.companyRef2 =
                                   await actions.getCompanyDocRef(
-                                widget.currentAccount!.sideOneId,
+                                widget!.currentAccount!.sideOneId,
                               );
                               _shouldSetState = true;
 
@@ -1736,11 +1740,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   isRead: false,
                                   isDelete: false,
                                   fullDescription:
-                                      '${widget.bill?.totalValue.toString()} Tutarındaki Fatura için Ödendi Onayı Gerekli',
+                                      '${widget!.bill?.totalValue?.toString()} Tutarındaki Fatura için Ödendi Onayı Gerekli',
                                   currentAccount:
-                                      widget.currentAccount?.currentAccountId,
-                                  currentAccountBill: widget.bill?.reference,
-                                  company: widget.company,
+                                      widget!.currentAccount?.currentAccountId,
+                                  currentAccountBill: widget!.bill?.reference,
+                                  company: widget!.company,
                                   isAccept: false,
                                 ),
                                 ...mapToFirestore(
@@ -1752,9 +1756,9 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                               });
                             }
                           } else {
-                            if (widget.currentAccount!.amISideOne) {
+                            if (widget!.currentAccount!.amISideOne) {
                               _model.user = await actions.getUserDocRef(
-                                widget.currentAccount!.sideTwoId,
+                                widget!.currentAccount!.sideTwoId,
                               );
                               _shouldSetState = true;
 
@@ -1768,8 +1772,8 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   isRead: false,
                                   isDelete: false,
                                   fullDescription:
-                                      '${widget.bill?.totalValue.toString()} Tutarındaki Fatura için Ödendi Onayı Gerekli',
-                                  relatedDoc: widget.bill?.reference.id,
+                                      '${widget!.bill?.totalValue?.toString()} Tutarındaki Fatura için Ödendi Onayı Gerekli',
+                                  relatedDoc: widget!.bill?.reference.id,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -1780,7 +1784,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                               });
                             } else {
                               _model.user2 = await actions.getUserDocRef(
-                                widget.currentAccount!.sideOneId,
+                                widget!.currentAccount!.sideOneId,
                               );
                               _shouldSetState = true;
 
@@ -1794,8 +1798,8 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   isRead: false,
                                   isDelete: false,
                                   fullDescription:
-                                      '${widget.bill?.totalValue.toString()} Tutarındaki Fatura için Ödendi Onayı Gerekli',
-                                  relatedDoc: widget.bill?.reference.id,
+                                      '${widget!.bill?.totalValue?.toString()} Tutarındaki Fatura için Ödendi Onayı Gerekli',
+                                  relatedDoc: widget!.bill?.reference.id,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -1829,11 +1833,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             type: WorkHistoryTypes
                                 .setCurrentAccountBillPaidRequest.name,
                             fullDescription:
-                                '${widget.currentAccount?.counterPartyName} İle ${widget.bill?.totalValue.toString()} Tutarındaki Fatura Onaylanmaya gönderildi',
+                                '${widget!.currentAccount?.counterPartyName} İle ${widget!.bill?.totalValue?.toString()} Tutarındaki Fatura Onaylanmaya gönderildi',
                             currentAccount:
-                                widget.currentAccount?.currentAccountId,
-                            currentAccountBill: widget.bill?.reference,
-                            company: widget.company,
+                                widget!.currentAccount?.currentAccountId,
+                            currentAccountBill: widget!.bill?.reference,
+                            company: widget!.company,
                           ),
                           ...mapToFirestore(
                             {
@@ -1843,7 +1847,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                         });
                         if (_shouldSetState) safeSetState(() {});
                       },
-                      text: widget.currentAccount?.sideTwoType == 'Kullanmayan'
+                      text: widget!.currentAccount?.sideTwoType == 'Kullanmayan'
                           ? 'Ödendi Olarak İşaretle'
                           : 'Ödendi Olarak İşaretlemek için İstek Gönder',
                       options: FFButtonOptions(
@@ -1883,12 +1887,12 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      if (!widget.bill!.isAccept)
+                      if (!widget!.bill!.isAccept)
                         FFButtonWidget(
                           onPressed: () async {
                             var _shouldSetState = false;
-                            if (widget.isPartner) {
-                              if (!widget.canManage) {
+                            if (widget!.isPartner) {
+                              if (!widget!.canManage) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -1907,13 +1911,13 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 return;
                               }
                             }
-                            if (!widget.bill!.isAccept) {
-                              await widget.bill!.reference
+                            if (!widget!.bill!.isAccept) {
+                              await widget!.bill!.reference
                                   .update(createCurrentAccountBillRecordData(
                                 isAccept: true,
                               ));
 
-                              await widget.currentAccount!.currentAccountId!
+                              await widget!.currentAccount!.currentAccountId!
                                   .update({
                                 ...mapToFirestore(
                                   {
@@ -1924,12 +1928,12 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 ),
                               });
                             }
-                            if (widget.bill!.isSideOneSeller) {
-                              if (widget.currentAccount?.sideTwoType ==
+                            if (widget!.bill!.isSideOneSeller) {
+                              if (widget!.currentAccount?.sideTwoType ==
                                   'Şirket') {
                                 _model.companySideTwoPayment =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
 
@@ -1937,45 +1941,45 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (!widget
+                                              widget!.bill!.totalValue);
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         } else {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         }
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (!widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (widget
+                                              widget!.bill!.totalValue);
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         } else {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         }
                                       }()),
                                     },
@@ -1986,11 +1990,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                         _model.companySideTwoPayment!)
                                     .set({
                                   ...createCompanyPayments2025RecordData(
-                                    value: widget.bill?.totalValue,
+                                    value: widget!.bill?.totalValue,
                                     type: 'Fatura',
-                                    billRef: widget.bill?.reference,
+                                    billRef: widget!.bill?.reference,
                                     isExpected: true,
-                                    expectedDate: widget.bill?.expendedDate,
+                                    expectedDate: widget!.bill?.expendedDate,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -2001,7 +2005,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                               } else {
                                 _model.userSideTwoPayment =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
 
@@ -2009,45 +2013,45 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (!widget
+                                              widget!.bill!.totalValue);
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         } else {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         }
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (!widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (widget
+                                              widget!.bill!.totalValue);
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         } else {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         }
                                       }()),
                                     },
@@ -2058,11 +2062,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                         _model.userSideTwoPayment!)
                                     .set({
                                   ...createUserPaymentRecordData(
-                                    value: widget.bill?.totalValue,
+                                    value: widget!.bill?.totalValue,
                                     type: 'Fatura',
-                                    billRef: widget.bill?.reference,
+                                    billRef: widget!.bill?.reference,
                                     isExpected: true,
-                                    expectedDate: widget.bill?.expendedDate,
+                                    expectedDate: widget!.bill?.expendedDate,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -2072,11 +2076,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 });
                               }
 
-                              if (widget.currentAccount?.sideOneType ==
+                              if (widget!.currentAccount?.sideOneType ==
                                   'Şirket') {
                                 _model.companySideOneIncome =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
 
@@ -2084,45 +2088,45 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (!widget
+                                              widget!.bill!.totalValue);
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         } else {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         }
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (!widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (widget
+                                              widget!.bill!.totalValue);
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         } else {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         }
                                       }()),
                                     },
@@ -2133,11 +2137,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                         _model.companySideOneIncome!)
                                     .set({
                                   ...createCompanyIncomes2025RecordData(
-                                    value: widget.bill?.totalValue,
+                                    value: widget!.bill?.totalValue,
                                     type: 'Fatura',
-                                    billRef: widget.bill?.reference,
+                                    billRef: widget!.bill?.reference,
                                     isExpected: true,
-                                    expectedDate: widget.bill?.expendedDate,
+                                    expectedDate: widget!.bill?.expendedDate,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -2148,7 +2152,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                               } else {
                                 _model.userSideOneIncome =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
 
@@ -2156,45 +2160,45 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (!widget
+                                              widget!.bill!.totalValue);
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         } else {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         }
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (!widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (widget
+                                              widget!.bill!.totalValue);
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         } else {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         }
                                       }()),
                                     },
@@ -2205,11 +2209,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                         _model.userSideOneIncome!)
                                     .set({
                                   ...createUserIncomeRecordData(
-                                    value: widget.bill?.totalValue,
+                                    value: widget!.bill?.totalValue,
                                     type: 'Fatura',
-                                    billRef: widget.bill?.reference,
+                                    billRef: widget!.bill?.reference,
                                     isExpected: true,
-                                    expectedDate: widget.bill?.expendedDate,
+                                    expectedDate: widget!.bill?.expendedDate,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -2219,11 +2223,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 });
                               }
                             } else {
-                              if (widget.currentAccount?.sideTwoType ==
+                              if (widget!.currentAccount?.sideTwoType ==
                                   'Şirket') {
                                 _model.companySideTwoIncome =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
 
@@ -2231,45 +2235,45 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (!widget
+                                              widget!.bill!.totalValue);
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         } else {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         }
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (!widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (widget
+                                              widget!.bill!.totalValue);
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         } else {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         }
                                       }()),
                                     },
@@ -2280,11 +2284,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                         _model.companySideTwoIncome!)
                                     .set({
                                   ...createCompanyIncomes2025RecordData(
-                                    value: widget.bill?.totalValue,
+                                    value: widget!.bill?.totalValue,
                                     type: 'Fatura',
-                                    billRef: widget.bill?.reference,
+                                    billRef: widget!.bill?.reference,
                                     isExpected: true,
-                                    expectedDate: widget.bill?.expendedDate,
+                                    expectedDate: widget!.bill?.expendedDate,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -2295,7 +2299,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                               } else {
                                 _model.userSideTwoIncome =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
 
@@ -2303,45 +2307,45 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (!widget
+                                              widget!.bill!.totalValue);
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         } else {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         }
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (!widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (widget
+                                              widget!.bill!.totalValue);
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         } else {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         }
                                       }()),
                                     },
@@ -2352,10 +2356,10 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                         _model.userSideTwoIncome!)
                                     .set({
                                   ...createUserIncomeRecordData(
-                                    value: widget.bill?.totalValue,
+                                    value: widget!.bill?.totalValue,
                                     type: 'Fatura',
-                                    billRef: widget.bill?.reference,
-                                    expectedDate: widget.bill?.expendedDate,
+                                    billRef: widget!.bill?.reference,
+                                    expectedDate: widget!.bill?.expendedDate,
                                     isExpected: true,
                                   ),
                                   ...mapToFirestore(
@@ -2366,11 +2370,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 });
                               }
 
-                              if (widget.currentAccount?.sideOneType ==
+                              if (widget!.currentAccount?.sideOneType ==
                                   'Şirket') {
                                 _model.companySideOnePayment =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
 
@@ -2378,45 +2382,45 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (!widget
+                                              widget!.bill!.totalValue);
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         } else {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         }
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (!widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (widget
+                                              widget!.bill!.totalValue);
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         } else {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         }
                                       }()),
                                     },
@@ -2427,10 +2431,10 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                         _model.companySideOnePayment!)
                                     .set({
                                   ...createCompanyPayments2025RecordData(
-                                    value: widget.bill?.totalValue,
+                                    value: widget!.bill?.totalValue,
                                     type: 'Fatura',
-                                    billRef: widget.bill?.reference,
-                                    expectedDate: widget.bill?.expendedDate,
+                                    billRef: widget!.bill?.reference,
+                                    expectedDate: widget!.bill?.expendedDate,
                                     isExpected: true,
                                   ),
                                   ...mapToFirestore(
@@ -2442,7 +2446,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                               } else {
                                 _model.userSideOnePayment =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
 
@@ -2450,45 +2454,45 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (!widget
+                                              widget!.bill!.totalValue);
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         } else {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         }
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
-                                        if (widget.bill!.isSideOneSeller &&
-                                            widget
+                                        if (widget!.bill!.isSideOneSeller &&
+                                            widget!
                                                 .currentAccount!.amISideOne) {
-                                          return widget.bill!.totalValue;
-                                        } else if (!widget
+                                          return widget!.bill!.totalValue;
+                                        } else if (!widget!
                                                 .bill!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
-                                        } else if (widget
+                                              widget!.bill!.totalValue);
+                                        } else if (widget!
                                                 .bill!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
-                                              widget.bill!.totalValue);
+                                              widget!.bill!.totalValue);
                                         } else {
-                                          return widget.bill!.totalValue;
+                                          return widget!.bill!.totalValue;
                                         }
                                       }()),
                                     },
@@ -2499,11 +2503,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                         _model.userSideOnePayment!)
                                     .set({
                                   ...createUserPaymentRecordData(
-                                    value: widget.bill?.totalValue,
+                                    value: widget!.bill?.totalValue,
                                     type: 'Fatura',
-                                    billRef: widget.bill?.reference,
+                                    billRef: widget!.bill?.reference,
                                     isExpected: true,
-                                    expectedDate: widget.bill?.expendedDate,
+                                    expectedDate: widget!.bill?.expendedDate,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -2528,29 +2532,29 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                     FlutterFlowTheme.of(context).secondary,
                               ),
                             );
-                            if (widget.bill!.isSideOneSeller) {
-                              await widget.currentAccount!.currentAccountId!
+                            if (widget!.bill!.isSideOneSeller) {
+                              await widget!.currentAccount!.currentAccountId!
                                   .update({
                                 ...mapToFirestore(
                                   {
                                     'expandedValueForSideOne':
                                         FieldValue.increment(
-                                            widget.bill!.totalValue),
+                                            widget!.bill!.totalValue),
                                     'expandedValueForTwo': FieldValue.increment(
-                                        -(widget.bill!.totalValue)),
+                                        -(widget!.bill!.totalValue)),
                                   },
                                 ),
                               });
                             } else {
-                              await widget.currentAccount!.currentAccountId!
+                              await widget!.currentAccount!.currentAccountId!
                                   .update({
                                 ...mapToFirestore(
                                   {
                                     'expandedValueForSideOne':
                                         FieldValue.increment(
-                                            -(widget.bill!.totalValue)),
+                                            -(widget!.bill!.totalValue)),
                                     'expandedValueForTwo': FieldValue.increment(
-                                        widget.bill!.totalValue),
+                                        widget!.bill!.totalValue),
                                   },
                                 ),
                               });
@@ -2558,7 +2562,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
 
                             _model.billNotification =
                                 await queryCompanyNotificationsRecordOnce(
-                              parent: widget.company,
+                              parent: widget!.company,
                               queryBuilder: (companyNotificationsRecord) =>
                                   companyNotificationsRecord
                                       .where(
@@ -2568,7 +2572,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                       )
                                       .where(
                                         'currentAccountBill',
-                                        isEqualTo: widget.bill?.reference,
+                                        isEqualTo: widget!.bill?.reference,
                                       ),
                               singleRecord: true,
                             ).then((s) => s.firstOrNull);
@@ -2587,11 +2591,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 description: 'Fatura onaylandı',
                                 type: WorkHistoryTypes.createBillAccept.name,
                                 fullDescription:
-                                    '${widget.currentAccount?.counterPartyName} İle ${widget.bill?.totalValue.toString()} Tutarında Yeni Bir Fatura onaylandı',
+                                    '${widget!.currentAccount?.counterPartyName} İle ${widget!.bill?.totalValue?.toString()} Tutarında Yeni Bir Fatura onaylandı',
                                 currentAccount:
-                                    widget.currentAccount?.currentAccountId,
-                                currentAccountBill: widget.bill?.reference,
-                                company: widget.company,
+                                    widget!.currentAccount?.currentAccountId,
+                                currentAccountBill: widget!.bill?.reference,
+                                company: widget!.company,
                               ),
                               ...mapToFirestore(
                                 {
@@ -2633,12 +2637,12 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
-                      if (!widget.bill!.isAccept)
+                      if (!widget!.bill!.isAccept)
                         FFButtonWidget(
                           onPressed: () async {
                             var _shouldSetState = false;
-                            if (widget.isPartner) {
-                              if (!widget.canManage) {
+                            if (widget!.isPartner) {
+                              if (!widget!.canManage) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -2673,7 +2677,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                             );
                             _model.billNotification2 =
                                 await queryCompanyNotificationsRecordOnce(
-                              parent: widget.company,
+                              parent: widget!.company,
                               queryBuilder: (companyNotificationsRecord) =>
                                   companyNotificationsRecord
                                       .where(
@@ -2683,18 +2687,18 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                       )
                                       .where(
                                         'currentAccountBill',
-                                        isEqualTo: widget.bill?.reference,
+                                        isEqualTo: widget!.bill?.reference,
                                       ),
                               singleRecord: true,
                             ).then((s) => s.firstOrNull);
                             _shouldSetState = true;
                             await _model.billNotification2!.reference.delete();
-                            if (widget.currentAccount!.amISideOne) {
-                              if (widget.currentAccount?.sideTwoType ==
+                            if (widget!.currentAccount!.amISideOne) {
+                              if (widget!.currentAccount?.sideTwoType ==
                                   'Şirket') {
                                 _model.companyNotifi =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
                                 _model.companyDetailNotifi =
@@ -2723,7 +2727,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 });
                               } else {
                                 _model.userNotifi = await actions.getUserDocRef(
-                                  widget.currentAccount!.sideTwoId,
+                                  widget!.currentAccount!.sideTwoId,
                                 );
                                 _shouldSetState = true;
                                 _model.userDetailNotifi =
@@ -2753,11 +2757,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 });
                               }
                             } else {
-                              if (widget.currentAccount?.sideOneType ==
+                              if (widget!.currentAccount?.sideOneType ==
                                   'Şirket') {
                                 _model.company2Notifi =
                                     await actions.getCompanyDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
                                 _model.companyDetail2Notifi =
@@ -2787,7 +2791,7 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                               } else {
                                 _model.user2Notifi =
                                     await actions.getUserDocRef(
-                                  widget.currentAccount!.sideOneId,
+                                  widget!.currentAccount!.sideOneId,
                                 );
                                 _shouldSetState = true;
                                 _model.userDetail2Notifi =
@@ -2826,11 +2830,11 @@ class _CurrentAccountBillsDetailForCompanyPageWidgetState
                                 description: 'Fatura Reddedildi',
                                 type: WorkHistoryTypes.createBillReject.name,
                                 fullDescription:
-                                    '${widget.currentAccount?.counterPartyName} İle ${widget.bill?.totalValue.toString()} Tutarında Yeni Bir Fatura Reddedildi',
+                                    '${widget!.currentAccount?.counterPartyName} İle ${widget!.bill?.totalValue?.toString()} Tutarında Yeni Bir Fatura Reddedildi',
                                 currentAccount:
-                                    widget.currentAccount?.currentAccountId,
-                                currentAccountBill: widget.bill?.reference,
-                                company: widget.company,
+                                    widget!.currentAccount?.currentAccountId,
+                                currentAccountBill: widget!.bill?.reference,
+                                company: widget!.company,
                               ),
                               ...mapToFirestore(
                                 {

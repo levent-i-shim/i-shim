@@ -1,13 +1,21 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_bills_page_model.dart';
 export 'current_account_bills_page_model.dart';
 
@@ -43,7 +51,7 @@ class _CurrentAccountBillsPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.bills = await queryCurrentAccountBillRecordOnce(
-        parent: widget.currentAccount?.currentAccountId,
+        parent: widget!.currentAccount?.currentAccountId,
       );
     });
 
@@ -103,21 +111,21 @@ class _CurrentAccountBillsPageWidgetState
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         floatingActionButton: Visibility(
-          visible: (widget.currentAccount!.amISideOne &&
-                  (widget.currentAccount?.sideOneType == 'Şahıs')) ||
-              (!widget.currentAccount!.amISideOne &&
-                  (widget.currentAccount?.sideTwoType == 'Şahıs')),
+          visible: (widget!.currentAccount!.amISideOne &&
+                  (widget!.currentAccount?.sideOneType == 'Şahıs')) ||
+              (!widget!.currentAccount!.amISideOne &&
+                  (widget!.currentAccount?.sideTwoType == 'Şahıs')),
           child: FloatingActionButton(
             onPressed: () async {
               context.pushNamed(
                 CurrentAccountCreateBillPageWidget.routeName,
                 queryParameters: {
                   'currentAccount': serializeParam(
-                    widget.currentAccount,
+                    widget!.currentAccount,
                     ParamType.DataStruct,
                   ),
                   'currentAccountId': serializeParam(
-                    widget.currentAccount?.currentAccountId,
+                    widget!.currentAccount?.currentAccountId,
                     ParamType.DocumentReference,
                   ),
                 }.withoutNulls,
@@ -183,7 +191,7 @@ class _CurrentAccountBillsPageWidgetState
                     ),
                     child: Visibility(
                       visible:
-                          widget.currentAccount?.sideTwoType == 'Kullanmayan',
+                          widget!.currentAccount?.sideTwoType == 'Kullanmayan',
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             16.0, 8.0, 16.0, 8.0),
@@ -228,7 +236,7 @@ class _CurrentAccountBillsPageWidgetState
                                     MatchCurrentAccountPageWidget.routeName,
                                     queryParameters: {
                                       'currentAccount': serializeParam(
-                                        widget
+                                        widget!
                                             .currentAccount?.currentAccountId,
                                         ParamType.DocumentReference,
                                       ),
@@ -288,7 +296,7 @@ class _CurrentAccountBillsPageWidgetState
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      '${widget.currentAccount?.counterPartyName} İle Olan Tüm Faturalarınız'
+                                      '${widget!.currentAccount?.counterPartyName} İle Olan Tüm Faturalarınız'
                                           .maybeHandleOverflow(
                                         maxChars: 40,
                                       ),
@@ -400,7 +408,7 @@ class _CurrentAccountBillsPageWidgetState
                                                                 .spaceBetween,
                                                         children: [
                                                           Text(
-                                                            widget.currentAccount!
+                                                            widget!.currentAccount!
                                                                     .amISideOne
                                                                 ? (billItem
                                                                         .isSideOneSeller
@@ -462,7 +470,7 @@ class _CurrentAccountBillsPageWidgetState
                                                                   ),
                                                                   'currentAccount':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .currentAccount,
                                                                     ParamType
                                                                         .DataStruct,

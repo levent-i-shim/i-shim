@@ -5,9 +5,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'create_form_model.dart';
 export 'create_form_model.dart';
 
@@ -311,13 +314,13 @@ class _CreateFormWidgetState extends State<CreateFormWidget> {
                             await formsRecordReference
                                 .set(createFormsRecordData(
                               formName: _model.textController.text,
-                              companyRef: widget.company,
+                              companyRef: widget!.company,
                               isDelete: false,
                             ));
                             _model.form = FormsRecord.getDocumentFromData(
                                 createFormsRecordData(
                                   formName: _model.textController.text,
-                                  companyRef: widget.company,
+                                  companyRef: widget!.company,
                                   isDelete: false,
                                 ),
                                 formsRecordReference);
@@ -328,7 +331,7 @@ class _CreateFormWidgetState extends State<CreateFormWidget> {
                                 description: 'Form Oluşturuldu',
                                 type: WorkHistoryTypes.createForm.name,
                                 form: _model.form?.reference,
-                                company: widget.company,
+                                company: widget!.company,
                                 fullDescription:
                                     '${_model.form?.formName} İsminde Form oluşturuldu',
                               ),
@@ -347,7 +350,7 @@ class _CreateFormWidgetState extends State<CreateFormWidget> {
                                   ParamType.Document,
                                 ),
                                 'routeBack': serializeParam(
-                                  widget.routeBack,
+                                  widget!.routeBack,
                                   ParamType.bool,
                                 ),
                               }.withoutNulls,

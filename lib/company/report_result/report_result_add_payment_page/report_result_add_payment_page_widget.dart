@@ -7,8 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'report_result_add_payment_page_model.dart';
 export 'report_result_add_payment_page_model.dart';
 
@@ -61,7 +64,7 @@ class _ReportResultAddPaymentPageWidgetState
     _model.textFieldNoFocusNode ??= FocusNode();
 
     _model.textFieldValueTextController ??=
-        TextEditingController(text: widget.value?.toString());
+        TextEditingController(text: widget!.value?.toString());
     _model.textFieldValueFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -835,10 +838,10 @@ class _ReportResultAddPaymentPageWidgetState
                       onPressed: () async {
                         var workPlacePayments2025RecordReference =
                             WorkPlacePayments2025Record.createDoc(
-                                widget.workPlace!);
+                                widget!.workPlace!);
                         await workPlacePayments2025RecordReference.set({
                           ...createWorkPlacePayments2025RecordData(
-                            value: widget.value,
+                            value: widget!.value,
                             type: _model.dropDownTypeValue,
                             toWhom: _model.textFieldKaynakTextController.text,
                             vkntcknor: _model.textFieldNoTextController.text,
@@ -856,7 +859,7 @@ class _ReportResultAddPaymentPageWidgetState
                         _model.paymentworkPlace =
                             WorkPlacePayments2025Record.getDocumentFromData({
                           ...createWorkPlacePayments2025RecordData(
-                            value: widget.value,
+                            value: widget!.value,
                             type: _model.dropDownTypeValue,
                             toWhom: _model.textFieldKaynakTextController.text,
                             vkntcknor: _model.textFieldNoTextController.text,
@@ -874,10 +877,10 @@ class _ReportResultAddPaymentPageWidgetState
 
                         var companyPayments2025RecordReference =
                             CompanyPayments2025Record.createDoc(
-                                widget.company!);
+                                widget!.company!);
                         await companyPayments2025RecordReference.set({
                           ...createCompanyPayments2025RecordData(
-                            value: widget.value,
+                            value: widget!.value,
                             type: _model.dropDownTypeValue,
                             toWhom: _model.textFieldKaynakTextController.text,
                             vkntcknor: _model.textFieldNoTextController.text,
@@ -885,7 +888,7 @@ class _ReportResultAddPaymentPageWidgetState
                                 _model.textFieldDetailTextController.text,
                             isExpected: false,
                             isDelete: false,
-                            workPlace: widget.workPlace,
+                            workPlace: widget!.workPlace,
                             workPlacePayment:
                                 _model.paymentworkPlace?.reference,
                           ),
@@ -898,7 +901,7 @@ class _ReportResultAddPaymentPageWidgetState
                         _model.payment =
                             CompanyPayments2025Record.getDocumentFromData({
                           ...createCompanyPayments2025RecordData(
-                            value: widget.value,
+                            value: widget!.value,
                             type: _model.dropDownTypeValue,
                             toWhom: _model.textFieldKaynakTextController.text,
                             vkntcknor: _model.textFieldNoTextController.text,
@@ -906,7 +909,7 @@ class _ReportResultAddPaymentPageWidgetState
                                 _model.textFieldDetailTextController.text,
                             isExpected: false,
                             isDelete: false,
-                            workPlace: widget.workPlace,
+                            workPlace: widget!.workPlace,
                             workPlacePayment:
                                 _model.paymentworkPlace?.reference,
                           ),
@@ -917,34 +920,34 @@ class _ReportResultAddPaymentPageWidgetState
                           ),
                         }, companyPayments2025RecordReference);
 
-                        await widget.companyTransaction!
+                        await widget!.companyTransaction!
                             .update(createCompanyTransactionsRecordData(
                           isConfirmed: true,
                         ));
 
-                        await widget.workPlaceTransaction!
+                        await widget!.workPlaceTransaction!
                             .update(createWorkPlaceTransactionRecordData(
                           isConfirmed: true,
                         ));
 
-                        await widget.company!.update({
+                        await widget!.company!.update({
                           ...mapToFirestore(
                             {
                               'yearlyMoney':
-                                  FieldValue.increment(-(widget.value!)),
+                                  FieldValue.increment(-(widget!.value!)),
                               'totalMoney':
-                                  FieldValue.increment(-(widget.value!)),
+                                  FieldValue.increment(-(widget!.value!)),
                             },
                           ),
                         });
 
-                        await widget.workPlace!.update({
+                        await widget!.workPlace!.update({
                           ...mapToFirestore(
                             {
                               'yearlyMoney':
-                                  FieldValue.increment(-(widget.value!)),
+                                  FieldValue.increment(-(widget!.value!)),
                               'totalMoney':
-                                  FieldValue.increment(-(widget.value!)),
+                                  FieldValue.increment(-(widget!.value!)),
                             },
                           ),
                         });
@@ -954,9 +957,9 @@ class _ReportResultAddPaymentPageWidgetState
                           ...createAjandaRecordData(
                             description: 'İşlem Onaylandı Gider Olarak Girildi',
                             type: WorkHistoryTypes.expenseEntered.name,
-                            transaction: widget.companyTransaction,
+                            transaction: widget!.companyTransaction,
                             fullDescription:
-                                '${widget.companyName} isimli şirketinizde ${widget.transactionName} isimli işlem onaylandı ve${widget.value?.toString()} TL Gider Olarak girildi',
+                                '${widget!.companyName} isimli şirketinizde ${widget!.transactionName} isimli işlem onaylandı ve${widget!.value?.toString()} TL Gider Olarak girildi',
                             isIncome: false,
                             companyPayment: _model.payment?.reference,
                           ),
@@ -981,16 +984,16 @@ class _ReportResultAddPaymentPageWidgetState
                         );
 
                         await WorkPlaceNotificationsRecord.createDoc(
-                                widget.workPlace!)
+                                widget!.workPlace!)
                             .set({
                           ...createWorkPlaceNotificationsRecordData(
                             type: WorkHistoryTypes.expenseEntered.name,
                             content: 'İşlem Onaylandı',
                             isRead: false,
                             isDelete: false,
-                            company: widget.company,
+                            company: widget!.company,
                             fullDescription:
-                                '${widget.transactionName} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından onaylandı',
+                                '${widget!.transactionName} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından onaylandı',
                             isAccept: true,
                             isReject: false,
                             triggeredBy: currentUserReference,

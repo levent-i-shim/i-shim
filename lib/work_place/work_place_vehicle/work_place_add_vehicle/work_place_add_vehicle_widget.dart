@@ -7,8 +7,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_add_vehicle_model.dart';
 export 'work_place_add_vehicle_model.dart';
 
@@ -1630,8 +1633,8 @@ class _WorkPlaceAddVehicleWidgetState extends State<WorkPlaceAddVehicleWidget> {
                     child: FFButtonWidget(
                       onPressed: () async {
                         var _shouldSetState = false;
-                        if (widget.isPartner!) {
-                          if (!widget.canAddVehicle!) {
+                        if (widget!.isPartner!) {
+                          if (!widget!.canAddVehicle!) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -1650,8 +1653,8 @@ class _WorkPlaceAddVehicleWidgetState extends State<WorkPlaceAddVehicleWidget> {
                             return;
                           }
                         } else {
-                          if (widget.isWorker!) {
-                            if (!widget.canAddVehicle!) {
+                          if (widget!.isWorker!) {
+                            if (!widget!.canAddVehicle!) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -1687,7 +1690,7 @@ class _WorkPlaceAddVehicleWidgetState extends State<WorkPlaceAddVehicleWidget> {
                         if (_model.validate!) {
                           var workPlaceVehicleRecordReference =
                               WorkPlaceVehicleRecord.createDoc(
-                                  widget.workPlace!);
+                                  widget!.workPlace!);
                           await workPlaceVehicleRecordReference.set({
                             ...createWorkPlaceVehicleRecordData(
                               plate: _model.textController1.text,
@@ -1742,7 +1745,7 @@ class _WorkPlaceAddVehicleWidgetState extends State<WorkPlaceAddVehicleWidget> {
                           _shouldSetState = true;
 
                           var companyVehiclesRecordReference =
-                              CompanyVehiclesRecord.createDoc(widget.company!);
+                              CompanyVehiclesRecord.createDoc(widget!.company!);
                           await companyVehiclesRecordReference.set({
                             ...createCompanyVehiclesRecordData(
                               plate: _model.textController1.text,
@@ -1752,7 +1755,7 @@ class _WorkPlaceAddVehicleWidgetState extends State<WorkPlaceAddVehicleWidget> {
                               km: double.tryParse(_model.textController6.text),
                               totalPayment: 0.0,
                               type: _model.dropDownValue,
-                              workPlace: widget.workPlace,
+                              workPlace: widget!.workPlace,
                               workPlaceVehicles:
                                   _model.workPlaceVehicle?.reference,
                               plate2: _model.textController2.text,
@@ -1781,7 +1784,7 @@ class _WorkPlaceAddVehicleWidgetState extends State<WorkPlaceAddVehicleWidget> {
                               km: double.tryParse(_model.textController6.text),
                               totalPayment: 0.0,
                               type: _model.dropDownValue,
-                              workPlace: widget.workPlace,
+                              workPlace: widget!.workPlace,
                               workPlaceVehicles:
                                   _model.workPlaceVehicle?.reference,
                               plate2: _model.textController2.text,
@@ -1807,7 +1810,7 @@ class _WorkPlaceAddVehicleWidgetState extends State<WorkPlaceAddVehicleWidget> {
                             ...createAjandaRecordData(
                               description: 'Araba Eklendi',
                               type: WorkHistoryTypes.addVehicle.name,
-                              company: widget.company,
+                              company: widget!.company,
                               fullDescription:
                                   '${_model.textController1.text} plakalı araç eklendi',
                               companyVehicle: _model.vehicle?.reference,

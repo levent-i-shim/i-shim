@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'dart:typed_data';
 import '../cloud_functions/cloud_functions.dart';
+import '../schema/structs/index.dart';
 
 import 'package:flutter/foundation.dart';
 
@@ -478,7 +480,7 @@ class ListChatCompletionsCall {
 
 class CreateChatCompletionCall {
   Future<ApiCallResponse> call({
-    dynamic promptJson,
+    dynamic? promptJson,
   }) async {
     final prompt = _serializeJson(promptJson, true);
     final response = await makeCloudCall(

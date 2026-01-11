@@ -4,11 +4,15 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'business_choose_main_titles_model.dart';
 export 'business_choose_main_titles_model.dart';
 
@@ -108,11 +112,11 @@ class _BusinessChooseMainTitlesWidgetState
                   HapticFeedback.heavyImpact();
                   _model.listOfInvestedMonies =
                       await queryInvestedMoniesToWorkPlaceRecordOnce(
-                    parent: widget.workPlaceDocument?.reference,
+                    parent: widget!.workPlaceDocument?.reference,
                   );
                   _model.countNumberOfInvestedMonies =
                       await queryInvestedMoniesToWorkPlaceRecordCount(
-                    parent: widget.workPlaceDocument?.reference,
+                    parent: widget!.workPlaceDocument?.reference,
                   );
 
                   safeSetState(() {});
@@ -203,17 +207,17 @@ class _BusinessChooseMainTitlesWidgetState
                             InvestedMoniestToWorkPlaceWidget.routeName,
                             queryParameters: {
                               'workPlaceDocument': serializeParam(
-                                widget.workPlaceDocument,
+                                widget!.workPlaceDocument,
                                 ParamType.Document,
                               ),
                               'companyDocument': serializeParam(
-                                widget.companyDocument,
+                                widget!.companyDocument,
                                 ParamType.Document,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              'workPlaceDocument': widget.workPlaceDocument,
-                              'companyDocument': widget.companyDocument,
+                              'workPlaceDocument': widget!.workPlaceDocument,
+                              'companyDocument': widget!.companyDocument,
                             },
                           );
 
@@ -254,7 +258,7 @@ class _BusinessChooseMainTitlesWidgetState
                                     0.0, 5.0, 0.0, 5.0),
                                 child: Text(
                                   formatNumber(
-                                    widget
+                                    widget!
                                         .workPlaceDocument!.investedMoneyTotal,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.commaDecimal,
@@ -392,7 +396,7 @@ class _BusinessChooseMainTitlesWidgetState
                                     0.0, 5.0, 0.0, 5.0),
                                 child: Text(
                                   formatNumber(
-                                    widget.workPlaceDocument!
+                                    widget!.workPlaceDocument!
                                         .currentPaidToSupplierTotal,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.commaDecimal,
@@ -485,7 +489,7 @@ class _BusinessChooseMainTitlesWidgetState
                                     0.0, 5.0, 0.0, 5.0),
                                 child: Text(
                                   formatNumber(
-                                    widget.workPlaceDocument!
+                                    widget!.workPlaceDocument!
                                         .currentCollectedFromCustomerTotal,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.commaDecimal,
@@ -619,7 +623,7 @@ class _BusinessChooseMainTitlesWidgetState
                                   0.0, 5.0, 0.0, 5.0),
                               child: Text(
                                 formatNumber(
-                                  widget.workPlaceDocument!
+                                  widget!.workPlaceDocument!
                                       .paidTaxAndSocialSecurityMoneyTotal,
                                   formatType: FormatType.decimal,
                                   decimalType: DecimalType.commaDecimal,
@@ -685,25 +689,25 @@ class _BusinessChooseMainTitlesWidgetState
                                 ParamType.DocumentReference,
                               ),
                               'companyRef': serializeParam(
-                                widget.companyDocument?.reference,
+                                widget!.companyDocument?.reference,
                                 ParamType.DocumentReference,
                               ),
                               'companyDocument': serializeParam(
-                                widget.companyDocument,
+                                widget!.companyDocument,
                                 ParamType.Document,
                               ),
                               'workPlaceRef': serializeParam(
-                                widget.workPlaceDocument?.reference,
+                                widget!.workPlaceDocument?.reference,
                                 ParamType.DocumentReference,
                               ),
                               'workPlaceDocument': serializeParam(
-                                widget.workPlaceDocument,
+                                widget!.workPlaceDocument,
                                 ParamType.Document,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              'companyDocument': widget.companyDocument,
-                              'workPlaceDocument': widget.workPlaceDocument,
+                              'companyDocument': widget!.companyDocument,
+                              'workPlaceDocument': widget!.workPlaceDocument,
                             },
                           );
                         },
@@ -748,7 +752,7 @@ class _BusinessChooseMainTitlesWidgetState
                                         10.0, 0.0, 10.0, 0.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.workPlaceDocument?.name,
+                                        widget!.workPlaceDocument?.name,
                                         'İşyeri Adı',
                                       ),
                                       textAlign: TextAlign.center,
@@ -780,7 +784,7 @@ class _BusinessChooseMainTitlesWidgetState
                                     5.0, 5.0, 5.0, 5.0),
                                 child: Text(
                                   formatNumber(
-                                    widget.workPlaceDocument!
+                                    widget!.workPlaceDocument!
                                         .workPlaceFinalPerformance,
                                     formatType: FormatType.decimal,
                                     decimalType: DecimalType.commaDecimal,
@@ -844,7 +848,7 @@ class _BusinessChooseMainTitlesWidgetState
                                   0.0, 5.0, 0.0, 5.0),
                               child: Text(
                                 formatNumber(
-                                  widget.workPlaceDocument!
+                                  widget!.workPlaceDocument!
                                       .paidWorkerSalaryTotalMoney,
                                   formatType: FormatType.decimal,
                                   decimalType: DecimalType.commaDecimal,
@@ -982,7 +986,7 @@ class _BusinessChooseMainTitlesWidgetState
                                       0.0, 5.0, 0.0, 5.0),
                                   child: Text(
                                     formatNumber(
-                                      widget.workPlaceDocument!
+                                      widget!.workPlaceDocument!
                                           .paidToSupplierWithoutCurrentTotal,
                                       formatType: FormatType.decimal,
                                       decimalType: DecimalType.commaDecimal,
@@ -1081,7 +1085,7 @@ class _BusinessChooseMainTitlesWidgetState
                                       0.0, 5.0, 0.0, 5.0),
                                   child: Text(
                                     formatNumber(
-                                      widget.workPlaceDocument!
+                                      widget!.workPlaceDocument!
                                           .collectedFromCustomerWithoutCurrentTotal,
                                       formatType: FormatType.decimal,
                                       decimalType: DecimalType.commaDecimal,
@@ -1182,7 +1186,7 @@ class _BusinessChooseMainTitlesWidgetState
                                   0.0, 5.0, 0.0, 5.0),
                               child: Text(
                                 formatNumber(
-                                  widget
+                                  widget!
                                       .workPlaceDocument!.withdrawnMoneyTotal,
                                   formatType: FormatType.decimal,
                                   decimalType: DecimalType.commaDecimal,

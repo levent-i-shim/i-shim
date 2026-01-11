@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_unit_page_work_place_model.dart';
 export 'add_unit_page_work_place_model.dart';
 
@@ -65,7 +68,7 @@ class _AddUnitPageWorkPlaceWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyDepartmentsRecord>>(
       stream: queryCompanyDepartmentsRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyDepartmentsRecord) => companyDepartmentsRecord
             .where(
               'isDelete',
@@ -73,7 +76,7 @@ class _AddUnitPageWorkPlaceWidgetState
             )
             .where(
               'workPlace',
-              isEqualTo: widget.workPlace,
+              isEqualTo: widget!.workPlace,
             ),
       ),
       builder: (context, snapshot) {
@@ -504,8 +507,8 @@ class _AddUnitPageWorkPlaceWidgetState
                           child: FFButtonWidget(
                             onPressed: () async {
                               var _shouldSetState = false;
-                              if (widget.isPartner!) {
-                                if (!widget.canManageUnit!) {
+                              if (widget!.isPartner!) {
+                                if (!widget!.canManageUnit!) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -525,8 +528,8 @@ class _AddUnitPageWorkPlaceWidgetState
                                   return;
                                 }
                               } else {
-                                if (widget.isWorker!) {
-                                  if (!widget.canManageUnit!) {
+                                if (widget!.isWorker!) {
+                                  if (!widget!.canManageUnit!) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
@@ -561,13 +564,13 @@ class _AddUnitPageWorkPlaceWidgetState
                                 _model.depRef =
                                     await actions.getDepartmentDocRef(
                                   _model.dropDownDepartmentValue!,
-                                  widget.company!.id,
+                                  widget!.company!.id,
                                 );
                                 _shouldSetState = true;
 
                                 var workPlaceUnitsRecordReference =
                                     WorkPlaceUnitsRecord.createDoc(
-                                        widget.workPlace!);
+                                        widget!.workPlace!);
                                 await workPlaceUnitsRecordReference
                                     .set(createWorkPlaceUnitsRecordData(
                                   name: _model.textController.text,
@@ -588,12 +591,12 @@ class _AddUnitPageWorkPlaceWidgetState
 
                                 var companyUnitsRecordReference =
                                     CompanyUnitsRecord.createDoc(
-                                        widget.company!);
+                                        widget!.company!);
                                 await companyUnitsRecordReference
                                     .set(createCompanyUnitsRecordData(
                                   name: _model.textController.text,
                                   departmenRef: _model.depRef,
-                                  workplaceRef: widget.workPlace,
+                                  workplaceRef: widget!.workPlace,
                                   isDelete: false,
                                   workPlaceUnitRef: _model.ref?.reference,
                                   createdBy: currentUserReference,
@@ -603,7 +606,7 @@ class _AddUnitPageWorkPlaceWidgetState
                                         createCompanyUnitsRecordData(
                                           name: _model.textController.text,
                                           departmenRef: _model.depRef,
-                                          workplaceRef: widget.workPlace,
+                                          workplaceRef: widget!.workPlace,
                                           isDelete: false,
                                           workPlaceUnitRef:
                                               _model.ref?.reference,

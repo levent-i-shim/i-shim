@@ -1,8 +1,15 @@
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'edit_calculations_page_model.dart';
 export 'edit_calculations_page_model.dart';
 
@@ -117,23 +124,23 @@ class _EditCalculationsPageWidgetState
                 child: custom_widgets.CalculationEditForm(
                   width: double.infinity,
                   height: MediaQuery.sizeOf(context).height,
-                  calculation: widget.parameters!,
-                  totalCost: widget.product!.totalCost,
-                  counter: widget.product!.counter,
-                  productRef: widget.product!.reference,
-                  oldProductQuantity: widget.calculation!.productQuantity,
-                  oldCost: widget.calculation!.productQuantity *
-                      widget.calculation!.cost,
-                  calculationRef: widget.calculation!.reference,
-                  totalProduct: widget.product!.totalProduct,
-                  parentTotalCost: widget.parentProduct!.totalCost,
-                  parentTotalQuantity: widget.parentProduct!.totalQuantity,
-                  parentProdut: widget.parentProduct!.reference,
-                  oldSelectedDate: widget.calculation!.date!,
-                  company: widget.parentProduct!.parentReference,
-                  workPlace: widget.workPlace!,
-                  companyPayment: widget.calculation!.companyPaymentRef!,
-                  workPlacePayment: widget.calculation!.workPlacePaymentRef!,
+                  calculation: widget!.parameters!,
+                  totalCost: widget!.product!.totalCost,
+                  counter: widget!.product!.counter,
+                  productRef: widget!.product!.reference,
+                  oldProductQuantity: widget!.calculation!.productQuantity,
+                  oldCost: widget!.calculation!.productQuantity *
+                      widget!.calculation!.cost,
+                  calculationRef: widget!.calculation!.reference,
+                  totalProduct: widget!.product!.totalProduct,
+                  parentTotalCost: widget!.parentProduct!.totalCost,
+                  parentTotalQuantity: widget!.parentProduct!.totalQuantity,
+                  parentProdut: widget!.parentProduct!.reference,
+                  oldSelectedDate: widget!.calculation!.date!,
+                  company: widget!.parentProduct!.parentReference,
+                  workPlace: widget!.workPlace!,
+                  companyPayment: widget!.calculation!.companyPaymentRef!,
+                  workPlacePayment: widget!.calculation!.workPlacePaymentRef!,
                 ),
               ),
             ),

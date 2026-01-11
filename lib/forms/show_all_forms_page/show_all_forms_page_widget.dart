@@ -2,9 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'show_all_forms_page_model.dart';
 export 'show_all_forms_page_model.dart';
 
@@ -54,7 +58,7 @@ class _ShowAllFormsPageWidgetState extends State<ShowAllFormsPageWidget> {
         queryBuilder: (formsRecord) => formsRecord
             .where(
               'companyRef',
-              isEqualTo: widget.company,
+              isEqualTo: widget!.company,
             )
             .where(
               'isDelete',
@@ -187,8 +191,8 @@ class _ShowAllFormsPageWidgetState extends State<ShowAllFormsPageWidget> {
                                   size: 24.0,
                                 ),
                                 onPressed: () async {
-                                  if (widget.isPartner) {
-                                    if (!widget.canManage!) {
+                                  if (widget!.isPartner) {
+                                    if (!widget!.canManage!) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -215,7 +219,7 @@ class _ShowAllFormsPageWidgetState extends State<ShowAllFormsPageWidget> {
                                     CreateFormWidget.routeName,
                                     queryParameters: {
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                       'routeBack': serializeParam(
@@ -271,11 +275,11 @@ class _ShowAllFormsPageWidgetState extends State<ShowAllFormsPageWidget> {
                                               ParamType.Document,
                                             ),
                                             'isPartner': serializeParam(
-                                              widget.isPartner,
+                                              widget!.isPartner,
                                               ParamType.bool,
                                             ),
                                             'canManage': serializeParam(
-                                              widget.canManage,
+                                              widget!.canManage,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,

@@ -1,12 +1,15 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'new_nav_bar_model.dart';
 export 'new_nav_bar_model.dart';
 
@@ -175,7 +178,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                     },
                     child: Builder(
                       builder: (context) {
-                        if (widget.pageIndex == 1) {
+                        if (widget!.pageIndex == 1) {
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -372,7 +375,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                     },
                     child: Builder(
                       builder: (context) {
-                        if (widget.pageIndex == 2) {
+                        if (widget!.pageIndex == 2) {
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -478,7 +481,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                       },
                       child: Builder(
                         builder: (context) {
-                          if (widget.pageIndex == 3) {
+                          if (widget!.pageIndex == 3) {
                             return Align(
                               alignment: AlignmentDirectional(0.0, 0.0),
                               child: Transform.rotate(
@@ -699,7 +702,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                     },
                     child: Builder(
                       builder: (context) {
-                        if (widget.pageIndex == 4) {
+                        if (widget!.pageIndex == 4) {
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -896,7 +899,7 @@ class _NewNavBarWidgetState extends State<NewNavBarWidget> {
                     },
                     child: Builder(
                       builder: (context) {
-                        if (widget.pageIndex == 5) {
+                        if (widget!.pageIndex == 5) {
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

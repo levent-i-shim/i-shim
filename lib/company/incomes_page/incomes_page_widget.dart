@@ -6,10 +6,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'incomes_page_model.dart';
 export 'incomes_page_model.dart';
 
@@ -106,12 +109,12 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  if (widget.canAddIncome!) {
+                  if (widget!.canAddIncome!) {
                     context.pushNamed(
                       AddManualIncomePageWidget.routeName,
                       queryParameters: {
                         'company': serializeParam(
-                          widget.company,
+                          widget!.company,
                           ParamType.DocumentReference,
                         ),
                         'isEdit': serializeParam(
@@ -187,7 +190,7 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
             child: PagedListView<DocumentSnapshot<Object?>?,
                 CompanyIncomes2025Record>(
               pagingController: _model.setListViewController(
-                  CompanyIncomes2025Record.collection(widget.company)
+                  CompanyIncomes2025Record.collection(widget!.company)
                       .where(
                         'isDelete',
                         isEqualTo: false,
@@ -197,7 +200,7 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
                         isEqualTo: false,
                       )
                       .orderBy('date', descending: true),
-                  parent: widget.company),
+                  parent: widget!.company),
               padding: EdgeInsets.zero,
               reverse: false,
               scrollDirection: Axis.vertical,
@@ -456,13 +459,13 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (widget.canAddIncome!) {
+                                          if (widget!.canAddIncome!) {
                                             context.pushNamed(
                                               AddManualIncomePageWidget
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'companyIncome': serializeParam(
@@ -515,7 +518,7 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (widget.canAddIncome!) {
+                                          if (widget!.canAddIncome!) {
                                             var confirmDialogResponse =
                                                 await showDialog<bool>(
                                                       context: context,
@@ -549,7 +552,7 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
                                                     ) ??
                                                     false;
                                             if (confirmDialogResponse) {
-                                              if (widget.isOwner!) {
+                                              if (widget!.isOwner!) {
                                                 await listViewCompanyIncomes2025Record
                                                     .reference
                                                     .update(
@@ -564,7 +567,7 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
                                                   isDelete: true,
                                                 ));
 
-                                                await widget.company!.update({
+                                                await widget!.company!.update({
                                                   ...mapToFirestore(
                                                     {
                                                       'totalMoney':
@@ -643,12 +646,12 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
                                                   _model.companyDetail =
                                                       await CompaniesRecord
                                                           .getDocumentOnce(
-                                                              widget.company!);
+                                                              widget!.company!);
 
                                                   var deletionRequestRecordReference =
                                                       DeletionRequestRecord
                                                           .createDoc(
-                                                              widget.company!);
+                                                              widget!.company!);
                                                   await deletionRequestRecordReference
                                                       .set(
                                                           createDeletionRequestRecordData(
@@ -705,7 +708,7 @@ class _IncomesPageWidgetState extends State<IncomesPageWidget> {
                                                           .id,
                                                       isRead: false,
                                                       isDelete: false,
-                                                      company: widget.company,
+                                                      company: widget!.company,
                                                       fullDescription:
                                                           '${listViewCompanyIncomes2025Record.type} Türündeki ${listViewCompanyIncomes2025Record.value.toString()} değerindeki Gelir ${currentUserDisplayName} isimli kişi tarafından silinme talebinde bulunuldu',
                                                       workplace:

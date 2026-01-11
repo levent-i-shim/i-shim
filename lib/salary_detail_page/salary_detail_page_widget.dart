@@ -2,8 +2,11 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'salary_detail_page_model.dart';
 export 'salary_detail_page_model.dart';
 
@@ -106,11 +109,11 @@ class _SalaryDetailPageWidgetState extends State<SalaryDetailPageWidget> {
             ),
             child: StreamBuilder<List<WorkerPaymentDetailsRecord>>(
               stream: queryWorkerPaymentDetailsRecord(
-                parent: widget.companyPayment?.parentReference,
+                parent: widget!.companyPayment?.parentReference,
                 queryBuilder: (workerPaymentDetailsRecord) =>
                     workerPaymentDetailsRecord.where(
                   'paymentRef',
-                  isEqualTo: widget.companyPayment?.reference,
+                  isEqualTo: widget!.companyPayment?.reference,
                 ),
               ),
               builder: (context, snapshot) {

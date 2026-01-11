@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/payments/options_check_make_paid_note/options_check_make_paid_note_widget.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_check_unpaid_model.dart';
 export 'options_check_unpaid_model.dart';
 
@@ -191,7 +196,7 @@ class _OptionsCheckUnpaidWidgetState extends State<OptionsCheckUnpaidWidget> {
                         ) ??
                         false;
                     if (confirmDialogResponse) {
-                      await widget.checkCompanyDoc!.reference
+                      await widget!.checkCompanyDoc!.reference
                           .update(createFinancialNoteCompanyCheckRecordData(
                         paymentStatus: 'paid',
                       ));
@@ -205,7 +210,7 @@ class _OptionsCheckUnpaidWidgetState extends State<OptionsCheckUnpaidWidget> {
                             alignment: AlignmentDirectional(0.0, 0.0)
                                 .resolve(Directionality.of(context)),
                             child: OptionsCheckMakePaidNoteWidget(
-                              checkDocumentRef: widget.checkCompanyDoc!,
+                              checkDocumentRef: widget!.checkCompanyDoc!,
                             ),
                           );
                         },
@@ -338,11 +343,11 @@ class _OptionsCheckUnpaidWidgetState extends State<OptionsCheckUnpaidWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.checkCompanyDoc!.reference
+                    await widget!.checkCompanyDoc!.reference
                         .update(createFinancialNoteCompanyCheckRecordData(
                       isDeleted: true,
                     ));
-                    await widget.checkCompanyDoc!.reference.delete();
+                    await widget!.checkCompanyDoc!.reference.delete();
                   }
                   Navigator.pop(context);
                 },
@@ -432,7 +437,7 @@ class _OptionsCheckUnpaidWidgetState extends State<OptionsCheckUnpaidWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.checkCompanyDoc!.reference.delete();
+                    await widget!.checkCompanyDoc!.reference.delete();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(

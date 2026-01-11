@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_stock_page_model.dart';
 export 'add_stock_page_model.dart';
 
@@ -1003,7 +1006,7 @@ class _AddStockPageWidgetState extends State<AddStockPageWidget> {
                                                         workPlacesRecord
                                                             .where(
                                                               'companyRef',
-                                                              isEqualTo: widget
+                                                              isEqualTo: widget!
                                                                   .company,
                                                             )
                                                             .where(
@@ -1188,7 +1191,7 @@ class _AddStockPageWidgetState extends State<AddStockPageWidget> {
 
                                         var stocksRecordReference =
                                             StocksRecord.createDoc(
-                                                widget.company!);
+                                                widget!.company!);
                                         await stocksRecordReference.set({
                                           ...createStocksRecordData(
                                             name: _model.textController1.text,

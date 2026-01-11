@@ -3,11 +3,15 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'message_new_page_copy_model.dart';
 export 'message_new_page_copy_model.dart';
 
@@ -63,9 +67,9 @@ class _MessageNewPageCopyWidgetState extends State<MessageNewPageCopyWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: valueOrDefault<Color>(
-          widget.message?.user1 == currentUserReference
-              ? functions.getBackgroundColor(widget.message?.backgroundUser1)
-              : functions.getBackgroundColor(widget.message?.backgroundUser2),
+          widget!.message?.user1 == currentUserReference
+              ? functions.getBackgroundColor(widget!.message?.backgroundUser1)
+              : functions.getBackgroundColor(widget!.message?.backgroundUser2),
           Color(0xFF090620),
         ),
         body: SafeArea(
@@ -83,11 +87,11 @@ class _MessageNewPageCopyWidgetState extends State<MessageNewPageCopyWidget> {
                         height: double.infinity,
                         decoration: BoxDecoration(
                           color: valueOrDefault<Color>(
-                            widget.message?.user1 == currentUserReference
+                            widget!.message?.user1 == currentUserReference
                                 ? functions.getBackgroundColor(
-                                    widget.message?.backgroundUser1)
+                                    widget!.message?.backgroundUser1)
                                 : functions.getBackgroundColor(
-                                    widget.message?.backgroundUser2),
+                                    widget!.message?.backgroundUser2),
                             Color(0xFF090620),
                           ),
                         ),
@@ -123,7 +127,7 @@ class _MessageNewPageCopyWidgetState extends State<MessageNewPageCopyWidget> {
                                           shape: BoxShape.circle,
                                         ),
                                         child: Image.network(
-                                          widget.receiverUser!.photoUrl,
+                                          widget!.receiverUser!.photoUrl,
                                           fit: BoxFit.cover,
                                         ),
                                       ),
@@ -138,7 +142,7 @@ class _MessageNewPageCopyWidgetState extends State<MessageNewPageCopyWidget> {
                                           4.0, 0.0, 4.0, 0.0),
                                       child: StreamBuilder<MessageRecord>(
                                         stream: MessageRecord.getDocument(
-                                            widget.message!.reference),
+                                            widget!.message!.reference),
                                         builder: (context, snapshot) {
                                           // Customize what your widget looks like when it's loading.
                                           if (!snapshot.hasData) {
@@ -174,28 +178,28 @@ class _MessageNewPageCopyWidgetState extends State<MessageNewPageCopyWidget> {
                                                 queryParameters: {
                                                   'receiverUser':
                                                       serializeParam(
-                                                    widget.receiverUser,
+                                                    widget!.receiverUser,
                                                     ParamType.Document,
                                                   ),
                                                   'conversationId':
                                                       serializeParam(
-                                                    widget.conversationId,
+                                                    widget!.conversationId,
                                                     ParamType.int,
                                                   ),
                                                   'message': serializeParam(
-                                                    widget.message,
+                                                    widget!.message,
                                                     ParamType.Document,
                                                   ),
                                                   'conversationType':
                                                       serializeParam(
-                                                    widget.type,
+                                                    widget!.type,
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,
                                                 extra: <String, dynamic>{
                                                   'receiverUser':
-                                                      widget.receiverUser,
-                                                  'message': widget.message,
+                                                      widget!.receiverUser,
+                                                  'message': widget!.message,
                                                 },
                                               );
                                             },
@@ -228,7 +232,7 @@ class _MessageNewPageCopyWidgetState extends State<MessageNewPageCopyWidget> {
                                                                 12.0, 2.0),
                                                     child: Text(
                                                       valueOrDefault<String>(
-                                                        widget.receiverUser
+                                                        widget!.receiverUser
                                                             ?.displayName,
                                                         'İsim',
                                                       ),
@@ -426,12 +430,12 @@ class _MessageNewPageCopyWidgetState extends State<MessageNewPageCopyWidget> {
                                                   .routeName,
                                               queryParameters: {
                                                 'message': serializeParam(
-                                                  widget.message,
+                                                  widget!.message,
                                                   ParamType.Document,
                                                 ),
                                               }.withoutNulls,
                                               extra: <String, dynamic>{
-                                                'message': widget.message,
+                                                'message': widget!.message,
                                               },
                                             );
                                           },
@@ -458,49 +462,49 @@ class _MessageNewPageCopyWidgetState extends State<MessageNewPageCopyWidget> {
                                     child: custom_widgets.MessageSyncListener(
                                       width: double.infinity,
                                       height: double.infinity,
-                                      conversationId: widget.conversationId!,
-                                      conversationType: widget.type!,
+                                      conversationId: widget!.conversationId!,
+                                      conversationType: widget!.type!,
                                       currentUserDisplayName:
                                           currentUserDisplayName,
                                       authUser: currentUserReference!,
-                                      messageRef: widget.message!.reference,
-                                      receiverUser: widget.message?.user1 ==
+                                      messageRef: widget!.message!.reference,
+                                      receiverUser: widget!.message?.user1 ==
                                               currentUserReference
-                                          ? widget.message!.user2!
-                                          : widget.message!.user1!,
-                                      addImageToGalery: widget
+                                          ? widget!.message!.user2!
+                                          : widget!.message!.user1!,
+                                      addImageToGalery: widget!
                                                   .message?.user1 ==
                                               currentUserReference
-                                          ? widget.message!.user1AllowMediaSave
-                                          : widget
+                                          ? widget!.message!.user1AllowMediaSave
+                                          : widget!
                                               .message!.user2AllowMediaSave,
-                                      amIUser1: widget.message?.user1 ==
+                                      amIUser1: widget!.message?.user1 ==
                                               currentUserReference
                                           ? true
                                           : false,
-                                      backGround: widget.message?.user1 ==
+                                      backGround: widget!.message?.user1 ==
                                               currentUserReference
-                                          ? widget.message?.backgroundUser1
-                                          : widget.message?.backgroundUser2,
-                                      ballon1: widget.message?.user1 ==
+                                          ? widget!.message?.backgroundUser1
+                                          : widget!.message?.backgroundUser2,
+                                      ballon1: widget!.message?.user1 ==
                                               currentUserReference
-                                          ? widget.message?.balloon1User1
-                                          : widget.message?.balloon1User2,
-                                      ballon1Text: widget.message?.user1 ==
+                                          ? widget!.message?.balloon1User1
+                                          : widget!.message?.balloon1User2,
+                                      ballon1Text: widget!.message?.user1 ==
                                               currentUserReference
-                                          ? widget
+                                          ? widget!
                                               .message?.balloon1TextColorUser1
-                                          : widget
+                                          : widget!
                                               .message?.balloon1TextColorUser2,
-                                      ballon2: widget.message?.user1 ==
+                                      ballon2: widget!.message?.user1 ==
                                               currentUserReference
-                                          ? widget.message?.balloon2User1
-                                          : widget.message?.balloon2User2,
-                                      ballon2Text: widget.message?.user1 ==
+                                          ? widget!.message?.balloon2User1
+                                          : widget!.message?.balloon2User2,
+                                      ballon2Text: widget!.message?.user1 ==
                                               currentUserReference
-                                          ? widget
+                                          ? widget!
                                               .message?.balloon2TextColorUser1
-                                          : widget
+                                          : widget!
                                               .message?.balloon2TextColorUser2,
                                     ),
                                   ),

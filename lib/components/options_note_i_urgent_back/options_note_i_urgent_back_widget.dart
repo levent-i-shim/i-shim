@@ -1,8 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_note_i_urgent_back_model.dart';
 export 'options_note_i_urgent_back_model.dart';
 
@@ -100,7 +105,7 @@ class _OptionsNoteIUrgentBackWidgetState
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    await widget.urgentNoteSendBack!
+                    await widget!.urgentNoteSendBack!
                         .update(createUrgentNotesRecordData(
                       completed: false,
                     ));
@@ -271,7 +276,7 @@ class _OptionsNoteIUrgentBackWidgetState
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.urgentNoteSendBack!
+                    await widget!.urgentNoteSendBack!
                         .update(createUrgentNotesRecordData(
                       isDeleted: true,
                     ));

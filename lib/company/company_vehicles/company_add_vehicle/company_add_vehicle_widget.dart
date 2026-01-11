@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_add_vehicle_model.dart';
 export 'company_add_vehicle_model.dart';
 
@@ -344,7 +347,7 @@ class _CompanyAddVehicleWidgetState extends State<CompanyAddVehicleWidget> {
                                             workPlacesRecord
                                                 .where(
                                                   'companyRef',
-                                                  isEqualTo: widget.company,
+                                                  isEqualTo: widget!.company,
                                                 )
                                                 .where(
                                                   'isDelete',
@@ -2029,7 +2032,7 @@ class _CompanyAddVehicleWidgetState extends State<CompanyAddVehicleWidget> {
 
                               var companyVehiclesRecordReference =
                                   CompanyVehiclesRecord.createDoc(
-                                      widget.company!);
+                                      widget!.company!);
                               await companyVehiclesRecordReference.set({
                                 ...createCompanyVehiclesRecordData(
                                   plate:
@@ -2104,7 +2107,7 @@ class _CompanyAddVehicleWidgetState extends State<CompanyAddVehicleWidget> {
                                 ...createAjandaRecordData(
                                   description: 'Araba Eklendi',
                                   type: WorkHistoryTypes.addVehicle.name,
-                                  company: widget.company,
+                                  company: widget!.company,
                                   fullDescription:
                                       '${_model.textFieldPlateTextController.text} plakalı araç eklendi',
                                   companyVehicle: _model.vehicle?.reference,

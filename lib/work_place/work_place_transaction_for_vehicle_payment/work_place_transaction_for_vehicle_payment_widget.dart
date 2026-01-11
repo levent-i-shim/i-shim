@@ -7,10 +7,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_transaction_for_vehicle_payment_model.dart';
 export 'work_place_transaction_for_vehicle_payment_model.dart';
 
@@ -55,7 +59,7 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.companyDetail =
-          await CompaniesRecord.getDocumentOnce(widget.company!);
+          await CompaniesRecord.getDocumentOnce(widget!.company!);
       _model.worker = await queryWorkPlaceWorkerRecordOnce(
         parent: _model.companyDetail?.headOffice,
         queryBuilder: (workPlaceWorkerRecord) => workPlaceWorkerRecord.where(
@@ -81,7 +85,7 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<CompanyVehiclePaymentsRecord>(
       stream: CompanyVehiclePaymentsRecord.getDocument(
-          widget.transaction!.vehiclePayment!),
+          widget!.transaction!.vehiclePayment!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -1056,8 +1060,8 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
-                                        if (!widget.transaction!.isConfirmed &&
-                                            !widget.transaction!.isRejected)
+                                        if (!widget!.transaction!.isConfirmed &&
+                                            !widget!.transaction!.isRejected)
                                           Padding(
                                             padding:
                                                 EdgeInsetsDirectional.fromSTEB(
@@ -1075,8 +1079,8 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
                                                     onPressed: () async {
                                                       var _shouldSetState =
                                                           false;
-                                                      if (widget.isPartner!) {
-                                                        if (!widget
+                                                      if (widget!.isPartner!) {
+                                                        if (!widget!
                                                             .canManage!) {
                                                           ScaffoldMessenger.of(
                                                                   context)
@@ -1105,8 +1109,8 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
                                                           return;
                                                         }
                                                       } else {
-                                                        if (widget.isWorker!) {
-                                                          if (!widget
+                                                        if (widget!.isWorker!) {
+                                                          if (!widget!
                                                               .canManage!) {
                                                             ScaffoldMessenger
                                                                     .of(context)
@@ -1159,7 +1163,7 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
                                                       }
                                                       _shouldSetState = true;
                                                       if (_model.validate!) {
-                                                        await widget
+                                                        await widget!
                                                             .transaction!
                                                             .reference
                                                             .update(
@@ -1176,28 +1180,28 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
 
                                                         var companyTransactionsRecordReference =
                                                             CompanyTransactionsRecord
-                                                                .createDoc(widget
+                                                                .createDoc(widget!
                                                                     .company!);
                                                         await companyTransactionsRecordReference
                                                             .set({
                                                           ...createCompanyTransactionsRecordData(
-                                                            name: widget
+                                                            name: widget!
                                                                 .transaction
                                                                 ?.name,
-                                                            description: widget
+                                                            description: widget!
                                                                 .transaction
                                                                 ?.description,
                                                             senderRef:
                                                                 currentUserReference,
                                                             receiverRef: _model
                                                                 .receiverUser,
-                                                            totalAmount: widget
+                                                            totalAmount: widget!
                                                                 .transaction
                                                                 ?.totalAmount,
                                                             isConfirmed: false,
                                                             isRejected: false,
                                                             workPlaceTransaction:
-                                                                widget
+                                                                widget!
                                                                     .transaction
                                                                     ?.reference,
                                                             vehiclePayment:
@@ -1215,23 +1219,23 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
                                                             CompanyTransactionsRecord
                                                                 .getDocumentFromData({
                                                           ...createCompanyTransactionsRecordData(
-                                                            name: widget
+                                                            name: widget!
                                                                 .transaction
                                                                 ?.name,
-                                                            description: widget
+                                                            description: widget!
                                                                 .transaction
                                                                 ?.description,
                                                             senderRef:
                                                                 currentUserReference,
                                                             receiverRef: _model
                                                                 .receiverUser,
-                                                            totalAmount: widget
+                                                            totalAmount: widget!
                                                                 .transaction
                                                                 ?.totalAmount,
                                                             isConfirmed: false,
                                                             isRejected: false,
                                                             workPlaceTransaction:
-                                                                widget
+                                                                widget!
                                                                     .transaction
                                                                     ?.reference,
                                                             vehiclePayment:
@@ -1282,7 +1286,7 @@ class _WorkPlaceTransactionForVehiclePaymentWidgetState
                                                                 .companyTransaction
                                                                 ?.reference,
                                                             fullDescription:
-                                                                '${widget.transaction?.name} isimli işlem onaylandı ve${widget.transaction?.totalAmount.toString()} TL Gelir Olarak girildi',
+                                                                '${widget!.transaction?.name} isimli işlem onaylandı ve${widget!.transaction?.totalAmount?.toString()} TL Gelir Olarak girildi',
                                                             isChangedStock:
                                                                 false,
                                                           ),

@@ -8,13 +8,18 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'workplace_confirmation_message_page_model.dart';
 export 'workplace_confirmation_message_page_model.dart';
@@ -49,10 +54,10 @@ class _WorkplaceConfirmationMessagePageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.workplaceConfirmation?.senderRef == currentUserReference) {
-        _model.receiverRef = widget.workplaceConfirmation?.receiverRef;
+      if (widget!.workplaceConfirmation?.senderRef == currentUserReference) {
+        _model.receiverRef = widget!.workplaceConfirmation?.receiverRef;
       } else {
-        _model.receiverRef = widget.workplaceConfirmation?.senderRef;
+        _model.receiverRef = widget!.workplaceConfirmation?.senderRef;
       }
     });
 
@@ -100,9 +105,9 @@ class _WorkplaceConfirmationMessagePageWidgetState
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.workplaceConfirmation?.senderRef == currentUserReference
-                  ? widget.workplaceConfirmation?.receiverName
-                  : widget.workplaceConfirmation?.senderName,
+              widget!.workplaceConfirmation?.senderRef == currentUserReference
+                  ? widget!.workplaceConfirmation?.receiverName
+                  : widget!.workplaceConfirmation?.senderName,
               'Alıcı',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -144,7 +149,7 @@ class _WorkplaceConfirmationMessagePageWidgetState
                   child:
                       StreamBuilder<List<WorkplaceConfirmationMessageRecord>>(
                     stream: queryWorkplaceConfirmationMessageRecord(
-                      parent: widget.workplaceConfirmation?.reference,
+                      parent: widget!.workplaceConfirmation?.reference,
                       queryBuilder: (workplaceConfirmationMessageRecord) =>
                           workplaceConfirmationMessageRecord.orderBy('date',
                               descending: true),
@@ -161,7 +166,7 @@ class _WorkplaceConfirmationMessagePageWidgetState
                           () async {
                             await actions.safelyMarkMessagesReadAndUpdateCount(
                               currentUserReference!,
-                              widget.workplaceConfirmation!.reference,
+                              widget!.workplaceConfirmation!.reference,
                             );
 
                             safeSetState(() {});
@@ -1006,7 +1011,7 @@ class _WorkplaceConfirmationMessagePageWidgetState
                                           curve: Curves.ease,
                                         );
 
-                                        await widget
+                                        await widget!
                                             .workplaceConfirmation!.reference
                                             .update({
                                           ...createWorkplaceConfirmationsRecordData(
@@ -1042,7 +1047,7 @@ class _WorkplaceConfirmationMessagePageWidgetState
                                             type: NotificationTypes
                                                 .confirmationWorkPlace.name,
                                             content: '1 Yeni Mesaj',
-                                            relatedDoc: widget
+                                            relatedDoc: widget!
                                                 .workplaceConfirmation
                                                 ?.reference
                                                 .id,
@@ -1050,7 +1055,7 @@ class _WorkplaceConfirmationMessagePageWidgetState
                                             isDelete: false,
                                             fullDescription:
                                                 '${currentUserDisplayName} Kişisinden Yeni Bir Mesajınız Var',
-                                            workplace: widget
+                                            workplace: widget!
                                                 .workplaceConfirmation
                                                 ?.workplace,
                                           ),
@@ -1085,7 +1090,7 @@ class _WorkplaceConfirmationMessagePageWidgetState
                                               'WorkplaceConfirmationMessagePage',
                                           parameterData: {
                                             'workplaceConfirmation':
-                                                widget.workplaceConfirmation,
+                                                widget!.workplaceConfirmation,
                                           },
                                         );
                                       },

@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_control_communication_for_partner_page_model.dart';
 export 'company_control_communication_for_partner_page_model.dart';
 
@@ -125,7 +129,7 @@ class _CompanyControlCommunicationForPartnerPageWidgetState
                                 CompanyNotificationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -170,16 +174,16 @@ class _CompanyControlCommunicationForPartnerPageWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partner!.canViewInstructions) {
+                              if (widget!.partner!.canViewInstructions) {
                                 _model.company =
                                     await CompaniesRecord.getDocumentOnce(
-                                        widget.company!);
+                                        widget!.company!);
 
                                 context.pushNamed(
                                   CompanyInstructionsCreatePageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
@@ -250,7 +254,7 @@ class _CompanyControlCommunicationForPartnerPageWidgetState
                                 ConfirmationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,

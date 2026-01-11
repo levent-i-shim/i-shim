@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'roles_page_model.dart';
 export 'roles_page_model.dart';
 
@@ -62,7 +65,7 @@ class _RolesPageWidgetState extends State<RolesPageWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyRolesRecord>>(
       stream: queryCompanyRolesRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyRolesRecord) => companyRolesRecord.where(
           'isDelete',
           isEqualTo: false,
@@ -116,7 +119,7 @@ class _RolesPageWidgetState extends State<RolesPageWidget> {
               ),
               title: Text(
                 valueOrDefault<String>(
-                  widget.companyName,
+                  widget!.companyName,
                   'Şirket İsmi',
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -215,16 +218,16 @@ class _RolesPageWidgetState extends State<RolesPageWidget> {
                                     0.0, 0.0, 8.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    if (widget.canAddRole!) {
+                                    if (widget!.canAddRole!) {
                                       context.pushNamed(
                                         AddRolePageWidget.routeName,
                                         queryParameters: {
                                           'companyName': serializeParam(
-                                            widget.companyName,
+                                            widget!.companyName,
                                             ParamType.String,
                                           ),
                                           'company': serializeParam(
-                                            widget.company,
+                                            widget!.company,
                                             ParamType.DocumentReference,
                                           ),
                                         }.withoutNulls,
@@ -332,7 +335,7 @@ class _RolesPageWidgetState extends State<RolesPageWidget> {
                                                 .routeName,
                                             queryParameters: {
                                               'company': serializeParam(
-                                                widget.company,
+                                                widget!.company,
                                                 ParamType.DocumentReference,
                                               ),
                                               'roleName': serializeParam(
@@ -344,24 +347,24 @@ class _RolesPageWidgetState extends State<RolesPageWidget> {
                                                 ParamType.Document,
                                               ),
                                               'isOwner': serializeParam(
-                                                widget.isOwner,
+                                                widget!.isOwner,
                                                 ParamType.bool,
                                               ),
                                               'canSendMoney': serializeParam(
-                                                widget.canSendMoney,
+                                                widget!.canSendMoney,
                                                 ParamType.bool,
                                               ),
                                               'canManageTask': serializeParam(
-                                                widget.canManageTask,
+                                                widget!.canManageTask,
                                                 ParamType.bool,
                                               ),
                                               'canViewTask': serializeParam(
-                                                widget.canViewTask,
+                                                widget!.canViewTask,
                                                 ParamType.bool,
                                               ),
                                               'canManageEmployee':
                                                   serializeParam(
-                                                widget.canManageEmployee,
+                                                widget!.canManageEmployee,
                                                 ParamType.bool,
                                               ),
                                             }.withoutNulls,

@@ -5,8 +5,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_partner_company_step2_page_model.dart';
 export 'add_partner_company_step2_page_model.dart';
 
@@ -285,7 +288,7 @@ class _AddPartnerCompanyStep2PageWidgetState
                     ),
                     FFButtonWidget(
                       onPressed: () async {
-                        if (widget.user?.reference == currentUserReference) {
+                        if (widget!.user?.reference == currentUserReference) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
@@ -310,17 +313,17 @@ class _AddPartnerCompanyStep2PageWidgetState
 
                           var partnershipInvitationRecordReference =
                               PartnershipInvitationRecord.createDoc(
-                                  widget.user!.reference);
+                                  widget!.user!.reference);
                           await partnershipInvitationRecordReference.set({
                             ...createPartnershipInvitationRecordData(
                               isCompanyPartnership: true,
                               isAccept: false,
                               isReject: false,
-                              company: widget.companyDetail?.reference,
+                              company: widget!.companyDetail?.reference,
                               isDelete: false,
                               sender: currentUserReference,
-                              receiver: widget.user?.reference,
-                              companyName: widget.companyDetail?.name,
+                              receiver: widget!.user?.reference,
+                              companyName: widget!.companyDetail?.name,
                               sharePercent:
                                   double.tryParse(_model.textController.text),
                             ),
@@ -336,11 +339,11 @@ class _AddPartnerCompanyStep2PageWidgetState
                               isCompanyPartnership: true,
                               isAccept: false,
                               isReject: false,
-                              company: widget.companyDetail?.reference,
+                              company: widget!.companyDetail?.reference,
                               isDelete: false,
                               sender: currentUserReference,
-                              receiver: widget.user?.reference,
-                              companyName: widget.companyDetail?.name,
+                              receiver: widget!.user?.reference,
+                              companyName: widget!.companyDetail?.name,
                               sharePercent:
                                   double.tryParse(_model.textController.text),
                             ),
@@ -352,7 +355,7 @@ class _AddPartnerCompanyStep2PageWidgetState
                           }, partnershipInvitationRecordReference);
 
                           await NotificationsRecord.createDoc(
-                                  widget.user!.reference)
+                                  widget!.user!.reference)
                               .set({
                             ...createNotificationsRecordData(
                               type: NotificationTypes.createPartnership.name,
@@ -361,9 +364,9 @@ class _AddPartnerCompanyStep2PageWidgetState
                                   _model.partnershipInvitation?.reference.id,
                               isRead: false,
                               isDelete: false,
-                              company: widget.companyDetail?.reference,
+                              company: widget!.companyDetail?.reference,
                               fullDescription:
-                                  '${widget.companyDetail?.name} İsimli Şirkete Ortak Olarak atanmak için ${currentUserDisplayName} İsimli Kişiden Davet aldınız',
+                                  '${widget!.companyDetail?.name} İsimli Şirkete Ortak Olarak atanmak için ${currentUserDisplayName} İsimli Kişiden Davet aldınız',
                             ),
                             ...mapToFirestore(
                               {

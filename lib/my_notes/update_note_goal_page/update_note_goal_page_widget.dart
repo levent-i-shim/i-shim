@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'update_note_goal_page_model.dart';
 export 'update_note_goal_page_model.dart';
 
@@ -38,11 +41,11 @@ class _UpdateNoteGoalPageWidgetState extends State<UpdateNoteGoalPageWidget> {
     _model = createModel(context, () => UpdateNoteGoalPageModel());
 
     _model.textFieldTitleTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteGoal?.title : '');
+        text: widget!.isEdit! ? widget!.noteGoal?.title : '');
     _model.textFieldTitleFocusNode ??= FocusNode();
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteGoal?.content : '');
+        text: widget!.isEdit! ? widget!.noteGoal?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -110,7 +113,7 @@ class _UpdateNoteGoalPageWidgetState extends State<UpdateNoteGoalPageWidget> {
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.noteGoal!.reference
+                  await widget!.noteGoal!.reference
                       .update(createGoalNotesRecordData(
                     isDeleted: false,
                   ));
@@ -172,8 +175,8 @@ class _UpdateNoteGoalPageWidgetState extends State<UpdateNoteGoalPageWidget> {
                       return;
                     }
                     if (_model.validate!) {
-                      if (widget.isEdit!) {
-                        await widget.noteGoal!.reference
+                      if (widget!.isEdit!) {
+                        await widget!.noteGoal!.reference
                             .update(createGoalNotesRecordData(
                           title: _model.textFieldTitleTextController.text,
                           content: _model.textFieldContentTextController.text,

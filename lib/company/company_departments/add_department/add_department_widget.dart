@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_department_model.dart';
 export 'add_department_model.dart';
 
@@ -626,7 +629,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                                           .where(
                                                             'companyRef',
                                                             isEqualTo:
-                                                                widget.company,
+                                                                widget!.company,
                                                           )
                                                           .where(
                                                             'isDelete',
@@ -784,7 +787,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
 
                                       var companyDepartmentsRecordReference =
                                           CompanyDepartmentsRecord.createDoc(
-                                              widget.company!);
+                                              widget!.company!);
                                       await companyDepartmentsRecordReference
                                           .set(
                                               createCompanyDepartmentsRecordData(
@@ -823,7 +826,7 @@ class _AddDepartmentWidgetState extends State<AddDepartmentWidget> {
                                               .createDepartment.name,
                                           companyDepartment: _model
                                               .companyDepartment?.reference,
-                                          companyName: widget.companyName,
+                                          companyName: widget!.companyName,
                                           fullDescription:
                                               '${_model.companyDepartment?.name} Adında bir departman oluşturuldu',
                                         ),

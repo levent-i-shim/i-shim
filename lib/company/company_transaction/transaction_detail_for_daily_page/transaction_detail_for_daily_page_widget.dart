@@ -1,12 +1,18 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'transaction_detail_for_daily_page_model.dart';
 export 'transaction_detail_for_daily_page_model.dart';
 
@@ -50,9 +56,9 @@ class _TransactionDetailForDailyPageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.isIncome) {
+      if (widget!.isIncome) {
         _model.income = await CompanyIncomes2025Record.getDocumentOnce(
-            widget.companyIncomeRef!);
+            widget!.companyIncomeRef!);
         _model.toWhom = _model.income!.fromWhom;
         _model.description = _model.income!.description;
         _model.tc = _model.income!.vkntcknor;
@@ -61,7 +67,7 @@ class _TransactionDetailForDailyPageWidgetState
         safeSetState(() {});
       } else {
         _model.payment = await CompanyPayments2025Record.getDocumentOnce(
-            widget.companyPaymentsRed!);
+            widget!.companyPaymentsRed!);
         _model.toWhom = _model.payment!.toWhom;
         _model.description = _model.payment!.description;
         _model.tc = _model.payment!.vkntcknor;
@@ -134,7 +140,7 @@ class _TransactionDetailForDailyPageWidgetState
                         EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                     child: StreamBuilder<CompanyReportsRecord>(
                       stream: CompanyReportsRecord.getDocument(
-                          widget.transaction!.companyReports!),
+                          widget!.transaction!.companyReports!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -525,7 +531,7 @@ class _TransactionDetailForDailyPageWidgetState
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.transaction?.name,
+                                    widget!.transaction?.name,
                                     'İsim',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -556,7 +562,7 @@ class _TransactionDetailForDailyPageWidgetState
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.transaction?.description,
+                                    widget!.transaction?.description,
                                     'açıklama',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -587,8 +593,8 @@ class _TransactionDetailForDailyPageWidgetState
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.transaction?.totalAmount
-                                        .toString(),
+                                    widget!.transaction?.totalAmount
+                                        ?.toString(),
                                     '0',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -620,7 +626,7 @@ class _TransactionDetailForDailyPageWidgetState
                                 child: Text(
                                   valueOrDefault<String>(
                                     dateTimeFormat(
-                                        "d/M/y", widget.transaction?.date),
+                                        "d/M/y", widget!.transaction?.date),
                                     '0',
                                   ),
                                   style: FlutterFlowTheme.of(context)

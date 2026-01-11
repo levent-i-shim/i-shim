@@ -5,9 +5,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'report_result_page_for_owner_model.dart';
 export 'report_result_page_for_owner_model.dart';
 
@@ -156,9 +160,9 @@ class _ReportResultPageForOwnerWidgetState
                               flex: 9,
                               child: Builder(
                                 builder: (context) {
-                                  final fields = widget
+                                  final fields = widget!
                                           .companyReport?.responses
-                                          .toList() ??
+                                          ?.toList() ??
                                       [];
 
                                   return ListView.builder(
@@ -539,7 +543,7 @@ class _ReportResultPageForOwnerWidgetState
                                     ),
                                     Text(
                                       dateTimeFormat("d/M/y",
-                                          widget.companyReport!.date!),
+                                          widget!.companyReport!.date!),
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium
                                           .override(
@@ -585,15 +589,15 @@ class _ReportResultPageForOwnerWidgetState
                               ReportResultAddIncomeForOwnerWidget.routeName,
                               queryParameters: {
                                 'companyName': serializeParam(
-                                  widget.companyName,
+                                  widget!.companyName,
                                   ParamType.String,
                                 ),
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'workPlace': serializeParam(
-                                  widget.workPlace,
+                                  widget!.workPlace,
                                   ParamType.DocumentReference,
                                 ),
                               }.withoutNulls,
@@ -648,15 +652,15 @@ class _ReportResultPageForOwnerWidgetState
                                   .routeName,
                               queryParameters: {
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'workPlace': serializeParam(
-                                  widget.workPlace,
+                                  widget!.workPlace,
                                   ParamType.DocumentReference,
                                 ),
                                 'companyName': serializeParam(
-                                  widget.companyName,
+                                  widget!.companyName,
                                   ParamType.String,
                                 ),
                               }.withoutNulls,

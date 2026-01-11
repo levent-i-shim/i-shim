@@ -4,11 +4,14 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:aligned_dialog/aligned_dialog.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_notes_page_model.dart';
 export 'company_notes_page_model.dart';
 
@@ -125,13 +128,13 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  if (widget.canManage!) {
+                  if (widget!.canManage!) {
                     if (_model.tabBarCurrentIndex == 0) {
                       context.pushNamed(
                         AddNewCompanyNotePageWidget.routeName,
                         queryParameters: {
                           'company': serializeParam(
-                            widget.company,
+                            widget!.company,
                             ParamType.DocumentReference,
                           ),
                           'hasCompanyRecord': serializeParam(
@@ -162,7 +165,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                           AddNewCompanyNotePageWidget.routeName,
                           queryParameters: {
                             'company': serializeParam(
-                              widget.company,
+                              widget!.company,
                               ParamType.DocumentReference,
                             ),
                             'hasCompanyRecord': serializeParam(
@@ -193,7 +196,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                             AddNewCompanyNotePageWidget.routeName,
                             queryParameters: {
                               'company': serializeParam(
-                                widget.company,
+                                widget!.company,
                                 ParamType.DocumentReference,
                               ),
                               'hasCompanyRecord': serializeParam(
@@ -224,7 +227,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                               AddNewCompanyNotePageWidget.routeName,
                               queryParameters: {
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'hasCompanyRecord': serializeParam(
@@ -255,7 +258,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                 AddNewCompanyNotePageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                   'hasCompanyRecord': serializeParam(
@@ -440,7 +443,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                             children: [
                               StreamBuilder<List<CompanyNotesRecord>>(
                                 stream: queryCompanyNotesRecord(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyNotesRecord) =>
                                       companyNotesRecord
                                           .where(
@@ -501,7 +504,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                   ParamType.Document,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -709,7 +712,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
-                                                            if (widget
+                                                            if (widget!
                                                                 .canManage!) {
                                                               await showAlignedDialog(
                                                                 context:
@@ -802,7 +805,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                               ),
                               StreamBuilder<List<CompanyNotesRecord>>(
                                 stream: queryCompanyNotesRecord(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyNotesRecord) =>
                                       companyNotesRecord
                                           .where(
@@ -863,7 +866,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                   ParamType.Document,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -1071,7 +1074,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
-                                                            if (widget
+                                                            if (widget!
                                                                 .canManage!) {
                                                               await showAlignedDialog(
                                                                 context:
@@ -1164,7 +1167,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                               ),
                               StreamBuilder<List<CompanyNotesRecord>>(
                                 stream: queryCompanyNotesRecord(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyNotesRecord) =>
                                       companyNotesRecord
                                           .where(
@@ -1225,7 +1228,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                   ParamType.Document,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -1433,7 +1436,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
-                                                            if (widget
+                                                            if (widget!
                                                                 .canManage!) {
                                                               await showAlignedDialog(
                                                                 context:
@@ -1526,7 +1529,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                               ),
                               StreamBuilder<List<CompanyNotesRecord>>(
                                 stream: queryCompanyNotesRecord(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyNotesRecord) =>
                                       companyNotesRecord
                                           .where(
@@ -1587,7 +1590,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                   ParamType.Document,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -1795,7 +1798,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
-                                                            if (widget
+                                                            if (widget!
                                                                 .canManage!) {
                                                               await showAlignedDialog(
                                                                 context:
@@ -1888,7 +1891,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                               ),
                               StreamBuilder<List<CompanyNotesRecord>>(
                                 stream: queryCompanyNotesRecord(
-                                  parent: widget.company,
+                                  parent: widget!.company,
                                   queryBuilder: (companyNotesRecord) =>
                                       companyNotesRecord
                                           .where(
@@ -1949,7 +1952,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                   ParamType.Document,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,
@@ -2157,7 +2160,7 @@ class _CompanyNotesPageWidgetState extends State<CompanyNotesPageWidget>
                                                           highlightColor: Colors
                                                               .transparent,
                                                           onTap: () async {
-                                                            if (widget
+                                                            if (widget!
                                                                 .canManage!) {
                                                               await showAlignedDialog(
                                                                 context:

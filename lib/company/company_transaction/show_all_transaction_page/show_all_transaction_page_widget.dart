@@ -3,10 +3,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'show_all_transaction_page_model.dart';
 export 'show_all_transaction_page_model.dart';
 
@@ -102,9 +105,9 @@ class _ShowAllTransactionPageWidgetState
             child: PagedListView<DocumentSnapshot<Object?>?,
                 CompanyTransactionsRecord>(
               pagingController: _model.setListViewController(
-                  CompanyTransactionsRecord.collection(widget.company)
+                  CompanyTransactionsRecord.collection(widget!.company)
                       .orderBy('date', descending: true),
-                  parent: widget.company),
+                  parent: widget!.company),
               padding: EdgeInsets.zero,
               reverse: false,
               scrollDirection: Axis.vertical,
@@ -274,16 +277,16 @@ class _ShowAllTransactionPageWidgetState
                                                 ParamType.Document,
                                               ),
                                               'isPartner': serializeParam(
-                                                widget.isPartner,
+                                                widget!.isPartner,
                                                 ParamType.bool,
                                               ),
                                               'canManageTransaction':
                                                   serializeParam(
-                                                widget.canManageTransaction,
+                                                widget!.canManageTransaction,
                                                 ParamType.bool,
                                               ),
                                               'canManageStock': serializeParam(
-                                                widget.canManageStocks,
+                                                widget!.canManageStocks,
                                                 ParamType.bool,
                                               ),
                                             }.withoutNulls,
@@ -304,16 +307,16 @@ class _ShowAllTransactionPageWidgetState
                                                   ParamType.Document,
                                                 ),
                                                 'isPartner': serializeParam(
-                                                  widget.isPartner,
+                                                  widget!.isPartner,
                                                   ParamType.bool,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManageTransaction,
+                                                  widget!.canManageTransaction,
                                                   ParamType.bool,
                                                 ),
                                                 'canManageStock':
                                                     serializeParam(
-                                                  widget.canManageStocks,
+                                                  widget!.canManageStocks,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,

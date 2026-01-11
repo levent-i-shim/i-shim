@@ -5,8 +5,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_new_note_goal_page_model.dart';
 export 'add_new_note_goal_page_model.dart';
 
@@ -39,11 +42,11 @@ class _AddNewNoteGoalPageWidgetState extends State<AddNewNoteGoalPageWidget> {
     _model = createModel(context, () => AddNewNoteGoalPageModel());
 
     _model.textFieldTitleTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteGoal?.title : '');
+        text: widget!.isEdit! ? widget!.noteGoal?.title : '');
     _model.textFieldTitleFocusNode ??= FocusNode();
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteGoal?.content : '');
+        text: widget!.isEdit! ? widget!.noteGoal?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -115,8 +118,8 @@ class _AddNewNoteGoalPageWidgetState extends State<AddNewNoteGoalPageWidget> {
                       return;
                     }
                     if (_model.validate!) {
-                      if (widget.isEdit!) {
-                        await widget.noteGoal!.reference
+                      if (widget!.isEdit!) {
+                        await widget!.noteGoal!.reference
                             .update(createGoalNotesRecordData(
                           title: _model.textFieldTitleTextController.text,
                           content: _model.textFieldContentTextController.text,
@@ -156,7 +159,7 @@ class _AddNewNoteGoalPageWidgetState extends State<AddNewNoteGoalPageWidget> {
                             type: WorkHistoryTypes.createNote.name,
                             fullDescription:
                                 _model.textFieldTitleTextController.text,
-                            noteGoals: widget.noteGoal?.reference,
+                            noteGoals: widget!.noteGoal?.reference,
                           ),
                           ...mapToFirestore(
                             {

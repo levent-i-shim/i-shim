@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_vehicles_page_model.dart';
 export 'company_vehicles_page_model.dart';
 
@@ -63,12 +66,12 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
         backgroundColor: Colors.black,
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            if (widget.canAddVehicle!) {
+            if (widget!.canAddVehicle!) {
               context.pushNamed(
                 CompanyAddVehicleWidget.routeName,
                 queryParameters: {
                   'company': serializeParam(
-                    widget.company,
+                    widget!.company,
                     ParamType.DocumentReference,
                   ),
                 }.withoutNulls,
@@ -158,7 +161,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                   ),
                   StreamBuilder<List<CompanyVehiclesRecord>>(
                     stream: queryCompanyVehiclesRecord(
-                      parent: widget.company,
+                      parent: widget!.company,
                       queryBuilder: (companyVehiclesRecord) =>
                           companyVehiclesRecord.where(
                         'type',
@@ -388,7 +391,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                if (widget
+                                                if (widget!
                                                     .canCreateVehiclePayment!) {
                                                   context.pushNamed(
                                                     CompanyVehiclePaymentsWidget
@@ -399,7 +402,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                                                         ParamType.Document,
                                                       ),
                                                       'isOwner': serializeParam(
-                                                        widget.isOwner,
+                                                        widget!.isOwner,
                                                         ParamType.bool,
                                                       ),
                                                     }.withoutNulls,
@@ -521,7 +524,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                   ),
                   StreamBuilder<List<CompanyVehiclesRecord>>(
                     stream: queryCompanyVehiclesRecord(
-                      parent: widget.company,
+                      parent: widget!.company,
                       queryBuilder: (companyVehiclesRecord) =>
                           companyVehiclesRecord.where(
                         'type',
@@ -751,7 +754,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                if (widget
+                                                if (widget!
                                                     .canCreateVehiclePayment!) {
                                                   context.pushNamed(
                                                     CompanyVehiclePaymentsWidget
@@ -762,7 +765,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                                                         ParamType.Document,
                                                       ),
                                                       'isOwner': serializeParam(
-                                                        widget.isOwner,
+                                                        widget!.isOwner,
                                                         ParamType.bool,
                                                       ),
                                                     }.withoutNulls,
@@ -884,7 +887,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                   ),
                   StreamBuilder<List<CompanyVehiclesRecord>>(
                     stream: queryCompanyVehiclesRecord(
-                      parent: widget.company,
+                      parent: widget!.company,
                       queryBuilder: (companyVehiclesRecord) =>
                           companyVehiclesRecord.where(
                         'type',
@@ -1114,7 +1117,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                                             ),
                                             FFButtonWidget(
                                               onPressed: () async {
-                                                if (widget
+                                                if (widget!
                                                     .canCreateVehiclePayment!) {
                                                   context.pushNamed(
                                                     CompanyVehiclePaymentsWidget
@@ -1125,7 +1128,7 @@ class _CompanyVehiclesPageWidgetState extends State<CompanyVehiclesPageWidget> {
                                                         ParamType.Document,
                                                       ),
                                                       'isOwner': serializeParam(
-                                                        widget.isOwner,
+                                                        widget!.isOwner,
                                                         ParamType.bool,
                                                       ),
                                                     }.withoutNulls,

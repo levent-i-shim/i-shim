@@ -4,10 +4,14 @@ import '/components/choose_new_role/choose_new_role_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_role_employees_model.dart';
 export 'company_role_employees_model.dart';
 
@@ -91,7 +95,7 @@ class _CompanyRoleEmployeesWidgetState
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.roleName,
+              widget!.roleName,
               'Rol Adı',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -191,7 +195,7 @@ class _CompanyRoleEmployeesWidgetState
                                 onTap: () async {
                                   _model.companyDetailCopy =
                                       await CompaniesRecord.getDocumentOnce(
-                                          widget.company!);
+                                          widget!.company!);
                                   if (_model.companyDetailCopy?.owner ==
                                       currentUserReference) {
                                     var confirmDialogResponse =
@@ -244,8 +248,8 @@ class _CompanyRoleEmployeesWidgetState
                                                     ?.unfocus();
                                               },
                                               child: ChooseNewRoleWidget(
-                                                companyId: widget.company!,
-                                                role: widget.companyRole!,
+                                                companyId: widget!.company!,
+                                                role: widget!.companyRole!,
                                               ),
                                             ),
                                           );
@@ -297,12 +301,12 @@ class _CompanyRoleEmployeesWidgetState
                     ),
                     child: StreamBuilder<List<CompanyWorkersRecord>>(
                       stream: queryCompanyWorkersRecord(
-                        parent: widget.company,
+                        parent: widget!.company,
                         queryBuilder: (companyWorkersRecord) =>
                             companyWorkersRecord
                                 .where(
                                   'roleRefs',
-                                  arrayContains: widget.companyRole?.reference,
+                                  arrayContains: widget!.companyRole?.reference,
                                 )
                                 .where(
                                   'isDelete',
@@ -353,27 +357,27 @@ class _CompanyRoleEmployeesWidgetState
                                           ParamType.DocumentReference,
                                         ),
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                         'canManageEmployee': serializeParam(
-                                          widget.canManageEmployee,
+                                          widget!.canManageEmployee,
                                           ParamType.bool,
                                         ),
                                         'canViewTask': serializeParam(
-                                          widget.canViewTask,
+                                          widget!.canViewTask,
                                           ParamType.bool,
                                         ),
                                         'canManageTask': serializeParam(
-                                          widget.canManageTask,
+                                          widget!.canManageTask,
                                           ParamType.bool,
                                         ),
                                         'canSendMoney': serializeParam(
-                                          widget.canSendMoney,
+                                          widget!.canSendMoney,
                                           ParamType.bool,
                                         ),
                                         'isOwner': serializeParam(
-                                          widget.isOwner,
+                                          widget!.isOwner,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,

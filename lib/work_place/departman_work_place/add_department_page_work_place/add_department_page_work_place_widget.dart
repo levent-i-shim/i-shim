@@ -5,8 +5,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_department_page_work_place_model.dart';
 export 'add_department_page_work_place_model.dart';
 
@@ -586,8 +589,8 @@ class _AddDepartmentPageWorkPlaceWidgetState
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   var _shouldSetState = false;
-                                  if (widget.isPartner!) {
-                                    if (!widget.canManage!) {
+                                  if (widget!.isPartner!) {
+                                    if (!widget!.canManage!) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -620,7 +623,7 @@ class _AddDepartmentPageWorkPlaceWidgetState
                                   if (_model.validate!) {
                                     var workPlaceDepartmentRecordReference =
                                         WorkPlaceDepartmentRecord.createDoc(
-                                            widget.workPlace!);
+                                            widget!.workPlace!);
                                     await workPlaceDepartmentRecordReference
                                         .set(
                                             createWorkPlaceDepartmentRecordData(
@@ -642,13 +645,13 @@ class _AddDepartmentPageWorkPlaceWidgetState
 
                                     var companyDepartmentsRecordReference =
                                         CompanyDepartmentsRecord.createDoc(
-                                            widget.company!);
+                                            widget!.company!);
                                     await companyDepartmentsRecordReference
                                         .set(createCompanyDepartmentsRecordData(
                                       name: _model.textController1.text,
                                       type: _model.textController2.text,
                                       isDelete: false,
-                                      workPlace: widget.workPlace,
+                                      workPlace: widget!.workPlace,
                                       workPlaceDepartment:
                                           _model.departmanRef?.reference,
                                       createdBy: currentUserReference,
@@ -659,7 +662,7 @@ class _AddDepartmentPageWorkPlaceWidgetState
                                               name: _model.textController1.text,
                                               type: _model.textController2.text,
                                               isDelete: false,
-                                              workPlace: widget.workPlace,
+                                              workPlace: widget!.workPlace,
                                               workPlaceDepartment: _model
                                                   .departmanRef?.reference,
                                               createdBy: currentUserReference,

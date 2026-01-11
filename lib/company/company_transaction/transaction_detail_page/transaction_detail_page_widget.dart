@@ -8,12 +8,16 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'transaction_detail_page_model.dart';
 export 'transaction_detail_page_model.dart';
 
@@ -54,8 +58,8 @@ class _TransactionDetailPageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.isEnteredIncome = widget.transaction!.isConfirmed;
-      _model.isEnteredPayment = widget.transaction!.isConfirmed;
+      _model.isEnteredIncome = widget!.transaction!.isConfirmed;
+      _model.isEnteredPayment = widget!.transaction!.isConfirmed;
       safeSetState(() {});
     });
 
@@ -115,7 +119,7 @@ class _TransactionDetailPageWidgetState
                         EdgeInsetsDirectional.fromSTEB(10.0, 10.0, 10.0, 10.0),
                     child: StreamBuilder<CompanyReportsRecord>(
                       stream: CompanyReportsRecord.getDocument(
-                          widget.transaction!.companyReports!),
+                          widget!.transaction!.companyReports!),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.
                         if (!snapshot.hasData) {
@@ -506,7 +510,7 @@ class _TransactionDetailPageWidgetState
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.transaction?.name,
+                                    widget!.transaction?.name,
                                     'İsim',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -537,7 +541,7 @@ class _TransactionDetailPageWidgetState
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.transaction?.description,
+                                    widget!.transaction?.description,
                                     'açıklama',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -568,8 +572,8 @@ class _TransactionDetailPageWidgetState
                                     0.0, 10.0, 0.0, 0.0),
                                 child: Text(
                                   '${valueOrDefault<String>(
-                                    widget.transaction?.totalAmount
-                                        .toString(),
+                                    widget!.transaction?.totalAmount
+                                        ?.toString(),
                                     '0',
                                   )} TL',
                                   style: FlutterFlowTheme.of(context)
@@ -601,7 +605,7 @@ class _TransactionDetailPageWidgetState
                                 child: Text(
                                   valueOrDefault<String>(
                                     dateTimeFormat(
-                                        "d/M/y", widget.transaction?.date),
+                                        "d/M/y", widget!.transaction?.date),
                                     '0',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -627,8 +631,8 @@ class _TransactionDetailPageWidgetState
                                       ),
                                 ),
                               ),
-                              if (!widget.transaction!.isConfirmed &&
-                                  !widget.transaction!.isRejected)
+                              if (!widget!.transaction!.isConfirmed &&
+                                  !widget!.transaction!.isRejected)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       5.0, 20.0, 5.0, 20.0),
@@ -641,12 +645,12 @@ class _TransactionDetailPageWidgetState
                                         onPressed: () async {
                                           var _shouldSetState = false;
                                           _model.company = await CompaniesRecord
-                                              .getDocumentOnce(widget
+                                              .getDocumentOnce(widget!
                                                   .transaction!
                                                   .parentReference);
                                           _shouldSetState = true;
-                                          if (widget.isPartner) {
-                                            if (!widget.canManageTransaction) {
+                                          if (widget!.isPartner) {
+                                            if (!widget!.canManageTransaction) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
@@ -676,7 +680,7 @@ class _TransactionDetailPageWidgetState
                                                 currentUserReference) {
                                               _model.companyWorker =
                                                   await queryCompanyWorkersRecordOnce(
-                                                parent: widget.transaction
+                                                parent: widget!.transaction
                                                     ?.parentReference,
                                                 queryBuilder:
                                                     (companyWorkersRecord) =>
@@ -720,7 +724,7 @@ class _TransactionDetailPageWidgetState
 
                                           _model.workPlace =
                                               await WorkPlaceTransactionRecord
-                                                  .getDocumentOnce(widget
+                                                  .getDocumentOnce(widget!
                                                       .transaction!
                                                       .workPlaceTransaction!);
                                           _shouldSetState = true;
@@ -735,28 +739,28 @@ class _TransactionDetailPageWidgetState
                                                 ParamType.DocumentReference,
                                               ),
                                               'company': serializeParam(
-                                                widget.transaction
+                                                widget!.transaction
                                                     ?.parentReference,
                                                 ParamType.DocumentReference,
                                               ),
                                               'value': serializeParam(
-                                                widget
+                                                widget!
                                                     .transaction?.totalAmount,
                                                 ParamType.double,
                                               ),
                                               'companyTransaction':
                                                   serializeParam(
-                                                widget.transaction?.reference,
+                                                widget!.transaction?.reference,
                                                 ParamType.DocumentReference,
                                               ),
                                               'workPlaceTransaction':
                                                   serializeParam(
-                                                widget.transaction
+                                                widget!.transaction
                                                     ?.workPlaceTransaction,
                                                 ParamType.DocumentReference,
                                               ),
                                               'transactionName': serializeParam(
-                                                widget.transaction?.name,
+                                                widget!.transaction?.name,
                                                 ParamType.String,
                                               ),
                                               'companyName': serializeParam(
@@ -818,12 +822,12 @@ class _TransactionDetailPageWidgetState
                                           var _shouldSetState = false;
                                           _model.companyExpense =
                                               await CompaniesRecord
-                                                  .getDocumentOnce(widget
+                                                  .getDocumentOnce(widget!
                                                       .transaction!
                                                       .parentReference);
                                           _shouldSetState = true;
-                                          if (widget.isPartner) {
-                                            if (!widget.canManageTransaction) {
+                                          if (widget!.isPartner) {
+                                            if (!widget!.canManageTransaction) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
@@ -853,7 +857,7 @@ class _TransactionDetailPageWidgetState
                                                 currentUserReference) {
                                               _model.companyWorkerExpense =
                                                   await queryCompanyWorkersRecordOnce(
-                                                parent: widget.transaction
+                                                parent: widget!.transaction
                                                     ?.parentReference,
                                                 queryBuilder:
                                                     (companyWorkersRecord) =>
@@ -897,7 +901,7 @@ class _TransactionDetailPageWidgetState
 
                                           _model.workPlace2 =
                                               await WorkPlaceTransactionRecord
-                                                  .getDocumentOnce(widget
+                                                  .getDocumentOnce(widget!
                                                       .transaction!
                                                       .workPlaceTransaction!);
                                           _shouldSetState = true;
@@ -912,28 +916,28 @@ class _TransactionDetailPageWidgetState
                                                 ParamType.DocumentReference,
                                               ),
                                               'company': serializeParam(
-                                                widget.transaction
+                                                widget!.transaction
                                                     ?.parentReference,
                                                 ParamType.DocumentReference,
                                               ),
                                               'value': serializeParam(
-                                                widget
+                                                widget!
                                                     .transaction?.totalAmount,
                                                 ParamType.double,
                                               ),
                                               'companyTransaction':
                                                   serializeParam(
-                                                widget.transaction?.reference,
+                                                widget!.transaction?.reference,
                                                 ParamType.DocumentReference,
                                               ),
                                               'workPlaceTransaction':
                                                   serializeParam(
-                                                widget.transaction
+                                                widget!.transaction
                                                     ?.workPlaceTransaction,
                                                 ParamType.DocumentReference,
                                               ),
                                               'transactionName': serializeParam(
-                                                widget.transaction?.name,
+                                                widget!.transaction?.name,
                                                 ParamType.String,
                                               ),
                                               'companyName': serializeParam(
@@ -995,12 +999,12 @@ class _TransactionDetailPageWidgetState
                                           var _shouldSetState = false;
                                           _model.companyReject =
                                               await CompaniesRecord
-                                                  .getDocumentOnce(widget
+                                                  .getDocumentOnce(widget!
                                                       .transaction!
                                                       .parentReference);
                                           _shouldSetState = true;
-                                          if (widget.isPartner) {
-                                            if (!widget.canManageTransaction) {
+                                          if (widget!.isPartner) {
+                                            if (!widget!.canManageTransaction) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
@@ -1030,7 +1034,7 @@ class _TransactionDetailPageWidgetState
                                                 currentUserReference) {
                                               _model.companyWorkerReject =
                                                   await queryCompanyWorkersRecordOnce(
-                                                parent: widget.transaction
+                                                parent: widget!.transaction
                                                     ?.parentReference,
                                                 queryBuilder:
                                                     (companyWorkersRecord) =>
@@ -1072,19 +1076,19 @@ class _TransactionDetailPageWidgetState
                                             }
                                           }
 
-                                          await widget.transaction!.reference
+                                          await widget!.transaction!.reference
                                               .update(
                                                   createCompanyTransactionsRecordData(
                                             isRejected: true,
                                           ));
                                           _model.workPlaceTransaction =
                                               await WorkPlaceTransactionRecord
-                                                  .getDocumentOnce(widget
+                                                  .getDocumentOnce(widget!
                                                       .transaction!
                                                       .workPlaceTransaction!);
                                           _shouldSetState = true;
 
-                                          await widget.transaction!
+                                          await widget!.transaction!
                                               .workPlaceTransaction!
                                               .update(
                                                   createWorkPlaceTransactionRecordData(
@@ -1098,10 +1102,10 @@ class _TransactionDetailPageWidgetState
                                               description: 'İşlem Reddedildi',
                                               type: WorkHistoryTypes
                                                   .transactionRejected.name,
-                                              transaction: widget
+                                              transaction: widget!
                                                   .transaction?.reference,
                                               fullDescription:
-                                                  '${_model.company?.name} isimli şirketinizde ${widget.transaction?.name} isimli işlem reddedildi',
+                                                  '${_model.company?.name} isimli şirketinizde ${widget!.transaction?.name} isimli işlem reddedildi',
                                               isIncome: false,
                                             ),
                                             ...mapToFirestore(
@@ -1122,10 +1126,10 @@ class _TransactionDetailPageWidgetState
                                               content: 'İşlem Reddedildi',
                                               isRead: false,
                                               isDelete: false,
-                                              company: widget
+                                              company: widget!
                                                   .transaction?.parentReference,
                                               fullDescription:
-                                                  '${widget.transaction?.name} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından Reddedildi',
+                                                  '${widget!.transaction?.name} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından Reddedildi',
                                               isAccept: false,
                                               isReject: true,
                                               triggeredBy: currentUserReference,
@@ -1219,7 +1223,7 @@ class _TransactionDetailPageWidgetState
                       EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                   child: StreamBuilder<List<StocksRecord>>(
                     stream: queryStocksRecord(
-                      parent: widget.transaction?.parentReference,
+                      parent: widget!.transaction?.parentReference,
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -1541,8 +1545,8 @@ class _TransactionDetailPageWidgetState
                                           FFButtonWidget(
                                             onPressed: () async {
                                               var _shouldSetState = false;
-                                              if (widget.isPartner) {
-                                                if (widget.canManageStock) {
+                                              if (widget!.isPartner) {
+                                                if (widget!.canManageStock) {
                                                   _model.validate5 = true;
                                                   if (_model.formKey
                                                               .currentState ==
@@ -1624,14 +1628,14 @@ class _TransactionDetailPageWidgetState
                                               _model.stockDocRef3 =
                                                   await actions.getStockDocRef(
                                                 _model.dropDownStockValue!,
-                                                widget.transaction!
+                                                widget!.transaction!
                                                     .parentReference.id,
                                               );
                                               _shouldSetState = true;
 
                                               var stockMovementRecordReference =
                                                   StockMovementRecord.createDoc(
-                                                      widget.transaction!
+                                                      widget!.transaction!
                                                           .parentReference);
                                               await stockMovementRecordReference
                                                   .set({
@@ -1775,8 +1779,8 @@ class _TransactionDetailPageWidgetState
                                           ),
                                           FFButtonWidget(
                                             onPressed: () async {
-                                              if (widget.isPartner) {
-                                                if (widget.canManageStock) {
+                                              if (widget!.isPartner) {
+                                                if (widget!.canManageStock) {
                                                   _model.validate6 = true;
                                                   if (_model.formKey
                                                               .currentState ==
@@ -1801,13 +1805,13 @@ class _TransactionDetailPageWidgetState
                                                             .getStockDocRef(
                                                       _model
                                                           .dropDownStockValue!,
-                                                      widget.transaction!
+                                                      widget!.transaction!
                                                           .parentReference.id,
                                                     );
 
                                                     var stockMovementRecordReference1 =
                                                         StockMovementRecord
-                                                            .createDoc(widget
+                                                            .createDoc(widget!
                                                                 .transaction!
                                                                 .parentReference);
                                                     await stockMovementRecordReference1
@@ -1957,13 +1961,13 @@ class _TransactionDetailPageWidgetState
                                                             .getStockDocRef(
                                                       _model
                                                           .dropDownStockValue!,
-                                                      widget.transaction!
+                                                      widget!.transaction!
                                                           .parentReference.id,
                                                     );
 
                                                     var stockMovementRecordReference2 =
                                                         StockMovementRecord
-                                                            .createDoc(widget
+                                                            .createDoc(widget!
                                                                 .transaction!
                                                                 .parentReference);
                                                     await stockMovementRecordReference2

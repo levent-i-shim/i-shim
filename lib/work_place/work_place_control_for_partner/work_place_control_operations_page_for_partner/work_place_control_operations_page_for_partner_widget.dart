@@ -3,9 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_operations_page_for_partner_model.dart';
 export 'work_place_control_operations_page_for_partner_model.dart';
 
@@ -119,12 +121,12 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                               24.0, 64.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewVehicles) {
+                              if (widget!.partnerDetail!.canViewVehicles) {
                                 context.pushNamed(
                                   WorkPlaceVehiclesPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -132,15 +134,15 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'canCreateVehicle': serializeParam(
-                                      widget.partnerDetail?.canManageVehicles,
+                                      widget!.partnerDetail?.canManageVehicles,
                                       ParamType.bool,
                                     ),
                                     'canCreateVehiclePayment': serializeParam(
-                                      widget.partnerDetail?.canManageVehicles,
+                                      widget!.partnerDetail?.canManageVehicles,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -205,16 +207,16 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewTasks) {
+                              if (widget!.partnerDetail!.canViewTasks) {
                                 context.pushNamed(
                                   WorkPlaceTasksPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -222,15 +224,15 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canCreateTask': serializeParam(
-                                      widget.partnerDetail?.canCreateTask,
+                                      widget!.partnerDetail?.canCreateTask,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.partnerDetail?.canManageTask,
+                                      widget!.partnerDetail?.canManageTask,
                                       ParamType.bool,
                                     ),
                                     'canManageStock': serializeParam(
-                                      widget.partnerDetail?.canManageStock,
+                                      widget!.partnerDetail?.canManageStock,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -295,16 +297,16 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewTasks) {
+                              if (widget!.partnerDetail!.canViewTasks) {
                                 context.pushNamed(
                                   WorkPlaceTaskDutiesPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -312,11 +314,11 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canCreateTask': serializeParam(
-                                      widget.partnerDetail?.canCreateTask,
+                                      widget!.partnerDetail?.canCreateTask,
                                       ParamType.bool,
                                     ),
                                     'canManageTask': serializeParam(
-                                      widget.partnerDetail?.canManageTask,
+                                      widget!.partnerDetail?.canManageTask,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -381,16 +383,16 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewStock) {
+                              if (widget!.partnerDetail!.canViewStock) {
                                 context.pushNamed(
                                   StocksPageWorkPlaceWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -398,7 +400,7 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.partnerDetail?.canManageStock,
+                                      widget!.partnerDetail?.canManageStock,
                                       ParamType.bool,
                                     ),
                                     'isWorker': serializeParam(
@@ -463,12 +465,12 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                               24.0, 24.0, 24.0, 64.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewForms) {
+                              if (widget!.partnerDetail!.canViewForms) {
                                 context.pushNamed(
                                   ShowAllFormsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -476,7 +478,7 @@ class _WorkPlaceControlOperationsPageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.partnerDetail?.canManageForms,
+                                      widget!.partnerDetail?.canManageForms,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,

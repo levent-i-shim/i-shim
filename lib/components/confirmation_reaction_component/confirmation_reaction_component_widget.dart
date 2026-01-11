@@ -1,9 +1,12 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'confirmation_reaction_component_model.dart';
 export 'confirmation_reaction_component_model.dart';
 
@@ -734,7 +737,7 @@ class _ConfirmationReactionComponentWidgetState
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              widget.isStarred!
+                              widget!.isStarred!
                                   ? 'Yıldızı kaldır'
                                   : 'Yıldız Ekle',
                               style: FlutterFlowTheme.of(context)
@@ -761,7 +764,7 @@ class _ConfirmationReactionComponentWidgetState
                             ),
                             Builder(
                               builder: (context) {
-                                if (widget.isStarred ?? false) {
+                                if (widget!.isStarred ?? false) {
                                   return Icon(
                                     Icons.star,
                                     color: Colors.white,
@@ -788,7 +791,7 @@ class _ConfirmationReactionComponentWidgetState
                       color: FlutterFlowTheme.of(context).alternate,
                     ),
                   ),
-                  if (widget.isMe ?? true)
+                  if (widget!.isMe ?? true)
                     InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -841,7 +844,7 @@ class _ConfirmationReactionComponentWidgetState
                         ),
                       ),
                     ),
-                  if (widget.isMe ?? true)
+                  if (widget!.isMe ?? true)
                     SizedBox(
                       width: 200.0,
                       child: Divider(
@@ -902,7 +905,7 @@ class _ConfirmationReactionComponentWidgetState
                       ),
                     ),
                   ),
-                  if (widget.isMap ?? true)
+                  if (widget!.isMap ?? true)
                     SizedBox(
                       width: 200.0,
                       child: Divider(
@@ -910,7 +913,7 @@ class _ConfirmationReactionComponentWidgetState
                         color: FlutterFlowTheme.of(context).alternate,
                       ),
                     ),
-                  if (widget.isMap ?? true)
+                  if (widget!.isMap ?? true)
                     InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,

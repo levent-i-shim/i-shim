@@ -3,10 +3,14 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_radio_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'confirmation_media_save_location_model.dart';
 export 'confirmation_media_save_location_model.dart';
 
@@ -99,13 +103,13 @@ class _ConfirmationMediaSaveLocationWidgetState
                         _model.result =
                             await actions.requestGalleryPermission();
                         if (_model.result!) {
-                          if (widget.message?.user1 == currentUserReference) {
-                            await widget.message!.reference
+                          if (widget!.message?.user1 == currentUserReference) {
+                            await widget!.message!.reference
                                 .update(createMessageRecordData(
                               user1AllowMediaSave: true,
                             ));
                           } else {
-                            await widget.message!.reference
+                            await widget!.message!.reference
                                 .update(createMessageRecordData(
                               user2AllowMediaSave: true,
                             ));
@@ -125,26 +129,26 @@ class _ConfirmationMediaSaveLocationWidgetState
                                   FlutterFlowTheme.of(context).secondary,
                             ),
                           );
-                          if (widget.message?.user1 == currentUserReference) {
-                            await widget.message!.reference
+                          if (widget!.message?.user1 == currentUserReference) {
+                            await widget!.message!.reference
                                 .update(createMessageRecordData(
                               user1AllowMediaSave: false,
                             ));
                           } else {
-                            await widget.message!.reference
+                            await widget!.message!.reference
                                 .update(createMessageRecordData(
                               user2AllowMediaSave: false,
                             ));
                           }
                         }
                       } else {
-                        if (widget.message?.user1 == currentUserReference) {
-                          await widget.message!.reference
+                        if (widget!.message?.user1 == currentUserReference) {
+                          await widget!.message!.reference
                               .update(createMessageRecordData(
                             user1AllowMediaSave: false,
                           ));
                         } else {
-                          await widget.message!.reference
+                          await widget!.message!.reference
                               .update(createMessageRecordData(
                             user2AllowMediaSave: false,
                           ));
@@ -172,11 +176,11 @@ class _ConfirmationMediaSaveLocationWidgetState
                     },
                     controller: _model.radioButtonValueController ??=
                         FormFieldController<String>(
-                            widget.message?.user1 == currentUserReference
-                                ? (widget.message!.user1AllowMediaSave
+                            widget!.message?.user1 == currentUserReference
+                                ? (widget!.message!.user1AllowMediaSave
                                     ? 'Evet'
                                     : 'Hayır')
-                                : (widget.message!.user2AllowMediaSave
+                                : (widget!.message!.user2AllowMediaSave
                                     ? 'Evet'
                                     : 'Hayır')),
                     optionHeight: 32.0,

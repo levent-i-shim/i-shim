@@ -5,9 +5,11 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_bill_detail_page_model.dart';
 export 'company_bill_detail_page_model.dart';
 
@@ -121,12 +123,12 @@ class _CompanyBillDetailPageWidgetState
                       UpdateBillPageWidget.routeName,
                       queryParameters: {
                         'whicBill': serializeParam(
-                          widget.companyBillDocument,
+                          widget!.companyBillDocument,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'whicBill': widget.companyBillDocument,
+                        'whicBill': widget!.companyBillDocument,
                       },
                     );
                   },
@@ -196,7 +198,7 @@ class _CompanyBillDetailPageWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Oluşturma Tarihi : ${dateTimeFormat("d/M/y", widget.companyBillDocument?.creationDate)}',
+                          'Oluşturma Tarihi : ${dateTimeFormat("d/M/y", widget!.companyBillDocument?.creationDate)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -236,8 +238,8 @@ class _CompanyBillDetailPageWidgetState
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.companyBillDocument?.value
-                                        .toString(),
+                                    widget!.companyBillDocument?.value
+                                        ?.toString(),
                                     'İçerik',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -265,7 +267,7 @@ class _CompanyBillDetailPageWidgetState
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget
+                                    widget!
                                         .companyBillDocument?.incomeOrExpense,
                                     'Gelir / Gider',
                                   ),
@@ -294,7 +296,7 @@ class _CompanyBillDetailPageWidgetState
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.companyBillDocument?.companyName,
+                                    widget!.companyBillDocument?.companyName,
                                     'İçerik',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -322,7 +324,7 @@ class _CompanyBillDetailPageWidgetState
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Text(
                                   valueOrDefault<String>(
-                                    widget.companyBillDocument?.content,
+                                    widget!.companyBillDocument?.content,
                                     'İçerik',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -350,7 +352,7 @@ class _CompanyBillDetailPageWidgetState
                                     0.0, 8.0, 0.0, 8.0),
                                 child: Text(
                                   'I-SHIM Fatura Kimlik No :  ${valueOrDefault<String>(
-                                    widget.companyBillDocument?.reference.id,
+                                    widget!.companyBillDocument?.reference.id,
                                     'Fatura Kimlik No',
                                   )}',
                                   style: FlutterFlowTheme.of(context)
@@ -414,9 +416,9 @@ class _CompanyBillDetailPageWidgetState
                                           ),
                                     ),
                                   ),
-                                  if (widget.companyBillDocument?.billPdfUrl !=
+                                  if (widget!.companyBillDocument?.billPdfUrl !=
                                           null &&
-                                      widget.companyBillDocument?.billPdfUrl !=
+                                      widget!.companyBillDocument?.billPdfUrl !=
                                           '')
                                     Padding(
                                       padding: EdgeInsets.all(4.0),
@@ -528,7 +530,7 @@ class _CompanyBillDetailPageWidgetState
                                             color: Colors.black,
                                           ),
                                           child: FlutterFlowPdfViewer(
-                                            networkPath: widget
+                                            networkPath: widget!
                                                 .companyBillDocument!
                                                 .billPdfUrl,
                                             horizontalScroll: false,
@@ -562,9 +564,9 @@ class _CompanyBillDetailPageWidgetState
                                           ),
                                     ),
                                   ),
-                                  if (widget.companyBillDocument?.pdfUrl !=
+                                  if (widget!.companyBillDocument?.pdfUrl !=
                                           null &&
-                                      widget.companyBillDocument?.pdfUrl != '')
+                                      widget!.companyBillDocument?.pdfUrl != '')
                                     Padding(
                                       padding: EdgeInsets.all(4.0),
                                       child: Container(
@@ -574,15 +576,15 @@ class _CompanyBillDetailPageWidgetState
                                           color: Colors.black,
                                         ),
                                         child: FlutterFlowPdfViewer(
-                                          networkPath: widget
+                                          networkPath: widget!
                                               .companyBillDocument!.pdfUrl,
                                           horizontalScroll: false,
                                         ),
                                       ),
                                     ),
-                                  if (widget.companyBillDocument?.imageUrl !=
+                                  if (widget!.companyBillDocument?.imageUrl !=
                                           null &&
-                                      widget.companyBillDocument?.imageUrl !=
+                                      widget!.companyBillDocument?.imageUrl !=
                                           '')
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -614,7 +616,7 @@ class _CompanyBillDetailPageWidgetState
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.network(
-                                                    widget.companyBillDocument!
+                                                    widget!.companyBillDocument!
                                                         .imageUrl,
                                                     width: 320.0,
                                                     height: 240.0,

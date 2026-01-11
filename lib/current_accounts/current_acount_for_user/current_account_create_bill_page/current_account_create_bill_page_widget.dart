@@ -1,15 +1,20 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_create_bill_page_model.dart';
 export 'current_account_create_bill_page_model.dart';
 
@@ -1075,7 +1080,7 @@ class _CurrentAccountCreateBillPageWidgetState
                                       var currentAccountActivityRecordReference =
                                           CurrentAccountActivityRecord
                                               .createDoc(
-                                                  widget.currentAccountId!);
+                                                  widget!.currentAccountId!);
                                       await currentAccountActivityRecordReference
                                           .set(
                                               createCurrentAccountActivityRecordData(
@@ -2467,7 +2472,7 @@ class _CurrentAccountCreateBillPageWidgetState
                               onChanged: (newValue) async {
                                 safeSetState(() =>
                                     _model.switchIsSideOneSellerForBillValue =
-                                        newValue);
+                                        newValue!);
                               },
                               activeColor: FlutterFlowTheme.of(context).primary,
                               activeTrackColor:
@@ -2914,15 +2919,15 @@ class _CurrentAccountCreateBillPageWidgetState
                               return;
                             }
                             if (_model.validateBill!) {
-                              if (widget.currentAccount?.sideTwoType ==
+                              if (widget!.currentAccount?.sideTwoType ==
                                   'Kullanmayan') {
                                 var currentAccountBillRecordReference1 =
                                     CurrentAccountBillRecord.createDoc(
-                                        widget.currentAccountId!);
+                                        widget!.currentAccountId!);
                                 await currentAccountBillRecordReference1.set({
                                   ...createCurrentAccountBillRecordData(
                                     totalValue: _model.totalMoney,
-                                    isSideOneSeller: widget
+                                    isSideOneSeller: widget!
                                             .currentAccount!.amISideOne
                                         ? _model
                                             .switchIsSideOneSellerForBillValue
@@ -2948,7 +2953,7 @@ class _CurrentAccountCreateBillPageWidgetState
                                     .getDocumentFromData({
                                   ...createCurrentAccountBillRecordData(
                                     totalValue: _model.totalMoney,
-                                    isSideOneSeller: widget
+                                    isSideOneSeller: widget!
                                             .currentAccount!.amISideOne
                                         ? _model
                                             .switchIsSideOneSellerForBillValue
@@ -2982,7 +2987,7 @@ class _CurrentAccountCreateBillPageWidgetState
                                         '${_model.totalMoney.toString()} Fiyatında Fatura Oluşturuldu',
                                     currentAccountBill: _model.bill2?.reference,
                                     currentAccountID:
-                                        widget.currentAccountId?.id,
+                                        widget!.currentAccountId?.id,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -2991,11 +2996,11 @@ class _CurrentAccountCreateBillPageWidgetState
                                   ),
                                 });
                                 if (_model.bill2!.isSideOneSeller) {
-                                  if (widget.currentAccount?.sideOneType ==
+                                  if (widget!.currentAccount?.sideOneType ==
                                       'Şirket') {
                                     _model.companySideOneIncome =
                                         await actions.getCompanyDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await CompanyIncomes2025Record.createDoc(
@@ -3017,7 +3022,7 @@ class _CurrentAccountCreateBillPageWidgetState
                                   } else {
                                     _model.userSideOneIncome =
                                         await actions.getUserDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await UserIncomeRecord.createDoc(
@@ -3038,11 +3043,11 @@ class _CurrentAccountCreateBillPageWidgetState
                                     });
                                   }
                                 } else {
-                                  if (widget.currentAccount?.sideOneType ==
+                                  if (widget!.currentAccount?.sideOneType ==
                                       'Şirket') {
                                     _model.companySideOnePayment =
                                         await actions.getCompanyDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await CompanyPayments2025Record.createDoc(
@@ -3064,7 +3069,7 @@ class _CurrentAccountCreateBillPageWidgetState
                                   } else {
                                     _model.userSideOnePayment =
                                         await actions.getUserDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await UserPaymentRecord.createDoc(
@@ -3101,7 +3106,7 @@ class _CurrentAccountCreateBillPageWidgetState
                                   ),
                                 );
 
-                                await widget.currentAccountId!.update({
+                                await widget!.currentAccountId!.update({
                                   ...mapToFirestore(
                                     {
                                       'totalBillCount': FieldValue.increment(1),
@@ -3116,18 +3121,18 @@ class _CurrentAccountCreateBillPageWidgetState
                                     {
                                       'totalMoney': FieldValue.increment(() {
                                         if (_model.bill2!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return _model.bill2!.totalValue;
                                         } else if (!_model
                                                 .bill2!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
                                               _model.bill2!.totalValue);
                                         } else if (_model
                                                 .bill2!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
                                               _model.bill2!.totalValue);
@@ -3137,18 +3142,18 @@ class _CurrentAccountCreateBillPageWidgetState
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
                                         if (_model.bill2!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return _model.bill2!.totalValue;
                                         } else if (!_model
                                                 .bill2!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
                                               _model.bill2!.totalValue);
                                         } else if (_model
                                                 .bill2!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
                                               _model.bill2!.totalValue);
@@ -3162,11 +3167,11 @@ class _CurrentAccountCreateBillPageWidgetState
                               } else {
                                 var currentAccountBillRecordReference2 =
                                     CurrentAccountBillRecord.createDoc(
-                                        widget.currentAccountId!);
+                                        widget!.currentAccountId!);
                                 await currentAccountBillRecordReference2.set({
                                   ...createCurrentAccountBillRecordData(
                                     totalValue: _model.totalMoney,
-                                    isSideOneSeller: widget
+                                    isSideOneSeller: widget!
                                             .currentAccount!.amISideOne
                                         ? _model
                                             .switchIsSideOneSellerForBillValue
@@ -3192,7 +3197,7 @@ class _CurrentAccountCreateBillPageWidgetState
                                     .getDocumentFromData({
                                   ...createCurrentAccountBillRecordData(
                                     totalValue: _model.totalMoney,
-                                    isSideOneSeller: widget
+                                    isSideOneSeller: widget!
                                             .currentAccount!.amISideOne
                                         ? _model
                                             .switchIsSideOneSellerForBillValue
@@ -3241,7 +3246,7 @@ class _CurrentAccountCreateBillPageWidgetState
                                         '${_model.totalMoney.toString()} Fiyatında Fatura Oluşturma talebi gönderildi',
                                     currentAccountBill: _model.bill?.reference,
                                     currentAccountID:
-                                        widget.currentAccountId?.id,
+                                        widget!.currentAccountId?.id,
                                   ),
                                   ...mapToFirestore(
                                     {

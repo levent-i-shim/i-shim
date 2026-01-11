@@ -6,10 +6,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'all_products_page_model.dart';
 export 'all_products_page_model.dart';
 
@@ -100,7 +103,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                   children: [
                     Text(
                       valueOrDefault<String>(
-                        widget.parentProduct?.name,
+                        widget!.parentProduct?.name,
                         'Ürünler',
                       ),
                       style:
@@ -158,20 +161,20 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                       AddNewProductPageWidget.routeName,
                       queryParameters: {
                         'company': serializeParam(
-                          widget.company,
+                          widget!.company,
                           ParamType.DocumentReference,
                         ),
                         'parentProduct': serializeParam(
-                          widget.parentProduct,
+                          widget!.parentProduct,
                           ParamType.Document,
                         ),
                         'workPlace': serializeParam(
-                          widget.workPlace,
+                          widget!.workPlace,
                           ParamType.DocumentReference,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'parentProduct': widget.parentProduct,
+                        'parentProduct': widget!.parentProduct,
                       },
                     );
                   },
@@ -297,7 +300,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                             Builder(
                               builder: (context) {
                                 final product =
-                                    widget.parentProduct?.products.toList() ??
+                                    widget!.parentProduct?.products?.toList() ??
                                         [];
 
                                 return Column(
@@ -345,7 +348,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'product': serializeParam(
@@ -354,15 +357,15 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                   ),
                                                   'parentProduct':
                                                       serializeParam(
-                                                    widget.parentProduct,
+                                                    widget!.parentProduct,
                                                     ParamType.Document,
                                                   ),
                                                   'workPlace': serializeParam(
-                                                    widget.workPlace,
+                                                    widget!.workPlace,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'isOwner': serializeParam(
-                                                    widget.isOwner,
+                                                    widget!.isOwner,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -370,7 +373,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                   'product':
                                                       containerProductsRecord,
                                                   'parentProduct':
-                                                      widget.parentProduct,
+                                                      widget!.parentProduct,
                                                 },
                                               );
                                             },
@@ -755,7 +758,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                                           ) ??
                                                                           false;
                                                                   if (confirmDialogResponse) {
-                                                                    if (widget
+                                                                    if (widget!
                                                                         .isOwner!) {
                                                                       await containerProductsRecord
                                                                           .reference
@@ -765,13 +768,13 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                                             true,
                                                                       ));
 
-                                                                      await widget
+                                                                      await widget!
                                                                           .parentProduct!
                                                                           .reference
                                                                           .update({
                                                                         ...createParentProductsRecordData(
                                                                           averageCost:
-                                                                              (widget.parentProduct!.totalCost - containerProductsRecord.totalCost) / (widget.parentProduct!.totalQuantity - containerProductsRecord.totalProduct),
+                                                                              (widget!.parentProduct!.totalCost - containerProductsRecord.totalCost) / (widget!.parentProduct!.totalQuantity - containerProductsRecord.totalProduct),
                                                                         ),
                                                                         ...mapToFirestore(
                                                                           {
@@ -840,13 +843,13 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                                           _model.description !=
                                                                               '') {
                                                                         var deletionRequestRecordReference =
-                                                                            DeletionRequestRecord.createDoc(widget.company!);
+                                                                            DeletionRequestRecord.createDoc(widget!.company!);
                                                                         await deletionRequestRecordReference
                                                                             .set(createDeletionRequestRecordData(
                                                                           type: DeleteionRequestTypes
                                                                               .childProduct
                                                                               .name,
-                                                                          parentProduct: widget
+                                                                          parentProduct: widget!
                                                                               .parentProduct
                                                                               ?.reference,
                                                                           description:
@@ -856,23 +859,23 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                                           isDeleteRequest:
                                                                               false,
                                                                           workPlace:
-                                                                              widget.workPlace,
+                                                                              widget!.workPlace,
                                                                           childProduct:
                                                                               containerProductsRecord.reference,
                                                                         ));
                                                                         _model.deletionRequest = DeletionRequestRecord.getDocumentFromData(
                                                                             createDeletionRequestRecordData(
                                                                               type: DeleteionRequestTypes.childProduct.name,
-                                                                              parentProduct: widget.parentProduct?.reference,
+                                                                              parentProduct: widget!.parentProduct?.reference,
                                                                               description: _model.description,
                                                                               triggeredUser: currentUserReference,
                                                                               isDeleteRequest: false,
-                                                                              workPlace: widget.workPlace,
+                                                                              workPlace: widget!.workPlace,
                                                                               childProduct: containerProductsRecord.reference,
                                                                             ),
                                                                             deletionRequestRecordReference);
                                                                         _model.companyDetail =
-                                                                            await CompaniesRecord.getDocumentOnce(widget.company!);
+                                                                            await CompaniesRecord.getDocumentOnce(widget!.company!);
 
                                                                         await NotificationsRecord.createDoc(_model.companyDetail!.owner!)
                                                                             .set({
@@ -888,11 +891,11 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                                             isDelete:
                                                                                 false,
                                                                             company:
-                                                                                widget.company,
+                                                                                widget!.company,
                                                                             fullDescription:
                                                                                 '${containerProductsRecord.name} İsimli Alt Ürün için ${currentUserDisplayName} isimli kişi silinme talebinde bulundu',
                                                                             workplace:
-                                                                                widget.workPlace,
+                                                                                widget!.workPlace,
                                                                           ),
                                                                           ...mapToFirestore(
                                                                             {
@@ -1036,7 +1039,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                             Builder(
                               builder: (context) {
                                 final product =
-                                    widget.parentProduct?.products.toList() ??
+                                    widget!.parentProduct?.products?.toList() ??
                                         [];
 
                                 return Column(
@@ -1084,7 +1087,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'product': serializeParam(
@@ -1093,15 +1096,15 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                   ),
                                                   'parentProduct':
                                                       serializeParam(
-                                                    widget.parentProduct,
+                                                    widget!.parentProduct,
                                                     ParamType.Document,
                                                   ),
                                                   'workPlace': serializeParam(
-                                                    widget.workPlace,
+                                                    widget!.workPlace,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'isOwner': serializeParam(
-                                                    widget.isOwner,
+                                                    widget!.isOwner,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -1109,7 +1112,7 @@ class _AllProductsPageWidgetState extends State<AllProductsPageWidget>
                                                   'product':
                                                       containerProductsRecord,
                                                   'parentProduct':
-                                                      widget.parentProduct,
+                                                      widget!.parentProduct,
                                                 },
                                               );
                                             },

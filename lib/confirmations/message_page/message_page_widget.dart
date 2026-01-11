@@ -6,11 +6,15 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:provider/provider.dart';
 import 'message_page_model.dart';
 export 'message_page_model.dart';
 
@@ -41,17 +45,17 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.confirmation?.sender == currentUserReference) {
-        _model.receiverRef = widget.confirmation?.receiver;
+      if (widget!.confirmation?.sender == currentUserReference) {
+        _model.receiverRef = widget!.confirmation?.receiver;
       } else {
-        _model.receiverRef = widget.confirmation?.sender;
+        _model.receiverRef = widget!.confirmation?.sender;
       }
 
       _model.userName = await actions.getUserName(
         _model.receiverRef!.id,
       );
       _model.getMessages = await queryConfirmationMessagesRecordOnce(
-        parent: widget.confirmation?.reference,
+        parent: widget!.confirmation?.reference,
         queryBuilder: (confirmationMessagesRecord) =>
             confirmationMessagesRecord.orderBy('date'),
       );
@@ -109,9 +113,9 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              if ((widget.confirmation?.receiver == currentUserReference) &&
-                  !widget.confirmation!.isAcccept &&
-                  !widget.confirmation!.isReject)
+              if ((widget!.confirmation?.receiver == currentUserReference) &&
+                  !widget!.confirmation!.isAcccept &&
+                  !widget!.confirmation!.isReject)
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                   child: Row(
@@ -120,7 +124,7 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                     children: [
                       FFButtonWidget(
                         onPressed: () async {
-                          await widget.confirmation!.reference
+                          await widget!.confirmation!.reference
                               .update(createConfirmationsRecordData(
                             isAcccept: true,
                           ));
@@ -130,10 +134,10 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                             ...createAjandaRecordData(
                               description: 'Soru Onaylandı',
                               type: WorkHistoryTypes.answeredConfirmation.name,
-                              company: widget.confirmation?.company,
-                              confirmation: widget.confirmation?.reference,
+                              company: widget!.confirmation?.company,
+                              confirmation: widget!.confirmation?.reference,
                               fullDescription:
-                                  '${widget.confirmation?.name} isimli Soru Onaylandı',
+                                  '${widget!.confirmation?.name} isimli Soru Onaylandı',
                             ),
                             ...mapToFirestore(
                               {
@@ -190,7 +194,7 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
-                          await widget.confirmation!.reference
+                          await widget!.confirmation!.reference
                               .update(createConfirmationsRecordData(
                             isReject: true,
                           ));
@@ -200,10 +204,10 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                             ...createAjandaRecordData(
                               description: 'Soru Reddedildi',
                               type: WorkHistoryTypes.answeredConfirmation.name,
-                              company: widget.confirmation?.company,
-                              confirmation: widget.confirmation?.reference,
+                              company: widget!.confirmation?.company,
+                              confirmation: widget!.confirmation?.reference,
                               fullDescription:
-                                  '${widget.confirmation?.name} isimli Soru Reddedildi',
+                                  '${widget!.confirmation?.name} isimli Soru Reddedildi',
                             ),
                             ...mapToFirestore(
                               {
@@ -263,7 +267,7 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                 ),
               Builder(
                 builder: (context) {
-                  if (widget.confirmation?.isAcccept ?? false) {
+                  if (widget!.confirmation?.isAcccept ?? false) {
                     return Text(
                       'Onaylandı',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -284,7 +288,7 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                                 .fontStyle,
                           ),
                     );
-                  } else if (widget.confirmation?.isReject ?? false) {
+                  } else if (widget!.confirmation?.isReject ?? false) {
                     return Text(
                       'Reddedildi',
                       style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -360,7 +364,7 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
               Flexible(
                 child: StreamBuilder<List<ConfirmationMessagesRecord>>(
                   stream: queryConfirmationMessagesRecord(
-                    parent: widget.confirmation?.reference,
+                    parent: widget!.confirmation?.reference,
                     queryBuilder: (confirmationMessagesRecord) =>
                         confirmationMessagesRecord.orderBy('date',
                             descending: true),
@@ -495,8 +499,8 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                   },
                 ),
               ),
-              if ((widget.confirmation?.isAcccept == false) &&
-                  !widget.confirmation!.isReject)
+              if ((widget!.confirmation?.isAcccept == false) &&
+                  !widget!.confirmation!.isReject)
                 Align(
                   alignment: AlignmentDirectional(0.0, 1.0),
                   child: Padding(
@@ -661,7 +665,7 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                                   if (_model.validate!) {
                                     var confirmationMessagesRecordReference =
                                         ConfirmationMessagesRecord.createDoc(
-                                            widget.confirmation!.reference);
+                                            widget!.confirmation!.reference);
                                     await confirmationMessagesRecordReference
                                         .set({
                                       ...createConfirmationMessagesRecordData(
@@ -713,12 +717,12 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                                         content:
                                             'Soru Hakkında Yeni Bir Mesaj Var',
                                         relatedDoc:
-                                            widget.confirmation?.reference.id,
+                                            widget!.confirmation?.reference.id,
                                         isRead: false,
                                         isDelete: false,
-                                        company: widget.confirmation?.company,
+                                        company: widget!.confirmation?.company,
                                         fullDescription:
-                                            '${widget.confirmation?.name} Sorusu için Yeni Bir Mesaj',
+                                            '${widget!.confirmation?.name} Sorusu için Yeni Bir Mesaj',
                                         image: _model.receiverDetail?.photoUrl,
                                       ),
                                       ...mapToFirestore(
@@ -742,7 +746,7 @@ class _MessagePageWidgetState extends State<MessagePageWidget> {
                                       userRefs: [_model.receiverRef!],
                                       initialPageName: 'MessagePage',
                                       parameterData: {
-                                        'confirmation': widget.confirmation,
+                                        'confirmation': widget!.confirmation,
                                       },
                                     );
                                   } else {

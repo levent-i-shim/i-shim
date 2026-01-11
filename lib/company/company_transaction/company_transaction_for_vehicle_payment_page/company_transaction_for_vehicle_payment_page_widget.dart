@@ -7,10 +7,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_transaction_for_vehicle_payment_page_model.dart';
 export 'company_transaction_for_vehicle_payment_page_model.dart';
 
@@ -75,7 +78,7 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<CompanyVehiclePaymentsRecord>(
       stream: CompanyVehiclePaymentsRecord.getDocument(
-          widget.transaction!.vehiclePayment!),
+          widget!.transaction!.vehiclePayment!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -1077,8 +1080,8 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                   ),
                                 ),
                                 child: Visibility(
-                                  visible: !widget.transaction!.isConfirmed &&
-                                      !widget.transaction!.isRejected,
+                                  visible: !widget!.transaction!.isConfirmed &&
+                                      !widget!.transaction!.isRejected,
                                   child: Form(
                                     key: _model.formKey1,
                                     autovalidateMode: AutovalidateMode.disabled,
@@ -1826,12 +1829,12 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                   var _shouldSetState = false;
                                                   _model.companyReject =
                                                       await CompaniesRecord
-                                                          .getDocumentOnce(widget
+                                                          .getDocumentOnce(widget!
                                                               .transaction!
                                                               .parentReference);
                                                   _shouldSetState = true;
-                                                  if (widget.isPartner) {
-                                                    if (!widget.canManage) {
+                                                  if (widget!.isPartner) {
+                                                    if (!widget!.canManage) {
                                                       ScaffoldMessenger.of(
                                                               context)
                                                           .showSnackBar(
@@ -1863,7 +1866,7 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                         currentUserReference) {
                                                       _model.companyWorkerReject =
                                                           await queryCompanyWorkersRecordOnce(
-                                                        parent: widget
+                                                        parent: widget!
                                                             .transaction
                                                             ?.parentReference,
                                                         queryBuilder:
@@ -1911,19 +1914,19 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
 
                                                   _model.workPlaceTransaction =
                                                       await WorkPlaceTransactionRecord
-                                                          .getDocumentOnce(widget
+                                                          .getDocumentOnce(widget!
                                                               .transaction!
                                                               .workPlaceTransaction!);
                                                   _shouldSetState = true;
 
-                                                  await widget
+                                                  await widget!
                                                       .transaction!.reference
                                                       .update(
                                                           createCompanyTransactionsRecordData(
                                                     isRejected: true,
                                                   ));
 
-                                                  await widget.transaction!
+                                                  await widget!.transaction!
                                                       .workPlaceTransaction!
                                                       .update(
                                                           createWorkPlaceTransactionRecordData(
@@ -1939,11 +1942,11 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                       type: WorkHistoryTypes
                                                           .transactionRejected
                                                           .name,
-                                                      transaction: widget
+                                                      transaction: widget!
                                                           .transaction
                                                           ?.reference,
                                                       fullDescription:
-                                                          '${widget.transaction?.name} İsimli işlem ${currentUserDisplayName} Tarafından Reddedildi',
+                                                          '${widget!.transaction?.name} İsimli işlem ${currentUserDisplayName} Tarafından Reddedildi',
                                                       isIncome: false,
                                                       vehiclePayment:
                                                           companyTransactionForVehiclePaymentPageCompanyVehiclePaymentsRecord
@@ -1992,7 +1995,7 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                           companyTransactionForVehiclePaymentPageCompanyVehiclePaymentsRecord
                                                               .parentReference,
                                                       fullDescription:
-                                                          '${widget.transaction?.name} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından Reddedildi',
+                                                          '${widget!.transaction?.name} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından Reddedildi',
                                                       isAccept: true,
                                                       isReject: false,
                                                       triggeredBy:
@@ -2062,8 +2065,8 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                               FFButtonWidget(
                                                 onPressed: () async {
                                                   var _shouldSetState = false;
-                                                  if (widget.isPartner) {
-                                                    if (!widget.canManage) {
+                                                  if (widget!.isPartner) {
+                                                    if (!widget!.canManage) {
                                                       ScaffoldMessenger.of(
                                                               context)
                                                           .showSnackBar(
@@ -2189,13 +2192,13 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
 
                                                   _model.companyDetail =
                                                       await CompaniesRecord
-                                                          .getDocumentOnce(widget
+                                                          .getDocumentOnce(widget!
                                                               .transaction!
                                                               .parentReference);
                                                   _shouldSetState = true;
                                                   _model.workPlaceTransaction2 =
                                                       await WorkPlaceTransactionRecord
-                                                          .getDocumentOnce(widget
+                                                          .getDocumentOnce(widget!
                                                               .transaction!
                                                               .workPlaceTransaction!);
                                                   _shouldSetState = true;
@@ -2320,14 +2323,14 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                   }, companyPayments2025RecordReference);
                                                   _shouldSetState = true;
 
-                                                  await widget
+                                                  await widget!
                                                       .transaction!.reference
                                                       .update(
                                                           createCompanyTransactionsRecordData(
                                                     isConfirmed: true,
                                                   ));
 
-                                                  await widget.transaction!
+                                                  await widget!.transaction!
                                                       .workPlaceTransaction!
                                                       .update(
                                                           createWorkPlaceTransactionRecordData(
@@ -2377,11 +2380,11 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                           'İşlem Onaylandı Gider Olarak Girildi',
                                                       type: WorkHistoryTypes
                                                           .expenseEntered.name,
-                                                      transaction: widget
+                                                      transaction: widget!
                                                           .transaction
                                                           ?.reference,
                                                       fullDescription:
-                                                          '${_model.companyReject?.name} isimli şirketinizde ${widget.transaction?.name} isimli işlem onaylandı ve${companyTransactionForVehiclePaymentPageCompanyVehiclePaymentsRecord.value.toString()} TL Gider Olarak girildi',
+                                                          '${_model.companyReject?.name} isimli şirketinizde ${widget!.transaction?.name} isimli işlem onaylandı ve${companyTransactionForVehiclePaymentPageCompanyVehiclePaymentsRecord.value.toString()} TL Gider Olarak girildi',
                                                       isIncome: false,
                                                       companyPayment: _model
                                                           .payment2?.reference,
@@ -2636,11 +2639,11 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                           'İşlem Onaylandı',
                                                       isRead: false,
                                                       isDelete: false,
-                                                      company: widget
+                                                      company: widget!
                                                           .transaction
                                                           ?.parentReference,
                                                       fullDescription:
-                                                          '${widget.transaction?.name} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından onaylandı',
+                                                          '${widget!.transaction?.name} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından onaylandı',
                                                       isAccept: true,
                                                       isReject: false,
                                                       triggeredBy:
@@ -2666,11 +2669,11 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                           'İşlem Onaylandı',
                                                       isRead: false,
                                                       isDelete: false,
-                                                      company: widget
+                                                      company: widget!
                                                           .transaction
                                                           ?.parentReference,
                                                       fullDescription:
-                                                          '${widget.transaction?.name} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından onaylandı',
+                                                          '${widget!.transaction?.name} İsimli İşlem ${currentUserDisplayName} İsimli kişi tarafından onaylandı',
                                                       isAccept: true,
                                                       isReject: false,
                                                       triggeredBy:
@@ -2748,14 +2751,14 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                               ),
                             ),
                           ),
-                          if ((widget.transaction?.isConfirmed == false) &&
-                              !widget.transaction!.isRejected)
+                          if ((widget!.transaction?.isConfirmed == false) &&
+                              !widget!.transaction!.isRejected)
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   20.0, 10.0, 20.0, 0.0),
                               child: StreamBuilder<List<StocksRecord>>(
                                 stream: queryStocksRecord(
-                                  parent: widget.transaction?.parentReference,
+                                  parent: widget!.transaction?.parentReference,
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -3117,9 +3120,9 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                         onPressed: () async {
                                                           var _shouldSetState =
                                                               false;
-                                                          if (widget
+                                                          if (widget!
                                                               .isPartner) {
-                                                            if (widget
+                                                            if (widget!
                                                                 .canManageStock!) {
                                                               _model.validate5 =
                                                                   true;
@@ -3187,7 +3190,7 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                                   .getStockDocRef(
                                                             _model
                                                                 .dropDownStockValue!,
-                                                            widget
+                                                            widget!
                                                                 .transaction!
                                                                 .parentReference
                                                                 .id,
@@ -3197,7 +3200,7 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
 
                                                           var stockMovementRecordReference =
                                                               StockMovementRecord
-                                                                  .createDoc(widget
+                                                                  .createDoc(widget!
                                                                       .transaction!
                                                                       .parentReference);
                                                           await stockMovementRecordReference
@@ -3367,9 +3370,9 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                       ),
                                                       FFButtonWidget(
                                                         onPressed: () async {
-                                                          if (widget
+                                                          if (widget!
                                                               .isPartner) {
-                                                            if (widget
+                                                            if (widget!
                                                                 .canManageStock!) {
                                                               _model.validate6 =
                                                                   true;
@@ -3401,14 +3404,14 @@ class _CompanyTransactionForVehiclePaymentPageWidgetState
                                                                         .getStockDocRef(
                                                                   _model
                                                                       .dropDownStockValue!,
-                                                                  widget
+                                                                  widget!
                                                                       .transaction!
                                                                       .parentReference
                                                                       .id,
                                                                 );
 
                                                                 var stockMovementRecordReference =
-                                                                    StockMovementRecord.createDoc(widget
+                                                                    StockMovementRecord.createDoc(widget!
                                                                         .transaction!
                                                                         .parentReference);
                                                                 await stockMovementRecordReference

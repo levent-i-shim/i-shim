@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'update_note_page_model.dart';
 export 'update_note_page_model.dart';
 
@@ -37,11 +40,11 @@ class _UpdateNotePageWidgetState extends State<UpdateNotePageWidget> {
     _model = createModel(context, () => UpdateNotePageModel());
 
     _model.textFieldTitleTextController ??=
-        TextEditingController(text: widget.isEdit! ? widget.note?.title : '');
+        TextEditingController(text: widget!.isEdit! ? widget!.note?.title : '');
     _model.textFieldTitleFocusNode ??= FocusNode();
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.note?.content : '');
+        text: widget!.isEdit! ? widget!.note?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -109,7 +112,7 @@ class _UpdateNotePageWidgetState extends State<UpdateNotePageWidget> {
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.note!.reference.update(createNotesRecordData(
+                  await widget!.note!.reference.update(createNotesRecordData(
                     isDelete: true,
                   ));
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -170,8 +173,8 @@ class _UpdateNotePageWidgetState extends State<UpdateNotePageWidget> {
                       return;
                     }
                     if (_model.validate!) {
-                      if (widget.isEdit!) {
-                        await widget.note!.reference
+                      if (widget!.isEdit!) {
+                        await widget!.note!.reference
                             .update(createNotesRecordData(
                           title: _model.textFieldTitleTextController.text,
                           content: _model.textFieldContentTextController.text,

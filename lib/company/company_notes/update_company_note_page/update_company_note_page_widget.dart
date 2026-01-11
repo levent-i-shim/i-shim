@@ -1,10 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'update_company_note_page_model.dart';
 export 'update_company_note_page_model.dart';
 
@@ -36,11 +40,11 @@ class _UpdateCompanyNotePageWidgetState
     _model = createModel(context, () => UpdateCompanyNotePageModel());
 
     _model.textFieldTitleTextController ??=
-        TextEditingController(text: widget.companyNote?.title);
+        TextEditingController(text: widget!.companyNote?.title);
     _model.textFieldTitleFocusNode ??= FocusNode();
 
     _model.textFieldContentTextController ??=
-        TextEditingController(text: widget.companyNote?.content);
+        TextEditingController(text: widget!.companyNote?.content);
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -112,7 +116,7 @@ class _UpdateCompanyNotePageWidgetState
                       return;
                     }
                     if (_model.validate!) {
-                      await widget.companyNote!.reference
+                      await widget!.companyNote!.reference
                           .update(createCompanyNotesRecordData(
                         title: _model.textFieldTitleTextController.text,
                         content: _model.textFieldContentTextController.text,

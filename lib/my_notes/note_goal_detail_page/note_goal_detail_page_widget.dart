@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'note_goal_detail_page_model.dart';
 export 'note_goal_detail_page_model.dart';
 
@@ -100,7 +104,7 @@ class _NoteGoalDetailPageWidgetState extends State<NoteGoalDetailPageWidget> {
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.noteGoal!.reference
+                  await widget!.noteGoal!.reference
                       .update(createGoalNotesRecordData(
                     isDeleted: true,
                   ));
@@ -163,12 +167,12 @@ class _NoteGoalDetailPageWidgetState extends State<NoteGoalDetailPageWidget> {
                           ParamType.bool,
                         ),
                         'noteGoal': serializeParam(
-                          widget.noteGoal,
+                          widget!.noteGoal,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'noteGoal': widget.noteGoal,
+                        'noteGoal': widget!.noteGoal,
                       },
                     );
                   },
@@ -238,7 +242,7 @@ class _NoteGoalDetailPageWidgetState extends State<NoteGoalDetailPageWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Created on: ${dateTimeFormat("d/M/y", widget.noteGoal?.createdAt)}',
+                          'Created on: ${dateTimeFormat("d/M/y", widget!.noteGoal?.createdAt)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -273,7 +277,7 @@ class _NoteGoalDetailPageWidgetState extends State<NoteGoalDetailPageWidget> {
                                 0.0, 20.0, 0.0, 12.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.noteGoal?.title,
+                                widget!.noteGoal?.title,
                                 'Başlık',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -298,7 +302,7 @@ class _NoteGoalDetailPageWidgetState extends State<NoteGoalDetailPageWidget> {
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.noteGoal?.content,
+                              widget!.noteGoal?.content,
                               'İçerik',
                             ),
                             style: FlutterFlowTheme.of(context)

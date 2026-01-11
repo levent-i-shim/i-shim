@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'update_note_finance_work_place_page_model.dart';
 export 'update_note_finance_work_place_page_model.dart';
 
@@ -39,7 +42,7 @@ class _UpdateNoteFinanceWorkPlacePageWidgetState
     _model = createModel(context, () => UpdateNoteFinanceWorkPlacePageModel());
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteFinanceWorkPlace?.content : '');
+        text: widget!.isEdit! ? widget!.noteFinanceWorkPlace?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -107,7 +110,7 @@ class _UpdateNoteFinanceWorkPlacePageWidgetState
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.noteFinanceWorkPlace!.reference
+                  await widget!.noteFinanceWorkPlace!.reference
                       .update(createFinancialMonitoringNotesRecordData(
                     isDeleted: false,
                   ));
@@ -169,8 +172,8 @@ class _UpdateNoteFinanceWorkPlacePageWidgetState
                       return;
                     }
                     if (_model.validate!) {
-                      if (widget.isEdit!) {
-                        await widget.noteFinanceWorkPlace!.reference
+                      if (widget!.isEdit!) {
+                        await widget!.noteFinanceWorkPlace!.reference
                             .update(createFinancialMonitoringNotesRecordData(
                           content: _model.textFieldContentTextController.text,
                         ));

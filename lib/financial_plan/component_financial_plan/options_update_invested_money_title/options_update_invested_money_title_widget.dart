@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_update_invested_money_title_model.dart';
 export 'options_update_invested_money_title_model.dart';
 
@@ -36,7 +41,7 @@ class _OptionsUpdateInvestedMoneyTitleWidgetState
     _model = createModel(context, () => OptionsUpdateInvestedMoneyTitleModel());
 
     _model.investmentTitleTextController ??=
-        TextEditingController(text: widget.investedMoneyDocument?.title);
+        TextEditingController(text: widget!.investedMoneyDocument?.title);
     _model.investmentTitleFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -258,7 +263,7 @@ class _OptionsUpdateInvestedMoneyTitleWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await widget.investedMoneyDocument!.reference
+                          await widget!.investedMoneyDocument!.reference
                               .update(createInvestedMoniesToWorkPlaceRecordData(
                             title: _model.investmentTitleTextController.text,
                           ));

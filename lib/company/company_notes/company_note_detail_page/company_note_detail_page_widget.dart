@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_note_detail_page_model.dart';
 export 'company_note_detail_page_model.dart';
 
@@ -79,7 +83,7 @@ class _CompanyNoteDetailPageWidgetState
             alignment: AlignmentDirectional(1.0, 0.0),
             child: FFButtonWidget(
               onPressed: () async {
-                if (widget.canManage!) {
+                if (widget!.canManage!) {
                   var confirmDialogResponse = await showDialog<bool>(
                         context: context,
                         builder: (alertDialogContext) {
@@ -104,7 +108,7 @@ class _CompanyNoteDetailPageWidgetState
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.companyNote!.reference
+                    await widget!.companyNote!.reference
                         .update(createCompanyNotesRecordData(
                       isDelete: true,
                     ));
@@ -173,17 +177,17 @@ class _CompanyNoteDetailPageWidgetState
                 padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (widget.canManage!) {
+                    if (widget!.canManage!) {
                       context.pushNamed(
                         UpdateCompanyNotePageWidget.routeName,
                         queryParameters: {
                           'companyNote': serializeParam(
-                            widget.companyNote,
+                            widget!.companyNote,
                             ParamType.Document,
                           ),
                         }.withoutNulls,
                         extra: <String, dynamic>{
-                          'companyNote': widget.companyNote,
+                          'companyNote': widget!.companyNote,
                         },
                       );
                     } else {
@@ -268,7 +272,7 @@ class _CompanyNoteDetailPageWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Created on: ${dateTimeFormat("d/M/y", widget.companyNote?.date)}',
+                          'Created on: ${dateTimeFormat("d/M/y", widget!.companyNote?.date)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -303,7 +307,7 @@ class _CompanyNoteDetailPageWidgetState
                                 0.0, 20.0, 0.0, 12.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.companyNote?.title,
+                                widget!.companyNote?.title,
                                 'Başlık',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -328,7 +332,7 @@ class _CompanyNoteDetailPageWidgetState
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.companyNote?.content,
+                              widget!.companyNote?.content,
                               'İçerik',
                             ),
                             style: FlutterFlowTheme.of(context)

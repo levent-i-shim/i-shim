@@ -4,9 +4,12 @@ import '/flutter_flow/flutter_flow_charts.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'form_graphic_page_model.dart';
 export 'form_graphic_page_model.dart';
 
@@ -43,7 +46,7 @@ class _FormGraphicPageWidgetState extends State<FormGraphicPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.graphicPairsPageState =
-          widget.graphicPairs!.toList().cast<ChartXYPairsStruct>();
+          widget!.graphicPairs!.toList().cast<ChartXYPairsStruct>();
       safeSetState(() {});
     });
 
@@ -138,14 +141,14 @@ class _FormGraphicPageWidgetState extends State<FormGraphicPageWidget> {
                       child: FlutterFlowBarChart(
                         barData: [
                           FFBarChartData(
-                            yData: widget.graphicPairs!
+                            yData: widget!.graphicPairs!
                                 .map((e) => e.yField)
                                 .toList(),
                             color: FlutterFlowTheme.of(context).primary,
                           )
                         ],
                         xLabels:
-                            widget.graphicPairs!.map((e) => e.xField).toList(),
+                            widget!.graphicPairs!.map((e) => e.xField).toList(),
                         barWidth: 16.0,
                         barBorderRadius: BorderRadius.circular(8.0),
                         groupSpace: 8.0,
@@ -160,7 +163,7 @@ class _FormGraphicPageWidgetState extends State<FormGraphicPageWidget> {
                         ),
                         axisBounds: AxisBounds(),
                         xAxisLabelInfo: AxisLabelInfo(
-                          title: widget.xName,
+                          title: widget!.xName,
                           titleTextStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     font: GoogleFonts.inter(
@@ -204,7 +207,7 @@ class _FormGraphicPageWidgetState extends State<FormGraphicPageWidget> {
                           reservedSize: 28.0,
                         ),
                         yAxisLabelInfo: AxisLabelInfo(
-                          title: widget.yName,
+                          title: widget!.yName,
                           titleTextStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     font: GoogleFonts.inter(
@@ -258,7 +261,7 @@ class _FormGraphicPageWidgetState extends State<FormGraphicPageWidget> {
                       height: 400.0,
                       child: FlutterFlowPieChart(
                         data: FFPieChartData(
-                          values: widget.graphicPairs!
+                          values: widget!.graphicPairs!
                               .map((e) => e.yField)
                               .toList(),
                           colors: chartPieChartColorsList2,

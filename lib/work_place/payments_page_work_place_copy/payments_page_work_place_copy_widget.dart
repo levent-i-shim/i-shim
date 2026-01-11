@@ -1,12 +1,16 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'payments_page_work_place_copy_model.dart';
 export 'payments_page_work_place_copy_model.dart';
 
@@ -107,12 +111,12 @@ class _PaymentsPageWorkPlaceCopyWidgetState
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  if (widget.canAddPayment!) {
+                  if (widget!.canAddPayment!) {
                     context.pushNamed(
                       AddManualPaymentPageWorkPlaceWidget.routeName,
                       queryParameters: {
                         'company': serializeParam(
-                          widget.company,
+                          widget!.company,
                           ParamType.DocumentReference,
                         ),
                         'isEdit': serializeParam(
@@ -120,7 +124,7 @@ class _PaymentsPageWorkPlaceCopyWidgetState
                           ParamType.bool,
                         ),
                         'workPlace': serializeParam(
-                          widget.workPlace,
+                          widget!.workPlace,
                           ParamType.DocumentReference,
                         ),
                       }.withoutNulls,
@@ -192,7 +196,7 @@ class _PaymentsPageWorkPlaceCopyWidgetState
             child: PagedListView<DocumentSnapshot<Object?>?,
                 CompanyPayments2025Record>(
               pagingController: _model.setListViewController(
-                  CompanyPayments2025Record.collection(widget.company)
+                  CompanyPayments2025Record.collection(widget!.company)
                       .where(
                         'isDelete',
                         isEqualTo: false,
@@ -203,10 +207,10 @@ class _PaymentsPageWorkPlaceCopyWidgetState
                       )
                       .where(
                         'workPlace',
-                        isEqualTo: widget.workPlace,
+                        isEqualTo: widget!.workPlace,
                       )
                       .orderBy('date', descending: true),
-                  parent: widget.company),
+                  parent: widget!.company),
               padding: EdgeInsets.zero,
               reverse: false,
               scrollDirection: Axis.vertical,
@@ -465,13 +469,13 @@ class _PaymentsPageWorkPlaceCopyWidgetState
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (widget.canAddPayment!) {
+                                          if (widget!.canAddPayment!) {
                                             context.pushNamed(
                                               AddManualPaymentPageWorkPlaceWidget
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'isEdit': serializeParam(
@@ -484,7 +488,7 @@ class _PaymentsPageWorkPlaceCopyWidgetState
                                                   ParamType.Document,
                                                 ),
                                                 'workPlace': serializeParam(
-                                                  widget.workPlace,
+                                                  widget!.workPlace,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -528,7 +532,7 @@ class _PaymentsPageWorkPlaceCopyWidgetState
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        if (widget.canAddPayment!) {
+                                        if (widget!.canAddPayment!) {
                                           var confirmDialogResponse =
                                               await showDialog<bool>(
                                                     context: context,
@@ -576,7 +580,7 @@ class _PaymentsPageWorkPlaceCopyWidgetState
                                               isDelete: true,
                                             ));
 
-                                            await widget.company!.update({
+                                            await widget!.company!.update({
                                               ...mapToFirestore(
                                                 {
                                                   'totalMoney':

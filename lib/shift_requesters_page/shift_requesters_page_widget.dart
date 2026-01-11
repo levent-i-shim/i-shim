@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'shift_requesters_page_model.dart';
 export 'shift_requesters_page_model.dart';
 
@@ -98,7 +101,7 @@ class _ShiftRequestersPageWidgetState extends State<ShiftRequestersPageWidget> {
           top: true,
           child: StreamBuilder<List<WorkerShiftsRecord>>(
             stream: queryWorkerShiftsRecord(
-              parent: widget.company,
+              parent: widget!.company,
               queryBuilder: (workerShiftsRecord) => workerShiftsRecord.where(
                 'isProcessed',
                 isEqualTo: false,
@@ -412,7 +415,7 @@ class _ShiftRequestersPageWidgetState extends State<ShiftRequestersPageWidget> {
                                                         'Talebiniz Reddedildi',
                                                     isRead: false,
                                                     isDelete: false,
-                                                    company: widget.company,
+                                                    company: widget!.company,
                                                     fullDescription:
                                                         '${currentUserDisplayName} Tarafından Vardiya Talebiniz Reddedildi',
                                                     workplace: containerVarItem
@@ -525,7 +528,7 @@ class _ShiftRequestersPageWidgetState extends State<ShiftRequestersPageWidget> {
                                                       'Talebiniz Kabul Edildi',
                                                   isRead: false,
                                                   isDelete: false,
-                                                  company: widget.company,
+                                                  company: widget!.company,
                                                   fullDescription:
                                                       '${currentUserDisplayName} Tarafından Vardiya Talebiniz Kabul Edildi',
                                                   workplace: containerVarItem

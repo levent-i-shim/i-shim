@@ -3,10 +3,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'create_task_step4_model.dart';
 export 'create_task_step4_model.dart';
 
@@ -86,7 +89,7 @@ class _CreateTaskStep4WidgetState extends State<CreateTaskStep4Widget> {
             children: [
               FFButtonWidget(
                 onPressed: () async {
-                  if (widget.canAddNewEmployee!) {
+                  if (widget!.canAddNewEmployee!) {
                     context.pushNamed(
                       WorkerInvitation01UserWidget.routeName,
                       queryParameters: {
@@ -195,7 +198,7 @@ class _CreateTaskStep4WidgetState extends State<CreateTaskStep4Widget> {
                     child: PagedListView<DocumentSnapshot<Object?>?,
                         WorkPlaceWorkerRecord>(
                       pagingController: _model.setListViewController(
-                          WorkPlaceWorkerRecord.collection(widget.workPlace)
+                          WorkPlaceWorkerRecord.collection(widget!.workPlace)
                               .where(
                                 'isDelete',
                                 isEqualTo: false,
@@ -204,7 +207,7 @@ class _CreateTaskStep4WidgetState extends State<CreateTaskStep4Widget> {
                                 'isWorker',
                                 isEqualTo: true,
                               ),
-                          parent: widget.workPlace),
+                          parent: widget!.workPlace),
                       padding: EdgeInsets.zero,
                       primary: false,
                       reverse: false,
@@ -251,17 +254,17 @@ class _CreateTaskStep4WidgetState extends State<CreateTaskStep4Widget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (widget.isDutyTask!) {
+                                  if (widget!.isDutyTask!) {
                                     context.pushNamed(
                                       CreateTaskStep5ForTaskDutiesWidget
                                           .routeName,
                                       queryParameters: {
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                         'workPlace': serializeParam(
-                                          widget.workPlace,
+                                          widget!.workPlace,
                                           ParamType.DocumentReference,
                                         ),
                                         'workPlaceWorker': serializeParam(
@@ -269,7 +272,7 @@ class _CreateTaskStep4WidgetState extends State<CreateTaskStep4Widget> {
                                           ParamType.Document,
                                         ),
                                         'canCreateForm': serializeParam(
-                                          widget.canCreateForm,
+                                          widget!.canCreateForm,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,
@@ -284,15 +287,15 @@ class _CreateTaskStep4WidgetState extends State<CreateTaskStep4Widget> {
                                           .routeName,
                                       queryParameters: {
                                         'company': serializeParam(
-                                          widget.company,
+                                          widget!.company,
                                           ParamType.DocumentReference,
                                         ),
                                         'workPlace': serializeParam(
-                                          widget.workPlace,
+                                          widget!.workPlace,
                                           ParamType.DocumentReference,
                                         ),
                                         'isDutyTask': serializeParam(
-                                          widget.isDutyTask,
+                                          widget!.isDutyTask,
                                           ParamType.bool,
                                         ),
                                         'workPlaceWorker': serializeParam(
@@ -300,7 +303,7 @@ class _CreateTaskStep4WidgetState extends State<CreateTaskStep4Widget> {
                                           ParamType.Document,
                                         ),
                                         'canCreateForm': serializeParam(
-                                          widget.canCreateForm,
+                                          widget!.canCreateForm,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,

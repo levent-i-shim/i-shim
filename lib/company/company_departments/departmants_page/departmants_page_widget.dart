@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'departmants_page_model.dart';
 export 'departmants_page_model.dart';
 
@@ -62,7 +65,7 @@ class _DepartmantsPageWidgetState extends State<DepartmantsPageWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyDepartmentsRecord>>(
       stream: queryCompanyDepartmentsRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyDepartmentsRecord) =>
             companyDepartmentsRecord.where(
           'isDelete',
@@ -117,7 +120,7 @@ class _DepartmantsPageWidgetState extends State<DepartmantsPageWidget> {
               ),
               title: Text(
                 valueOrDefault<String>(
-                  widget.companyName,
+                  widget!.companyName,
                   'Şirket İsmi',
                 ),
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -219,16 +222,16 @@ class _DepartmantsPageWidgetState extends State<DepartmantsPageWidget> {
                                     0.0, 0.0, 8.0, 0.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    if (widget.canAddDepartmnet!) {
+                                    if (widget!.canAddDepartmnet!) {
                                       context.pushNamed(
                                         AddDepartmentWidget.routeName,
                                         queryParameters: {
                                           'companyName': serializeParam(
-                                            widget.companyName,
+                                            widget!.companyName,
                                             ParamType.String,
                                           ),
                                           'company': serializeParam(
-                                            widget.company,
+                                            widget!.company,
                                             ParamType.DocumentReference,
                                           ),
                                         }.withoutNulls,
@@ -344,27 +347,27 @@ class _DepartmantsPageWidgetState extends State<DepartmantsPageWidget> {
                                               ParamType.String,
                                             ),
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'canManageEmployee': serializeParam(
-                                              widget.canManageEmployee,
+                                              widget!.canManageEmployee,
                                               ParamType.bool,
                                             ),
                                             'canViewTask': serializeParam(
-                                              widget.canViewTask,
+                                              widget!.canViewTask,
                                               ParamType.bool,
                                             ),
                                             'canManageTask': serializeParam(
-                                              widget.canManageTask,
+                                              widget!.canManageTask,
                                               ParamType.bool,
                                             ),
                                             'canSendMoney': serializeParam(
-                                              widget.canSendMoney,
+                                              widget!.canSendMoney,
                                               ParamType.bool,
                                             ),
                                             'isOwner': serializeParam(
-                                              widget.isOwner,
+                                              widget!.isOwner,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,

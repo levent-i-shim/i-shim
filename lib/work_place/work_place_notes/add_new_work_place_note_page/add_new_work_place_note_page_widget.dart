@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_new_work_place_note_page_model.dart';
 export 'add_new_work_place_note_page_model.dart';
 
@@ -124,18 +127,18 @@ class _AddNewWorkPlaceNotePageWidgetState
                     }
                     if (_model.validate!) {
                       var workPlaceNotesRecordReference =
-                          WorkPlaceNotesRecord.createDoc(widget.workPlace!);
+                          WorkPlaceNotesRecord.createDoc(widget!.workPlace!);
                       await workPlaceNotesRecordReference.set({
                         ...createWorkPlaceNotesRecordData(
                           title: _model.textFieldTitleTextController.text,
                           content: _model.textFieldContentTextController.text,
                           isDelete: false,
-                          hasVehicleFault: widget.hasVehicleFault,
-                          hasMachineFault: widget.hasMachineFault,
-                          hasFinancialNotes: widget.hasFinancialNotes,
-                          hasTaxNotes: widget.hasTaxNotes,
-                          hasPersonnelNotes: widget.hasPersonnelNotes,
-                          hasWorkplaceNotes: widget.hasWorkplaceNotes,
+                          hasVehicleFault: widget!.hasVehicleFault,
+                          hasMachineFault: widget!.hasMachineFault,
+                          hasFinancialNotes: widget!.hasFinancialNotes,
+                          hasTaxNotes: widget!.hasTaxNotes,
+                          hasPersonnelNotes: widget!.hasPersonnelNotes,
+                          hasWorkplaceNotes: widget!.hasWorkplaceNotes,
                           addedBy: currentUserReference,
                           version: 1,
                         ),
@@ -151,12 +154,12 @@ class _AddNewWorkPlaceNotePageWidgetState
                           title: _model.textFieldTitleTextController.text,
                           content: _model.textFieldContentTextController.text,
                           isDelete: false,
-                          hasVehicleFault: widget.hasVehicleFault,
-                          hasMachineFault: widget.hasMachineFault,
-                          hasFinancialNotes: widget.hasFinancialNotes,
-                          hasTaxNotes: widget.hasTaxNotes,
-                          hasPersonnelNotes: widget.hasPersonnelNotes,
-                          hasWorkplaceNotes: widget.hasWorkplaceNotes,
+                          hasVehicleFault: widget!.hasVehicleFault,
+                          hasMachineFault: widget!.hasMachineFault,
+                          hasFinancialNotes: widget!.hasFinancialNotes,
+                          hasTaxNotes: widget!.hasTaxNotes,
+                          hasPersonnelNotes: widget!.hasPersonnelNotes,
+                          hasWorkplaceNotes: widget!.hasWorkplaceNotes,
                           addedBy: currentUserReference,
                           version: 1,
                         ),

@@ -7,10 +7,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_task_add_model.dart';
 export 'company_task_add_model.dart';
 
@@ -134,7 +137,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                         queryBuilder: (formsRecord) => formsRecord
                             .where(
                               'companyRef',
-                              isEqualTo: widget.company,
+                              isEqualTo: widget!.company,
                             )
                             .where(
                               'isDelete',
@@ -851,7 +854,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                                                 .where(
                                                                   'companyRef',
                                                                   isEqualTo:
-                                                                      widget
+                                                                      widget!
                                                                           .company,
                                                                 )
                                                                 .where(
@@ -1360,7 +1363,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                                   currentUserReference,
                                               form: _model.formRef,
                                               isDelete: false,
-                                              company: widget.company,
+                                              company: widget!.company,
                                               requiresAction: false,
                                             ),
                                             ...mapToFirestore(
@@ -1382,7 +1385,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                                   currentUserReference,
                                               form: _model.formRef,
                                               isDelete: false,
-                                              company: widget.company,
+                                              company: widget!.company,
                                               requiresAction: false,
                                             ),
                                             ...mapToFirestore(
@@ -1394,7 +1397,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
 
                                           var companyTasksRecordReference =
                                               CompanyTasksRecord.createDoc(
-                                                  widget.company!);
+                                                  widget!.company!);
                                           await companyTasksRecordReference
                                               .set({
                                             ...createCompanyTasksRecordData(
@@ -1402,7 +1405,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                               userRef: _model.dropDownValue2,
                                               description:
                                                   _model.textController2.text,
-                                              companyRef: widget.company,
+                                              companyRef: widget!.company,
                                               isComplete: false,
                                               createdUserRef:
                                                   currentUserReference,
@@ -1426,7 +1429,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                               userRef: _model.dropDownValue2,
                                               description:
                                                   _model.textController2.text,
-                                              companyRef: widget.company,
+                                              companyRef: widget!.company,
                                               isComplete: false,
                                               createdUserRef:
                                                   currentUserReference,
@@ -1450,7 +1453,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                           _model.companyDetail =
                                               await CompaniesRecord
                                                   .getDocumentOnce(
-                                                      widget.company!);
+                                                      widget!.company!);
 
                                           await NotificationsRecord.createDoc(
                                                   _model.userRef!)
@@ -1462,7 +1465,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                               isRead: false,
                                               isDelete: false,
                                               content: 'Bir Görevin Var',
-                                              company: widget.company,
+                                              company: widget!.company,
                                               fullDescription:
                                                   '${_model.textController1.text} İsimli Bir Görev Eklendi',
                                               image: _model
@@ -1527,7 +1530,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                             queryBuilder: (workHistoryRecord) =>
                                                 workHistoryRecord.where(
                                               'company',
-                                              isEqualTo: widget.company,
+                                              isEqualTo: widget!.company,
                                             ),
                                             singleRecord: true,
                                           ).then((s) => s.firstOrNull);
@@ -1547,7 +1550,7 @@ class _CompanyTaskAddWidgetState extends State<CompanyTaskAddWidget> {
                                             queryBuilder: (workHistoryRecord) =>
                                                 workHistoryRecord.where(
                                               'company',
-                                              isEqualTo: widget.company,
+                                              isEqualTo: widget!.company,
                                             ),
                                             singleRecord: true,
                                           ).then((s) => s.firstOrNull);

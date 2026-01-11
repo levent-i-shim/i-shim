@@ -5,10 +5,14 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'response_form_for_duty_model.dart';
 export 'response_form_for_duty_model.dart';
@@ -63,7 +67,7 @@ class _ResponseFormForDutyWidgetState extends State<ResponseFormForDutyWidget> {
 
     return StreamBuilder<List<FormFieldsRecord>>(
       stream: queryFormFieldsRecord(
-        parent: widget.companyTaskDuties?.form,
+        parent: widget!.companyTaskDuties?.form,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -138,7 +142,7 @@ class _ResponseFormForDutyWidgetState extends State<ResponseFormForDutyWidget> {
                           padding: EdgeInsets.all(12.0),
                           child: StreamBuilder<UsersRecord>(
                             stream: UsersRecord.getDocument(
-                                widget.dutiesForCompany!.createdUserRef!),
+                                widget!.dutiesForCompany!.createdUserRef!),
                             builder: (context, snapshot) {
                               // Customize what your widget looks like when it's loading.
                               if (!snapshot.hasData) {
@@ -212,7 +216,7 @@ class _ResponseFormForDutyWidgetState extends State<ResponseFormForDutyWidget> {
                                                   0.0, 4.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget.companyTaskDuties?.name,
+                                              widget!.companyTaskDuties?.name,
                                               'Task Adı',
                                             ),
                                             style: FlutterFlowTheme.of(context)
@@ -279,7 +283,7 @@ class _ResponseFormForDutyWidgetState extends State<ResponseFormForDutyWidget> {
                                                   0.0, 4.0, 0.0, 0.0),
                                           child: Text(
                                             valueOrDefault<String>(
-                                              widget.companyTaskDuties
+                                              widget!.companyTaskDuties
                                                   ?.description,
                                               'Açıklama',
                                             ),
@@ -444,15 +448,15 @@ class _ResponseFormForDutyWidgetState extends State<ResponseFormForDutyWidget> {
                                         responseFormForDutyFormFieldsRecordList
                                             .firstOrNull!.parentReference,
                                     companyTaskDuties:
-                                        widget.companyTaskDuties?.reference,
-                                    companyDocRef: widget
+                                        widget!.companyTaskDuties?.reference,
+                                    companyDocRef: widget!
                                         .dutiesForCompany!.parentReference,
-                                    reportsTo: widget
+                                    reportsTo: widget!
                                         .dutiesForCompany!.createdUserRef!,
                                     isDuty: true,
                                     authUser: currentUserReference!,
                                     userName: currentUserDisplayName,
-                                    taskName: widget.companyTaskDuties!.name,
+                                    taskName: widget!.companyTaskDuties!.name,
                                   ),
                                 ),
                               ),
@@ -492,12 +496,12 @@ class _ResponseFormForDutyWidgetState extends State<ResponseFormForDutyWidget> {
                           child: StreamBuilder<List<CompanyReportsRecord>>(
                             stream: queryCompanyReportsRecord(
                               parent:
-                                  widget.companyTaskDuties?.parentReference,
+                                  widget!.companyTaskDuties?.parentReference,
                               queryBuilder: (companyReportsRecord) =>
                                   companyReportsRecord
                                       .where(
                                         'duty',
-                                        isEqualTo: widget
+                                        isEqualTo: widget!
                                             .companyTaskDuties?.reference,
                                       )
                                       .where(

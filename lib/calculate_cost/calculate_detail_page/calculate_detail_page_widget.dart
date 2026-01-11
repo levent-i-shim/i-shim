@@ -1,13 +1,18 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/delete_request_component/delete_request_component_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'calculate_detail_page_model.dart';
 export 'calculate_detail_page_model.dart';
 
@@ -105,10 +110,10 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                             onTap: () async {
                               for (int loop1Index = 0;
                                   loop1Index <
-                                      widget.calculate!.parameters.length;
+                                      widget!.calculate!.parameters.length;
                                   loop1Index++) {
                                 final currentLoop1Item =
-                                    widget.calculate!.parameters[loop1Index];
+                                    widget!.calculate!.parameters[loop1Index];
                                 _model
                                     .addToParameters(ProductCostDataTypeStruct(
                                   name: currentLoop1Item.name,
@@ -126,11 +131,11 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                 EditCalculationsPageWidget.routeName,
                                 queryParameters: {
                                   'calculation': serializeParam(
-                                    widget.calculate,
+                                    widget!.calculate,
                                     ParamType.Document,
                                   ),
                                   'product': serializeParam(
-                                    widget.product,
+                                    widget!.product,
                                     ParamType.Document,
                                   ),
                                   'parameters': serializeParam(
@@ -139,18 +144,18 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                     isList: true,
                                   ),
                                   'parentProduct': serializeParam(
-                                    widget.parentProduct,
+                                    widget!.parentProduct,
                                     ParamType.Document,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace,
+                                    widget!.workPlace,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
                                 extra: <String, dynamic>{
-                                  'calculation': widget.calculate,
-                                  'product': widget.product,
-                                  'parentProduct': widget.parentProduct,
+                                  'calculation': widget!.calculate,
+                                  'product': widget!.product,
+                                  'parentProduct': widget!.parentProduct,
                                 },
                               );
                             },
@@ -194,39 +199,39 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                       ) ??
                                       false;
                               if (confirmDialogResponse) {
-                                if (widget.isOwner!) {
-                                  await widget.calculate!.reference
+                                if (widget!.isOwner!) {
+                                  await widget!.calculate!.reference
                                       .update(createCalculationsRecordData(
                                     isDelete: true,
                                   ));
-                                  if (widget.product!.counter > 1) {
-                                    await widget.calculate!.parentReference
+                                  if (widget!.product!.counter > 1) {
+                                    await widget!.calculate!.parentReference
                                         .update({
                                       ...createProductsRecordData(
-                                        averageCost: (widget
+                                        averageCost: (widget!
                                                     .product!.totalCost -
-                                                (widget.calculate!
+                                                (widget!.calculate!
                                                         .productQuantity *
-                                                    widget.calculate!.cost)) /
-                                            (widget.product!.totalProduct -
-                                                widget.calculate!
+                                                    widget!.calculate!.cost)) /
+                                            (widget!.product!.totalProduct -
+                                                widget!.calculate!
                                                     .productQuantity),
                                       ),
                                       ...mapToFirestore(
                                         {
                                           'counter': FieldValue.increment(-(1)),
                                           'totalProduct': FieldValue.increment(
-                                              -(widget
+                                              -(widget!
                                                   .calculate!.productQuantity)),
                                           'totalCost': FieldValue.increment(
-                                              -(widget.calculate!
+                                              -(widget!.calculate!
                                                       .productQuantity *
-                                                  widget.calculate!.cost)),
+                                                  widget!.calculate!.cost)),
                                         },
                                       ),
                                     });
                                   } else {
-                                    await widget.calculate!.parentReference
+                                    await widget!.calculate!.parentReference
                                         .update(createProductsRecordData(
                                       averageCost: 0.0,
                                       counter: 0,
@@ -235,27 +240,27 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                     ));
                                   }
 
-                                  await widget.parentProduct!.reference
+                                  await widget!.parentProduct!.reference
                                       .update({
                                     ...createParentProductsRecordData(
                                       averageCost:
-                                          (widget.parentProduct!.totalCost -
-                                                  (widget.calculate!.cost *
-                                                      widget.calculate!
+                                          (widget!.parentProduct!.totalCost -
+                                                  (widget!.calculate!.cost *
+                                                      widget!.calculate!
                                                           .productQuantity)) /
-                                              (widget.parentProduct!
+                                              (widget!.parentProduct!
                                                       .totalQuantity -
-                                                  widget.calculate!
+                                                  widget!.calculate!
                                                       .productQuantity),
                                     ),
                                     ...mapToFirestore(
                                       {
                                         'totalCost': FieldValue.increment(
-                                            -(widget.calculate!.cost *
-                                                widget.calculate!
+                                            -(widget!.calculate!.cost *
+                                                widget!.calculate!
                                                     .productQuantity)),
                                         'totalQuantity': FieldValue.increment(
-                                            -(widget
+                                            -(widget!
                                                 .calculate!.productQuantity)),
                                       },
                                     ),
@@ -289,20 +294,20 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                   if (_model.description != null &&
                                       _model.description != '') {
                                     var deletionRequestRecordReference =
-                                        DeletionRequestRecord.createDoc(widget
+                                        DeletionRequestRecord.createDoc(widget!
                                             .parentProduct!.parentReference);
                                     await deletionRequestRecordReference
                                         .set(createDeletionRequestRecordData(
                                       type: DeleteionRequestTypes
                                           .childProduct.name,
                                       parentProduct:
-                                          widget.parentProduct?.reference,
+                                          widget!.parentProduct?.reference,
                                       description: _model.description,
                                       triggeredUser: currentUserReference,
                                       isDeleteRequest: false,
-                                      workPlace: widget.workPlace,
-                                      childProduct: widget.product?.reference,
-                                      calculation: widget.calculate?.reference,
+                                      workPlace: widget!.workPlace,
+                                      childProduct: widget!.product?.reference,
+                                      calculation: widget!.calculate?.reference,
                                     ));
                                     _model.deletionRequest =
                                         DeletionRequestRecord
@@ -310,23 +315,23 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                                 createDeletionRequestRecordData(
                                                   type: DeleteionRequestTypes
                                                       .childProduct.name,
-                                                  parentProduct: widget
+                                                  parentProduct: widget!
                                                       .parentProduct?.reference,
                                                   description:
                                                       _model.description,
                                                   triggeredUser:
                                                       currentUserReference,
                                                   isDeleteRequest: false,
-                                                  workPlace: widget.workPlace,
-                                                  childProduct: widget
+                                                  workPlace: widget!.workPlace,
+                                                  childProduct: widget!
                                                       .product?.reference,
-                                                  calculation: widget
+                                                  calculation: widget!
                                                       .calculate?.reference,
                                                 ),
                                                 deletionRequestRecordReference);
                                     _model.companyDetail =
                                         await CompaniesRecord.getDocumentOnce(
-                                            widget.parentProduct!
+                                            widget!.parentProduct!
                                                 .parentReference);
 
                                     await NotificationsRecord.createDoc(
@@ -340,11 +345,11 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                             .deletionRequest?.reference.id,
                                         isRead: false,
                                         isDelete: false,
-                                        company: widget
+                                        company: widget!
                                             .parentProduct?.parentReference,
                                         fullDescription:
-                                            '${widget.product?.name} İsimli Alt Ürün için ${dateTimeFormat("d/M/y", widget.calculate?.date)} tarihli Hesaplamayı ${currentUserDisplayName} isimli kişi silinme talebinde bulundu',
-                                        workplace: widget.workPlace,
+                                            '${widget!.product?.name} İsimli Alt Ürün için ${dateTimeFormat("d/M/y", widget!.calculate?.date)} tarihli Hesaplamayı ${currentUserDisplayName} isimli kişi silinme talebinde bulundu',
+                                        workplace: widget!.workPlace,
                                       ),
                                       ...mapToFirestore(
                                         {
@@ -515,8 +520,8 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                               ),
                               Text(
                                 '${valueOrDefault<String>(
-                                  widget.calculate?.productQuantity
-                                      .toString(),
+                                  widget!.calculate?.productQuantity
+                                      ?.toString(),
                                   '0',
                                 )}',
                                 textAlign: TextAlign.start,
@@ -547,7 +552,7 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                   Builder(
                     builder: (context) {
                       final calculation =
-                          widget.calculate?.parameters.toList() ?? [];
+                          widget!.calculate?.parameters?.toList() ?? [];
 
                       return Column(
                         mainAxisSize: MainAxisSize.max,
@@ -596,8 +601,8 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                             0.0, 0.0, 0.0, 4.0),
                                         child: Text(
                                           valueOrDefault<String>(
-                                            (widget.calculate?.parameters
-                                                    .elementAtOrNull(
+                                            (widget!.calculate?.parameters
+                                                    ?.elementAtOrNull(
                                                         calculationIndex))
                                                 ?.name,
                                             'Öğe İsmi',
@@ -630,11 +635,11 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                             0.0, 0.0, 0.0, 4.0),
                                         child: Text(
                                           'Fiyatı ${valueOrDefault<String>(
-                                            (widget.calculate?.parameters
-                                                    .elementAtOrNull(
+                                            (widget!.calculate?.parameters
+                                                    ?.elementAtOrNull(
                                                         calculationIndex))
                                                 ?.price
-                                                .toString(),
+                                                ?.toString(),
                                             '0',
                                           )}',
                                           textAlign: TextAlign.start,
@@ -662,11 +667,11 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                       ),
                                       Text(
                                         'Miktarı ${valueOrDefault<String>(
-                                          (widget.calculate?.parameters
-                                                  .elementAtOrNull(
+                                          (widget!.calculate?.parameters
+                                                  ?.elementAtOrNull(
                                                       calculationIndex))
                                               ?.quantity
-                                              .toString(),
+                                              ?.toString(),
                                           '0',
                                         )}',
                                         textAlign: TextAlign.start,
@@ -692,11 +697,11 @@ class _CalculateDetailPageWidgetState extends State<CalculateDetailPageWidget> {
                                       ),
                                       Text(
                                         'KDV Oranı ${valueOrDefault<String>(
-                                          (widget.calculate?.parameters
-                                                  .elementAtOrNull(
+                                          (widget!.calculate?.parameters
+                                                  ?.elementAtOrNull(
                                                       calculationIndex))
                                               ?.kdv
-                                              .toString(),
+                                              ?.toString(),
                                           '0',
                                         )}',
                                         textAlign: TextAlign.start,

@@ -7,10 +7,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_create_task_page_model.dart';
 export 'work_place_create_task_page_model.dart';
 
@@ -69,7 +72,7 @@ class _WorkPlaceCreateTaskPageWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<WorkPlaceWorkerRecord>>(
       stream: queryWorkPlaceWorkerRecord(
-        parent: widget.workPlace,
+        parent: widget!.workPlace,
         queryBuilder: (workPlaceWorkerRecord) => workPlaceWorkerRecord
             .where(
               'isDelete',
@@ -137,7 +140,7 @@ class _WorkPlaceCreateTaskPageWidgetState
                   queryBuilder: (formsRecord) => formsRecord
                       .where(
                         'companyRef',
-                        isEqualTo: widget.company,
+                        isEqualTo: widget!.company,
                       )
                       .where(
                         'isDelete',
@@ -1071,8 +1074,8 @@ class _WorkPlaceCreateTaskPageWidgetState
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     var _shouldSetState = false;
-                                    if (widget.isPartner!) {
-                                      if (!widget.canCreate!) {
+                                    if (widget!.isPartner!) {
+                                      if (!widget!.canCreate!) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -1096,8 +1099,8 @@ class _WorkPlaceCreateTaskPageWidgetState
                                         return;
                                       }
                                     } else {
-                                      if (widget.isWorker!) {
-                                        if (!widget.canCreate!) {
+                                      if (widget!.isWorker!) {
+                                        if (!widget!.canCreate!) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
@@ -1170,7 +1173,7 @@ class _WorkPlaceCreateTaskPageWidgetState
 
                                       var workPlaceTasksRecordReference =
                                           WorkPlaceTasksRecord.createDoc(
-                                              widget.workPlace!);
+                                              widget!.workPlace!);
                                       await workPlaceTasksRecordReference.set({
                                         ...createWorkPlaceTasksRecordData(
                                           name: _model.textController1.text,
@@ -1181,7 +1184,7 @@ class _WorkPlaceCreateTaskPageWidgetState
                                           createdUserRef: currentUserReference,
                                           form: _model.formRef,
                                           isDelete: false,
-                                          company: widget.company,
+                                          company: widget!.company,
                                           requiresAction: false,
                                         ),
                                         ...mapToFirestore(
@@ -1202,7 +1205,7 @@ class _WorkPlaceCreateTaskPageWidgetState
                                           createdUserRef: currentUserReference,
                                           form: _model.formRef,
                                           isDelete: false,
-                                          company: widget.company,
+                                          company: widget!.company,
                                           requiresAction: false,
                                         ),
                                         ...mapToFirestore(
@@ -1215,19 +1218,19 @@ class _WorkPlaceCreateTaskPageWidgetState
 
                                       var companyTasksRecordReference =
                                           CompanyTasksRecord.createDoc(
-                                              widget.company!);
+                                              widget!.company!);
                                       await companyTasksRecordReference.set({
                                         ...createCompanyTasksRecordData(
                                           name: _model.textController1.text,
                                           userRef: _model.dropDownValue2,
                                           description:
                                               _model.textController2.text,
-                                          companyRef: widget.company,
+                                          companyRef: widget!.company,
                                           isComplete: false,
                                           createdUserRef: currentUserReference,
                                           form: _model.formRef,
                                           isDelete: false,
-                                          workPlace: widget.workPlace,
+                                          workPlace: widget!.workPlace,
                                           workPlaceTask:
                                               _model.workPlaceTask?.reference,
                                           processThisTask: false,
@@ -1245,12 +1248,12 @@ class _WorkPlaceCreateTaskPageWidgetState
                                           userRef: _model.dropDownValue2,
                                           description:
                                               _model.textController2.text,
-                                          companyRef: widget.company,
+                                          companyRef: widget!.company,
                                           isComplete: false,
                                           createdUserRef: currentUserReference,
                                           form: _model.formRef,
                                           isDelete: false,
-                                          workPlace: widget.workPlace,
+                                          workPlace: widget!.workPlace,
                                           workPlaceTask:
                                               _model.workPlaceTask?.reference,
                                           processThisTask: false,
@@ -1264,7 +1267,7 @@ class _WorkPlaceCreateTaskPageWidgetState
                                       _shouldSetState = true;
                                       _model.companyDetail =
                                           await CompaniesRecord.getDocumentOnce(
-                                              widget.company!);
+                                              widget!.company!);
                                       _shouldSetState = true;
 
                                       await NotificationsRecord.createDoc(
@@ -1277,7 +1280,7 @@ class _WorkPlaceCreateTaskPageWidgetState
                                           isRead: false,
                                           isDelete: false,
                                           content: 'Bir Görevin Var',
-                                          company: widget.company,
+                                          company: widget!.company,
                                           fullDescription:
                                               '${_model.textController1.text} İsimli Bir Görev Eklendi',
                                           image:
@@ -1340,7 +1343,7 @@ class _WorkPlaceCreateTaskPageWidgetState
                                         queryBuilder: (workHistoryRecord) =>
                                             workHistoryRecord.where(
                                           'company',
-                                          isEqualTo: widget.company,
+                                          isEqualTo: widget!.company,
                                         ),
                                         singleRecord: true,
                                       ).then((s) => s.firstOrNull);
@@ -1361,7 +1364,7 @@ class _WorkPlaceCreateTaskPageWidgetState
                                         queryBuilder: (workHistoryRecord) =>
                                             workHistoryRecord.where(
                                           'company',
-                                          isEqualTo: widget.company,
+                                          isEqualTo: widget!.company,
                                         ),
                                         singleRecord: true,
                                       ).then((s) => s.firstOrNull);

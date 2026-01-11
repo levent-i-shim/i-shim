@@ -8,13 +8,18 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'phone_confirmation_message_page_model.dart';
 export 'phone_confirmation_message_page_model.dart';
@@ -48,11 +53,11 @@ class _PhoneConfirmationMessagePageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.confirmation?.sender == currentUserReference) {
-        _model.receiver = widget.confirmation?.receiver;
+      if (widget!.confirmation?.sender == currentUserReference) {
+        _model.receiver = widget!.confirmation?.receiver;
         safeSetState(() {});
       } else {
-        _model.receiver = widget.confirmation?.sender;
+        _model.receiver = widget!.confirmation?.sender;
         safeSetState(() {});
       }
     });
@@ -101,9 +106,9 @@ class _PhoneConfirmationMessagePageWidgetState
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.confirmation?.sender == currentUserReference
-                  ? widget.confirmation?.receiverName
-                  : widget.confirmation?.senderName,
+              widget!.confirmation?.sender == currentUserReference
+                  ? widget!.confirmation?.receiverName
+                  : widget!.confirmation?.senderName,
               'Alıcı',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -145,7 +150,7 @@ class _PhoneConfirmationMessagePageWidgetState
                   flex: 9,
                   child: StreamBuilder<List<PhoneConfirmationMessagesRecord>>(
                     stream: queryPhoneConfirmationMessagesRecord(
-                      parent: widget.confirmation?.reference,
+                      parent: widget!.confirmation?.reference,
                       queryBuilder: (phoneConfirmationMessagesRecord) =>
                           phoneConfirmationMessagesRecord.orderBy('dateTime',
                               descending: true),
@@ -163,7 +168,7 @@ class _PhoneConfirmationMessagePageWidgetState
                             await actions
                                 .safelyMarkMessagesReadAndUpdateCountPhoneConfirmation(
                               currentUserReference!,
-                              widget.confirmation!.reference,
+                              widget!.confirmation!.reference,
                             );
 
                             safeSetState(() {});
@@ -1005,7 +1010,7 @@ class _PhoneConfirmationMessagePageWidgetState
                                           if (_model.selectedPdf) {
                                           } else {
                                             await PhoneConfirmationMessagesRecord
-                                                    .createDoc(widget
+                                                    .createDoc(widget!
                                                         .confirmation!
                                                         .reference)
                                                 .set({
@@ -1044,7 +1049,7 @@ class _PhoneConfirmationMessagePageWidgetState
                                           curve: Curves.ease,
                                         );
 
-                                        await widget.confirmation!.reference
+                                        await widget!.confirmation!.reference
                                             .update({
                                           ...createPhoneConfirmationsRecordData(
                                             lastMessage:
@@ -1065,7 +1070,7 @@ class _PhoneConfirmationMessagePageWidgetState
                                             type: NotificationTypes
                                                 .confirmationPersonal.name,
                                             content: '1 Yeni Mesaj',
-                                            relatedDoc: widget
+                                            relatedDoc: widget!
                                                 .confirmation?.reference.id,
                                             isRead: false,
                                             isDelete: false,
@@ -1100,7 +1105,7 @@ class _PhoneConfirmationMessagePageWidgetState
                                               'PhoneConfirmationMessagePage',
                                           parameterData: {
                                             'confirmation':
-                                                widget.confirmation,
+                                                widget!.confirmation,
                                           },
                                         );
                                         safeSetState(() {

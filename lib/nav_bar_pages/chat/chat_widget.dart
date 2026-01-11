@@ -6,9 +6,11 @@ import '/components/new_nav_bar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +18,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'chat_model.dart';
 export 'chat_model.dart';
 
@@ -574,6 +577,8 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                       child: FFButtonWidget(
                                                         onPressed: () async {
                                                           if (currentPhoneNumber !=
+                                                                  null &&
+                                                              currentPhoneNumber !=
                                                                   '') {
                                                             await actions
                                                                 .getContactsBasicInfo(
@@ -1258,6 +1263,9 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                     ),
                                                     if (_model.textFieldPhoneTextController
                                                                 .text ==
+                                                            null ||
+                                                        _model.textFieldPhoneTextController
+                                                                .text ==
                                                             '')
                                                       Builder(
                                                         builder: (context) {
@@ -1506,6 +1514,9 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                       ),
                                                     if (_model.textFieldPhoneTextController
                                                                 .text ==
+                                                            null ||
+                                                        _model.textFieldPhoneTextController
+                                                                .text ==
                                                             '')
                                                       Builder(
                                                         builder: (context) {
@@ -1655,6 +1666,9 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                         },
                                                       ),
                                                     if (_model.textFieldPhoneTextController
+                                                                .text !=
+                                                            null &&
+                                                        _model.textFieldPhoneTextController
                                                                 .text !=
                                                             '')
                                                       Builder(
@@ -1902,6 +1916,9 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                         },
                                                       ),
                                                     if (_model.textFieldPhoneTextController
+                                                                .text !=
+                                                            null &&
+                                                        _model.textFieldPhoneTextController
                                                                 .text !=
                                                             '')
                                                       Builder(
@@ -2668,6 +2685,9 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                   ),
                                                   if (_model.textFieldWorkplaceTextController
                                                               .text ==
+                                                          null ||
+                                                      _model.textFieldWorkplaceTextController
+                                                              .text ==
                                                           '')
                                                     Padding(
                                                       padding:
@@ -3132,6 +3152,9 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                       ),
                                                     ),
                                                   if (_model.textFieldWorkplaceTextController
+                                                              .text !=
+                                                          null &&
+                                                      _model.textFieldWorkplaceTextController
                                                               .text !=
                                                           '')
                                                     Padding(
@@ -4187,6 +4210,9 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                   ),
                                                   if (_model.textFieldCompanyTextController
                                                               .text ==
+                                                          null ||
+                                                      _model.textFieldCompanyTextController
+                                                              .text ==
                                                           '')
                                                     Padding(
                                                       padding:
@@ -4651,6 +4677,9 @@ class _ChatWidgetState extends State<ChatWidget> with TickerProviderStateMixin {
                                                       ),
                                                     ),
                                                   if (_model.textFieldCompanyTextController
+                                                              .text !=
+                                                          null &&
+                                                      _model.textFieldCompanyTextController
                                                               .text !=
                                                           '')
                                                     Padding(

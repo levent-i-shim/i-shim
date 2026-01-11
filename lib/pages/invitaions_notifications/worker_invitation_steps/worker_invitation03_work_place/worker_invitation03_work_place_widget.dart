@@ -4,9 +4,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'worker_invitation03_work_place_model.dart';
 export 'worker_invitation03_work_place_model.dart';
 
@@ -223,7 +226,7 @@ class _WorkerInvitation03WorkPlaceWidgetState
                                       )
                                       .where(
                                         'companyRef',
-                                        isEqualTo: widget.companyRef,
+                                        isEqualTo: widget!.companyRef,
                                       ),
                             ),
                             builder: (context, snapshot) {
@@ -460,21 +463,21 @@ class _WorkerInvitation03WorkPlaceWidgetState
                                                                     {
                                                                   'company':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .companyRef,
                                                                     ParamType
                                                                         .DocumentReference,
                                                                   ),
                                                                   'wokerName':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerName,
                                                                     ParamType
                                                                         .String,
                                                                   ),
                                                                   'workerRef':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .workerRef,
                                                                     ParamType
                                                                         .DocumentReference,
@@ -488,7 +491,7 @@ class _WorkerInvitation03WorkPlaceWidgetState
                                                                   ),
                                                                   'companyName':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .companyName,
                                                                     ParamType
                                                                         .String,
@@ -502,7 +505,7 @@ class _WorkerInvitation03WorkPlaceWidgetState
                                                                   ),
                                                                   'routeBack':
                                                                       serializeParam(
-                                                                    widget
+                                                                    widget!
                                                                         .routeBack,
                                                                     ParamType
                                                                         .bool,

@@ -6,10 +6,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'payments_page_model.dart';
 export 'payments_page_model.dart';
 
@@ -106,12 +109,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  if (widget.canAddPayment!) {
+                  if (widget!.canAddPayment!) {
                     context.pushNamed(
                       AddManualPaymentPageWidget.routeName,
                       queryParameters: {
                         'company': serializeParam(
-                          widget.company,
+                          widget!.company,
                           ParamType.DocumentReference,
                         ),
                         'isEdit': serializeParam(
@@ -187,7 +190,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
             child: PagedListView<DocumentSnapshot<Object?>?,
                 CompanyPayments2025Record>(
               pagingController: _model.setListViewController(
-                  CompanyPayments2025Record.collection(widget.company)
+                  CompanyPayments2025Record.collection(widget!.company)
                       .where(
                         'isDelete',
                         isEqualTo: false,
@@ -197,7 +200,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                         isEqualTo: false,
                       )
                       .orderBy('date', descending: true),
-                  parent: widget.company),
+                  parent: widget!.company),
               padding: EdgeInsets.zero,
               reverse: false,
               scrollDirection: Axis.vertical,
@@ -456,13 +459,13 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (widget.canAddPayment!) {
+                                          if (widget!.canAddPayment!) {
                                             context.pushNamed(
                                               AddManualPaymentPageWidget
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'isEdit': serializeParam(
@@ -516,7 +519,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                         hoverColor: Colors.transparent,
                                         highlightColor: Colors.transparent,
                                         onTap: () async {
-                                          if (widget.canAddPayment!) {
+                                          if (widget!.canAddPayment!) {
                                             var confirmDialogResponse =
                                                 await showDialog<bool>(
                                                       context: context,
@@ -550,7 +553,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                     ) ??
                                                     false;
                                             if (confirmDialogResponse) {
-                                              if (widget.isOwner!) {
+                                              if (widget!.isOwner!) {
                                                 await listViewCompanyPayments2025Record
                                                     .reference
                                                     .update(
@@ -565,7 +568,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   isDelete: true,
                                                 ));
 
-                                                await widget.company!.update({
+                                                await widget!.company!.update({
                                                   ...mapToFirestore(
                                                     {
                                                       'totalMoney':
@@ -644,12 +647,12 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                   _model.companyDetail =
                                                       await CompaniesRecord
                                                           .getDocumentOnce(
-                                                              widget.company!);
+                                                              widget!.company!);
 
                                                   var deletionRequestRecordReference =
                                                       DeletionRequestRecord
                                                           .createDoc(
-                                                              widget.company!);
+                                                              widget!.company!);
                                                   await deletionRequestRecordReference
                                                       .set(
                                                           createDeletionRequestRecordData(
@@ -706,7 +709,7 @@ class _PaymentsPageWidgetState extends State<PaymentsPageWidget> {
                                                           .id,
                                                       isRead: false,
                                                       isDelete: false,
-                                                      company: widget.company,
+                                                      company: widget!.company,
                                                       fullDescription:
                                                           '${listViewCompanyPayments2025Record.type} Türündeki ${listViewCompanyPayments2025Record.value.toString()} değerindeki Gider ${currentUserDisplayName} isimli kişi tarafından silinme talebinde bulunuldu',
                                                       workplace:

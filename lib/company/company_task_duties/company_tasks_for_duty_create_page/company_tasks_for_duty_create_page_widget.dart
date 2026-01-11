@@ -7,12 +7,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_tasks_for_duty_create_page_model.dart';
 export 'company_tasks_for_duty_create_page_model.dart';
 
@@ -50,11 +53,11 @@ class _CompanyTasksForDutyCreatePageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.dutiesCopy = await queryCompanyTaskDutiesRecordOnce(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyTaskDutiesRecord) =>
             companyTaskDutiesRecord.where(
           'dutiesForCompany',
-          isEqualTo: widget.dutiesForCompany,
+          isEqualTo: widget!.dutiesForCompany,
         ),
       );
       _model.companyTaskDutiesPageState =
@@ -107,7 +110,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.companyName,
+              widget!.companyName,
               'Şirket İsmi',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -154,7 +157,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                         queryBuilder: (formsRecord) => formsRecord
                             .where(
                               'companyRef',
-                              isEqualTo: widget.company,
+                              isEqualTo: widget!.company,
                             )
                             .where(
                               'isDelete',
@@ -516,7 +519,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                                         _model.dutiesForCompanyForName =
                                             await DutiesForCompanyRecord
                                                 .getDocumentOnce(
-                                                    widget.dutiesForCompany!);
+                                                    widget!.dutiesForCompany!);
 
                                         var workPlaceTaskDutiesRecordReference =
                                             WorkPlaceTaskDutiesRecord.createDoc(
@@ -530,7 +533,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                                                 _model.textController2.text,
                                             isComplete: false,
                                             dutiesForCompany:
-                                                widget.dutiesForCompany,
+                                                widget!.dutiesForCompany,
                                             form: _model.formRef,
                                             requiresAction: false,
                                             isDelete: false,
@@ -551,7 +554,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                                                 _model.textController2.text,
                                             isComplete: false,
                                             dutiesForCompany:
-                                                widget.dutiesForCompany,
+                                                widget!.dutiesForCompany,
                                             form: _model.formRef,
                                             requiresAction: false,
                                             isDelete: false,
@@ -565,7 +568,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
 
                                         var companyTaskDutiesRecordReference =
                                             CompanyTaskDutiesRecord.createDoc(
-                                                widget.company!);
+                                                widget!.company!);
                                         await companyTaskDutiesRecordReference
                                             .set({
                                           ...createCompanyTaskDutiesRecordData(
@@ -574,7 +577,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                                                 _model.textController2.text,
                                             isComplete: false,
                                             dutiesForCompany:
-                                                widget.dutiesForCompany,
+                                                widget!.dutiesForCompany,
                                             form: _model.formRef,
                                             workPlaceTaskDuties: _model
                                                 .workPlaceTaskDuties?.reference,
@@ -597,7 +600,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                                                 _model.textController2.text,
                                             isComplete: false,
                                             dutiesForCompany:
-                                                widget.dutiesForCompany,
+                                                widget!.dutiesForCompany,
                                             form: _model.formRef,
                                             workPlaceTaskDuties: _model
                                                 .workPlaceTaskDuties?.reference,
@@ -624,7 +627,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                                                 .createTaskForDuty.name,
                                             companyTaskDuties: _model
                                                 .companyTaskDuties?.reference,
-                                            company: widget.company,
+                                            company: widget!.company,
                                             fullDescription:
                                                 '${_model.dutiesForCompanyForName?.taskName} Aşamalı Görevi için ${_model.companyTaskDuties?.name} isimli görev eklendi',
                                           ),
@@ -659,7 +662,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                                           queryBuilder: (workHistoryRecord) =>
                                               workHistoryRecord.where(
                                             'company',
-                                            isEqualTo: widget.company,
+                                            isEqualTo: widget!.company,
                                           ),
                                           singleRecord: true,
                                         ).then((s) => s.firstOrNull);
@@ -680,7 +683,7 @@ class _CompanyTasksForDutyCreatePageWidgetState
                                           queryBuilder: (workHistoryRecord) =>
                                               workHistoryRecord.where(
                                             'company',
-                                            isEqualTo: widget.company,
+                                            isEqualTo: widget!.company,
                                           ),
                                           singleRecord: true,
                                         ).then((s) => s.firstOrNull);

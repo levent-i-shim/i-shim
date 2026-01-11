@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/payments/options_update_current_account_name/options_update_current_account_name_widget.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_x_current_account_model.dart';
 export 'options_x_current_account_model.dart';
 
@@ -178,9 +183,9 @@ class _OptionsXCurrentAccountWidgetState
                               .resolve(Directionality.of(context)),
                           child: OptionsUpdateCurrentAccountNameWidget(
                             xCurrentAccountDocumentRef:
-                                widget.xCurrentAccountDocumentRef!,
+                                widget!.xCurrentAccountDocumentRef!,
                             xCurrentAccountDocument:
-                                widget.xCurrentAccountDocument!,
+                                widget!.xCurrentAccountDocument!,
                           ),
                         );
                       },
@@ -271,11 +276,11 @@ class _OptionsXCurrentAccountWidgetState
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.xCurrentAccountDocument!.reference
+                    await widget!.xCurrentAccountDocument!.reference
                         .update(createXCurrentAccountsRecordData(
                       isDeleted: true,
                     ));
-                    await widget.xCurrentAccountDocumentRef!.delete();
+                    await widget!.xCurrentAccountDocumentRef!.delete();
                   }
                   Navigator.pop(context);
                 },

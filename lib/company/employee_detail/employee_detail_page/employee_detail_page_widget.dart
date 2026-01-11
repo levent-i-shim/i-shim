@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'employee_detail_page_model.dart';
 export 'employee_detail_page_model.dart';
 
@@ -151,7 +154,7 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                                   padding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 5.0, 5.0, 0.0),
                                   child: Text(
-                                    '${widget.companyWorker?.allowence.toString()} TL',
+                                    '${widget!.companyWorker?.allowence?.toString()} TL',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -185,11 +188,11 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   var _shouldSetState = false;
-                                  if (!widget.isOwner!) {
-                                    if (!widget.canSendMoney!) {
+                                  if (!widget!.isOwner!) {
+                                    if (!widget!.canSendMoney!) {
                                       _model.companyWorkerAuthUserMoney =
                                           await queryCompanyWorkersRecordOnce(
-                                        parent: widget.company,
+                                        parent: widget!.company,
                                         queryBuilder: (companyWorkersRecord) =>
                                             companyWorkersRecord.where(
                                           'userRef',
@@ -232,15 +235,15 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                                     SentMoneyForAllowencePageWidget.routeName,
                                     queryParameters: {
                                       'companyWorker': serializeParam(
-                                        widget.companyWorker?.reference,
+                                        widget!.companyWorker?.reference,
                                         ParamType.DocumentReference,
                                       ),
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                       'receiver': serializeParam(
-                                        widget.companyWorker?.userRef,
+                                        widget!.companyWorker?.userRef,
                                         ParamType.DocumentReference,
                                       ),
                                     }.withoutNulls,
@@ -314,11 +317,11 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                     ),
                     StreamBuilder<List<CompanyTasksRecord>>(
                       stream: queryCompanyTasksRecord(
-                        parent: widget.company,
+                        parent: widget!.company,
                         queryBuilder: (companyTasksRecord) => companyTasksRecord
                             .where(
                               'userRef',
-                              isEqualTo: widget.companyWorker?.userRef?.id,
+                              isEqualTo: widget!.companyWorker?.userRef?.id,
                             )
                             .where(
                               'isDelete',
@@ -453,8 +456,8 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (!widget.isOwner!) {
-                                                      if (!widget
+                                                    if (!widget!.isOwner!) {
+                                                      if (!widget!
                                                           .canViewTask!) {
                                                         ScaffoldMessenger.of(
                                                                 context)
@@ -491,12 +494,12 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                                                         ),
                                                         'isPartner':
                                                             serializeParam(
-                                                          widget.isOwner,
+                                                          widget!.isOwner,
                                                           ParamType.bool,
                                                         ),
                                                         'canManage':
                                                             serializeParam(
-                                                          widget.canManageTask,
+                                                          widget!.canManageTask,
                                                           ParamType.bool,
                                                         ),
                                                       }.withoutNulls,
@@ -554,12 +557,12 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                     ),
                     StreamBuilder<List<DutiesForCompanyRecord>>(
                       stream: queryDutiesForCompanyRecord(
-                        parent: widget.company,
+                        parent: widget!.company,
                         queryBuilder: (dutiesForCompanyRecord) =>
                             dutiesForCompanyRecord
                                 .where(
                                   'userRef',
-                                  isEqualTo: widget.companyWorker?.userRef,
+                                  isEqualTo: widget!.companyWorker?.userRef,
                                 )
                                 .where(
                                   'isDelete',
@@ -695,8 +698,8 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                                                   highlightColor:
                                                       Colors.transparent,
                                                   onTap: () async {
-                                                    if (!widget.isOwner!) {
-                                                      if (!widget
+                                                    if (!widget!.isOwner!) {
+                                                      if (!widget!
                                                           .canViewTask!) {
                                                         ScaffoldMessenger.of(
                                                                 context)
@@ -735,7 +738,7 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                                                         ),
                                                         'company':
                                                             serializeParam(
-                                                          widget.company,
+                                                          widget!.company,
                                                           ParamType
                                                               .DocumentReference,
                                                         ),
@@ -753,17 +756,17 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                                                         ),
                                                         'isPartner':
                                                             serializeParam(
-                                                          widget.isOwner,
+                                                          widget!.isOwner,
                                                           ParamType.bool,
                                                         ),
                                                         'canCreate':
                                                             serializeParam(
-                                                          widget.canManageTask,
+                                                          widget!.canManageTask,
                                                           ParamType.bool,
                                                         ),
                                                         'canManage':
                                                             serializeParam(
-                                                          widget.canManageTask,
+                                                          widget!.canManageTask,
                                                           ParamType.bool,
                                                         ),
                                                       }.withoutNulls,
@@ -822,12 +825,12 @@ class _EmployeeDetailPageWidgetState extends State<EmployeeDetailPageWidget> {
                     ),
                     StreamBuilder<List<SpentMoneyForAllowenceRecord>>(
                       stream: querySpentMoneyForAllowenceRecord(
-                        parent: widget.company,
+                        parent: widget!.company,
                         queryBuilder: (spentMoneyForAllowenceRecord) =>
                             spentMoneyForAllowenceRecord
                                 .where(
                                   'sender',
-                                  isEqualTo: widget.companyWorker?.userRef,
+                                  isEqualTo: widget!.companyWorker?.userRef,
                                 )
                                 .orderBy('date', descending: true),
                       ),

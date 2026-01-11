@@ -5,9 +5,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'shift_request_page_model.dart';
 export 'shift_request_page_model.dart';
 
@@ -497,10 +500,10 @@ class _ShiftRequestPageWidgetState extends State<ShiftRequestPageWidget> {
                           }
                           _model.companyDetail =
                               await CompaniesRecord.getDocumentOnce(
-                                  widget.company!);
+                                  widget!.company!);
                           _model.companyWorker =
                               await queryCompanyWorkersRecordOnce(
-                            parent: widget.company,
+                            parent: widget!.company,
                             queryBuilder: (companyWorkersRecord) =>
                                 companyWorkersRecord.where(
                               'userRef',
@@ -510,7 +513,7 @@ class _ShiftRequestPageWidgetState extends State<ShiftRequestPageWidget> {
                           ).then((s) => s.firstOrNull);
 
                           var workerShiftsRecordReference =
-                              WorkerShiftsRecord.createDoc(widget.company!);
+                              WorkerShiftsRecord.createDoc(widget!.company!);
                           await workerShiftsRecordReference.set({
                             ...createWorkerShiftsRecordData(
                               userRef: currentUserReference,
@@ -519,7 +522,7 @@ class _ShiftRequestPageWidgetState extends State<ShiftRequestPageWidget> {
                               isAccept: false,
                               totalValue: _model.companyWorker!.shiftSalary *
                                   double.parse(_model.textController1.text),
-                              workPlace: widget.workPlace,
+                              workPlace: widget!.workPlace,
                               isProcessed: false,
                               note: _model.textController2.text,
                             ),
@@ -538,7 +541,7 @@ class _ShiftRequestPageWidgetState extends State<ShiftRequestPageWidget> {
                               isAccept: false,
                               totalValue: _model.companyWorker!.shiftSalary *
                                   double.parse(_model.textController1.text),
-                              workPlace: widget.workPlace,
+                              workPlace: widget!.workPlace,
                               isProcessed: false,
                               note: _model.textController2.text,
                             ),
@@ -558,8 +561,8 @@ class _ShiftRequestPageWidgetState extends State<ShiftRequestPageWidget> {
                               relatedDoc: _model.shiftRequest?.reference.id,
                               isRead: false,
                               isDelete: false,
-                              company: widget.company,
-                              workplace: widget.workPlace,
+                              company: widget!.company,
+                              workplace: widget!.workPlace,
                               fullDescription:
                                   '${currentUserDisplayName} İsimli ${_model.companyDetail?.name} Şirketi çalışanı Vardiya Talebinde bulundu',
                             ),

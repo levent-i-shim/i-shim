@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'update_check_company_model.dart';
 export 'update_check_company_model.dart';
 
@@ -38,7 +41,7 @@ class _UpdateCheckCompanyWidgetState extends State<UpdateCheckCompanyWidget> {
     _model = createModel(context, () => UpdateCheckCompanyModel());
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.companyPaymentDoc?.content : '');
+        text: widget!.isEdit! ? widget!.companyPaymentDoc?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -106,7 +109,7 @@ class _UpdateCheckCompanyWidgetState extends State<UpdateCheckCompanyWidget> {
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.companyPaymentDoc!.reference
+                  await widget!.companyPaymentDoc!.reference
                       .update(createFinancialNoteCompanyCheckRecordData());
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -166,8 +169,8 @@ class _UpdateCheckCompanyWidgetState extends State<UpdateCheckCompanyWidget> {
                       return;
                     }
                     if (_model.validate!) {
-                      if (widget.isEdit!) {
-                        await widget.companyPaymentDoc!.reference
+                      if (widget!.isEdit!) {
+                        await widget!.companyPaymentDoc!.reference
                             .update(createFinancialNoteCompanyCheckRecordData(
                           content: _model.textFieldContentTextController.text,
                         ));

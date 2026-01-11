@@ -4,10 +4,13 @@ import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'confirmation_starred_messages_page_model.dart';
 export 'confirmation_starred_messages_page_model.dart';
 
@@ -127,7 +130,7 @@ class _ConfirmationStarredMessagesPageWidgetState
                 ),
                 FutureBuilder<List<GetStarredMessagesRow>>(
                   future: SQLiteManager.instance.getStarredMessages(
-                    conversationId: widget.conversationId!.toString(),
+                    conversationId: widget!.conversationId!.toString(),
                   ),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
@@ -175,7 +178,7 @@ class _ConfirmationStarredMessagesPageWidgetState
                                                   .senderRef!)
                                           ? 'Siz'
                                           : valueOrDefault<String>(
-                                              widget.receiverUser?.displayName,
+                                              widget!.receiverUser?.displayName,
                                               'Karşı',
                                             ),
                                       style: FlutterFlowTheme.of(context)

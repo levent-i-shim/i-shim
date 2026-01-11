@@ -5,11 +5,15 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'response_form_for_task_model.dart';
 export 'response_form_for_task_model.dart';
@@ -116,7 +120,7 @@ class _ResponseFormForTaskWidgetState extends State<ResponseFormForTaskWidget> {
                       padding: EdgeInsets.all(12.0),
                       child: StreamBuilder<UsersRecord>(
                         stream: UsersRecord.getDocument(
-                            widget.companyTask!.createdUserRef!),
+                            widget!.companyTask!.createdUserRef!),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -186,7 +190,7 @@ class _ResponseFormForTaskWidgetState extends State<ResponseFormForTaskWidget> {
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.companyTask?.name,
+                                          widget!.companyTask?.name,
                                           'Task Adı',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -245,7 +249,7 @@ class _ResponseFormForTaskWidgetState extends State<ResponseFormForTaskWidget> {
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.companyTask?.description,
+                                          widget!.companyTask?.description,
                                           'Açıklama',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -399,17 +403,17 @@ class _ResponseFormForTaskWidgetState extends State<ResponseFormForTaskWidget> {
                                   custom_widgets.DynamicFormWidget(
                                 width: double.infinity,
                                 height: 300.0,
-                                formFields: widget.formFields!,
-                                formDocRef: widget
+                                formFields: widget!.formFields!,
+                                formDocRef: widget!
                                     .formFields!.firstOrNull!.parentReference,
                                 companyDocRef:
-                                    widget.companyTask!.parentReference,
-                                reportsTo: widget.companyTask!.createdUserRef!,
+                                    widget!.companyTask!.parentReference,
+                                reportsTo: widget!.companyTask!.createdUserRef!,
                                 isDuty: false,
-                                task: widget.companyTask?.reference,
+                                task: widget!.companyTask?.reference,
                                 authUser: currentUserReference!,
                                 userName: currentUserDisplayName,
-                                taskName: widget.companyTask!.name,
+                                taskName: widget!.companyTask!.name,
                               ),
                             ),
                           ),
@@ -452,17 +456,17 @@ class _ResponseFormForTaskWidgetState extends State<ResponseFormForTaskWidget> {
                             CompanyReportsRecord>(
                           pagingController: _model.setListViewController1(
                               CompanyReportsRecord.collection(
-                                      widget.companyTask?.companyRef)
+                                      widget!.companyTask?.companyRef)
                                   .where(
                                     'task',
-                                    isEqualTo: widget.companyTask?.reference,
+                                    isEqualTo: widget!.companyTask?.reference,
                                   )
                                   .where(
                                     'isDelete',
                                     isEqualTo: false,
                                   )
                                   .orderBy('date', descending: true),
-                              parent: widget.companyTask?.companyRef),
+                              parent: widget!.companyTask?.companyRef),
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           reverse: false,

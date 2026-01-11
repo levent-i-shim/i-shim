@@ -6,11 +6,16 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'company_task_read_reports_page_model.dart';
 export 'company_task_read_reports_page_model.dart';
 
@@ -49,11 +54,11 @@ class _CompanyTaskReadReportsPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.userRef = await actions.getUserDocRef(
-        widget.task!.userRef,
+        widget!.task!.userRef,
       );
       _model.user = await UsersRecord.getDocumentOnce(_model.userRef!);
       _model.companyDetail =
-          await CompaniesRecord.getDocumentOnce(widget.task!.companyRef!);
+          await CompaniesRecord.getDocumentOnce(widget!.task!.companyRef!);
       _model.isOwner =
           _model.companyDetail?.owner == currentUserReference ? true : false;
       safeSetState(() {});
@@ -109,12 +114,12 @@ class _CompanyTaskReadReportsPageWidgetState
                     highlightColor: Colors.transparent,
                     onTap: () async {
                       var _shouldSetState = false;
-                      if (!(widget.isPartner && widget.canManage)) {
-                        if (widget.task?.createdUserRef !=
+                      if (!(widget!.isPartner && widget!.canManage)) {
+                        if (widget!.task?.createdUserRef !=
                             currentUserReference) {
                           _model.companyDetailForOwner =
                               await CompaniesRecord.getDocumentOnce(
-                                  widget.task!.companyRef!);
+                                  widget!.task!.companyRef!);
                           _shouldSetState = true;
                           if (_model.companyDetailForOwner?.owner !=
                               currentUserReference) {
@@ -154,8 +159,8 @@ class _CompanyTaskReadReportsPageWidgetState
                                 FocusManager.instance.primaryFocus?.unfocus();
                               },
                               child: TaskOptionsWidget(
-                                isStoped: widget.task!.isComplete,
-                                task: widget.task,
+                                isStoped: widget!.task!.isComplete,
+                                task: widget!.task,
                                 isTask: true,
                               ),
                             ),
@@ -202,7 +207,7 @@ class _CompanyTaskReadReportsPageWidgetState
                       padding: EdgeInsets.all(12.0),
                       child: StreamBuilder<UsersRecord>(
                         stream: UsersRecord.getDocument(
-                            widget.task!.createdUserRef!),
+                            widget!.task!.createdUserRef!),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -272,7 +277,7 @@ class _CompanyTaskReadReportsPageWidgetState
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.task?.name,
+                                          widget!.task?.name,
                                           'Görev Adı',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -331,7 +336,7 @@ class _CompanyTaskReadReportsPageWidgetState
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.task?.description,
+                                          widget!.task?.description,
                                           'Görev Açıklaması',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -507,12 +512,12 @@ class _CompanyTaskReadReportsPageWidgetState
                       decoration: BoxDecoration(),
                       child: StreamBuilder<List<CompanyReportsRecord>>(
                         stream: queryCompanyReportsRecord(
-                          parent: widget.task?.companyRef,
+                          parent: widget!.task?.companyRef,
                           queryBuilder: (companyReportsRecord) =>
                               companyReportsRecord
                                   .where(
                                     'task',
-                                    isEqualTo: widget.task?.reference,
+                                    isEqualTo: widget!.task?.reference,
                                   )
                                   .where(
                                     'isDelete',

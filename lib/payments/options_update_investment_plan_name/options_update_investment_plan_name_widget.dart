@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_update_investment_plan_name_model.dart';
 export 'options_update_investment_plan_name_model.dart';
 
@@ -38,7 +43,7 @@ class _OptionsUpdateInvestmentPlanNameWidgetState
     _model = createModel(context, () => OptionsUpdateInvestmentPlanNameModel());
 
     _model.inputItemTitleTextController ??=
-        TextEditingController(text: widget.investmentPlanDocument?.planName);
+        TextEditingController(text: widget!.investmentPlanDocument?.planName);
     _model.inputItemTitleFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -260,7 +265,7 @@ class _OptionsUpdateInvestmentPlanNameWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await widget.investmentPlanRef!
+                          await widget!.investmentPlanRef!
                               .update(createInvestmentPlansRecordData(
                             planName: _model.inputItemTitleTextController.text,
                           ));

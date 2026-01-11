@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_control_finance_page_model.dart';
 export 'company_control_finance_page_model.dart';
 
@@ -125,11 +128,11 @@ class _CompanyControlFinancePageWidgetState
                                   ParentProductsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.companyDetail?.headOffice,
+                                      widget!.companyDetail?.headOffice,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -182,7 +185,7 @@ class _CompanyControlFinancePageWidgetState
                                   CompanySalaryPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -235,7 +238,7 @@ class _CompanyControlFinancePageWidgetState
                                   IncomesPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddIncome': serializeParam(
@@ -292,7 +295,7 @@ class _CompanyControlFinancePageWidgetState
                                   ExpandedIncomeCompanyBillPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -349,7 +352,7 @@ class _CompanyControlFinancePageWidgetState
                                   PaymentsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddPayment': serializeParam(
@@ -407,7 +410,7 @@ class _CompanyControlFinancePageWidgetState
                                       .routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -464,7 +467,7 @@ class _CompanyControlFinancePageWidgetState
                                   ShowAllTransactionPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
@@ -513,7 +516,7 @@ class _CompanyControlFinancePageWidgetState
                                   DeleteRequestPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
@@ -562,7 +565,7 @@ class _CompanyControlFinancePageWidgetState
                                   CurrentAccountActivityCompanyWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
@@ -611,7 +614,7 @@ class _CompanyControlFinancePageWidgetState
                                   ExpandituriesPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,

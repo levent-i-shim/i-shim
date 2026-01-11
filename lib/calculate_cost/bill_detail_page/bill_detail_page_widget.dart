@@ -1,10 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'bill_detail_page_model.dart';
 export 'bill_detail_page_model.dart';
 
@@ -40,12 +45,12 @@ class _BillDetailPageWidgetState extends State<BillDetailPageWidget> {
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       for (int loop1Index = 0;
-          loop1Index < widget.bill!.activities.length;
+          loop1Index < widget!.bill!.activities.length;
           loop1Index++) {
-        final currentLoop1Item = widget.bill!.activities[loop1Index];
+        final currentLoop1Item = widget!.bill!.activities[loop1Index];
         _model.activiryDetail =
             await CurrentAccountActivityRecord.getDocumentOnce(
-                widget.bill!.activities.firstOrNull!);
+                widget!.bill!.activities.firstOrNull!);
         _model.addToActivity(_model.activiryDetail!);
         safeSetState(() {});
       }
@@ -183,7 +188,7 @@ class _BillDetailPageWidgetState extends State<BillDetailPageWidget> {
                                   ),
                                   Text(
                                     valueOrDefault<String>(
-                                      widget.currentAccount?.sideTwoID,
+                                      widget!.currentAccount?.sideTwoID,
                                       'İsim',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -321,7 +326,7 @@ class _BillDetailPageWidgetState extends State<BillDetailPageWidget> {
                                   Text(
                                     valueOrDefault<String>(
                                       formatNumber(
-                                        widget.bill?.totalValue,
+                                        widget!.bill?.totalValue,
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.periodDecimal,
                                       ),
@@ -393,9 +398,9 @@ class _BillDetailPageWidgetState extends State<BillDetailPageWidget> {
                                         ),
                                   ),
                                   Text(
-                                    (widget.bill!.totalValue -
-                                            widget.bill!.totalKdv +
-                                            widget.bill!.totalTevkifat)
+                                    (widget!.bill!.totalValue -
+                                            widget!.bill!.totalKdv +
+                                            widget!.bill!.totalTevkifat)
                                         .toString(),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -465,7 +470,7 @@ class _BillDetailPageWidgetState extends State<BillDetailPageWidget> {
                                   Text(
                                     valueOrDefault<String>(
                                       formatNumber(
-                                        widget.bill?.totalKdv,
+                                        widget!.bill?.totalKdv,
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.commaDecimal,
                                       ),
@@ -539,7 +544,7 @@ class _BillDetailPageWidgetState extends State<BillDetailPageWidget> {
                                   Text(
                                     valueOrDefault<String>(
                                       formatNumber(
-                                        widget.bill?.totalTevkifat,
+                                        widget!.bill?.totalTevkifat,
                                         formatType: FormatType.decimal,
                                         decimalType: DecimalType.commaDecimal,
                                       ),

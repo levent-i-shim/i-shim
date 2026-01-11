@@ -1,15 +1,20 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_create_bill_p_for_company_page_model.dart';
 export 'current_account_create_bill_p_for_company_page_model.dart';
 
@@ -1061,7 +1066,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                       var currentAccountActivityRecordReference =
                                           CurrentAccountActivityRecord
                                               .createDoc(
-                                                  widget.currentAccountId!);
+                                                  widget!.currentAccountId!);
                                       await currentAccountActivityRecordReference
                                           .set(
                                               createCurrentAccountActivityRecordData(
@@ -2544,7 +2549,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                               onChanged: (newValue) async {
                                 safeSetState(() =>
                                     _model.switchIsSideOneSellerForBillValue =
-                                        newValue);
+                                        newValue!);
                               },
                               activeColor: FlutterFlowTheme.of(context).primary,
                               activeTrackColor:
@@ -2991,15 +2996,15 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                               return;
                             }
                             if (_model.validateBill!) {
-                              if (widget.currentAccount?.sideTwoType ==
+                              if (widget!.currentAccount?.sideTwoType ==
                                   'Kullanmayan') {
                                 var currentAccountBillRecordReference1 =
                                     CurrentAccountBillRecord.createDoc(
-                                        widget.currentAccountId!);
+                                        widget!.currentAccountId!);
                                 await currentAccountBillRecordReference1.set({
                                   ...createCurrentAccountBillRecordData(
                                     totalValue: _model.totalMoney,
-                                    isSideOneSeller: widget
+                                    isSideOneSeller: widget!
                                             .currentAccount!.amISideOne
                                         ? _model
                                             .switchIsSideOneSellerForBillValue
@@ -3025,7 +3030,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                     .getDocumentFromData({
                                   ...createCurrentAccountBillRecordData(
                                     totalValue: _model.totalMoney,
-                                    isSideOneSeller: widget
+                                    isSideOneSeller: widget!
                                             .currentAccount!.amISideOne
                                         ? _model
                                             .switchIsSideOneSellerForBillValue
@@ -3056,12 +3061,12 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                     type: WorkHistoryTypes
                                         .createCurrentAccountsBillForCompany
                                         .name,
-                                    company: widget.company,
+                                    company: widget!.company,
                                     fullDescription:
                                         '${_model.totalMoney.toString()} Fiyatında Fatura Oluşturma talebi gönderildi',
                                     currentAccountBill: _model.bill2?.reference,
                                     currentAccountID:
-                                        widget.currentAccountId?.id,
+                                        widget!.currentAccountId?.id,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -3070,11 +3075,11 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                   ),
                                 });
                                 if (_model.bill2!.isSideOneSeller) {
-                                  if (widget.currentAccount?.sideOneType ==
+                                  if (widget!.currentAccount?.sideOneType ==
                                       'Şirket') {
                                     _model.companySideOneIncome =
                                         await actions.getCompanyDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await CompanyIncomes2025Record.createDoc(
@@ -3096,7 +3101,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                   } else {
                                     _model.userSideOneIncome =
                                         await actions.getUserDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await UserIncomeRecord.createDoc(
@@ -3117,11 +3122,11 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                     });
                                   }
                                 } else {
-                                  if (widget.currentAccount?.sideOneType ==
+                                  if (widget!.currentAccount?.sideOneType ==
                                       'Şirket') {
                                     _model.companySideOnePayment =
                                         await actions.getCompanyDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await CompanyPayments2025Record.createDoc(
@@ -3143,7 +3148,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                   } else {
                                     _model.userSideOnePayment =
                                         await actions.getUserDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await UserPaymentRecord.createDoc(
@@ -3180,7 +3185,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                   ),
                                 );
 
-                                await widget.currentAccountId!.update({
+                                await widget!.currentAccountId!.update({
                                   ...mapToFirestore(
                                     {
                                       'totalBillCount': FieldValue.increment(1),
@@ -3190,23 +3195,23 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                   ),
                                 });
 
-                                await widget.company!.update({
+                                await widget!.company!.update({
                                   ...mapToFirestore(
                                     {
                                       'totalMoney': FieldValue.increment(() {
                                         if (_model.bill2!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return _model.bill2!.totalValue;
                                         } else if (!_model
                                                 .bill2!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
                                               _model.bill2!.totalValue);
                                         } else if (_model
                                                 .bill2!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
                                               _model.bill2!.totalValue);
@@ -3216,18 +3221,18 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                       }()),
                                       'yearlyMoney': FieldValue.increment(() {
                                         if (_model.bill2!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return _model.bill2!.totalValue;
                                         } else if (!_model
                                                 .bill2!.isSideOneSeller &&
-                                            widget
+                                            widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
                                               _model.bill2!.totalValue);
                                         } else if (_model
                                                 .bill2!.isSideOneSeller &&
-                                            !widget
+                                            !widget!
                                                 .currentAccount!.amISideOne) {
                                           return (-1 *
                                               _model.bill2!.totalValue);
@@ -3241,11 +3246,11 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                               } else {
                                 var currentAccountBillRecordReference2 =
                                     CurrentAccountBillRecord.createDoc(
-                                        widget.currentAccountId!);
+                                        widget!.currentAccountId!);
                                 await currentAccountBillRecordReference2.set({
                                   ...createCurrentAccountBillRecordData(
                                     totalValue: _model.totalMoney,
-                                    isSideOneSeller: widget
+                                    isSideOneSeller: widget!
                                             .currentAccount!.amISideOne
                                         ? _model
                                             .switchIsSideOneSellerForBillValue
@@ -3271,7 +3276,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                     .getDocumentFromData({
                                   ...createCurrentAccountBillRecordData(
                                     totalValue: _model.totalMoney,
-                                    isSideOneSeller: widget
+                                    isSideOneSeller: widget!
                                             .currentAccount!.amISideOne
                                         ? _model
                                             .switchIsSideOneSellerForBillValue
@@ -3294,7 +3299,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                 }, currentAccountBillRecordReference2);
                                 _model.companyDetail =
                                     await CompaniesRecord.getDocumentOnce(
-                                        widget.company!);
+                                        widget!.company!);
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -3309,18 +3314,18 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                         FlutterFlowTheme.of(context).secondary,
                                   ),
                                 );
-                                if (((widget.currentAccount?.amISideOne ==
+                                if (((widget!.currentAccount?.amISideOne ==
                                             true) &&
-                                        (widget.currentAccount?.sideTwoType ==
+                                        (widget!.currentAccount?.sideTwoType ==
                                             'Şirket')) ||
-                                    ((widget.currentAccount?.amISideOne ==
+                                    ((widget!.currentAccount?.amISideOne ==
                                             false) &&
-                                        (widget.currentAccount?.sideOneType ==
+                                        (widget!.currentAccount?.sideOneType ==
                                             'Şirket'))) {
-                                  if (widget.currentAccount!.amISideOne) {
+                                  if (widget!.currentAccount!.amISideOne) {
                                     _model.companyRef =
                                         await actions.getCompanyDocRef(
-                                      widget.currentAccount!.sideTwoId,
+                                      widget!.currentAccount!.sideTwoId,
                                     );
 
                                     await CompanyNotificationsRecord.createDoc(
@@ -3333,13 +3338,13 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                             'Fatura oluşturma daveti Gönderildi',
                                         isRead: false,
                                         isDelete: false,
-                                        company: widget.company,
+                                        company: widget!.company,
                                         fullDescription:
                                             '${_model.companyDetail?.name} İsimli Şirketten${_model.totalMoney.toString()} Tutarında Fatura Oluşturma Davetiniz var.',
                                         image:
                                             _model.companyDetail?.companyLogo,
                                         currentAccount:
-                                            widget.currentAccountId,
+                                            widget!.currentAccountId,
                                         currentAccountBill:
                                             _model.bill?.reference,
                                         isAccept: false,
@@ -3355,7 +3360,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                   } else {
                                     _model.companyRef2 =
                                         await actions.getCompanyDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await CompanyNotificationsRecord.createDoc(
@@ -3368,13 +3373,13 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                             'Fatura oluşturma daveti Gönderildi',
                                         isRead: false,
                                         isDelete: false,
-                                        company: widget.company,
+                                        company: widget!.company,
                                         fullDescription:
                                             '${_model.companyDetail?.name} İsimli Şirketten${_model.totalMoney.toString()} Tutarında Fatura Oluşturma Davetiniz var.',
                                         image:
                                             _model.companyDetail?.companyLogo,
                                         currentAccount:
-                                            widget.currentAccountId,
+                                            widget!.currentAccountId,
                                         currentAccountBill:
                                             _model.bill?.reference,
                                         isAccept: false,
@@ -3389,9 +3394,9 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                     });
                                   }
                                 } else {
-                                  if (widget.currentAccount!.amISideOne) {
+                                  if (widget!.currentAccount!.amISideOne) {
                                     _model.user = await actions.getUserDocRef(
-                                      widget.currentAccount!.sideTwoId,
+                                      widget!.currentAccount!.sideTwoId,
                                     );
 
                                     await NotificationsRecord.createDoc(
@@ -3405,7 +3410,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                         relatedDoc: _model.bill?.reference.id,
                                         isRead: false,
                                         isDelete: false,
-                                        company: widget.company,
+                                        company: widget!.company,
                                         fullDescription:
                                             '${_model.companyDetail?.name} İsimli Şirketten${_model.totalMoney.toString()} Tutarında Fatura Oluşturma Davetiniz var.',
                                         image:
@@ -3420,7 +3425,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                     });
                                   } else {
                                     _model.user2 = await actions.getUserDocRef(
-                                      widget.currentAccount!.sideOneId,
+                                      widget!.currentAccount!.sideOneId,
                                     );
 
                                     await NotificationsRecord.createDoc(
@@ -3434,7 +3439,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                         relatedDoc: _model.bill?.reference.id,
                                         isRead: false,
                                         isDelete: false,
-                                        company: widget.company,
+                                        company: widget!.company,
                                         fullDescription:
                                             '${_model.companyDetail?.name} İsimli Şirketten${_model.totalMoney.toString()} Tutarında Fatura Oluşturma Davetiniz var.',
                                         image:
@@ -3459,12 +3464,12 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                     type: WorkHistoryTypes
                                         .createCurrentAccountsBillForCompany
                                         .name,
-                                    company: widget.company,
+                                    company: widget!.company,
                                     fullDescription:
                                         '${_model.totalMoney.toString()} Fiyatında Fatura Oluşturma talebi gönderildi',
                                     currentAccountBill: _model.bill?.reference,
                                     currentAccountID:
-                                        widget.currentAccountId?.id,
+                                        widget!.currentAccountId?.id,
                                   ),
                                   ...mapToFirestore(
                                     {
@@ -3533,7 +3538,7 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                       EdgeInsetsDirectional.fromSTEB(20.0, 10.0, 20.0, 0.0),
                   child: StreamBuilder<List<StocksRecord>>(
                     stream: queryStocksRecord(
-                      parent: widget.company,
+                      parent: widget!.company,
                     ),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
@@ -3885,13 +3890,13 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                                     await actions
                                                         .getStockDocRef(
                                                   _model.dropDownStockValue!,
-                                                  widget.company!.id,
+                                                  widget!.company!.id,
                                                 );
 
                                                 var stockMovementRecordReference =
                                                     StockMovementRecord
                                                         .createDoc(
-                                                            widget.company!);
+                                                            widget!.company!);
                                                 await stockMovementRecordReference
                                                     .set({
                                                   ...createStockMovementRecordData(
@@ -4058,13 +4063,13 @@ class _CurrentAccountCreateBillPForCompanyPageWidgetState
                                                     await actions
                                                         .getStockDocRef(
                                                   _model.dropDownStockValue!,
-                                                  widget.company!.id,
+                                                  widget!.company!.id,
                                                 );
 
                                                 var stockMovementRecordReference =
                                                     StockMovementRecord
                                                         .createDoc(
-                                                            widget.company!);
+                                                            widget!.company!);
                                                 await stockMovementRecordReference
                                                     .set({
                                                   ...createStockMovementRecordData(

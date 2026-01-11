@@ -1,12 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/financial_plan/component_financial_plan/options_update_financial_item_content/options_update_financial_item_content_widget.dart';
 import '/financial_plan/component_financial_plan/options_update_financial_item_title/options_update_financial_item_title_widget.dart';
 import '/financial_plan/component_financial_plan/options_update_financial_item_value/options_update_financial_item_value_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_financial_plan_items_paid_model.dart';
 export 'options_financial_plan_items_paid_model.dart';
 
@@ -175,7 +180,7 @@ class _OptionsFinancialPlanItemsPaidWidgetState
                 onTap: () async {
                   HapticFeedback.heavyImpact();
 
-                  await widget.itemDocument!.reference
+                  await widget!.itemDocument!.reference
                       .update(createFinancialPlansItemsRecordData(
                     isPaid: false,
                   ));
@@ -266,8 +271,8 @@ class _OptionsFinancialPlanItemsPaidWidgetState
                           alignment: AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
                           child: OptionsUpdateFinancialItemValueWidget(
-                            itemRef: widget.itemRef!,
-                            itemDocument: widget.itemDocument!,
+                            itemRef: widget!.itemRef!,
+                            itemDocument: widget!.itemDocument!,
                           ),
                         );
                       },
@@ -345,8 +350,8 @@ class _OptionsFinancialPlanItemsPaidWidgetState
                           alignment: AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
                           child: OptionsUpdateFinancialItemTitleWidget(
-                            itemRef: widget.itemRef!,
-                            itemDocument: widget.itemDocument!,
+                            itemRef: widget!.itemRef!,
+                            itemDocument: widget!.itemDocument!,
                           ),
                         );
                       },
@@ -424,8 +429,8 @@ class _OptionsFinancialPlanItemsPaidWidgetState
                           alignment: AlignmentDirectional(0.0, 0.0)
                               .resolve(Directionality.of(context)),
                           child: OptionsUpdateFinancialItemContentWidget(
-                            itemRef: widget.itemRef!,
-                            itemDocument: widget.itemDocument!,
+                            itemRef: widget!.itemRef!,
+                            itemDocument: widget!.itemDocument!,
                           ),
                         );
                       },
@@ -516,11 +521,11 @@ class _OptionsFinancialPlanItemsPaidWidgetState
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.itemRef!
+                    await widget!.itemRef!
                         .update(createFinancialPlansItemsRecordData(
                       isDeleted: true,
                     ));
-                    await widget.itemRef!.delete();
+                    await widget!.itemRef!.delete();
                   }
                   Navigator.pop(context);
                 },

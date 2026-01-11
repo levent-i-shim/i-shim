@@ -2,9 +2,12 @@ import '/backend/sqlite/sqlite_manager.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'confirmation_medias_page_model.dart';
 export 'confirmation_medias_page_model.dart';
 
@@ -112,7 +115,7 @@ class _ConfirmationMediasPageWidgetState
                                       72.0, 0.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget.name,
+                                      widget!.name,
                                       'isim',
                                     ),
                                     textAlign: TextAlign.center,
@@ -238,7 +241,7 @@ class _ConfirmationMediasPageWidgetState
                                 padding: EdgeInsets.all(12.0),
                                 child: FutureBuilder<List<GetImagesRow>>(
                                   future: SQLiteManager.instance.getImages(
-                                    conversationId: widget.conversationId!,
+                                    conversationId: widget!.conversationId!,
                                   ),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
@@ -296,7 +299,7 @@ class _ConfirmationMediasPageWidgetState
                                 padding: EdgeInsets.all(12.0),
                                 child: FutureBuilder<List<GetPdfsRow>>(
                                   future: SQLiteManager.instance.getPdfs(
-                                    conversationId: widget.conversationId!,
+                                    conversationId: widget!.conversationId!,
                                   ),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
@@ -349,7 +352,7 @@ class _ConfirmationMediasPageWidgetState
                               ),
                               FutureBuilder<List<GetFilesRow>>(
                                 future: SQLiteManager.instance.getFiles(
-                                  conversationId: widget.conversationId!,
+                                  conversationId: widget!.conversationId!,
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -408,7 +411,7 @@ class _ConfirmationMediasPageWidgetState
                               ),
                               FutureBuilder<List<GetMessageMapsRow>>(
                                 future: SQLiteManager.instance.getMessageMaps(
-                                  conversationId: widget.conversationId!,
+                                  conversationId: widget!.conversationId!,
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -487,7 +490,7 @@ class _ConfirmationMediasPageWidgetState
                               ),
                               FutureBuilder<List<GetMessagePhonesRow>>(
                                 future: SQLiteManager.instance.getMessagePhones(
-                                  conversationId: widget.conversationId!,
+                                  conversationId: widget!.conversationId!,
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.

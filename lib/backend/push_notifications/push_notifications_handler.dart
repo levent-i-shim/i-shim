@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'serialization_util.dart';
 import '/backend/backend.dart';
@@ -8,6 +9,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
+import '../../index.dart';
+import '../../main.dart';
 
 final _handledMessageIds = <String?>{};
 

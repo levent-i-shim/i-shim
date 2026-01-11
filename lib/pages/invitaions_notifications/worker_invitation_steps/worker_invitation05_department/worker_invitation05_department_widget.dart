@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'worker_invitation05_department_model.dart';
 export 'worker_invitation05_department_model.dart';
 
@@ -174,11 +177,11 @@ class _WorkerInvitation05DepartmentWidgetState
                               AddDepartmentWidget.routeName,
                               queryParameters: {
                                 'companyName': serializeParam(
-                                  widget.companyName,
+                                  widget!.companyName,
                                   ParamType.String,
                                 ),
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                               }.withoutNulls,
@@ -215,7 +218,7 @@ class _WorkerInvitation05DepartmentWidgetState
                   Flexible(
                     child: StreamBuilder<List<CompanyDepartmentsRecord>>(
                       stream: queryCompanyDepartmentsRecord(
-                        parent: widget.company,
+                        parent: widget!.company,
                         queryBuilder: (companyDepartmentsRecord) =>
                             companyDepartmentsRecord
                                 .where(
@@ -224,7 +227,7 @@ class _WorkerInvitation05DepartmentWidgetState
                                 )
                                 .where(
                                   'workPlace',
-                                  isEqualTo: widget.workerPlace,
+                                  isEqualTo: widget!.workerPlace,
                                 ),
                       ),
                       builder: (context, snapshot) {
@@ -445,37 +448,37 @@ class _WorkerInvitation05DepartmentWidgetState
                                                           queryParameters: {
                                                             'companyRef':
                                                                 serializeParam(
-                                                              widget.company,
+                                                              widget!.company,
                                                               ParamType
                                                                   .DocumentReference,
                                                             ),
                                                             'workerRef':
                                                                 serializeParam(
-                                                              widget.workerRef,
+                                                              widget!.workerRef,
                                                               ParamType
                                                                   .DocumentReference,
                                                             ),
                                                             'workerName':
                                                                 serializeParam(
-                                                              widget.wokerName,
+                                                              widget!.wokerName,
                                                               ParamType.String,
                                                             ),
                                                             'workPlace':
                                                                 serializeParam(
-                                                              widget
+                                                              widget!
                                                                   .workerPlace,
                                                               ParamType
                                                                   .DocumentReference,
                                                             ),
                                                             'companyName':
                                                                 serializeParam(
-                                                              widget
+                                                              widget!
                                                                   .companyName,
                                                               ParamType.String,
                                                             ),
                                                             'workPlaceName':
                                                                 serializeParam(
-                                                              widget
+                                                              widget!
                                                                   .workPlaceName,
                                                               ParamType.String,
                                                             ),
@@ -488,7 +491,7 @@ class _WorkerInvitation05DepartmentWidgetState
                                                             ),
                                                             'routeBack':
                                                                 serializeParam(
-                                                              widget.routeBack,
+                                                              widget!.routeBack,
                                                               ParamType.bool,
                                                             ),
                                                           }.withoutNulls,

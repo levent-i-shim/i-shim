@@ -1,15 +1,19 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_places_detail_page_model.dart';
 export 'work_places_detail_page_model.dart';
 
@@ -43,7 +47,7 @@ class _WorkPlacesDetailPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.budget = await actions.getCompanyBudget(
-        widget.companyId!,
+        widget!.companyId!,
       );
       _model.dailyMoney = _model.budget?.day;
       _model.weeklyMoney = _model.budget?.week;
@@ -65,7 +69,7 @@ class _WorkPlacesDetailPageWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<CompaniesRecord>(
-      stream: CompaniesRecord.getDocument(widget.companyId!),
+      stream: CompaniesRecord.getDocument(widget!.companyId!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -951,7 +955,7 @@ class _WorkPlacesDetailPageWidgetState
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.companyId,
+                                                  widget!.companyId,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -1058,7 +1062,7 @@ class _WorkPlacesDetailPageWidgetState
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.companyId,
+                                                  widget!.companyId,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -1241,7 +1245,7 @@ class _WorkPlacesDetailPageWidgetState
                                                   (workPlacesRecord) =>
                                                       workPlacesRecord.where(
                                                 'companyRef',
-                                                isEqualTo: widget.companyId,
+                                                isEqualTo: widget!.companyId,
                                               ),
                                             );
                                             for (int loop1Index = 0;
@@ -1289,7 +1293,7 @@ class _WorkPlacesDetailPageWidgetState
                                               queryBuilder: (formsRecord) =>
                                                   formsRecord.where(
                                                 'companyRef',
-                                                isEqualTo: widget.companyId,
+                                                isEqualTo: widget!.companyId,
                                               ),
                                             );
                                             for (int loop3Index = 0;
@@ -1310,7 +1314,7 @@ class _WorkPlacesDetailPageWidgetState
                                                   (confirmationsRecord) =>
                                                       confirmationsRecord.where(
                                                 'company',
-                                                isEqualTo: widget.companyId,
+                                                isEqualTo: widget!.companyId,
                                               ),
                                             );
                                             for (int loop4Index = 0;
@@ -1334,7 +1338,7 @@ class _WorkPlacesDetailPageWidgetState
                                                       companyConfirmationsRecord
                                                           .where(
                                                 'company',
-                                                isEqualTo: widget.companyId,
+                                                isEqualTo: widget!.companyId,
                                               ),
                                             );
                                             for (int loop5Index = 0;
@@ -1361,12 +1365,12 @@ class _WorkPlacesDetailPageWidgetState
                                                 Filter(
                                                   'sideOneID',
                                                   isEqualTo:
-                                                      widget.companyId?.id,
+                                                      widget!.companyId?.id,
                                                 ),
                                                 Filter(
                                                   'sideTwoID',
                                                   isEqualTo:
-                                                      widget.companyId?.id,
+                                                      widget!.companyId?.id,
                                                 ),
                                               )),
                                             );
@@ -1379,7 +1383,7 @@ class _WorkPlacesDetailPageWidgetState
                                                   .currentAccounts![loop6Index];
                                               _model.amISideOne =
                                                   currentLoop6Item.sideOneID ==
-                                                          widget.companyId?.id
+                                                          widget!.companyId?.id
                                                       ? true
                                                       : false;
                                               if (_model.amISideOne) {
@@ -1407,7 +1411,7 @@ class _WorkPlacesDetailPageWidgetState
                                               }
                                             }
 
-                                            await widget.companyId!.update(
+                                            await widget!.companyId!.update(
                                                 createCompaniesRecordData(
                                               isDelete: true,
                                             ));
@@ -1632,7 +1636,7 @@ class _WorkPlacesDetailPageWidgetState
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.companyId,
+                                                  widget!.companyId,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -1813,7 +1817,7 @@ class _WorkPlacesDetailPageWidgetState
                                               StocksPageWidget.routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.companyId,
+                                                  widget!.companyId,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -1886,7 +1890,7 @@ class _WorkPlacesDetailPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.companyId,
+                                                    widget!.companyId,
                                                     ParamType.DocumentReference,
                                                   ),
                                                 }.withoutNulls,
@@ -1894,7 +1898,7 @@ class _WorkPlacesDetailPageWidgetState
                                             } else {
                                               _model.userVault =
                                                   await queryCompanyWorkersRecordOnce(
-                                                parent: widget.companyId,
+                                                parent: widget!.companyId,
                                                 queryBuilder:
                                                     (companyWorkersRecord) =>
                                                         companyWorkersRecord
@@ -1912,7 +1916,7 @@ class _WorkPlacesDetailPageWidgetState
                                                   MyVaultPageWidget.routeName,
                                                   queryParameters: {
                                                     'company': serializeParam(
-                                                      widget.companyId,
+                                                      widget!.companyId,
                                                       ParamType
                                                           .DocumentReference,
                                                     ),
@@ -2002,7 +2006,7 @@ class _WorkPlacesDetailPageWidgetState
                                               ConfirmationsPageWidget.routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.companyId,
+                                                  widget!.companyId,
                                                   ParamType.DocumentReference,
                                                 ),
                                               }.withoutNulls,
@@ -2302,7 +2306,7 @@ class _WorkPlacesDetailPageWidgetState
                                                         ParamType.String,
                                                       ),
                                                       'company': serializeParam(
-                                                        widget.companyId,
+                                                        widget!.companyId,
                                                         ParamType
                                                             .DocumentReference,
                                                       ),
@@ -2405,7 +2409,7 @@ class _WorkPlacesDetailPageWidgetState
                                                         ParamType.String,
                                                       ),
                                                       'company': serializeParam(
-                                                        widget.companyId,
+                                                        widget!.companyId,
                                                         ParamType
                                                             .DocumentReference,
                                                       ),

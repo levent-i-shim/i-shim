@@ -1,13 +1,20 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'current_account_bill_for_company_page_request_model.dart';
 export 'current_account_bill_for_company_page_request_model.dart';
 
@@ -49,9 +56,9 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.forPaid) {
+      if (widget!.forPaid) {
         _model.allNotifications2 = await queryCompanyNotificationsRecordOnce(
-          parent: widget.company,
+          parent: widget!.company,
           queryBuilder: (companyNotificationsRecord) =>
               companyNotificationsRecord
                   .where(
@@ -76,7 +83,7 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
         }
       } else {
         _model.allNotifications = await queryCompanyNotificationsRecordOnce(
-          parent: widget.company,
+          parent: widget!.company,
           queryBuilder: (companyNotificationsRecord) =>
               companyNotificationsRecord
                   .where(
@@ -166,8 +173,8 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                         highlightColor: Colors.transparent,
                         onTap: () async {
                           var _shouldSetState = false;
-                          if (widget.isPartner) {
-                            if (!widget.canManage) {
+                          if (widget!.isPartner) {
+                            if (!widget!.canManage) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   content: Text(
@@ -192,7 +199,7 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                           _shouldSetState = true;
                           _model.amISideOnePartner = await actions.isEqual(
                             _model.currentAccountCopy!.sideOneID,
-                            widget.company!.id,
+                            widget!.company!.id,
                           );
                           _shouldSetState = true;
                           if (_model.amISideOnePartner!) {
@@ -206,7 +213,7 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                   await CompaniesRecord.getDocumentOnce(
                                       _model.company3!);
                               _shouldSetState = true;
-                              if (widget.forPaid) {
+                              if (widget!.forPaid) {
                                 context.pushNamed(
                                   CurrentAccountBillsDetailForCompanyPagePaidAcceptWidget
                                       .routeName,
@@ -249,15 +256,15 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                       ParamType.DataStruct,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
-                                      widget.isPartner,
+                                      widget!.isPartner,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.canManage,
+                                      widget!.canManage,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -308,15 +315,15 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                       ParamType.DataStruct,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
-                                      widget.isPartner,
+                                      widget!.isPartner,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.canManage,
+                                      widget!.canManage,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -334,7 +341,7 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                   await UsersRecord.getDocumentOnce(
                                       _model.user3!);
                               _shouldSetState = true;
-                              if (widget.forPaid) {
+                              if (widget!.forPaid) {
                                 context.pushNamed(
                                   CurrentAccountBillsDetailForCompanyPagePaidAcceptWidget
                                       .routeName,
@@ -377,15 +384,15 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                       ParamType.DataStruct,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
-                                      widget.isPartner,
+                                      widget!.isPartner,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.canManage,
+                                      widget!.canManage,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -436,15 +443,15 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                       ParamType.DataStruct,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
-                                      widget.isPartner,
+                                      widget!.isPartner,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.canManage,
+                                      widget!.canManage,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -465,7 +472,7 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                   await CompaniesRecord.getDocumentOnce(
                                       _model.company4!);
                               _shouldSetState = true;
-                              if (widget.forPaid) {
+                              if (widget!.forPaid) {
                                 context.pushNamed(
                                   CurrentAccountBillsDetailForCompanyPagePaidAcceptWidget
                                       .routeName,
@@ -508,15 +515,15 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                       ParamType.DataStruct,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
-                                      widget.isPartner,
+                                      widget!.isPartner,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.canManage,
+                                      widget!.canManage,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -567,15 +574,15 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                       ParamType.DataStruct,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
-                                      widget.isPartner,
+                                      widget!.isPartner,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.canManage,
+                                      widget!.canManage,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -593,7 +600,7 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                   await UsersRecord.getDocumentOnce(
                                       _model.user4!);
                               _shouldSetState = true;
-                              if (widget.forPaid) {
+                              if (widget!.forPaid) {
                                 context.pushNamed(
                                   CurrentAccountBillsDetailForCompanyPagePaidAcceptWidget
                                       .routeName,
@@ -636,15 +643,15 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                       ParamType.DataStruct,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
-                                      widget.isPartner,
+                                      widget!.isPartner,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.canManage,
+                                      widget!.canManage,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,
@@ -695,15 +702,15 @@ class _CurrentAccountBillForCompanyPageRequestWidgetState
                                       ParamType.DataStruct,
                                     ),
                                     'company': serializeParam(
-                                      widget.company,
+                                      widget!.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
-                                      widget.isPartner,
+                                      widget!.isPartner,
                                       ParamType.bool,
                                     ),
                                     'canManage': serializeParam(
-                                      widget.canManage,
+                                      widget!.canManage,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,

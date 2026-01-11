@@ -2,11 +2,15 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'work_place_tasks_duties_show_reports_page_model.dart';
 export 'work_place_tasks_duties_show_reports_page_model.dart';
 
@@ -153,7 +157,7 @@ class _WorkPlaceTasksDutiesShowReportsPageWidgetState
                                   0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  widget.dutiesForCompany?.taskName,
+                                  widget!.dutiesForCompany?.taskName,
                                   'Görev Adı',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -206,7 +210,7 @@ class _WorkPlaceTasksDutiesShowReportsPageWidgetState
                                   0.0, 4.0, 0.0, 0.0),
                               child: StreamBuilder<UsersRecord>(
                                 stream: UsersRecord.getDocument(
-                                    widget.dutiesForCompany!.userRef!),
+                                    widget!.dutiesForCompany!.userRef!),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
@@ -283,7 +287,7 @@ class _WorkPlaceTasksDutiesShowReportsPageWidgetState
                                   0.0, 4.0, 0.0, 0.0),
                               child: StreamBuilder<UsersRecord>(
                                 stream: UsersRecord.getDocument(
-                                    widget.dutiesForCompany!.createdUserRef!),
+                                    widget!.dutiesForCompany!.createdUserRef!),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
@@ -363,17 +367,17 @@ class _WorkPlaceTasksDutiesShowReportsPageWidgetState
                   child: PagedListView<DocumentSnapshot<Object?>?,
                       CompanyTaskDutiesRecord>(
                     pagingController: _model.setListViewController(
-                        CompanyTaskDutiesRecord.collection(widget.company)
+                        CompanyTaskDutiesRecord.collection(widget!.company)
                             .where(
                               'dutiesForCompany',
-                              isEqualTo: widget.dutiesForCompany?.reference,
+                              isEqualTo: widget!.dutiesForCompany?.reference,
                             )
                             .where(
                               'isDelete',
                               isEqualTo: false,
                             )
                             .orderBy('creadetAt'),
-                        parent: widget.company),
+                        parent: widget!.company),
                     padding: EdgeInsets.zero,
                     reverse: false,
                     scrollDirection: Axis.vertical,
@@ -654,12 +658,12 @@ class _WorkPlaceTasksDutiesShowReportsPageWidgetState
                                                   .routeName,
                                               queryParameters: {
                                                 'company': serializeParam(
-                                                  widget.company,
+                                                  widget!.company,
                                                   ParamType.DocumentReference,
                                                 ),
                                                 'dutiesForCompany':
                                                     serializeParam(
-                                                  widget.dutiesForCompany
+                                                  widget!.dutiesForCompany
                                                       ?.reference,
                                                   ParamType.DocumentReference,
                                                 ),
@@ -669,11 +673,11 @@ class _WorkPlaceTasksDutiesShowReportsPageWidgetState
                                                   ParamType.Document,
                                                 ),
                                                 'isPartner': serializeParam(
-                                                  widget.isPartner,
+                                                  widget!.isPartner,
                                                   ParamType.bool,
                                                 ),
                                                 'canManage': serializeParam(
-                                                  widget.canManage,
+                                                  widget!.canManage,
                                                   ParamType.bool,
                                                 ),
                                               }.withoutNulls,

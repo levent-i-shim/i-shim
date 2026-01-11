@@ -4,8 +4,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'update_note_important_page_model.dart';
 export 'update_note_important_page_model.dart';
 
@@ -39,11 +42,11 @@ class _UpdateNoteImportantPageWidgetState
     _model = createModel(context, () => UpdateNoteImportantPageModel());
 
     _model.textFieldTitleTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteImportant?.title : '');
+        text: widget!.isEdit! ? widget!.noteImportant?.title : '');
     _model.textFieldTitleFocusNode ??= FocusNode();
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteImportant?.content : '');
+        text: widget!.isEdit! ? widget!.noteImportant?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -111,7 +114,7 @@ class _UpdateNoteImportantPageWidgetState
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.noteImportant!.reference
+                  await widget!.noteImportant!.reference
                       .update(createImportantNotesRecordData(
                     isDeleted: false,
                   ));
@@ -173,8 +176,8 @@ class _UpdateNoteImportantPageWidgetState
                       return;
                     }
                     if (_model.validate!) {
-                      if (widget.isEdit!) {
-                        await widget.noteImportant!.reference
+                      if (widget!.isEdit!) {
+                        await widget!.noteImportant!.reference
                             .update(createImportantNotesRecordData(
                           title: _model.textFieldTitleTextController.text,
                           content: _model.textFieldContentTextController.text,

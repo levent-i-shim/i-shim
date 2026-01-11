@@ -5,11 +5,14 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:provider/provider.dart';
 import 'settings_edit_profile_model.dart';
 export 'settings_edit_profile_model.dart';
 
@@ -864,7 +867,8 @@ class _SettingsEditProfileWidgetState extends State<SettingsEditProfileWidget> {
               ),
               FFButtonWidget(
                 onPressed: () async {
-                  if (_model.textController1.text != '') {
+                  if (_model.textController1.text != null &&
+                      _model.textController1.text != '') {
                     if (currentPhoneNumber != _model.textController1.text) {
                       _model.docId = await actions.formatPhoneNumber(
                         _model.textController1.text,

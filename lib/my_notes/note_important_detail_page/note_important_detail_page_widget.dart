@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'note_important_detail_page_model.dart';
 export 'note_important_detail_page_model.dart';
 
@@ -101,7 +105,7 @@ class _NoteImportantDetailPageWidgetState
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.noteImportant!.reference
+                  await widget!.noteImportant!.reference
                       .update(createImportantNotesRecordData(
                     isDeleted: false,
                   ));
@@ -164,12 +168,12 @@ class _NoteImportantDetailPageWidgetState
                           ParamType.bool,
                         ),
                         'noteImportant': serializeParam(
-                          widget.noteImportant,
+                          widget!.noteImportant,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'noteImportant': widget.noteImportant,
+                        'noteImportant': widget!.noteImportant,
                       },
                     );
                   },
@@ -239,7 +243,7 @@ class _NoteImportantDetailPageWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Created on: ${dateTimeFormat("d/M/y", widget.noteImportant?.createdAt)}',
+                          'Created on: ${dateTimeFormat("d/M/y", widget!.noteImportant?.createdAt)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -274,7 +278,7 @@ class _NoteImportantDetailPageWidgetState
                                 0.0, 20.0, 0.0, 12.0),
                             child: Text(
                               valueOrDefault<String>(
-                                widget.noteImportant?.title,
+                                widget!.noteImportant?.title,
                                 'Başlık',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -299,7 +303,7 @@ class _NoteImportantDetailPageWidgetState
                           ),
                           Text(
                             valueOrDefault<String>(
-                              widget.noteImportant?.content,
+                              widget!.noteImportant?.content,
                               'İçerik',
                             ),
                             style: FlutterFlowTheme.of(context)

@@ -5,11 +5,15 @@ import '/components/confirmation_media_save_location/confirmation_media_save_loc
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/widgets/index.dart' as custom_widgets;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'confirmation_user_detail_page_model.dart';
 export 'confirmation_user_detail_page_model.dart';
 
@@ -122,7 +126,7 @@ class _ConfirmationUserDetailPageWidgetState
                                       shape: BoxShape.circle,
                                     ),
                                     child: Image.network(
-                                      widget.receiverUser!.photoUrl,
+                                      widget!.receiverUser!.photoUrl,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -143,7 +147,7 @@ class _ConfirmationUserDetailPageWidgetState
                             ),
                             Text(
                               valueOrDefault<String>(
-                                widget.receiverUser?.displayName,
+                                widget!.receiverUser?.displayName,
                                 'İsim',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -396,7 +400,7 @@ class _ConfirmationUserDetailPageWidgetState
                       ),
                     ),
                   ),
-                  if (widget.receiverUser?.hasAboutMeUpdatedAt() ?? true)
+                  if (widget!.receiverUser?.hasAboutMeUpdatedAt() ?? true)
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(4.0, 8.0, 4.0, 0.0),
@@ -416,7 +420,7 @@ class _ConfirmationUserDetailPageWidgetState
                               children: [
                                 Text(
                                   valueOrDefault<String>(
-                                    widget.receiverUser?.aboutMe,
+                                    widget!.receiverUser?.aboutMe,
                                     'Hakkımda...',
                                   ),
                                   style: FlutterFlowTheme.of(context)
@@ -444,7 +448,7 @@ class _ConfirmationUserDetailPageWidgetState
                                   child: Text(
                                     dateTimeFormat(
                                         "d/M/y",
-                                        widget
+                                        widget!
                                             .receiverUser!.aboutMeUpdatedAt!),
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
@@ -499,11 +503,11 @@ class _ConfirmationUserDetailPageWidgetState
                                     ConfirmationMediasPageWidget.routeName,
                                     queryParameters: {
                                       'conversationId': serializeParam(
-                                        widget.conversationId,
+                                        widget!.conversationId,
                                         ParamType.int,
                                       ),
                                       'name': serializeParam(
-                                        widget.receiverUser?.displayName,
+                                        widget!.receiverUser?.displayName,
                                         ParamType.String,
                                       ),
                                     }.withoutNulls,
@@ -540,7 +544,7 @@ class _ConfirmationUserDetailPageWidgetState
                                         List<GetMessageMediaCountRow>>(
                                       future: SQLiteManager.instance
                                           .getMessageMediaCount(
-                                        conversationId: widget.conversationId!,
+                                        conversationId: widget!.conversationId!,
                                       ),
                                       builder: (context, snapshot) {
                                         // Customize what your widget looks like when it's loading.
@@ -575,11 +579,11 @@ class _ConfirmationUserDetailPageWidgetState
                                               queryParameters: {
                                                 'conversationId':
                                                     serializeParam(
-                                                  widget.conversationId,
+                                                  widget!.conversationId,
                                                   ParamType.int,
                                                 ),
                                                 'name': serializeParam(
-                                                  widget.receiverUser
+                                                  widget!.receiverUser
                                                       ?.displayName,
                                                   ParamType.String,
                                                 ),
@@ -600,7 +604,7 @@ class _ConfirmationUserDetailPageWidgetState
                                                       containerGetMessageMediaCountRowList
                                                           .firstOrNull
                                                           ?.totalCount
-                                                          .toString(),
+                                                          ?.toString(),
                                                       '0',
                                                     ),
                                                     style: FlutterFlowTheme.of(
@@ -649,7 +653,7 @@ class _ConfirmationUserDetailPageWidgetState
                                     0.0, 8.0, 0.0, 0.0),
                                 child: FutureBuilder<List<GetLastImagesRow>>(
                                   future: SQLiteManager.instance.getLastImages(
-                                    conversationId: widget.conversationId!,
+                                    conversationId: widget!.conversationId!,
                                   ),
                                   builder: (context, snapshot) {
                                     // Customize what your widget looks like when it's loading.
@@ -796,7 +800,7 @@ class _ConfirmationUserDetailPageWidgetState
                                               },
                                               child:
                                                   ConfirmationMediaSaveLocationWidget(
-                                                message: widget.message!,
+                                                message: widget!.message!,
                                               ),
                                             ),
                                           );
@@ -866,16 +870,16 @@ class _ConfirmationUserDetailPageWidgetState
                                           .routeName,
                                       queryParameters: {
                                         'conversationId': serializeParam(
-                                          widget.conversationId,
+                                          widget!.conversationId,
                                           ParamType.int,
                                         ),
                                         'receiverUser': serializeParam(
-                                          widget.receiverUser,
+                                          widget!.receiverUser,
                                           ParamType.Document,
                                         ),
                                       }.withoutNulls,
                                       extra: <String, dynamic>{
-                                        'receiverUser': widget.receiverUser,
+                                        'receiverUser': widget!.receiverUser,
                                       },
                                     );
                                   },
@@ -942,7 +946,7 @@ class _ConfirmationUserDetailPageWidgetState
                                             List<GetMessageStarredCountRow>>(
                                           future: SQLiteManager.instance
                                               .getMessageStarredCount(
-                                            conversationId: widget
+                                            conversationId: widget!
                                                 .conversationId!
                                                 .toString(),
                                           ),
@@ -973,7 +977,7 @@ class _ConfirmationUserDetailPageWidgetState
                                               valueOrDefault<String>(
                                                 textGetMessageStarredCountRowList
                                                     .firstOrNull?.totalCount
-                                                    .toString(),
+                                                    ?.toString(),
                                                 '0',
                                               ),
                                               style:
@@ -1325,7 +1329,7 @@ class _ConfirmationUserDetailPageWidgetState
                                           value: _model.switchValue!,
                                           onChanged: (newValue) async {
                                             safeSetState(() =>
-                                                _model.switchValue = newValue);
+                                                _model.switchValue = newValue!);
                                           },
                                           activeColor:
                                               FlutterFlowTheme.of(context)
@@ -1677,14 +1681,14 @@ class _ConfirmationUserDetailPageWidgetState
                                             ) ??
                                             false;
                                     if (confirmDialogResponse) {
-                                      if (widget.message?.user1 ==
+                                      if (widget!.message?.user1 ==
                                           currentUserReference) {
-                                        await widget.message!.reference
+                                        await widget!.message!.reference
                                             .update(createMessageRecordData(
                                           isUser1Blocked: true,
                                         ));
                                       } else {
-                                        await widget.message!.reference
+                                        await widget!.message!.reference
                                             .update(createMessageRecordData(
                                           isUser2Blocked: true,
                                         ));
@@ -1695,7 +1699,7 @@ class _ConfirmationUserDetailPageWidgetState
                                           .set({
                                         ...createBlockedConversationsRecordData(
                                           userRef:
-                                              widget.receiverUser?.reference,
+                                              widget!.receiverUser?.reference,
                                         ),
                                         ...mapToFirestore(
                                           {
@@ -1817,11 +1821,11 @@ class _ConfirmationUserDetailPageWidgetState
                                         ...createConversationReportsRecordData(
                                           user: currentUserReference,
                                           reportedUser:
-                                              widget.receiverUser?.reference,
+                                              widget!.receiverUser?.reference,
                                           messageRef:
-                                              widget.message?.reference,
+                                              widget!.message?.reference,
                                           conversationType:
-                                              widget.conversationType,
+                                              widget!.conversationType,
                                         ),
                                         ...mapToFirestore(
                                           {

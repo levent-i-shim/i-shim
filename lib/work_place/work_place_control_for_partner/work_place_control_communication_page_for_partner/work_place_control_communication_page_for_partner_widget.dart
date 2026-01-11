@@ -3,9 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_communication_page_for_partner_model.dart';
 export 'work_place_control_communication_page_for_partner_model.dart';
 
@@ -119,17 +121,17 @@ class _WorkPlaceControlCommunicationPageForPartnerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.partnerDetail!.canViewInstructions) {
+                              if (widget!.partnerDetail!.canViewInstructions) {
                                 context.pushNamed(
                                   InstructionsCreatePageWorkPlaceWidget
                                       .routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.partnerDetail?.company,
+                                      widget!.partnerDetail?.company,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.partnerDetail?.workPlaceRef,
+                                      widget!.partnerDetail?.workPlaceRef,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -137,7 +139,7 @@ class _WorkPlaceControlCommunicationPageForPartnerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canCreate': serializeParam(
-                                      widget
+                                      widget!
                                           .partnerDetail?.canManageInstructions,
                                       ParamType.bool,
                                     ),
@@ -207,7 +209,7 @@ class _WorkPlaceControlCommunicationPageForPartnerWidgetState
                                 ConfirmationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.partnerDetail?.company,
+                                    widget!.partnerDetail?.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,

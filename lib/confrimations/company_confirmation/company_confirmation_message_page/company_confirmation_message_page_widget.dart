@@ -8,13 +8,18 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'company_confirmation_message_page_model.dart';
 export 'company_confirmation_message_page_model.dart';
@@ -48,10 +53,10 @@ class _CompanyConfirmationMessagePageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.companyConfirmation?.senderRef == currentUserReference) {
-        _model.receiverRef = widget.companyConfirmation?.receiverRef;
+      if (widget!.companyConfirmation?.senderRef == currentUserReference) {
+        _model.receiverRef = widget!.companyConfirmation?.receiverRef;
       } else {
-        _model.receiverRef = widget.companyConfirmation?.senderRef;
+        _model.receiverRef = widget!.companyConfirmation?.senderRef;
       }
     });
 
@@ -138,7 +143,7 @@ class _CompanyConfirmationMessagePageWidgetState
                   flex: 9,
                   child: StreamBuilder<List<CompanyConfirmationMessagesRecord>>(
                     stream: queryCompanyConfirmationMessagesRecord(
-                      parent: widget.companyConfirmation?.reference,
+                      parent: widget!.companyConfirmation?.reference,
                       queryBuilder: (companyConfirmationMessagesRecord) =>
                           companyConfirmationMessagesRecord.orderBy('date',
                               descending: true),
@@ -156,7 +161,7 @@ class _CompanyConfirmationMessagePageWidgetState
                             await actions
                                 .safelyMarkMessagesReadAndUpdateCountCompanyConfirmation(
                               currentUserReference!,
-                              widget.companyConfirmation!.reference,
+                              widget!.companyConfirmation!.reference,
                             );
 
                             safeSetState(() {});
@@ -339,6 +344,9 @@ class _CompanyConfirmationMessagePageWidgetState
                                                 ),
                                                 if (listViewCompanyConfirmationMessagesRecord
                                                             .imagePath !=
+                                                        null &&
+                                                    listViewCompanyConfirmationMessagesRecord
+                                                            .imagePath !=
                                                         '')
                                                   Padding(
                                                     padding:
@@ -403,6 +411,9 @@ class _CompanyConfirmationMessagePageWidgetState
                                                     ),
                                                   ),
                                                 if (listViewCompanyConfirmationMessagesRecord
+                                                            .pdfUrl !=
+                                                        null &&
+                                                    listViewCompanyConfirmationMessagesRecord
                                                             .pdfUrl !=
                                                         '')
                                                   FlutterFlowPdfViewer(
@@ -626,6 +637,9 @@ class _CompanyConfirmationMessagePageWidgetState
                                                 ),
                                                 if (listViewCompanyConfirmationMessagesRecord
                                                             .imagePath !=
+                                                        null &&
+                                                    listViewCompanyConfirmationMessagesRecord
+                                                            .imagePath !=
                                                         '')
                                                   Padding(
                                                     padding:
@@ -690,6 +704,9 @@ class _CompanyConfirmationMessagePageWidgetState
                                                     ),
                                                   ),
                                                 if (listViewCompanyConfirmationMessagesRecord
+                                                            .pdfUrl !=
+                                                        null &&
+                                                    listViewCompanyConfirmationMessagesRecord
                                                             .pdfUrl !=
                                                         '')
                                                   FlutterFlowPdfViewer(
@@ -1030,7 +1047,7 @@ class _CompanyConfirmationMessagePageWidgetState
                                             .then((_) =>
                                                 _model.soundPlayer!.play());
 
-                                        await widget
+                                        await widget!
                                             .companyConfirmation!.reference
                                             .update({
                                           ...createCompanyConfirmationsRecordData(
@@ -1072,7 +1089,7 @@ class _CompanyConfirmationMessagePageWidgetState
                                             type: NotificationTypes
                                                 .confirmationCompany.name,
                                             content: '1 Yeni Mesaj',
-                                            relatedDoc: widget
+                                            relatedDoc: widget!
                                                 .companyConfirmation
                                                 ?.reference
                                                 .id,
@@ -1098,7 +1115,7 @@ class _CompanyConfirmationMessagePageWidgetState
                                               'CompanyConfirmationMessagePage',
                                           parameterData: {
                                             'companyConfirmation':
-                                                widget.companyConfirmation,
+                                                widget!.companyConfirmation,
                                           },
                                         );
                                         _model.selectedImage = false;

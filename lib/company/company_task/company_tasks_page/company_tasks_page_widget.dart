@@ -2,9 +2,13 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_tasks_page_model.dart';
 export 'company_tasks_page_model.dart';
 
@@ -82,7 +86,7 @@ class _CompanyTasksPageWidgetState extends State<CompanyTasksPageWidget> {
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.companyName,
+              widget!.companyName,
               'Şirket İsmi',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -180,8 +184,8 @@ class _CompanyTasksPageWidgetState extends State<CompanyTasksPageWidget> {
                               size: 24.0,
                             ),
                             onPressed: () async {
-                              if (widget.isPartner) {
-                                if (!widget.canCreate) {
+                              if (widget!.isPartner) {
+                                if (!widget!.canCreate) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -205,11 +209,11 @@ class _CompanyTasksPageWidgetState extends State<CompanyTasksPageWidget> {
                                 CompanyTaskAddWidget.routeName,
                                 queryParameters: {
                                   'companyName': serializeParam(
-                                    widget.companyName,
+                                    widget!.companyName,
                                     ParamType.String,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,
@@ -233,7 +237,7 @@ class _CompanyTasksPageWidgetState extends State<CompanyTasksPageWidget> {
                     ),
                     child: StreamBuilder<List<CompanyTasksRecord>>(
                       stream: queryCompanyTasksRecord(
-                        parent: widget.company,
+                        parent: widget!.company,
                         queryBuilder: (companyTasksRecord) =>
                             companyTasksRecord.where(
                           'isDelete',
@@ -285,11 +289,11 @@ class _CompanyTasksPageWidgetState extends State<CompanyTasksPageWidget> {
                                           ParamType.Document,
                                         ),
                                         'isPartner': serializeParam(
-                                          widget.isPartner,
+                                          widget!.isPartner,
                                           ParamType.bool,
                                         ),
                                         'canManage': serializeParam(
-                                          widget.canManage,
+                                          widget!.canManage,
                                           ParamType.bool,
                                         ),
                                       }.withoutNulls,

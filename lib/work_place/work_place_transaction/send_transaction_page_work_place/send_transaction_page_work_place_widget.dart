@@ -8,9 +8,13 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'send_transaction_page_work_place_model.dart';
 export 'send_transaction_page_work_place_model.dart';
 
@@ -74,11 +78,11 @@ class _SendTransactionPageWorkPlaceWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyWorkersRecord>>(
       stream: queryCompanyWorkersRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyWorkersRecord) => companyWorkersRecord
             .where(
               'workPlace',
-              isEqualTo: widget.workPlace,
+              isEqualTo: widget!.workPlace,
             )
             .where(
               'isDelete',
@@ -172,7 +176,7 @@ class _SendTransactionPageWorkPlaceWidgetState
                         child: Builder(
                           builder: (context) {
                             final fields =
-                                widget.companyReport?.responses.toList() ??
+                                widget!.companyReport?.responses?.toList() ??
                                     [];
 
                             return ListView.builder(
@@ -902,13 +906,13 @@ class _SendTransactionPageWorkPlaceWidgetState
 
                             var workPlaceTransactionRecordReference =
                                 WorkPlaceTransactionRecord.createDoc(
-                                    widget.workPlace!);
+                                    widget!.workPlace!);
                             await workPlaceTransactionRecordReference.set({
                               ...createWorkPlaceTransactionRecordData(
                                 name: _model.textController1.text,
                                 description: _model.textController2.text,
                                 companyReports:
-                                    widget.companyReport?.reference,
+                                    widget!.companyReport?.reference,
                                 senderRef: currentUserReference,
                                 receiverRef: _model.userRef,
                                 totalAmount: double.tryParse(
@@ -930,7 +934,7 @@ class _SendTransactionPageWorkPlaceWidgetState
                                 name: _model.textController1.text,
                                 description: _model.textController2.text,
                                 companyReports:
-                                    widget.companyReport?.reference,
+                                    widget!.companyReport?.reference,
                                 senderRef: currentUserReference,
                                 receiverRef: _model.userRef,
                                 totalAmount: double.tryParse(
@@ -947,12 +951,12 @@ class _SendTransactionPageWorkPlaceWidgetState
                               ),
                             }, workPlaceTransactionRecordReference);
 
-                            await widget.companyReport!.reference
+                            await widget!.companyReport!.reference
                                 .update(createCompanyReportsRecordData(
                               isSendTransaction: true,
                             ));
 
-                            await widget.companyReport!.workPlaceReports!
+                            await widget!.companyReport!.workPlaceReports!
                                 .update(createWorkPlaceReportsRecordData(
                               isSendTransaction: true,
                             ));

@@ -3,9 +3,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_finance_for_worker_model.dart';
 export 'work_place_control_finance_for_worker_model.dart';
 
@@ -121,16 +124,16 @@ class _WorkPlaceControlFinanceForWorkerWidgetState
                               24.0, 64.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canAddCostAccount) {
+                              if (widget!.companyWorker!.canAddCostAccount) {
                                 context.pushNamed(
                                   ParentProductsPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -198,12 +201,12 @@ class _WorkPlaceControlFinanceForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canViewIncomeExpense) {
+                              if (widget!.companyWorker!.canViewIncomeExpense) {
                                 context.pushNamed(
                                   WorkPlaceSalaryPageWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -211,7 +214,7 @@ class _WorkPlaceControlFinanceForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                   }.withoutNulls,
@@ -257,21 +260,21 @@ class _WorkPlaceControlFinanceForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canViewIncomeExpense) {
+                              if (widget!.companyWorker!.canViewIncomeExpense) {
                                 context.pushNamed(
                                   IncomesPageWorkPlaceCopyWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddIncome': serializeParam(
-                                      widget.companyWorker
+                                      widget!.companyWorker
                                           ?.canAddManuelIncomeExpense,
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -336,21 +339,21 @@ class _WorkPlaceControlFinanceForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canViewIncomeExpense) {
+                              if (widget!.companyWorker!.canViewIncomeExpense) {
                                 context.pushNamed(
                                   PaymentsPageWorkPlaceCopyWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'canAddPayment': serializeParam(
-                                      widget.companyWorker
+                                      widget!.companyWorker
                                           ?.canAddManuelIncomeExpense,
                                       ParamType.bool,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isOwner': serializeParam(
@@ -415,17 +418,17 @@ class _WorkPlaceControlFinanceForWorkerWidgetState
                               24.0, 24.0, 24.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.canAcceptTransaction) {
+                              if (widget!.companyWorker!.canAcceptTransaction) {
                                 context.pushNamed(
                                   ShowAllTransactionPageWorkPlaceWidget
                                       .routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -498,16 +501,16 @@ class _WorkPlaceControlFinanceForWorkerWidgetState
                               24.0, 24.0, 24.0, 64.0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              if (widget.companyWorker!.expanditureAuthority) {
+                              if (widget!.companyWorker!.expanditureAuthority) {
                                 context.pushNamed(
                                   MyVaultPageWorkPlaceWidget.routeName,
                                   queryParameters: {
                                     'company': serializeParam(
-                                      widget.companyWorker?.parentReference,
+                                      widget!.companyWorker?.parentReference,
                                       ParamType.DocumentReference,
                                     ),
                                     'workPlace': serializeParam(
-                                      widget.workPlace,
+                                      widget!.workPlace,
                                       ParamType.DocumentReference,
                                     ),
                                     'isPartner': serializeParam(
@@ -515,7 +518,7 @@ class _WorkPlaceControlFinanceForWorkerWidgetState
                                       ParamType.bool,
                                     ),
                                     'canSendMoney': serializeParam(
-                                      widget.companyWorker?.canSendMoney,
+                                      widget!.companyWorker?.canSendMoney,
                                       ParamType.bool,
                                     ),
                                   }.withoutNulls,

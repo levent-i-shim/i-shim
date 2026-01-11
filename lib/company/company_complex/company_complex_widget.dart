@@ -2,10 +2,14 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'company_complex_model.dart';
 export 'company_complex_model.dart';
 
@@ -210,7 +214,7 @@ class _CompanyComplexWidgetState extends State<CompanyComplexWidget> {
                               child: SelectionArea(
                                   child: Text(
                                 valueOrDefault<String>(
-                                  widget.company?.id,
+                                  widget!.company?.id,
                                   '0',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -242,7 +246,7 @@ class _CompanyComplexWidgetState extends State<CompanyComplexWidget> {
                       EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 12.0, 12.0),
                   child: FutureBuilder<int>(
                     future: queryCompanyWorkersRecordCount(
-                      parent: widget.company,
+                      parent: widget!.company,
                       queryBuilder: (companyWorkersRecord) =>
                           companyWorkersRecord.where(
                         'isDelete',
@@ -358,7 +362,7 @@ class _CompanyComplexWidgetState extends State<CompanyComplexWidget> {
                       WorkPlacesRecord.collection
                           .where(
                             'companyRef',
-                            isEqualTo: widget.company,
+                            isEqualTo: widget!.company,
                           )
                           .where(
                             'isDelete',
@@ -415,7 +419,7 @@ class _CompanyComplexWidgetState extends State<CompanyComplexWidget> {
                                     ParamType.Document,
                                   ),
                                   'company': serializeParam(
-                                    widget.company,
+                                    widget!.company,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,

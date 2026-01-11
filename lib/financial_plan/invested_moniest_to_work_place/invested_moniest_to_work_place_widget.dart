@@ -4,11 +4,14 @@ import '/financial_plan/component_financial_plan/options_invested_monies_to_work
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'invested_moniest_to_work_place_model.dart';
 export 'invested_moniest_to_work_place_model.dart';
 
@@ -662,7 +665,7 @@ class _InvestedMoniestToWorkPlaceWidgetState
                         EdgeInsetsDirectional.fromSTEB(8.0, 4.0, 8.0, 20.0),
                     child: StreamBuilder<List<InvestedMoniesToWorkPlaceRecord>>(
                       stream: queryInvestedMoniesToWorkPlaceRecord(
-                        parent: widget.workPlaceDocument?.reference,
+                        parent: widget!.workPlaceDocument?.reference,
                       ),
                       builder: (context, snapshot) {
                         // Customize what your widget looks like when it's loading.

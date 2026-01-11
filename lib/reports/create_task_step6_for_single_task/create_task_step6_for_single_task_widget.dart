@@ -5,10 +5,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'create_task_step6_for_single_task_model.dart';
 export 'create_task_step6_for_single_task_model.dart';
 
@@ -413,17 +416,17 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                             if (_model.validate!) {
                               var workPlaceTasksRecordReference =
                                   WorkPlaceTasksRecord.createDoc(
-                                      widget.workPlace!);
+                                      widget!.workPlace!);
                               await workPlaceTasksRecordReference
                                   .set(createWorkPlaceTasksRecordData(
                                 name: _model.textController1.text,
-                                userRef: widget.workPlaceWorker?.user?.id,
+                                userRef: widget!.workPlaceWorker?.user?.id,
                                 description: _model.textController2.text,
                                 isComplete: false,
                                 createdUserRef: currentUserReference,
-                                form: widget.form,
+                                form: widget!.form,
                                 isDelete: false,
-                                company: widget.company,
+                                company: widget!.company,
                                 requiresAction: false,
                               ));
                               _model.workPlaceTask =
@@ -431,32 +434,32 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                                       createWorkPlaceTasksRecordData(
                                         name: _model.textController1.text,
                                         userRef:
-                                            widget.workPlaceWorker?.user?.id,
+                                            widget!.workPlaceWorker?.user?.id,
                                         description:
                                             _model.textController2.text,
                                         isComplete: false,
                                         createdUserRef: currentUserReference,
-                                        form: widget.form,
+                                        form: widget!.form,
                                         isDelete: false,
-                                        company: widget.company,
+                                        company: widget!.company,
                                         requiresAction: false,
                                       ),
                                       workPlaceTasksRecordReference);
 
                               var companyTasksRecordReference =
                                   CompanyTasksRecord.createDoc(
-                                      widget.company!);
+                                      widget!.company!);
                               await companyTasksRecordReference
                                   .set(createCompanyTasksRecordData(
                                 name: _model.textController1.text,
-                                userRef: widget.workPlaceWorker?.user?.id,
+                                userRef: widget!.workPlaceWorker?.user?.id,
                                 description: _model.textController2.text,
-                                companyRef: widget.company,
+                                companyRef: widget!.company,
                                 isComplete: false,
                                 createdUserRef: currentUserReference,
-                                form: widget.form,
+                                form: widget!.form,
                                 isDelete: false,
-                                workPlace: widget.workPlace,
+                                workPlace: widget!.workPlace,
                                 workPlaceTask: _model.workPlaceTask?.reference,
                                 processThisTask: false,
                               ));
@@ -465,15 +468,15 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                                       createCompanyTasksRecordData(
                                         name: _model.textController1.text,
                                         userRef:
-                                            widget.workPlaceWorker?.user?.id,
+                                            widget!.workPlaceWorker?.user?.id,
                                         description:
                                             _model.textController2.text,
-                                        companyRef: widget.company,
+                                        companyRef: widget!.company,
                                         isComplete: false,
                                         createdUserRef: currentUserReference,
-                                        form: widget.form,
+                                        form: widget!.form,
                                         isDelete: false,
-                                        workPlace: widget.workPlace,
+                                        workPlace: widget!.workPlace,
                                         workPlaceTask:
                                             _model.workPlaceTask?.reference,
                                         processThisTask: false,
@@ -481,10 +484,10 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                                       companyTasksRecordReference);
                               _model.companyDetail =
                                   await CompaniesRecord.getDocumentOnce(
-                                      widget.company!);
+                                      widget!.company!);
 
                               await NotificationsRecord.createDoc(
-                                      widget.workPlaceWorker!.user!)
+                                      widget!.workPlaceWorker!.user!)
                                   .set({
                                 ...createNotificationsRecordData(
                                   type: NotificationTypes.task.name,
@@ -492,7 +495,7 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                                   isRead: false,
                                   isDelete: false,
                                   content: 'Bir Görevin Var',
-                                  company: widget.company,
+                                  company: widget!.company,
                                   fullDescription:
                                       '${_model.textController1.text} İsimli Bir Görev Eklendi',
                                   image: _model.companyDetail?.companyLogo,
@@ -505,7 +508,7 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                                 ),
                               });
 
-                              await widget.workPlaceWorker!.user!.update({
+                              await widget!.workPlaceWorker!.user!.update({
                                 ...mapToFirestore(
                                   {
                                     'notificationCount':
@@ -515,7 +518,7 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                               });
 
                               await AjandaRecord.createDoc(
-                                      widget.workPlaceWorker!.user!)
+                                      widget!.workPlaceWorker!.user!)
                                   .set({
                                 ...createAjandaRecordData(
                                   description: 'Görev Eklendi',
@@ -548,7 +551,7 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                                 queryBuilder: (workHistoryRecord) =>
                                     workHistoryRecord.where(
                                   'company',
-                                  isEqualTo: widget.company,
+                                  isEqualTo: widget!.company,
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);
@@ -563,11 +566,11 @@ class _CreateTaskStep6ForSingleTaskWidgetState
                               });
                               _model.workHistoryForReceiver =
                                   await queryWorkHistoryRecordOnce(
-                                parent: widget.workPlaceWorker?.user,
+                                parent: widget!.workPlaceWorker?.user,
                                 queryBuilder: (workHistoryRecord) =>
                                     workHistoryRecord.where(
                                   'company',
-                                  isEqualTo: widget.company,
+                                  isEqualTo: widget!.company,
                                 ),
                                 singleRecord: true,
                               ).then((s) => s.firstOrNull);

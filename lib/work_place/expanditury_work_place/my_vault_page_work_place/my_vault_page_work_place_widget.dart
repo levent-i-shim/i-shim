@@ -4,10 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'my_vault_page_work_place_model.dart';
 export 'my_vault_page_work_place_model.dart';
 
@@ -58,7 +61,7 @@ class _MyVaultPageWorkPlaceWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyWorkersRecord>>(
       stream: queryCompanyWorkersRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyWorkersRecord) => companyWorkersRecord.where(
           'userRef',
           isEqualTo: currentUserReference,
@@ -175,7 +178,7 @@ class _MyVaultPageWorkPlaceWidgetState
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 5.0, 5.0, 0.0),
                                 child: Text(
-                                  '${myVaultPageWorkPlaceCompanyWorkersRecord?.allowence.toString()} TL',
+                                  '${myVaultPageWorkPlaceCompanyWorkersRecord?.allowence?.toString()} TL',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -210,8 +213,8 @@ class _MyVaultPageWorkPlaceWidgetState
                               children: [
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    if (widget.isPartner!) {
-                                      if (!widget.canSendMoney!) {
+                                    if (widget!.isPartner!) {
+                                      if (!widget!.canSendMoney!) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -287,8 +290,8 @@ class _MyVaultPageWorkPlaceWidgetState
                                 ),
                                 FFButtonWidget(
                                   onPressed: () async {
-                                    if (widget.isPartner!) {
-                                      if (!widget.canSendMoney!) {
+                                    if (widget!.isPartner!) {
+                                      if (!widget!.canSendMoney!) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -402,13 +405,13 @@ class _MyVaultPageWorkPlaceWidgetState
                           SpentMoneyForAllowenceRecord>(
                         pagingController: _model.setListViewController(
                             SpentMoneyForAllowenceRecord.collection(
-                                    widget.company)
+                                    widget!.company)
                                 .where(
                                   'sender',
                                   isEqualTo: currentUserReference,
                                 )
                                 .orderBy('date', descending: true),
-                            parent: widget.company),
+                            parent: widget!.company),
                         padding: EdgeInsets.zero,
                         reverse: false,
                         scrollDirection: Axis.vertical,

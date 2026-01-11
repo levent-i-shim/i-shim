@@ -1,12 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'choose_new_unit_model.dart';
 export 'choose_new_unit_model.dart';
 
@@ -52,7 +57,7 @@ class _ChooseNewUnitWidgetState extends State<ChooseNewUnitWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyUnitsRecord>>(
       stream: queryCompanyUnitsRecord(
-        parent: widget.company,
+        parent: widget!.company,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -221,9 +226,9 @@ class _ChooseNewUnitWidgetState extends State<ChooseNewUnitWidget> {
                               if (_model.validateForm!) {
                                 _model.newUnit = await actions.getUnitDocRef(
                                   _model.dropDownValue!,
-                                  widget.company!.id,
+                                  widget!.company!.id,
                                 );
-                                if (_model.newUnit == widget.unit?.reference) {
+                                if (_model.newUnit == widget!.unit?.reference) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -242,11 +247,11 @@ class _ChooseNewUnitWidgetState extends State<ChooseNewUnitWidget> {
                                 } else {
                                   _model.workers =
                                       await queryCompanyWorkersRecordOnce(
-                                    parent: widget.company,
+                                    parent: widget!.company,
                                     queryBuilder: (companyWorkersRecord) =>
                                         companyWorkersRecord.where(
                                       'unitRefs',
-                                      arrayContains: widget.unit?.reference,
+                                      arrayContains: widget!.unit?.reference,
                                     ),
                                   );
                                   _model.addToNewUnitRef(_model.newUnit!);
@@ -265,12 +270,12 @@ class _ChooseNewUnitWidgetState extends State<ChooseNewUnitWidget> {
                                     });
                                   }
 
-                                  await widget.unit!.reference
+                                  await widget!.unit!.reference
                                       .update(createCompanyUnitsRecordData(
                                     isDelete: true,
                                   ));
 
-                                  await widget.unit!.workPlaceUnitRef!
+                                  await widget!.unit!.workPlaceUnitRef!
                                       .update(createWorkPlaceUnitsRecordData(
                                     isDelete: true,
                                   ));
@@ -350,11 +355,11 @@ class _ChooseNewUnitWidgetState extends State<ChooseNewUnitWidget> {
                             onPressed: () async {
                               _model.workersCopy =
                                   await queryCompanyWorkersRecordOnce(
-                                parent: widget.company,
+                                parent: widget!.company,
                                 queryBuilder: (companyWorkersRecord) =>
                                     companyWorkersRecord.where(
                                   'unitRefs',
-                                  arrayContains: widget.unit?.reference,
+                                  arrayContains: widget!.unit?.reference,
                                 ),
                               );
                               for (int loop1Index = 0;
@@ -367,18 +372,18 @@ class _ChooseNewUnitWidgetState extends State<ChooseNewUnitWidget> {
                                   ...mapToFirestore(
                                     {
                                       'unitRefs': FieldValue.arrayRemove(
-                                          [widget.unit?.reference]),
+                                          [widget!.unit?.reference]),
                                     },
                                   ),
                                 });
                               }
 
-                              await widget.unit!.reference
+                              await widget!.unit!.reference
                                   .update(createCompanyUnitsRecordData(
                                 isDelete: true,
                               ));
 
-                              await widget.unit!.parentReference
+                              await widget!.unit!.parentReference
                                   .update(createCompaniesRecordData(
                                 isDelete: true,
                               ));

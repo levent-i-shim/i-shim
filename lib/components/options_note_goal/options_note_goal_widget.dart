@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_note_goal_model.dart';
 export 'options_note_goal_model.dart';
 
@@ -173,12 +178,12 @@ class _OptionsNoteGoalWidgetState extends State<OptionsNoteGoalWidget> {
                         ParamType.bool,
                       ),
                       'noteGoal': serializeParam(
-                        widget.noteGoal,
+                        widget!.noteGoal,
                         ParamType.Document,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'noteGoal': widget.noteGoal,
+                      'noteGoal': widget!.noteGoal,
                     },
                   );
 
@@ -270,7 +275,7 @@ class _OptionsNoteGoalWidgetState extends State<OptionsNoteGoalWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.noteGoal!.reference
+                    await widget!.noteGoal!.reference
                         .update(createGoalNotesRecordData(
                       isDeleted: true,
                     ));

@@ -1,8 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'task_options_model.dart';
 export 'task_options_model.dart';
 
@@ -179,7 +184,7 @@ class _TaskOptionsWidgetState extends State<TaskOptionsWidget> {
                   ),
                   child: Builder(
                     builder: (context) {
-                      if (widget.isStoped ?? false) {
+                      if (widget!.isStoped ?? false) {
                         return Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 8.0, 0.0, 8.0),
@@ -189,23 +194,23 @@ class _TaskOptionsWidgetState extends State<TaskOptionsWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.isTask!) {
-                                await widget.task!.reference
+                              if (widget!.isTask!) {
+                                await widget!.task!.reference
                                     .update(createCompanyTasksRecordData(
                                   isComplete: false,
                                 ));
 
-                                await widget.task!.workPlaceTask!
+                                await widget!.task!.workPlaceTask!
                                     .update(createWorkPlaceTasksRecordData(
                                   isComplete: false,
                                 ));
                               } else {
-                                await widget.taskDuties!.reference
+                                await widget!.taskDuties!.reference
                                     .update(createCompanyTaskDutiesRecordData(
                                   isComplete: false,
                                 ));
 
-                                await widget.taskDuties!.workPlaceTaskDuties!
+                                await widget!.taskDuties!.workPlaceTaskDuties!
                                     .update(createWorkPlaceTaskDutiesRecordData(
                                   isComplete: false,
                                 ));
@@ -286,23 +291,23 @@ class _TaskOptionsWidgetState extends State<TaskOptionsWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              if (widget.isTask!) {
-                                await widget.task!.reference
+                              if (widget!.isTask!) {
+                                await widget!.task!.reference
                                     .update(createCompanyTasksRecordData(
                                   isComplete: true,
                                 ));
 
-                                await widget.task!.workPlaceTask!
+                                await widget!.task!.workPlaceTask!
                                     .update(createWorkPlaceTasksRecordData(
                                   isComplete: true,
                                 ));
                               } else {
-                                await widget.taskDuties!.reference
+                                await widget!.taskDuties!.reference
                                     .update(createCompanyTaskDutiesRecordData(
                                   isComplete: true,
                                 ));
 
-                                await widget.taskDuties!.workPlaceTaskDuties!
+                                await widget!.taskDuties!.workPlaceTaskDuties!
                                     .update(createWorkPlaceTaskDutiesRecordData(
                                   isComplete: true,
                                 ));
@@ -412,23 +417,23 @@ class _TaskOptionsWidgetState extends State<TaskOptionsWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    if (widget.isTask!) {
-                      await widget.task!.reference
+                    if (widget!.isTask!) {
+                      await widget!.task!.reference
                           .update(createCompanyTasksRecordData(
                         isDelete: true,
                       ));
 
-                      await widget.task!.workPlaceTask!
+                      await widget!.task!.workPlaceTask!
                           .update(createWorkPlaceTasksRecordData(
                         isDelete: true,
                       ));
                     } else {
-                      await widget.taskDuties!.reference
+                      await widget!.taskDuties!.reference
                           .update(createCompanyTaskDutiesRecordData(
                         isDelete: true,
                       ));
 
-                      await widget.taskDuties!.workPlaceTaskDuties!
+                      await widget!.taskDuties!.workPlaceTaskDuties!
                           .update(createWorkPlaceTaskDutiesRecordData(
                         isDelete: true,
                       ));

@@ -3,9 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'work_place_control_communication_page_model.dart';
 export 'work_place_control_communication_page_model.dart';
 
@@ -123,11 +125,11 @@ class _WorkPlaceControlCommunicationPageWidgetState
                                 InstructionsCreatePageWorkPlaceWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlace?.companyRef,
+                                    widget!.workPlace?.companyRef,
                                     ParamType.DocumentReference,
                                   ),
                                   'workPlace': serializeParam(
-                                    widget.workPlace?.reference,
+                                    widget!.workPlace?.reference,
                                     ParamType.DocumentReference,
                                   ),
                                   'isPartner': serializeParam(
@@ -188,7 +190,7 @@ class _WorkPlaceControlCommunicationPageWidgetState
                                 ConfirmationsPageWidget.routeName,
                                 queryParameters: {
                                   'company': serializeParam(
-                                    widget.workPlace?.companyRef,
+                                    widget!.workPlace?.companyRef,
                                     ParamType.DocumentReference,
                                   ),
                                 }.withoutNulls,

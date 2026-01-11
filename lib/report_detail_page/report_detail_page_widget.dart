@@ -1,11 +1,17 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'report_detail_page_model.dart';
 export 'report_detail_page_model.dart';
 
@@ -124,12 +130,12 @@ class _ReportDetailPageWidgetState extends State<ReportDetailPageWidget> {
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.companyReport!.reference
+                  await widget!.companyReport!.reference
                       .update(createCompanyReportsRecordData(
                     isDelete: true,
                   ));
 
-                  await widget.companyReport!.workPlaceReports!
+                  await widget!.companyReport!.workPlaceReports!
                       .update(createWorkPlaceReportsRecordData(
                     isDelete: true,
                   ));
@@ -222,7 +228,7 @@ class _ReportDetailPageWidgetState extends State<ReportDetailPageWidget> {
                                   0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  widget.companyReport?.taskName,
+                                  widget!.companyReport?.taskName,
                                   'Görev ismi',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -275,7 +281,7 @@ class _ReportDetailPageWidgetState extends State<ReportDetailPageWidget> {
                                   0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  widget.creatorName,
+                                  widget!.creatorName,
                                   'İsim',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -328,7 +334,7 @@ class _ReportDetailPageWidgetState extends State<ReportDetailPageWidget> {
                                   0.0, 4.0, 0.0, 0.0),
                               child: Text(
                                 valueOrDefault<String>(
-                                  widget.sentToName,
+                                  widget!.sentToName,
                                   'İsim',
                                 ),
                                 style: FlutterFlowTheme.of(context)
@@ -394,7 +400,7 @@ class _ReportDetailPageWidgetState extends State<ReportDetailPageWidget> {
                           Builder(
                             builder: (context) {
                               final fields =
-                                  widget.companyReport?.responses.toList() ??
+                                  widget!.companyReport?.responses?.toList() ??
                                       [];
 
                               return ListView.builder(
@@ -795,7 +801,7 @@ class _ReportDetailPageWidgetState extends State<ReportDetailPageWidget> {
                                       flex: 4,
                                       child: Text(
                                         dateTimeFormat("d/M/y",
-                                            widget.companyReport!.date!),
+                                            widget!.companyReport!.date!),
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(

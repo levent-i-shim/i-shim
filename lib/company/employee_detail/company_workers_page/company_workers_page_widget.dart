@@ -2,10 +2,14 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'company_workers_page_model.dart';
 export 'company_workers_page_model.dart';
 
@@ -159,7 +163,7 @@ class _CompanyWorkersPageWidgetState extends State<CompanyWorkersPageWidget> {
                     child: PagedListView<DocumentSnapshot<Object?>?,
                         CompanyWorkersRecord>(
                       pagingController: _model.setListViewController(
-                          CompanyWorkersRecord.collection(widget.company)
+                          CompanyWorkersRecord.collection(widget!.company)
                               .where(
                                 'isDelete',
                                 isEqualTo: false,
@@ -168,7 +172,7 @@ class _CompanyWorkersPageWidgetState extends State<CompanyWorkersPageWidget> {
                                 'isWorker',
                                 isEqualTo: true,
                               ),
-                          parent: widget.company),
+                          parent: widget!.company),
                       padding: EdgeInsets.zero,
                       primary: false,
                       reverse: false,
@@ -215,8 +219,8 @@ class _CompanyWorkersPageWidgetState extends State<CompanyWorkersPageWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (widget.isPartner) {
-                                    if (!widget.canViewWorker!) {
+                                  if (widget!.isPartner) {
+                                    if (!widget!.canViewWorker!) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -247,27 +251,27 @@ class _CompanyWorkersPageWidgetState extends State<CompanyWorkersPageWidget> {
                                         ParamType.DocumentReference,
                                       ),
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                       'canManageEmployee': serializeParam(
-                                        widget.canManageWorker,
+                                        widget!.canManageWorker,
                                         ParamType.bool,
                                       ),
                                       'canViewTask': serializeParam(
-                                        widget.canViewTask,
+                                        widget!.canViewTask,
                                         ParamType.bool,
                                       ),
                                       'canManageTask': serializeParam(
-                                        widget.canManageTask,
+                                        widget!.canManageTask,
                                         ParamType.bool,
                                       ),
                                       'canSendMoney': serializeParam(
-                                        widget.canSendMoney,
+                                        widget!.canSendMoney,
                                         ParamType.bool,
                                       ),
                                       'isOwner': serializeParam(
-                                        !widget.isPartner,
+                                        !widget!.isPartner,
                                         ParamType.bool,
                                       ),
                                     }.withoutNulls,

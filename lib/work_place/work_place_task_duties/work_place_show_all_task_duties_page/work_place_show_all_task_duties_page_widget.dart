@@ -2,11 +2,15 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'work_place_show_all_task_duties_page_model.dart';
 export 'work_place_show_all_task_duties_page_model.dart';
 
@@ -108,7 +112,7 @@ class _WorkPlaceShowAllTaskDutiesPageWidgetState
                   padding: EdgeInsets.all(12.0),
                   child: StreamBuilder<UsersRecord>(
                     stream: UsersRecord.getDocument(
-                        widget.dutiesForCompany!.createdUserRef!),
+                        widget!.dutiesForCompany!.createdUserRef!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -176,7 +180,7 @@ class _WorkPlaceShowAllTaskDutiesPageWidgetState
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget.dutiesForCompany?.taskName,
+                                      widget!.dutiesForCompany?.taskName,
                                       'görev ismi',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -292,10 +296,10 @@ class _WorkPlaceShowAllTaskDutiesPageWidgetState
                   child: PagedListView<DocumentSnapshot<Object?>?,
                       CompanyTaskDutiesRecord>(
                     pagingController: _model.setListViewController(
-                        CompanyTaskDutiesRecord.collection(widget.company)
+                        CompanyTaskDutiesRecord.collection(widget!.company)
                             .where(
                               'dutiesForCompany',
-                              isEqualTo: widget.dutiesForCompany?.reference,
+                              isEqualTo: widget!.dutiesForCompany?.reference,
                             )
                             .where(
                               'isComplete',
@@ -305,7 +309,7 @@ class _WorkPlaceShowAllTaskDutiesPageWidgetState
                               'isDelete',
                               isEqualTo: false,
                             ),
-                        parent: widget.company),
+                        parent: widget!.company),
                     padding: EdgeInsets.zero,
                     reverse: false,
                     scrollDirection: Axis.vertical,
@@ -592,7 +596,7 @@ class _WorkPlaceShowAllTaskDutiesPageWidgetState
                                                 ),
                                                 'dutiesForCompany':
                                                     serializeParam(
-                                                  widget.dutiesForCompany,
+                                                  widget!.dutiesForCompany,
                                                   ParamType.Document,
                                                 ),
                                               }.withoutNulls,
@@ -600,7 +604,7 @@ class _WorkPlaceShowAllTaskDutiesPageWidgetState
                                                 'companyTaskDuties':
                                                     listViewCompanyTaskDutiesRecord,
                                                 'dutiesForCompany':
-                                                    widget.dutiesForCompany,
+                                                    widget!.dutiesForCompany,
                                               },
                                             );
                                           },

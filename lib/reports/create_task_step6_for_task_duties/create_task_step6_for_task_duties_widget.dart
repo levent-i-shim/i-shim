@@ -7,12 +7,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'create_task_step6_for_task_duties_model.dart';
 export 'create_task_step6_for_task_duties_model.dart';
 
@@ -52,11 +55,11 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.dutiesCopy = await queryCompanyTaskDutiesRecordOnce(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyTaskDutiesRecord) =>
             companyTaskDutiesRecord.where(
           'dutiesForCompany',
-          isEqualTo: widget.dutiesForCompany,
+          isEqualTo: widget!.dutiesForCompany,
         ),
       );
       _model.companyTaskDutiesPageState =
@@ -113,12 +116,12 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
             children: [
               FFButtonWidget(
                 onPressed: () async {
-                  if (widget.canCreateForm!) {
+                  if (widget!.canCreateForm!) {
                     context.pushNamed(
                       CreateFormWidget.routeName,
                       queryParameters: {
                         'company': serializeParam(
-                          widget.company,
+                          widget!.company,
                           ParamType.DocumentReference,
                         ),
                         'routeBack': serializeParam(
@@ -279,7 +282,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                         queryBuilder: (formsRecord) => formsRecord
                             .where(
                               'companyRef',
-                              isEqualTo: widget.company,
+                              isEqualTo: widget!.company,
                             )
                             .where(
                               'isDelete',
@@ -641,7 +644,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                                         _model.dutiesForCompanyForName =
                                             await DutiesForCompanyRecord
                                                 .getDocumentOnce(
-                                                    widget.dutiesForCompany!);
+                                                    widget!.dutiesForCompany!);
 
                                         var workPlaceTaskDutiesRecordReference =
                                             WorkPlaceTaskDutiesRecord.createDoc(
@@ -655,7 +658,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                                                 _model.textController2.text,
                                             isComplete: false,
                                             dutiesForCompany:
-                                                widget.dutiesForCompany,
+                                                widget!.dutiesForCompany,
                                             form: _model.formRef,
                                             requiresAction: false,
                                             isDelete: false,
@@ -676,7 +679,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                                                 _model.textController2.text,
                                             isComplete: false,
                                             dutiesForCompany:
-                                                widget.dutiesForCompany,
+                                                widget!.dutiesForCompany,
                                             form: _model.formRef,
                                             requiresAction: false,
                                             isDelete: false,
@@ -690,7 +693,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
 
                                         var companyTaskDutiesRecordReference =
                                             CompanyTaskDutiesRecord.createDoc(
-                                                widget.company!);
+                                                widget!.company!);
                                         await companyTaskDutiesRecordReference
                                             .set({
                                           ...createCompanyTaskDutiesRecordData(
@@ -699,7 +702,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                                                 _model.textController2.text,
                                             isComplete: false,
                                             dutiesForCompany:
-                                                widget.dutiesForCompany,
+                                                widget!.dutiesForCompany,
                                             form: _model.formRef,
                                             workPlaceTaskDuties: _model
                                                 .workPlaceTaskDuties?.reference,
@@ -722,7 +725,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                                                 _model.textController2.text,
                                             isComplete: false,
                                             dutiesForCompany:
-                                                widget.dutiesForCompany,
+                                                widget!.dutiesForCompany,
                                             form: _model.formRef,
                                             workPlaceTaskDuties: _model
                                                 .workPlaceTaskDuties?.reference,
@@ -749,7 +752,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                                                 .createTaskForDuty.name,
                                             companyTaskDuties: _model
                                                 .companyTaskDuties?.reference,
-                                            company: widget.company,
+                                            company: widget!.company,
                                             fullDescription:
                                                 '${_model.dutiesForCompanyForName?.taskName} Aşamalı Görevi için ${_model.companyTaskDuties?.name} isimli görev eklendi',
                                           ),
@@ -784,7 +787,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                                           queryBuilder: (workHistoryRecord) =>
                                               workHistoryRecord.where(
                                             'company',
-                                            isEqualTo: widget.company,
+                                            isEqualTo: widget!.company,
                                           ),
                                           singleRecord: true,
                                         ).then((s) => s.firstOrNull);
@@ -805,7 +808,7 @@ class _CreateTaskStep6ForTaskDutiesWidgetState
                                           queryBuilder: (workHistoryRecord) =>
                                               workHistoryRecord.where(
                                             'company',
-                                            isEqualTo: widget.company,
+                                            isEqualTo: widget!.company,
                                           ),
                                           singleRecord: true,
                                         ).then((s) => s.firstOrNull);

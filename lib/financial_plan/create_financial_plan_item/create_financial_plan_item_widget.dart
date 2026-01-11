@@ -4,9 +4,12 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'create_financial_plan_item_model.dart';
 export 'create_financial_plan_item_model.dart';
 
@@ -121,7 +124,7 @@ class _CreateFinancialPlanItemWidgetState
                     HapticFeedback.heavyImpact();
 
                     await FinancialPlansItemsRecord.createDoc(
-                            widget.financialPlanDocument!)
+                            widget!.financialPlanDocument!)
                         .set(createFinancialPlansItemsRecordData(
                       title: _model.itemTitleTextController.text,
                       value:
@@ -130,8 +133,8 @@ class _CreateFinancialPlanItemWidgetState
                       creationTime: getCurrentTimestamp,
                       creatorUserRef: currentUserReference,
                       isPaid: false,
-                      companyRef: widget.companRef,
-                      workPlaceRef: widget.workPlaceRef,
+                      companyRef: widget!.companRef,
+                      workPlaceRef: widget!.workPlaceRef,
                       isDeleted: false,
                       willBePostponed: false,
                     ));

@@ -1,14 +1,18 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'employee_detail_first_page_work_place_model.dart';
 export 'employee_detail_first_page_work_place_model.dart';
 
@@ -59,7 +63,7 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.myWorkedWorkPlaceResponse = await queryMyWorkedWorkPlaceRecordOnce(
-        parent: widget.userRef,
+        parent: widget!.userRef,
         queryBuilder: (myWorkedWorkPlaceRecord) => myWorkedWorkPlaceRecord
             .where(
               'isDelete',
@@ -71,7 +75,7 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
             )
             .where(
               'company',
-              isEqualTo: widget.company,
+              isEqualTo: widget!.company,
             ),
         singleRecord: true,
       ).then((s) => s.firstOrNull);
@@ -100,7 +104,7 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<UsersRecord>(
-      stream: UsersRecord.getDocument(widget.userRef!),
+      stream: UsersRecord.getDocument(widget!.userRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -176,11 +180,11 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
                 alignment: AlignmentDirectional(0.0, -1.0),
                 child: StreamBuilder<List<CompanyWorkersRecord>>(
                   stream: queryCompanyWorkersRecord(
-                    parent: widget.company,
+                    parent: widget!.company,
                     queryBuilder: (companyWorkersRecord) =>
                         companyWorkersRecord.where(
                       'userRef',
-                      isEqualTo: widget.userRef,
+                      isEqualTo: widget!.userRef,
                     ),
                     singleRecord: true,
                   ),
@@ -625,19 +629,19 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'workPlace': serializeParam(
-                                                    widget.workPlace,
+                                                    widget!.workPlace,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'isPartner': serializeParam(
-                                                    widget.isPartner,
+                                                    widget!.isPartner,
                                                     ParamType.bool,
                                                   ),
                                                   'canManage': serializeParam(
-                                                    widget.canManageEmployee,
+                                                    widget!.canManageEmployee,
                                                     ParamType.bool,
                                                   ),
                                                   'companyWorker':
@@ -646,7 +650,7 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
                                                     ParamType.Document,
                                                   ),
                                                   'isWorker': serializeParam(
-                                                    widget.isWorker,
+                                                    widget!.isWorker,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,
@@ -715,11 +719,11 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
                                                 queryParameters: {
                                                   'canManageEmployee':
                                                       serializeParam(
-                                                    widget.canManageEmployee,
+                                                    widget!.canManageEmployee,
                                                     ParamType.bool,
                                                   ),
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'companyWorker':
@@ -728,15 +732,15 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
                                                     ParamType.Document,
                                                   ),
                                                   'isPartner': serializeParam(
-                                                    widget.isPartner,
+                                                    widget!.isPartner,
                                                     ParamType.bool,
                                                   ),
                                                   'isWorker': serializeParam(
-                                                    widget.isWorker,
+                                                    widget!.isWorker,
                                                     ParamType.bool,
                                                   ),
                                                   'workPlace': serializeParam(
-                                                    widget.workPlace,
+                                                    widget!.workPlace,
                                                     ParamType.DocumentReference,
                                                   ),
                                                 }.withoutNulls,
@@ -808,34 +812,34 @@ class _EmployeeDetailFirstPageWorkPlaceWidgetState
                                                     ParamType.Document,
                                                   ),
                                                   'isPartner': serializeParam(
-                                                    widget.isPartner,
+                                                    widget!.isPartner,
                                                     ParamType.bool,
                                                   ),
                                                   'canManageWorker':
                                                       serializeParam(
-                                                    widget.canManageEmployee,
+                                                    widget!.canManageEmployee,
                                                     ParamType.bool,
                                                   ),
                                                   'isWorker': serializeParam(
-                                                    widget.isWorker,
+                                                    widget!.isWorker,
                                                     ParamType.bool,
                                                   ),
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'canSendMoney':
                                                       serializeParam(
-                                                    widget.canSendMoney,
+                                                    widget!.canSendMoney,
                                                     ParamType.bool,
                                                   ),
                                                   'canManageTask':
                                                       serializeParam(
-                                                    widget.canManageTask,
+                                                    widget!.canManageTask,
                                                     ParamType.bool,
                                                   ),
                                                   'workPlace': serializeParam(
-                                                    widget.workPlace,
+                                                    widget!.workPlace,
                                                     ParamType.DocumentReference,
                                                   ),
                                                 }.withoutNulls,

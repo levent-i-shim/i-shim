@@ -7,12 +7,15 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'department_employee_page_work_place_model.dart';
 export 'department_employee_page_work_place_model.dart';
 
@@ -75,11 +78,11 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyWorkersRecord>>(
       stream: queryCompanyWorkersRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyWorkersRecord) => companyWorkersRecord
             .where(
               'departmentRefs',
-              arrayContains: widget.departmentRefs?.reference,
+              arrayContains: widget!.departmentRefs?.reference,
             )
             .where(
               'isDelete',
@@ -148,10 +151,10 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                         onTap: () async {
                           _model.companyDetailCopy =
                               await CompaniesRecord.getDocumentOnce(
-                                  widget.company!);
+                                  widget!.company!);
                           if (_model.companyDetailCopy?.owner ==
                               currentUserReference) {
-                            if (widget.departmentRefs?.name ==
+                            if (widget!.departmentRefs?.name ==
                                 'Makine ve Ekipman Yönetimi') {
                               var confirmDialogResponse =
                                   await showDialog<bool>(
@@ -196,8 +199,8 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                                               ?.unfocus();
                                         },
                                         child: ChooseNewDepartmentWidget(
-                                          company: widget.company!,
-                                          department: widget.departmentRefs!,
+                                          company: widget!.company!,
+                                          department: widget!.departmentRefs!,
                                         ),
                                       ),
                                     );
@@ -248,8 +251,8 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                                               ?.unfocus();
                                         },
                                         child: ChooseNewDepartmentWidget(
-                                          company: widget.company!,
-                                          department: widget.departmentRefs!,
+                                          company: widget!.company!,
+                                          department: widget!.departmentRefs!,
                                         ),
                                       ),
                                     );
@@ -334,7 +337,7 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                         controller: _model.dropDownValueController ??=
                             FormFieldController<String>(
                           _model.dropDownValue ??=
-                              widget.departmentRefs?.authorized?.id,
+                              widget!.departmentRefs?.authorized?.id,
                         ),
                         options: List<String>.from(
                             departmentEmployeePageWorkPlaceCompanyWorkersRecordList
@@ -394,25 +397,25 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                         onPressed: () async {
                           _model.workPlace =
                               await WorkPlacesRecord.getDocumentOnce(
-                                  widget.workplace!);
+                                  widget!.workplace!);
                           if (_model.workPlace?.owner == currentUserReference) {
                             _model.userRef = await actions.getUserDocRef(
                               _model.dropDownValue!,
                             );
                             _model.userRefOldAuth =
                                 await queryCompanyWorkersRecordOnce(
-                              parent: widget.company,
+                              parent: widget!.company,
                               queryBuilder: (companyWorkersRecord) =>
                                   companyWorkersRecord
                                       .where(
                                         'userRef',
                                         isEqualTo:
-                                            widget.departmentRefs?.authorized,
+                                            widget!.departmentRefs?.authorized,
                                       )
                                       .where(
                                         'departmentRefs',
                                         arrayContains:
-                                            widget.departmentRefs?.reference,
+                                            widget!.departmentRefs?.reference,
                                       ),
                               singleRecord: true,
                             ).then((s) => s.firstOrNull);
@@ -430,7 +433,7 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                               });
                               _model.workPlaceWorker =
                                   await queryWorkPlaceWorkerRecordOnce(
-                                parent: widget.workplace,
+                                parent: widget!.workplace,
                                 queryBuilder: (workPlaceWorkerRecord) =>
                                     workPlaceWorkerRecord.where(
                                   'user',
@@ -453,7 +456,7 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                             }
                             _model.companyWorker =
                                 await queryCompanyWorkersRecordOnce(
-                              parent: widget.company,
+                              parent: widget!.company,
                               queryBuilder: (companyWorkersRecord) =>
                                   companyWorkersRecord.where(
                                 'userRef',
@@ -465,16 +468,16 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                             await _model.companyWorker!.reference
                                 .update(createCompanyWorkersRecordData(
                               authorizedByDepartment:
-                                  widget.departmentRefs?.reference,
+                                  widget!.departmentRefs?.reference,
                               canAcceptTransaction: true,
                             ));
 
-                            await widget.departmentRefs!.reference
+                            await widget!.departmentRefs!.reference
                                 .update(createCompanyDepartmentsRecordData(
                               authorized: _model.userRef,
                             ));
 
-                            await widget.departmentRefs!.workPlaceDepartment!
+                            await widget!.departmentRefs!.workPlaceDepartment!
                                 .update(createWorkPlaceDepartmentRecordData(
                               authorizedBy: _model.userRef,
                             ));
@@ -617,8 +620,8 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                                       hoverColor: Colors.transparent,
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
-                                        if (widget.isPartner!) {
-                                          if (!widget.canManageEmployee!) {
+                                        if (widget!.isPartner!) {
+                                          if (!widget!.canManageEmployee!) {
                                             ScaffoldMessenger.of(context)
                                                 .showSnackBar(
                                               SnackBar(
@@ -640,8 +643,8 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                                             return;
                                           }
                                         } else {
-                                          if (widget.isWorker!) {
-                                            if (!widget.canManageEmployee!) {
+                                          if (widget!.isWorker!) {
+                                            if (!widget!.canManageEmployee!) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
@@ -676,35 +679,35 @@ class _DepartmentEmployeePageWorkPlaceWidgetState
                                               ParamType.DocumentReference,
                                             ),
                                             'company': serializeParam(
-                                              widget.company,
+                                              widget!.company,
                                               ParamType.DocumentReference,
                                             ),
                                             'canManageEmployee': serializeParam(
-                                              widget.canManageEmployee,
+                                              widget!.canManageEmployee,
                                               ParamType.bool,
                                             ),
                                             'canViewTask': serializeParam(
-                                              widget.canViewTask,
+                                              widget!.canViewTask,
                                               ParamType.bool,
                                             ),
                                             'canManageTask': serializeParam(
-                                              widget.canManageTask,
+                                              widget!.canManageTask,
                                               ParamType.bool,
                                             ),
                                             'canSendMoney': serializeParam(
-                                              widget.canSendMoney,
+                                              widget!.canSendMoney,
                                               ParamType.bool,
                                             ),
                                             'workPlace': serializeParam(
-                                              widget.workplace,
+                                              widget!.workplace,
                                               ParamType.DocumentReference,
                                             ),
                                             'isPartner': serializeParam(
-                                              widget.isPartner,
+                                              widget!.isPartner,
                                               ParamType.bool,
                                             ),
                                             'isWorker': serializeParam(
-                                              widget.isWorker,
+                                              widget!.isWorker,
                                               ParamType.bool,
                                             ),
                                           }.withoutNulls,

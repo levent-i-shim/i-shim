@@ -10,10 +10,13 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_new_finance_note_family_model.dart';
 export 'add_new_finance_note_family_model.dart';
 
@@ -50,7 +53,7 @@ class _AddNewFinanceNoteFamilyWidgetState
     _model.textFieldTitleFocusNode ??= FocusNode();
 
     _model.textFieldContentTextController ??= TextEditingController(
-        text: widget.isEdit! ? widget.noteFinanceCompany?.content : '');
+        text: widget!.isEdit! ? widget!.noteFinanceCompany?.content : '');
     _model.textFieldContentFocusNode ??= FocusNode();
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -151,8 +154,8 @@ class _AddNewFinanceNoteFamilyWidgetState
                             return;
                           }
                           if (_model.validate!) {
-                            if (widget.isEdit!) {
-                              await widget.noteFinanceCompany!.reference
+                            if (widget!.isEdit!) {
+                              await widget!.noteFinanceCompany!.reference
                                   .update(
                                       createFinancialMonitoringNotesRecordData(
                                 content:
@@ -267,7 +270,7 @@ class _AddNewFinanceNoteFamilyWidgetState
                                   fullDescription:
                                       _model.textFieldTitleTextController.text,
                                   noteFinance:
-                                      widget.noteFinanceCompany?.reference,
+                                      widget!.noteFinanceCompany?.reference,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -361,8 +364,8 @@ class _AddNewFinanceNoteFamilyWidgetState
                             return;
                           }
                           if (_model.validate2!) {
-                            if (widget.isEdit!) {
-                              await widget.noteFinanceCompany!.reference
+                            if (widget!.isEdit!) {
+                              await widget!.noteFinanceCompany!.reference
                                   .update(
                                       createFinancialMonitoringNotesRecordData(
                                 content:
@@ -477,7 +480,7 @@ class _AddNewFinanceNoteFamilyWidgetState
                                   fullDescription:
                                       _model.textFieldTitleTextController.text,
                                   noteFinance:
-                                      widget.noteFinanceCompany?.reference,
+                                      widget!.noteFinanceCompany?.reference,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -571,8 +574,8 @@ class _AddNewFinanceNoteFamilyWidgetState
                             return;
                           }
                           if (_model.validate3!) {
-                            if (widget.isEdit!) {
-                              await widget.noteFinanceCompany!.reference
+                            if (widget!.isEdit!) {
+                              await widget!.noteFinanceCompany!.reference
                                   .update(
                                       createFinancialMonitoringNotesRecordData(
                                 content:
@@ -633,7 +636,7 @@ class _AddNewFinanceNoteFamilyWidgetState
                                   fullDescription:
                                       _model.textFieldTitleTextController.text,
                                   noteFinance:
-                                      widget.noteFinanceCompany?.reference,
+                                      widget!.noteFinanceCompany?.reference,
                                 ),
                                 ...mapToFirestore(
                                   {
@@ -1202,7 +1205,9 @@ class _AddNewFinanceNoteFamilyWidgetState
                                                   color: Colors.white,
                                                   size: 36.0,
                                                 ),
-                                                if ((_model.uploadedLocalFile_familyUploadeMedia
+                                                if (_model.uploadedLocalFile_familyUploadeMedia !=
+                                                        null &&
+                                                    (_model.uploadedLocalFile_familyUploadeMedia
                                                             .bytes?.isNotEmpty ??
                                                         false))
                                                   Align(

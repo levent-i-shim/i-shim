@@ -3,10 +3,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'departmans_page_work_place_model.dart';
 export 'departmans_page_work_place_model.dart';
 
@@ -161,8 +164,8 @@ class _DepartmansPageWorkPlaceWidgetState
                         flex: 4,
                         child: FFButtonWidget(
                           onPressed: () async {
-                            if (widget.isPartner!) {
-                              if (!widget.canManageDepartment!) {
+                            if (widget!.isPartner!) {
+                              if (!widget!.canManageDepartment!) {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                     content: Text(
@@ -180,8 +183,8 @@ class _DepartmansPageWorkPlaceWidgetState
                                 return;
                               }
                             } else {
-                              if (widget.isWorker!) {
-                                if (!widget.canManageDepartment!) {
+                              if (widget!.isWorker!) {
+                                if (!widget!.canManageDepartment!) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -206,23 +209,23 @@ class _DepartmansPageWorkPlaceWidgetState
                               AddDepartmentPageWorkPlaceWidget.routeName,
                               queryParameters: {
                                 'workPlace': serializeParam(
-                                  widget.workPlace,
+                                  widget!.workPlace,
                                   ParamType.DocumentReference,
                                 ),
                                 'isPartner': serializeParam(
-                                  widget.isPartner,
+                                  widget!.isPartner,
                                   ParamType.bool,
                                 ),
                                 'canManage': serializeParam(
-                                  widget.canManageDepartment,
+                                  widget!.canManageDepartment,
                                   ParamType.bool,
                                 ),
                                 'company': serializeParam(
-                                  widget.company,
+                                  widget!.company,
                                   ParamType.DocumentReference,
                                 ),
                                 'isWorker': serializeParam(
-                                  widget.isWorker,
+                                  widget!.isWorker,
                                   ParamType.bool,
                                 ),
                               }.withoutNulls,
@@ -276,16 +279,16 @@ class _DepartmansPageWorkPlaceWidgetState
                     child: PagedListView<DocumentSnapshot<Object?>?,
                         CompanyDepartmentsRecord>(
                       pagingController: _model.setListViewController(
-                          CompanyDepartmentsRecord.collection(widget.company)
+                          CompanyDepartmentsRecord.collection(widget!.company)
                               .where(
                                 'workPlace',
-                                isEqualTo: widget.workPlace,
+                                isEqualTo: widget!.workPlace,
                               )
                               .where(
                                 'isDelete',
                                 isEqualTo: false,
                               ),
-                          parent: widget.company),
+                          parent: widget!.company),
                       padding: EdgeInsets.zero,
                       reverse: false,
                       scrollDirection: Axis.vertical,
@@ -331,8 +334,8 @@ class _DepartmansPageWorkPlaceWidgetState
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  if (widget.isPartner!) {
-                                    if (!widget.canViewEmployee!) {
+                                  if (widget!.isPartner!) {
+                                    if (!widget!.canViewEmployee!) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
@@ -354,8 +357,8 @@ class _DepartmansPageWorkPlaceWidgetState
                                       return;
                                     }
                                   } else {
-                                    if (widget.isWorker!) {
-                                      if (!widget.canViewEmployee!) {
+                                    if (widget!.isWorker!) {
+                                      if (!widget!.canViewEmployee!) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
@@ -384,23 +387,23 @@ class _DepartmansPageWorkPlaceWidgetState
                                         .routeName,
                                     queryParameters: {
                                       'isPartner': serializeParam(
-                                        widget.isPartner,
+                                        widget!.isPartner,
                                         ParamType.bool,
                                       ),
                                       'canManageEmployee': serializeParam(
-                                        widget.canManageEmployee,
+                                        widget!.canManageEmployee,
                                         ParamType.bool,
                                       ),
                                       'canManageDepartments': serializeParam(
-                                        widget.canManageDepartment,
+                                        widget!.canManageDepartment,
                                         ParamType.bool,
                                       ),
                                       'workplace': serializeParam(
-                                        widget.workPlace,
+                                        widget!.workPlace,
                                         ParamType.DocumentReference,
                                       ),
                                       'company': serializeParam(
-                                        widget.company,
+                                        widget!.company,
                                         ParamType.DocumentReference,
                                       ),
                                       'departmentRefs': serializeParam(
@@ -408,7 +411,7 @@ class _DepartmansPageWorkPlaceWidgetState
                                         ParamType.Document,
                                       ),
                                       'isWorker': serializeParam(
-                                        widget.isWorker,
+                                        widget!.isWorker,
                                         ParamType.bool,
                                       ),
                                       'canManageTask': serializeParam(
@@ -416,11 +419,11 @@ class _DepartmansPageWorkPlaceWidgetState
                                         ParamType.bool,
                                       ),
                                       'canViewTask': serializeParam(
-                                        widget.canViewTask,
+                                        widget!.canViewTask,
                                         ParamType.bool,
                                       ),
                                       'canSendMoney': serializeParam(
-                                        widget.canSendMoney,
+                                        widget!.canSendMoney,
                                         ParamType.bool,
                                       ),
                                     }.withoutNulls,

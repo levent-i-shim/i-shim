@@ -1,8 +1,17 @@
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
 import 'financial_plan_i_authorize_settings_widget.dart'
     show FinancialPlanIAuthorizeSettingsWidget;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class FinancialPlanIAuthorizeSettingsModel
     extends FlutterFlowModel<FinancialPlanIAuthorizeSettingsWidget> {

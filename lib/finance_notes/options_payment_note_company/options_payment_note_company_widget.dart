@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_payment_note_company_model.dart';
 export 'options_payment_note_company_model.dart';
 
@@ -175,12 +180,12 @@ class _OptionsPaymentNoteCompanyWidgetState
                         ParamType.bool,
                       ),
                       'companyPaymentDoc': serializeParam(
-                        widget.noteFinanceCompany,
+                        widget!.noteFinanceCompany,
                         ParamType.Document,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'companyPaymentDoc': widget.noteFinanceCompany,
+                      'companyPaymentDoc': widget!.noteFinanceCompany,
                     },
                   );
 
@@ -272,11 +277,11 @@ class _OptionsPaymentNoteCompanyWidgetState
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.noteFinanceCompany!.reference
+                    await widget!.noteFinanceCompany!.reference
                         .update(createFinancialNoteCompanyRecordData(
                       isDeleted: true,
                     ));
-                    await widget.noteFinanceCompany!.reference.delete();
+                    await widget!.noteFinanceCompany!.reference.delete();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(

@@ -2,11 +2,15 @@ import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:provider/provider.dart';
 import 'company_tasks_duties_show_reports_page_model.dart';
 export 'company_tasks_duties_show_reports_page_model.dart';
 
@@ -74,8 +78,8 @@ class _CompanyTasksDutiesShowReportsPageWidgetState
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            if (widget.isPartner) {
-              if (!widget.canCreate) {
+            if (widget!.isPartner) {
+              if (!widget!.canCreate) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(
@@ -96,15 +100,15 @@ class _CompanyTasksDutiesShowReportsPageWidgetState
               CompanyTasksForDutyCreatePageWidget.routeName,
               queryParameters: {
                 'companyName': serializeParam(
-                  widget.companyName,
+                  widget!.companyName,
                   ParamType.String,
                 ),
                 'dutiesForCompany': serializeParam(
-                  widget.dutiesForCompanyRef,
+                  widget!.dutiesForCompanyRef,
                   ParamType.DocumentReference,
                 ),
                 'company': serializeParam(
-                  widget.company,
+                  widget!.company,
                   ParamType.DocumentReference,
                 ),
               }.withoutNulls,
@@ -159,7 +163,7 @@ class _CompanyTasksDutiesShowReportsPageWidgetState
                   padding: EdgeInsets.all(12.0),
                   child: StreamBuilder<UsersRecord>(
                     stream: UsersRecord.getDocument(
-                        widget.dutiesForCompany!.createdUserRef!),
+                        widget!.dutiesForCompany!.createdUserRef!),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
@@ -227,7 +231,7 @@ class _CompanyTasksDutiesShowReportsPageWidgetState
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
                                     valueOrDefault<String>(
-                                      widget.dutiesForCompany?.taskName,
+                                      widget!.dutiesForCompany?.taskName,
                                       'Görev Adı',
                                     ),
                                     style: FlutterFlowTheme.of(context)
@@ -286,7 +290,7 @@ class _CompanyTasksDutiesShowReportsPageWidgetState
                                       0.0, 4.0, 0.0, 0.0),
                                   child: StreamBuilder<UsersRecord>(
                                     stream: UsersRecord.getDocument(
-                                        widget.dutiesForCompany!.userRef!),
+                                        widget!.dutiesForCompany!.userRef!),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
@@ -426,17 +430,17 @@ class _CompanyTasksDutiesShowReportsPageWidgetState
                   child: PagedListView<DocumentSnapshot<Object?>?,
                       CompanyTaskDutiesRecord>(
                     pagingController: _model.setListViewController(
-                        CompanyTaskDutiesRecord.collection(widget.company)
+                        CompanyTaskDutiesRecord.collection(widget!.company)
                             .where(
                               'dutiesForCompany',
-                              isEqualTo: widget.dutiesForCompanyRef,
+                              isEqualTo: widget!.dutiesForCompanyRef,
                             )
                             .where(
                               'isDelete',
                               isEqualTo: false,
                             )
                             .orderBy('creadetAt'),
-                        parent: widget.company),
+                        parent: widget!.company),
                     padding: EdgeInsets.zero,
                     reverse: false,
                     scrollDirection: Axis.vertical,
@@ -732,12 +736,12 @@ class _CompanyTasksDutiesShowReportsPageWidgetState
                                                     .routeName,
                                                 queryParameters: {
                                                   'company': serializeParam(
-                                                    widget.company,
+                                                    widget!.company,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'dutiesForCompany':
                                                       serializeParam(
-                                                    widget.dutiesForCompanyRef,
+                                                    widget!.dutiesForCompanyRef,
                                                     ParamType.DocumentReference,
                                                   ),
                                                   'companyTaskDuties':
@@ -746,11 +750,11 @@ class _CompanyTasksDutiesShowReportsPageWidgetState
                                                     ParamType.Document,
                                                   ),
                                                   'isPartner': serializeParam(
-                                                    widget.isPartner,
+                                                    widget!.isPartner,
                                                     ParamType.bool,
                                                   ),
                                                   'canManage': serializeParam(
-                                                    widget.canManage,
+                                                    widget!.canManage,
                                                     ParamType.bool,
                                                   ),
                                                 }.withoutNulls,

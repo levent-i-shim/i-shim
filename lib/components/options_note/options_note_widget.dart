@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_note_model.dart';
 export 'options_note_model.dart';
 
@@ -173,12 +178,12 @@ class _OptionsNoteWidgetState extends State<OptionsNoteWidget> {
                         ParamType.bool,
                       ),
                       'note': serializeParam(
-                        widget.note,
+                        widget!.note,
                         ParamType.Document,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'note': widget.note,
+                      'note': widget!.note,
                     },
                   );
 
@@ -270,7 +275,7 @@ class _OptionsNoteWidgetState extends State<OptionsNoteWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.note!.reference.update(createNotesRecordData(
+                    await widget!.note!.reference.update(createNotesRecordData(
                       isDelete: true,
                     ));
                     ScaffoldMessenger.of(context).showSnackBar(

@@ -1,9 +1,14 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'options_note_i_urgent_model.dart';
 export 'options_note_i_urgent_model.dart';
 
@@ -100,7 +105,7 @@ class _OptionsNoteIUrgentWidgetState extends State<OptionsNoteIUrgentWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    await widget.noteUrgent!.reference
+                    await widget!.noteUrgent!.reference
                         .update(createUrgentNotesRecordData(
                       completed: true,
                       completionTime: getCurrentTimestamp,
@@ -255,12 +260,12 @@ class _OptionsNoteIUrgentWidgetState extends State<OptionsNoteIUrgentWidget> {
                         ParamType.bool,
                       ),
                       'urgentNote': serializeParam(
-                        widget.noteUrgent,
+                        widget!.noteUrgent,
                         ParamType.Document,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
-                      'urgentNote': widget.noteUrgent,
+                      'urgentNote': widget!.noteUrgent,
                     },
                   );
 
@@ -352,7 +357,7 @@ class _OptionsNoteIUrgentWidgetState extends State<OptionsNoteIUrgentWidget> {
                       ) ??
                       false;
                   if (confirmDialogResponse) {
-                    await widget.noteUrgent!.reference
+                    await widget!.noteUrgent!.reference
                         .update(createUrgentNotesRecordData(
                       isDeleted: true,
                     ));

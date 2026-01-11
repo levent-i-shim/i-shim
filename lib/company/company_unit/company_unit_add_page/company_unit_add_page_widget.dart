@@ -7,9 +7,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'company_unit_add_page_model.dart';
 export 'company_unit_add_page_model.dart';
 
@@ -56,7 +59,7 @@ class _CompanyUnitAddPageWidgetState extends State<CompanyUnitAddPageWidget> {
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyDepartmentsRecord>>(
       stream: queryCompanyDepartmentsRecord(
-        parent: widget.company,
+        parent: widget!.company,
       ),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
@@ -116,7 +119,7 @@ class _CompanyUnitAddPageWidgetState extends State<CompanyUnitAddPageWidget> {
                   stream: queryWorkPlacesRecord(
                     queryBuilder: (workPlacesRecord) => workPlacesRecord.where(
                       'companyRef',
-                      isEqualTo: widget.company,
+                      isEqualTo: widget!.company,
                     ),
                   ),
                   builder: (context, snapshot) {
@@ -720,7 +723,7 @@ class _CompanyUnitAddPageWidgetState extends State<CompanyUnitAddPageWidget> {
                                         _model.depRef =
                                             await actions.getDepartmentDocRef(
                                           _model.dropDownDepartmentValue!,
-                                          widget.company!.id,
+                                          widget!.company!.id,
                                         );
                                         _model.workPlaceRef =
                                             await actions.getWorkPlaceDocRef(
@@ -751,7 +754,7 @@ class _CompanyUnitAddPageWidgetState extends State<CompanyUnitAddPageWidget> {
 
                                         var companyUnitsRecordReference =
                                             CompanyUnitsRecord.createDoc(
-                                                widget.company!);
+                                                widget!.company!);
                                         await companyUnitsRecordReference
                                             .set(createCompanyUnitsRecordData(
                                           name: _model.textController.text,

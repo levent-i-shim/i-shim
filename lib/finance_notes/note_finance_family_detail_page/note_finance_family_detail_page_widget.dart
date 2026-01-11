@@ -1,11 +1,15 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'note_finance_family_detail_page_model.dart';
 export 'note_finance_family_detail_page_model.dart';
 
@@ -101,7 +105,7 @@ class _NoteFinanceFamilyDetailPageWidgetState
                     ) ??
                     false;
                 if (confirmDialogResponse) {
-                  await widget.noteFinanceFamily!.reference
+                  await widget!.noteFinanceFamily!.reference
                       .update(createFinancialMonitoringNotesRecordData(
                     isDeleted: true,
                   ));
@@ -164,12 +168,12 @@ class _NoteFinanceFamilyDetailPageWidgetState
                           ParamType.bool,
                         ),
                         'noteFinanceFamily': serializeParam(
-                          widget.noteFinanceFamily,
+                          widget!.noteFinanceFamily,
                           ParamType.Document,
                         ),
                       }.withoutNulls,
                       extra: <String, dynamic>{
-                        'noteFinanceFamily': widget.noteFinanceFamily,
+                        'noteFinanceFamily': widget!.noteFinanceFamily,
                       },
                     );
                   },
@@ -239,7 +243,7 @@ class _NoteFinanceFamilyDetailPageWidgetState
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Created on: ${dateTimeFormat("d/M/y", widget.noteFinanceFamily?.creationDate)}',
+                          'Created on: ${dateTimeFormat("d/M/y", widget!.noteFinanceFamily?.creationDate)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -271,7 +275,7 @@ class _NoteFinanceFamilyDetailPageWidgetState
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              widget.noteFinanceFamily?.content,
+                              widget!.noteFinanceFamily?.content,
                               'İçerik',
                             ),
                             style: FlutterFlowTheme.of(context)

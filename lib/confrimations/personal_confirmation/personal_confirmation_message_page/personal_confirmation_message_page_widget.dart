@@ -8,13 +8,18 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'personal_confirmation_message_page_model.dart';
 export 'personal_confirmation_message_page_model.dart';
@@ -48,10 +53,10 @@ class _PersonalConfirmationMessagePageWidgetState
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      if (widget.personalConfirmation?.sender == currentUserReference) {
-        _model.receiver = widget.personalConfirmation?.receiver;
+      if (widget!.personalConfirmation?.sender == currentUserReference) {
+        _model.receiver = widget!.personalConfirmation?.receiver;
       } else {
-        _model.receiver = widget.personalConfirmation?.sender;
+        _model.receiver = widget!.personalConfirmation?.sender;
       }
     });
 
@@ -102,7 +107,7 @@ class _PersonalConfirmationMessagePageWidgetState
                     queryBuilder: (personalConfirmationsMessagesRecord) =>
                         personalConfirmationsMessagesRecord.where(
                       'receiverRef',
-                      isEqualTo: widget.personalConfirmation?.sender,
+                      isEqualTo: widget!.personalConfirmation?.sender,
                     ),
                     singleRecord: true,
                   ),
@@ -160,10 +165,10 @@ class _PersonalConfirmationMessagePageWidgetState
                               0.0, 0.0, 10.0, 20.0),
                           child: Text(
                             valueOrDefault<String>(
-                              widget.personalConfirmation?.sender ==
+                              widget!.personalConfirmation?.sender ==
                                       currentUserReference
-                                  ? widget.personalConfirmation?.receiverName
-                                  : widget.personalConfirmation?.senderName,
+                                  ? widget!.personalConfirmation?.receiverName
+                                  : widget!.personalConfirmation?.senderName,
                               'Alıcı',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -235,7 +240,7 @@ class _PersonalConfirmationMessagePageWidgetState
                   child:
                       StreamBuilder<List<PersonalConfirmationsMessagesRecord>>(
                     stream: queryPersonalConfirmationsMessagesRecord(
-                      parent: widget.personalConfirmation?.reference,
+                      parent: widget!.personalConfirmation?.reference,
                       queryBuilder: (personalConfirmationsMessagesRecord) =>
                           personalConfirmationsMessagesRecord
                               .orderBy('dateTime', descending: true),
@@ -253,7 +258,7 @@ class _PersonalConfirmationMessagePageWidgetState
                             await actions
                                 .safelyMarkMessagesReadAndUpdateCountPersonal(
                               currentUserReference!,
-                              widget.personalConfirmation!.reference,
+                              widget!.personalConfirmation!.reference,
                             );
 
                             safeSetState(() {});
@@ -397,6 +402,9 @@ class _PersonalConfirmationMessagePageWidgetState
                                                   ),
                                                 ),
                                                 if (listViewPersonalConfirmationsMessagesRecord
+                                                            .imagePath !=
+                                                        null &&
+                                                    listViewPersonalConfirmationsMessagesRecord
                                                             .imagePath !=
                                                         '')
                                                   Padding(
@@ -1087,7 +1095,7 @@ class _PersonalConfirmationMessagePageWidgetState
                                           ),
                                         });
 
-                                        await widget
+                                        await widget!
                                             .personalConfirmation!.reference
                                             .update({
                                           ...createPersonalConfirmationsRecordData(
@@ -1112,7 +1120,7 @@ class _PersonalConfirmationMessagePageWidgetState
                                             type: NotificationTypes
                                                 .confirmationPersonal.name,
                                             content: '1 Yeni Mesaj',
-                                            relatedDoc: widget
+                                            relatedDoc: widget!
                                                 .personalConfirmation
                                                 ?.reference
                                                 .id,
@@ -1138,7 +1146,7 @@ class _PersonalConfirmationMessagePageWidgetState
                                               'PersonalConfirmationMessagePage',
                                           parameterData: {
                                             'personalConfirmation':
-                                                widget.personalConfirmation,
+                                                widget!.personalConfirmation,
                                           },
                                         );
                                         _model.selectedImage = false;

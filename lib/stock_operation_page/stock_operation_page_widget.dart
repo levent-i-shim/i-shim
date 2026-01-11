@@ -5,8 +5,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'stock_operation_page_model.dart';
 export 'stock_operation_page_model.dart';
 
@@ -78,7 +81,7 @@ class _StockOperationPageWidgetState extends State<StockOperationPageWidget> {
           ),
           title: Text(
             valueOrDefault<String>(
-              widget.stock?.name,
+              widget!.stock?.name,
               'Stok Adı',
             ),
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -286,10 +289,10 @@ class _StockOperationPageWidgetState extends State<StockOperationPageWidget> {
                                     if (_model.validate!) {
                                       var stockMovementRecordReference =
                                           StockMovementRecord.createDoc(
-                                              widget.stock!.parentReference);
+                                              widget!.stock!.parentReference);
                                       await stockMovementRecordReference.set({
                                         ...createStockMovementRecordData(
-                                          stockRef: widget.stock?.reference,
+                                          stockRef: widget!.stock?.reference,
                                           movementType: 'in',
                                           quantity: double.tryParse(
                                               _model.textController.text),
@@ -306,7 +309,7 @@ class _StockOperationPageWidgetState extends State<StockOperationPageWidget> {
                                           StockMovementRecord
                                               .getDocumentFromData({
                                         ...createStockMovementRecordData(
-                                          stockRef: widget.stock?.reference,
+                                          stockRef: widget!.stock?.reference,
                                           movementType: 'in',
                                           quantity: double.tryParse(
                                               _model.textController.text),
@@ -319,7 +322,7 @@ class _StockOperationPageWidgetState extends State<StockOperationPageWidget> {
                                         ),
                                       }, stockMovementRecordReference);
 
-                                      await widget.stock!.reference.update({
+                                      await widget!.stock!.reference.update({
                                         ...mapToFirestore(
                                           {
                                             'quantity': FieldValue.increment(
@@ -436,10 +439,10 @@ class _StockOperationPageWidgetState extends State<StockOperationPageWidget> {
                                     if (_model.validate2!) {
                                       var stockMovementRecordReference =
                                           StockMovementRecord.createDoc(
-                                              widget.stock!.parentReference);
+                                              widget!.stock!.parentReference);
                                       await stockMovementRecordReference.set({
                                         ...createStockMovementRecordData(
-                                          stockRef: widget.stock?.reference,
+                                          stockRef: widget!.stock?.reference,
                                           movementType: 'out',
                                           quantity: double.tryParse(
                                               _model.textController.text),
@@ -456,7 +459,7 @@ class _StockOperationPageWidgetState extends State<StockOperationPageWidget> {
                                           StockMovementRecord
                                               .getDocumentFromData({
                                         ...createStockMovementRecordData(
-                                          stockRef: widget.stock?.reference,
+                                          stockRef: widget!.stock?.reference,
                                           movementType: 'out',
                                           quantity: double.tryParse(
                                               _model.textController.text),
@@ -469,7 +472,7 @@ class _StockOperationPageWidgetState extends State<StockOperationPageWidget> {
                                         ),
                                       }, stockMovementRecordReference);
 
-                                      await widget.stock!.reference.update({
+                                      await widget!.stock!.reference.update({
                                         ...mapToFirestore(
                                           {
                                             'quantity': FieldValue.increment(

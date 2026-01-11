@@ -6,10 +6,15 @@ import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:aligned_dialog/aligned_dialog.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:provider/provider.dart';
 import 'company_task_duties_read_report_page_model.dart';
 export 'company_task_duties_read_report_page_model.dart';
 
@@ -52,7 +57,7 @@ class _CompanyTaskDutiesReadReportPageWidgetState
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       _model.companyDetail =
-          await CompaniesRecord.getDocumentOnce(widget.company!);
+          await CompaniesRecord.getDocumentOnce(widget!.company!);
       _model.isOwner =
           _model.companyDetail?.owner == currentUserReference ? true : false;
       safeSetState(() {});
@@ -72,11 +77,11 @@ class _CompanyTaskDutiesReadReportPageWidgetState
   Widget build(BuildContext context) {
     return StreamBuilder<List<CompanyReportsRecord>>(
       stream: queryCompanyReportsRecord(
-        parent: widget.company,
+        parent: widget!.company,
         queryBuilder: (companyReportsRecord) => companyReportsRecord
             .where(
               'duty',
-              isEqualTo: widget.companyTaskDuties?.reference,
+              isEqualTo: widget!.companyTaskDuties?.reference,
             )
             .where(
               'isDelete',
@@ -144,7 +149,7 @@ class _CompanyTaskDutiesReadReportPageWidgetState
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          if (!(widget.isPartner && widget.canManage)) {
+                          if (!(widget!.isPartner && widget!.canManage)) {
                             if (_model.companyDetail?.owner !=
                                 currentUserReference) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -183,9 +188,9 @@ class _CompanyTaskDutiesReadReportPageWidgetState
                                   },
                                   child: TaskOptionsWidget(
                                     isStoped:
-                                        widget.companyTaskDuties!.isComplete,
+                                        widget!.companyTaskDuties!.isComplete,
                                     isTask: false,
-                                    taskDuties: widget.companyTaskDuties,
+                                    taskDuties: widget!.companyTaskDuties,
                                   ),
                                 ),
                               );
@@ -278,7 +283,7 @@ class _CompanyTaskDutiesReadReportPageWidgetState
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.companyTaskDuties?.name,
+                                          widget!.companyTaskDuties?.name,
                                           'Task Adı',
                                         ),
                                         style: FlutterFlowTheme.of(context)
@@ -337,7 +342,7 @@ class _CompanyTaskDutiesReadReportPageWidgetState
                                           0.0, 4.0, 0.0, 0.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget
+                                          widget!
                                               .companyTaskDuties?.description,
                                           'Açıklama',
                                         ),
@@ -467,7 +472,7 @@ class _CompanyTaskDutiesReadReportPageWidgetState
                                                                 .elementAtOrNull(
                                                                     reportsIndex)
                                                                 ?.responses
-                                                                .toList() ??
+                                                                ?.toList() ??
                                                             [];
 
                                                     return Column(

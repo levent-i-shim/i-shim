@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -5,9 +6,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
+import 'dart:ui';
 import '/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'add_new_product_page_model.dart';
 export 'add_new_product_page_model.dart';
 
@@ -122,18 +126,18 @@ class _AddNewProductPageWidgetState extends State<AddNewProductPageWidget> {
                         isList: true,
                       ),
                       'parentProduct': serializeParam(
-                        widget.parentProduct,
+                        widget!.parentProduct,
                         ParamType.Document,
                       ),
                       'workPlace': serializeParam(
-                        widget.workPlace,
+                        widget!.workPlace,
                         ParamType.DocumentReference,
                       ),
                     }.withoutNulls,
                     extra: <String, dynamic>{
                       'product': _model.product,
                       'productFields': _model.fields,
-                      'parentProduct': widget.parentProduct,
+                      'parentProduct': widget!.parentProduct,
                     },
                   );
                 },
@@ -451,7 +455,7 @@ class _AddNewProductPageWidgetState extends State<AddNewProductPageWidget> {
                                     ...createProductsRecordData(
                                       name: _model
                                           .textFieldTitleTextController.text,
-                                      company: widget.company,
+                                      company: widget!.company,
                                       isDelete: false,
                                       averageCost: 0.0,
                                       counter: 0,
@@ -461,7 +465,7 @@ class _AddNewProductPageWidgetState extends State<AddNewProductPageWidget> {
                                       soldQuantity: 0.0,
                                       totalSoldCost: 0.0,
                                       parentProduct:
-                                          widget.parentProduct?.reference,
+                                          widget!.parentProduct?.reference,
                                     ),
                                     ...mapToFirestore(
                                       {
@@ -474,7 +478,7 @@ class _AddNewProductPageWidgetState extends State<AddNewProductPageWidget> {
                                     ...createProductsRecordData(
                                       name: _model
                                           .textFieldTitleTextController.text,
-                                      company: widget.company,
+                                      company: widget!.company,
                                       isDelete: false,
                                       averageCost: 0.0,
                                       counter: 0,
@@ -484,7 +488,7 @@ class _AddNewProductPageWidgetState extends State<AddNewProductPageWidget> {
                                       soldQuantity: 0.0,
                                       totalSoldCost: 0.0,
                                       parentProduct:
-                                          widget.parentProduct?.reference,
+                                          widget!.parentProduct?.reference,
                                     ),
                                     ...mapToFirestore(
                                       {
@@ -495,7 +499,7 @@ class _AddNewProductPageWidgetState extends State<AddNewProductPageWidget> {
                                   _model.isProductAdded = true;
                                   safeSetState(() {});
 
-                                  await widget.parentProduct!.reference
+                                  await widget!.parentProduct!.reference
                                       .update({
                                     ...mapToFirestore(
                                       {

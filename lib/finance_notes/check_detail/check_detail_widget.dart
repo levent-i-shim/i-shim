@@ -4,8 +4,10 @@ import '/flutter_flow/flutter_flow_pdf_viewer.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'check_detail_model.dart';
 export 'check_detail_model.dart';
 
@@ -181,7 +183,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Oluşturma Tarihi : ${dateTimeFormat("d/M/y", widget.paymentDocument?.creationTime)}',
+                          'Oluşturma Tarihi : ${dateTimeFormat("d/M/y", widget!.paymentDocument?.creationTime)}',
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     font: GoogleFonts.newsreader(
@@ -251,7 +253,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                     child: Text(
                                       valueOrDefault<String>(
                                         formatNumber(
-                                          widget.paymentDocument?.value,
+                                          widget!.paymentDocument?.value,
                                           formatType: FormatType.decimal,
                                           decimalType: DecimalType.commaDecimal,
                                           currency: '₺ ',
@@ -316,7 +318,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                     child: Text(
                                       valueOrDefault<String>(
                                         dateTimeFormat("d/M/y",
-                                            widget.paymentDocument?.dueDate),
+                                            widget!.paymentDocument?.dueDate),
                                         '0',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -377,7 +379,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                     child: Text(
                                       valueOrDefault<String>(
                                         dateTimeFormat("d/M/y",
-                                            widget.paymentDocument?.writeDate),
+                                            widget!.paymentDocument?.writeDate),
                                         '0',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -403,7 +405,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                   ),
                                 ],
                               ),
-                              if (widget.paymentDocument?.incomeOrExpense ==
+                              if (widget!.paymentDocument?.incomeOrExpense ==
                                   'expense')
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -439,7 +441,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                           0.0, 8.0, 0.0, 8.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.paymentDocument
+                                          widget!.paymentDocument
                                               ?.givenToWhomUserName,
                                           '0',
                                         ),
@@ -466,7 +468,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                     ),
                                   ],
                                 ),
-                              if (widget.paymentDocument?.incomeOrExpense ==
+                              if (widget!.paymentDocument?.incomeOrExpense ==
                                   'income')
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -502,7 +504,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                           0.0, 8.0, 0.0, 8.0),
                                       child: Text(
                                         valueOrDefault<String>(
-                                          widget.paymentDocument
+                                          widget!.paymentDocument
                                               ?.takenFromWhomUserName,
                                           '0',
                                         ),
@@ -563,7 +565,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget
+                                        widget!
                                             .paymentDocument?.incomeOrExpense,
                                         'Gelir / Gider',
                                       ),
@@ -624,7 +626,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.paymentDocument?.companyName,
+                                        widget!.paymentDocument?.companyName,
                                         '0',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -684,7 +686,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                         0.0, 8.0, 0.0, 8.0),
                                     child: Text(
                                       valueOrDefault<String>(
-                                        widget.paymentDocument?.companyName,
+                                        widget!.paymentDocument?.companyName,
                                         '0',
                                       ),
                                       style: FlutterFlowTheme.of(context)
@@ -760,7 +762,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                                     0.0, 8.0, 0.0, 8.0),
                                             child: Text(
                                               valueOrDefault<String>(
-                                                widget
+                                                widget!
                                                     .paymentDocument?.content,
                                                 '0',
                                               ),
@@ -834,7 +836,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                       child: SelectionArea(
                                           child: Text(
                                         '${valueOrDefault<String>(
-                                          widget.paymentDocument?.reference.id,
+                                          widget!.paymentDocument?.reference.id,
                                           'Fatura Kimlik No',
                                         )}',
                                         style: FlutterFlowTheme.of(context)
@@ -902,8 +904,8 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                           ),
                                     ),
                                   ),
-                                  if (widget.paymentDocument?.pdfUrl != null &&
-                                      widget.paymentDocument?.pdfUrl != '')
+                                  if (widget!.paymentDocument?.pdfUrl != null &&
+                                      widget!.paymentDocument?.pdfUrl != '')
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 4.0, 4.0, 6.0),
@@ -915,14 +917,14 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                         ),
                                         child: FlutterFlowPdfViewer(
                                           networkPath:
-                                              widget.paymentDocument!.pdfUrl,
+                                              widget!.paymentDocument!.pdfUrl,
                                           horizontalScroll: false,
                                         ),
                                       ),
                                     ),
-                                  if (widget.paymentDocument?.imageUrl !=
+                                  if (widget!.paymentDocument?.imageUrl !=
                                           null &&
-                                      widget.paymentDocument?.imageUrl != '')
+                                      widget!.paymentDocument?.imageUrl != '')
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           4.0, 6.0, 4.0, 4.0),
@@ -953,7 +955,7 @@ class _CheckDetailWidgetState extends State<CheckDetailWidget> {
                                                       BorderRadius.circular(
                                                           8.0),
                                                   child: Image.network(
-                                                    widget.paymentDocument!
+                                                    widget!.paymentDocument!
                                                         .imageUrl,
                                                     width: 320.0,
                                                     height: 240.0,
